@@ -93,26 +93,28 @@ export function IndustrySectors({ showHeader = true, className }: IndustrySector
           >
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
-            <div className="flex items-center justify-center gap-4 md:justify-between">
+            <div className="relative flex min-h-10 items-center justify-center md:justify-between">
               <span className="font-display text-3xl font-bold tabular-nums text-neutral-muted transition-colors duration-300 group-hover:text-primary/15">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <TrustedBadgeProven />
+              <span className="absolute top-0 right-0 md:static">
+                <TrustedBadgeProven />
+              </span>
             </div>
 
-            <div className="mt-5 flex h-14 w-14 items-center justify-center text-primary">
+            <div className="mx-auto mt-5 flex h-14 w-14 items-center justify-center text-primary md:mx-0">
               {sectorIcons[sector.id]}
             </div>
 
             <h3 className="mt-5 font-display text-lg font-bold text-secondary">
               {sector.title}
             </h3>
-            <span className="mt-3 h-0.5 w-8 rounded-full bg-accent transition-all duration-300 group-hover:w-14" />
+            <span className="mx-auto mt-3 h-0.5 w-8 rounded-full bg-accent transition-all duration-300 group-hover:w-14 md:mx-0" />
             <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
               {sector.description}
             </p>
 
-            <p className="mt-5 flex items-center gap-2 border-t border-neutral-border pt-4 text-xs font-semibold tracking-wide text-primary uppercase">
+            <p className="mt-5 flex items-center justify-center gap-2 border-t border-neutral-border pt-4 text-xs font-semibold tracking-wide text-primary uppercase md:justify-start">
               <svg
                 className="h-4 w-4 shrink-0 text-accent"
                 viewBox="0 0 24 24"

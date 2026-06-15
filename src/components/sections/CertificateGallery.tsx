@@ -49,23 +49,23 @@ export function CertificateGallery({ certificates }: CertificateGalleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
+      <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
         {certificates.map((certificate, index) => (
           <button
             key={certificate.id}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="group text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            className="group flex h-full w-full flex-col text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             aria-label={`View ${certificate.title} certificate`}
           >
-            <div className="overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/40 group-hover:shadow-xl">
-              <div className="relative aspect-[3/4] overflow-hidden bg-neutral-muted">
+            <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/40 group-hover:shadow-xl">
+              <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden bg-neutral-muted">
                 <Image
                   src={certificate.image}
                   alt={certificate.alt}
                   fill
                   className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 45vw, 25vw"
+                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-secondary/0 transition-colors duration-300 group-hover:bg-secondary/5" />
                 <div className="absolute right-2 bottom-2 flex h-7 w-7 items-center justify-center rounded-full bg-neutral/90 text-secondary opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100">
@@ -80,11 +80,11 @@ export function CertificateGallery({ certificates }: CertificateGalleryProps) {
                   </svg>
                 </div>
               </div>
-              <div className="border-t border-neutral-border px-3 py-3">
-                <p className="text-xs font-semibold text-secondary sm:text-sm">
+              <div className="flex min-h-[5.5rem] flex-1 flex-col justify-center border-t border-neutral-border px-3 py-3 sm:min-h-[6rem] sm:px-4 sm:py-4">
+                <p className="line-clamp-2 text-xs font-semibold text-secondary sm:text-sm">
                   {certificate.title}
                 </p>
-                <p className="mt-0.5 text-[11px] leading-snug text-text-muted sm:text-xs">
+                <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-text-muted sm:text-xs">
                   {certificate.subtitle}
                 </p>
               </div>

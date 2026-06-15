@@ -5,9 +5,9 @@ import { divisionIcons } from "@/lib/division-icons";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DivisionCardHeader } from "@/components/ui/DivisionCardHeader";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { TrustedBadge } from "@/components/ui/TrustedBadge";
 import { breadcrumbSchema, createPageMetadata, serviceSchema } from "@/lib/seo";
 
 type DivisionPageProps = {
@@ -60,12 +60,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
       />
 
       <Section className="pt-10 md:pt-14">
-        <div className="flex items-start justify-center gap-4 md:justify-between">
-          <span className="flex h-14 w-14 items-center justify-center text-primary">
-            {divisionIcons[division.id]}
-          </span>
-          <TrustedBadge />
-        </div>
+        <DivisionCardHeader icon={divisionIcons[division.id]} />
         <SectionHeader
           title="Overview"
           description={division.description}

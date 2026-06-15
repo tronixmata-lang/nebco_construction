@@ -5,8 +5,8 @@ import { divisionIcons } from "@/lib/division-icons";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DivisionCardHeader } from "@/components/ui/DivisionCardHeader";
 import { Section } from "@/components/ui/Section";
-import { TrustedBadge } from "@/components/ui/TrustedBadge";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -33,14 +33,9 @@ export default function DivisionsPage() {
               key={division.id}
               className="group flex flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-8 md:text-left"
             >
-              <span className="mb-6 block h-0.5 w-12 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="mx-auto mb-6 block h-0.5 w-12 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100 md:mx-0" />
 
-              <div className="flex items-start justify-center gap-3 md:justify-between">
-                <span className="flex h-14 w-14 items-center justify-center text-primary">
-                  {divisionIcons[division.id]}
-                </span>
-                <TrustedBadge />
-              </div>
+              <DivisionCardHeader icon={divisionIcons[division.id]} />
 
               <h2 className="mt-5 font-display text-2xl font-bold text-secondary">
                 {division.name}

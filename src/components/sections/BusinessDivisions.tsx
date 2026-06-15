@@ -1,0 +1,57 @@
+import Link from "next/link";
+import { divisions } from "@/content/divisions";
+import { divisionIcons } from "@/lib/division-icons";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { TrustedBadge } from "@/components/ui/TrustedBadge";
+
+export function BusinessDivisions() {
+  return (
+    <Section variant="muted" id="divisions">
+      <SectionHeader
+        eyebrow="Our Divisions"
+        title="Integrated Solutions Across Three Core Businesses"
+        description="NEBCO operates through three strategically connected divisions, each delivering specialized expertise while working together to create comprehensive development solutions."
+        align="center"
+        className="mx-auto"
+      />
+
+      <div className="grid gap-8 md:grid-cols-3">
+        {divisions.map((division) => (
+          <Card key={division.id} hover className="flex flex-col">
+            <div className="flex items-start justify-between gap-3">
+              <span className="flex h-14 w-14 items-center justify-center text-primary">
+                {divisionIcons[division.id]}
+              </span>
+              <TrustedBadge />
+            </div>
+            <h3 className="mt-5 font-display text-xl font-bold text-secondary">
+              {division.name}
+            </h3>
+            <p className="mt-1 text-sm font-medium text-accent">
+              {division.tagline}
+            </p>
+            <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
+              {division.description}
+            </p>
+            <Link
+              href={division.href}
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+            >
+              Explore {division.shortName}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </Card>
+        ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <Button href="/divisions" variant="outline">
+          View All Divisions
+        </Button>
+      </div>
+    </Section>
+  );
+}

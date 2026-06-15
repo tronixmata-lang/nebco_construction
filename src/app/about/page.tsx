@@ -1,0 +1,165 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { aboutContent, certificateSection } from "@/content/homepage";
+import { PageIntro } from "@/components/layout/PageIntro";
+import { CertificateGallery } from "@/components/sections/CertificateGallery";
+import { ValuePillars } from "@/components/sections/ValuePillars";
+import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about NEBCO's history, mission, vision, and values as Nepal's trusted A-Class construction company, established in 1995 under the Shah Group.",
+};
+
+const storyHighlights = [
+  { value: "1995", label: "Established" },
+  { value: "2001", label: "Officially Registered" },
+  { value: "A-Class", label: "Construction License" },
+  { value: "Shah Group", label: "Parent Company" },
+];
+
+export default function AboutPage() {
+  return (
+    <>
+      <PageIntro
+        eyebrow="About NEBCO"
+        title="Building Confidence. Creating Value."
+        description="For over three decades, NEBCO has been a trusted partner in construction, investment, and consulting across Nepal and beyond."
+      />
+
+      <Section className="pt-10 md:pt-14">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHeader
+              eyebrow="Our Story"
+              title="Three Decades of Trust, Built One Project at a Time"
+              description={aboutContent.history}
+            />
+
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-8">
+              {storyHighlights.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-sm border border-neutral-border bg-neutral-muted p-5 transition-colors hover:border-primary/20"
+                >
+                  <dt className="font-display text-2xl font-bold text-primary">
+                    {item.value}
+                  </dt>
+                  <dd className="mt-1 text-xs font-semibold tracking-wide text-text-muted uppercase">
+                    {item.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-xl">
+              <Image
+                src="/images/site/1-7_11zon-scaled.jpg"
+                alt="A NEBCO construction project in progress"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-secondary/25" />
+            </div>
+            <div className="absolute -top-5 -left-5 -z-10 hidden h-32 w-32 border-l-4 border-t-4 border-accent lg:block" />
+            <div className="absolute -bottom-5 -right-5 -z-10 hidden h-32 w-32 border-b-4 border-r-4 border-primary lg:block" />
+            <div className="absolute -bottom-6 left-6 rounded-sm bg-primary px-6 py-4 shadow-lg">
+              <p className="font-display text-3xl font-bold text-neutral">30+</p>
+              <p className="text-xs font-medium tracking-widest text-neutral/80 uppercase">
+                Years of Excellence
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section variant="muted">
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl md:p-10">
+            <span className="absolute top-0 left-0 h-1 w-full bg-primary" />
+            <div className="flex h-12 w-12 items-center justify-center text-primary">
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1" />
+              </svg>
+            </div>
+            <h2 className="mt-6 font-display text-2xl font-bold text-secondary">Our Mission</h2>
+            <p className="mt-4 leading-relaxed text-text-muted">{aboutContent.mission}</p>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl md:p-10">
+            <span className="absolute top-0 left-0 h-1 w-full bg-accent" />
+            <div className="flex h-12 w-12 items-center justify-center text-accent">
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h2 className="mt-6 font-display text-2xl font-bold text-secondary">Our Vision</h2>
+            <p className="mt-4 leading-relaxed text-text-muted">{aboutContent.vision}</p>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeader
+          eyebrow="What We Stand For"
+          title="Our Core Values"
+          description="The principles that guide every project, partnership, and decision we make."
+          align="center"
+          className="mx-auto"
+        />
+        <div className="mx-auto grid max-w-5xl gap-px overflow-hidden rounded-sm border border-neutral-border bg-neutral-border sm:grid-cols-2 lg:grid-cols-3">
+          {aboutContent.values.map((value, index) => (
+            <div
+              key={value}
+              className="group flex flex-col gap-4 bg-neutral p-8 transition-all duration-300 hover:bg-neutral-muted"
+            >
+              <span className="font-display text-2xl font-bold text-accent transition-colors group-hover:text-primary">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p className="text-base font-medium leading-relaxed text-secondary">{value}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <ValuePillars
+        id="why-nebco"
+        variant="muted"
+        eyebrow="The NEBCO Difference"
+        title="Why Clients Choose NEBCO"
+        description="A reputation built on quality craftsmanship, transparency, and results clients can rely on."
+        columns="three"
+      />
+
+      <Section variant="dark">
+        <SectionHeader
+          eyebrow={certificateSection.title}
+          title="Recognized Credentials, Earned Reputation"
+          description={certificateSection.description}
+          align="center"
+          className="mx-auto"
+          dark
+        />
+        <CertificateGallery certificates={certificateSection.certificates} />
+        <div className="mt-10 text-center">
+          <Link
+            href="/leadership"
+            className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-accent uppercase transition-colors hover:text-accent-light"
+          >
+            Meet Our Leadership
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      </Section>
+    </>
+  );
+}

@@ -61,7 +61,7 @@ export function ContactForm() {
         >
           <option value="">Select a division</option>
           <option value="construction">NEBCO Construction / Homes</option>
-          <option value="investment">NEBCO Infra</option>
+          <option value="investment">NEBCO Investment</option>
           <option value="consulting">NEBCO Consulting & Design</option>
           <option value="general">General Inquiry</option>
         </select>

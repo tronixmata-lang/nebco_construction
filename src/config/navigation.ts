@@ -10,7 +10,7 @@ export const breadcrumbLabels: Record<string, string> = {
   insights: "Insights & News",
   leadership: "Leadership",
   construction: "NEBCO Construction",
-  investment: "NEBCO Infra",
+  investment: "NEBCO Investment",
   consulting: "NEBCO Consulting",
   privacy: "Privacy Policy",
   terms: "Terms of Use",
@@ -22,7 +22,7 @@ export const sitePageIndex = [
   { label: "About Us", href: "/about" },
   { label: "Business Divisions", href: "/divisions" },
   { label: "NEBCO Construction", href: "/divisions/construction" },
-  { label: "NEBCO Infra", href: "/divisions/investment" },
+  { label: "NEBCO Investment", href: "/divisions/investment" },
   { label: "NEBCO Consulting", href: "/divisions/consulting" },
   { label: "Project Portfolio", href: "/portfolio" },
   { label: "Industry Sectors", href: "/sectors" },
@@ -41,7 +41,7 @@ export const mainNavigation: NavItem[] = [
     href: "/divisions",
     children: [
       { label: "NEBCO Construction", href: "/divisions/construction" },
-      { label: "NEBCO Infra", href: "/divisions/investment" },
+      { label: "NEBCO Investment", href: "/divisions/investment" },
       { label: "NEBCO Consulting", href: "/divisions/consulting" },
     ],
   },
@@ -62,7 +62,7 @@ export const footerNavigation = {
   ],
   divisions: [
     { label: "NEBCO Construction", href: "/divisions/construction" },
-    { label: "NEBCO Infra", href: "/divisions/investment" },
+    { label: "NEBCO Investment", href: "/divisions/investment" },
     { label: "NEBCO Consulting", href: "/divisions/consulting" },
   ],
   resources: [

@@ -22,11 +22,11 @@ export const divisions: Division[] = [
   {
     id: "investment",
     slug: "investment",
-    name: "NEBCO Infra",
-    shortName: "Infra",
+    name: "NEBCO Investment",
+    shortName: "Investment",
     tagline: "Building the Foundations of Progress",
     description:
-      "NEBCO Infra specializes in large-scale infrastructure development including roads, bridges, tunnels, commercial complexes, and real estate development across Nepal.",
+      "NEBCO Investment specializes in large-scale infrastructure development including roads, bridges, tunnels, commercial complexes, and real estate development across Nepal.",
     services: [
       "Infrastructure Development",
       "Road & Bridge Construction",

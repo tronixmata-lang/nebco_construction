@@ -9,7 +9,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-primary/5" />
       <div className="absolute top-0 right-0 h-full w-1/3 bg-accent/5" />
 
-      <Container className="relative py-24 md:py-32 lg:py-40">
+      <Container className="relative flex flex-col items-center py-24 text-center md:py-32 lg:py-40">
         <div className="max-w-3xl">
           <p className="mb-4 text-sm font-semibold tracking-widest text-accent uppercase">
             {siteConfig.shortName} Group
@@ -17,10 +17,10 @@ export function HeroSection() {
           <h1 className="font-display text-4xl leading-tight font-bold tracking-tight text-neutral md:text-5xl lg:text-6xl">
             {heroContent.headline}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral/80 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-neutral/80 md:text-xl">
             {heroContent.subheadline}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button href={heroContent.primaryCta.href} size="lg">
               {heroContent.primaryCta.label}
             </Button>

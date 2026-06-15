@@ -4,9 +4,11 @@ import { divisions, getDivisionBySlug } from "@/content/divisions";
 import { divisionIcons } from "@/lib/division-icons";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TrustedBadge } from "@/components/ui/TrustedBadge";
+import { breadcrumbSchema, createPageMetadata, serviceSchema } from "@/lib/seo";
 
 type DivisionPageProps = {
   params: Promise<{ slug: string }>;
@@ -24,10 +26,11 @@ export async function generateMetadata({
 
   if (!division) return { title: "Division Not Found" };
 
-  return {
+  return createPageMetadata({
     title: division.name,
     description: division.description,
-  };
+    path: `/divisions/${division.slug}`,
+  });
 }
 
 export default async function DivisionPage({ params }: DivisionPageProps) {
@@ -40,6 +43,15 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          serviceSchema(division),
+          breadcrumbSchema(
+            `/divisions/${division.slug}`,
+            division.name,
+          ),
+        ]}
+      />
       <PageIntro
         eyebrow="Business Division"
         title={division.name}
@@ -48,7 +60,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
       />
 
       <Section className="pt-10 md:pt-14">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-center gap-4 md:justify-between">
           <span className="flex h-14 w-14 items-center justify-center text-primary">
             {divisionIcons[division.id]}
           </span>
@@ -93,7 +105,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
           {otherDivisions.map((other) => (
             <div
               key={other.id}
-              className="group rounded-sm border border-neutral-border bg-neutral p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              className="group rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg sm:text-left"
             >
               <span className="flex h-10 w-10 items-center justify-center text-primary">
                 {divisionIcons[other.id]}

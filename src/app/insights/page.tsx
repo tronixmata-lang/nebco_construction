@@ -3,18 +3,22 @@ import Link from "next/link";
 import { insights } from "@/content/insights";
 import { formatDate } from "@/lib/utils";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Insights & News",
   description:
-    "Industry perspectives on construction, infrastructure development, investment, and project management.",
-};
+    "Industry perspectives on construction, earthquake-resistant building, infrastructure development, investment, and project management in Nepal.",
+  path: "/insights",
+});
 
 export default function InsightsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/insights")} />
       <PageIntro
         eyebrow="Insights"
         title="Industry Perspectives"

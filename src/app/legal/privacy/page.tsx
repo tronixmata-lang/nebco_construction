@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
-};
+  description:
+    "Read how NEBCO Construction collects, uses, and protects your personal information.",
+  path: "/legal/privacy",
+});
 
 export default function PrivacyPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/legal/privacy")} />
       <PageIntro
         eyebrow="Legal"
         title="Privacy Policy"

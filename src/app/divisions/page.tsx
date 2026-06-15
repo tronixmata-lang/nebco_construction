@@ -4,18 +4,22 @@ import { divisions } from "@/content/divisions";
 import { divisionIcons } from "@/lib/division-icons";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { TrustedBadge } from "@/components/ui/TrustedBadge";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Business Divisions",
   description:
-    "Explore NEBCO's three integrated business divisions: Construction, Investment, and Consulting.",
-};
+    "Explore NEBCO's three integrated business divisions: NEBCO Construction, NEBCO Investment, and NEBCO Consulting in Nepal.",
+  path: "/divisions",
+});
 
 export default function DivisionsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/divisions")} />
       <PageIntro
         eyebrow="Our Divisions"
         title="Integrated Business Structure"
@@ -27,11 +31,11 @@ export default function DivisionsPage() {
           {divisions.map((division) => (
             <div
               key={division.id}
-              className="group flex flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+              className="group flex flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-8 md:text-left"
             >
               <span className="mb-6 block h-0.5 w-12 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex items-start justify-center gap-3 md:justify-between">
                 <span className="flex h-14 w-14 items-center justify-center text-primary">
                   {divisionIcons[division.id]}
                 </span>
@@ -46,7 +50,7 @@ export default function DivisionsPage() {
                 {division.description}
               </p>
 
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-3 text-left">
                 {division.services.map((service) => (
                   <li key={service} className="flex items-start gap-3 text-sm text-text-muted">
                     <span className="mt-0.5 text-primary" aria-hidden="true">
@@ -61,7 +65,7 @@ export default function DivisionsPage() {
 
               <Link
                 href={division.href}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+                className="mt-8 inline-flex items-center justify-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark md:justify-start"
               >
                 Explore {division.shortName}
                 <span aria-hidden="true">&rarr;</span>

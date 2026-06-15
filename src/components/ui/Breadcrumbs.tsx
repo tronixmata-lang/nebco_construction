@@ -62,7 +62,7 @@ export function Breadcrumbs({
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-2 text-sm">
+      <ol className="flex flex-wrap items-center justify-center gap-2 text-sm md:justify-start">
         {crumbs.map((crumb, index) => {
           const isFirst = index === 0;
           const isLast = index === crumbs.length - 1;

@@ -26,9 +26,9 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-neutral-border bg-secondary text-neutral">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-neutral-border" />
 
-      <Container className="py-16">
+      <Container className="py-12 md:py-16">
         <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="text-center lg:col-span-5 lg:text-left">
             <Link href="/" className="inline-block">
               <div className="inline-flex items-center gap-4 rounded-sm border border-neutral/10 bg-neutral/5 px-5 py-4">
                 <Image
@@ -49,11 +49,11 @@ export function Footer() {
               </div>
             </Link>
 
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-neutral/75">
+            <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-neutral/75 lg:mx-0">
               {siteConfig.description}
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-neutral uppercase">
                 Since 1995
               </span>
@@ -65,7 +65,7 @@ export function Footer() {
               </span>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap justify-center gap-2 lg:justify-start">
               {footerNavigation.divisions.map((division) => (
                 <Link
                   key={division.href}
@@ -77,7 +77,7 @@ export function Footer() {
               ))}
             </div>
 
-            <ul className="mt-8 space-y-3">
+            <ul className="mx-auto mt-8 max-w-sm space-y-3 text-left lg:mx-0 lg:max-w-none">
               <ContactItem
                 icon={
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -114,7 +114,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-7">
+          <div className="grid gap-8 text-center sm:grid-cols-3 sm:text-left lg:col-span-7">
             <div>
               <h3 className="mb-4 text-sm font-semibold tracking-widest text-accent uppercase">
                 Company

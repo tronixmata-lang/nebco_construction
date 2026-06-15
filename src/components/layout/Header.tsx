@@ -124,24 +124,27 @@ export function Header() {
           mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <Container className="py-4">
-          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+        <Container className="py-6">
+          <nav
+            className="flex flex-col items-center gap-1 text-center"
+            aria-label="Mobile navigation"
+          >
             {mainNavigation.map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="w-full max-w-xs">
                 <Link
                   href={item.href}
-                  className="block rounded-sm px-3 py-2.5 text-sm font-medium text-secondary hover:bg-neutral-muted hover:text-primary"
+                  className="block rounded-sm px-3 py-2.5 text-sm font-medium text-secondary transition-colors hover:bg-neutral-muted hover:text-primary"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
                 </Link>
                 {item.children && (
-                  <div className="ml-4 border-l border-neutral-border pl-3">
+                  <div className="mt-1 flex flex-col items-center gap-1 border-t border-neutral-border pt-2">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-3 py-2 text-sm text-text-muted hover:text-primary"
+                        className="block px-3 py-2 text-sm text-text-muted transition-colors hover:text-primary"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -151,7 +154,7 @@ export function Header() {
                 )}
               </div>
             ))}
-            <div className="mt-4 px-3">
+            <div className="mt-4 w-full max-w-xs px-3">
               <Button href="/contact" size="sm" className="w-full">
                 Contact Us
               </Button>

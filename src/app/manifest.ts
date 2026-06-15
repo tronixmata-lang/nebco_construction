@@ -3,7 +3,7 @@ import { brandColors, siteConfig } from "@/config/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteConfig.name} — ${siteConfig.tagline}`,
+    name: siteConfig.seoTitle,
     short_name: siteConfig.shortName,
     description: siteConfig.description,
     start_url: "/",

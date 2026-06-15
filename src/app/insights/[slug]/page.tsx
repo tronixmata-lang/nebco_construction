@@ -4,7 +4,13 @@ import { getInsightBySlug, insights } from "@/content/insights";
 import { formatDate } from "@/lib/utils";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 
 type InsightPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,10 +28,13 @@ export async function generateMetadata({
 
   if (!article) return { title: "Article Not Found" };
 
-  return {
+  return createPageMetadata({
     title: article.title,
     description: article.excerpt,
-  };
+    path: `/insights/${article.slug}`,
+    type: "article",
+    publishedTime: article.date,
+  });
 }
 
 export default async function InsightDetailPage({ params }: InsightPageProps) {
@@ -36,6 +45,12 @@ export default async function InsightDetailPage({ params }: InsightPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleSchema(article),
+          breadcrumbSchema(`/insights/${article.slug}`, article.title),
+        ]}
+      />
       <PageIntro
         eyebrow={article.category}
         title={article.title}

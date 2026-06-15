@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { chairmanMessage, leaders } from "@/content/leadership";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Leadership",
   description:
-    "Meet the leadership team behind NEBCO's vision for integrated infrastructure and development.",
-};
+    "Meet the leadership team behind NEBCO's vision for integrated construction, investment, and consulting across Nepal.",
+  path: "/leadership",
+});
 
 function getInitials(name: string) {
   return name
@@ -23,6 +26,7 @@ function getInitials(name: string) {
 export default function LeadershipPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/leadership")} />
       <PageIntro
         eyebrow="Leadership"
         title="Guiding Vision, Driving Excellence"

@@ -46,20 +46,20 @@ export function PageHeader({
         NEBCO
       </div>
 
-      <Container className="relative flex flex-1 flex-col items-center justify-center py-16 text-center md:py-20">
+      <Container className="relative flex flex-1 flex-col items-center justify-center px-4 py-12 text-center sm:py-16 md:py-20">
         {eyebrow && (
-          <div className="mb-5 flex flex-col items-center gap-2">
-            <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase">
+          <div className="mb-4 flex flex-col items-center gap-2 sm:mb-5">
+            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase sm:text-sm">
               {eyebrow}
             </p>
             <span className="h-px w-10 bg-accent" aria-hidden="true" />
           </div>
         )}
-        <h1 className="max-w-4xl font-display text-4xl font-bold tracking-tight text-neutral md:text-5xl lg:text-6xl lg:leading-[1.1]">
+        <h1 className="max-w-4xl font-display text-3xl font-bold tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
           {title}
         </h1>
         {description && (
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-neutral/70 md:text-xl">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-neutral/70 sm:mt-6 sm:text-lg md:text-xl">
             {description}
           </p>
         )}

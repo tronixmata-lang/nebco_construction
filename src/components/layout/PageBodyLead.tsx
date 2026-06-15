@@ -11,7 +11,7 @@ export function PageBodyLead({ showStats = true }: PageBodyLeadProps) {
   return (
     <div className="relative z-10 -mt-8 md:-mt-10">
       <Container>
-        <div className="mx-auto max-w-5xl rounded-sm border border-neutral-border bg-neutral px-4 py-4 shadow-md md:px-6 md:py-5">
+        <div className="mx-auto max-w-5xl rounded-sm border border-neutral-border bg-neutral px-3 py-3 shadow-md sm:px-4 sm:py-4 md:px-6 md:py-5">
           <div className="grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-4">
             {companyStats.map((stat) => (
               <div key={stat.id} className="text-center">

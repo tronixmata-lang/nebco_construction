@@ -20,8 +20,9 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "mb-12 max-w-3xl",
+        "mb-10 max-w-3xl md:mb-12",
         align === "center" && "mx-auto text-center",
+        align === "left" && "mx-auto text-center md:mx-0 md:text-left",
         className,
       )}
     >
@@ -30,6 +31,7 @@ export function SectionHeader({
           className={cn(
             "mb-4 flex flex-col gap-2",
             align === "center" && "items-center",
+            align === "left" && "items-center md:items-start",
           )}
         >
           <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase">
@@ -40,7 +42,7 @@ export function SectionHeader({
       )}
       <h2
         className={cn(
-          "font-display text-3xl font-bold tracking-tight md:text-4xl",
+          "font-display text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl",
           dark ? "text-neutral" : "text-secondary",
         )}
       >
@@ -49,7 +51,8 @@ export function SectionHeader({
       <span
         className={cn(
           "mt-4 block h-0.5 w-12 rounded-full",
-          align === "center" && "mx-auto",
+          (align === "center" || align === "left") && "mx-auto md:mx-0",
+          align === "center" && "md:mx-auto",
           dark ? "bg-accent" : "bg-primary",
         )}
         aria-hidden="true"

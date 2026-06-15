@@ -20,8 +20,8 @@ export function BusinessDivisions() {
 
       <div className="grid gap-8 md:grid-cols-3">
         {divisions.map((division) => (
-          <Card key={division.id} hover className="flex flex-col">
-            <div className="flex items-start justify-between gap-3">
+          <Card key={division.id} hover className="flex flex-col text-center md:text-left">
+            <div className="flex items-start justify-center gap-3 md:justify-between">
               <span className="flex h-14 w-14 items-center justify-center text-primary">
                 {divisionIcons[division.id]}
               </span>
@@ -38,7 +38,7 @@ export function BusinessDivisions() {
             </p>
             <Link
               href={division.href}
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+              className="mt-6 inline-flex items-center justify-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark md:justify-start"
             >
               Explore {division.shortName}
               <span aria-hidden="true">&rarr;</span>

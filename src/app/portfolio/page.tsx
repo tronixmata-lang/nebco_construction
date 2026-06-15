@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Project Portfolio",
   description:
-    "Explore NEBCO's portfolio of commercial, residential, infrastructure, and industrial projects.",
-};
+    "Explore NEBCO's portfolio of commercial, residential, infrastructure, and industrial construction projects across Kathmandu and Nepal.",
+  path: "/portfolio",
+});
 
 export default function PortfolioPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/portfolio")} />
       <PageIntro
         eyebrow="Our Work"
         title="Project Portfolio"

@@ -5,14 +5,22 @@ import { divisions } from "@/content/divisions";
 import { siteConfig } from "@/config/site";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import {
+  breadcrumbSchema,
+  contactFaq,
+  createPageMetadata,
+  faqSchema,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with NEBCO for construction, investment, and consulting inquiries.",
-};
+    "Contact NEBCO for construction, investment, and consulting inquiries in Kathmandu, Nepal. Call +977-9803850955 or email nebconepal@gmail.com.",
+  path: "/contact",
+});
 
 const contactItems = [
   {
@@ -61,6 +69,12 @@ const contactItems = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema("/contact"),
+          faqSchema([...contactFaq]),
+        ]}
+      />
       <PageIntro
         eyebrow="Contact"
         title="Get in Touch"
@@ -71,7 +85,7 @@ export default function ContactPage() {
       <Section variant="muted" className="pt-10 md:pt-14">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
           <div className="lg:col-span-3">
-            <div className="rounded-sm border border-neutral-border bg-neutral p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] md:p-10">
+            <div className="rounded-sm border border-neutral-border bg-neutral p-6 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] sm:p-8 md:p-10">
               <SectionHeader
                 eyebrow="Inquiry Form"
                 title="Send an Inquiry"
@@ -166,7 +180,7 @@ export default function ContactPage() {
             <Link
               key={division.id}
               href={division.href}
-              className="group rounded-sm border border-neutral-border bg-neutral p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              className="group rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg sm:text-left"
             >
               <p className="text-xs font-semibold tracking-widest text-accent uppercase">
                 {division.shortName}

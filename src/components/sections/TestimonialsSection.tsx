@@ -24,11 +24,11 @@ export function TestimonialsSection() {
 
       <div className="mt-12 grid grid-cols-3 divide-x divide-neutral-border rounded-sm border border-neutral-border bg-neutral">
         {trustStats.map((stat) => (
-          <div key={stat.id} className="px-4 py-6 text-center">
-            <p className="font-display text-2xl font-bold text-primary md:text-3xl">
+          <div key={stat.id} className="px-2 py-5 text-center sm:px-4 sm:py-6">
+            <p className="font-display text-xl font-bold text-primary sm:text-2xl md:text-3xl">
               {stat.value}
             </p>
-            <p className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase">
+            <p className="mt-1 text-[10px] font-medium tracking-wide text-text-muted uppercase sm:text-xs">
               {stat.label}
             </p>
           </div>

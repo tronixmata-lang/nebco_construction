@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { IndustrySectors } from "@/components/sections/IndustrySectors";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Industry Sectors",
   description:
-    "NEBCO serves infrastructure, real estate, commercial, industrial, investment, and consulting sectors.",
-};
+    "NEBCO serves residential, commercial, infrastructure, real estate, industrial, and consulting sectors across Kathmandu and Nepal.",
+  path: "/sectors",
+});
 
 export default function SectorsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/sectors")} />
       <PageIntro
         eyebrow="Industries"
         title="Sectors We Serve"

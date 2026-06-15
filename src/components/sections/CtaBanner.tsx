@@ -14,7 +14,7 @@ export function CtaBanner({ showContactButton = true }: { showContactButton?: bo
             Partner with {siteConfig.shortName} for integrated construction,
             investment, and consulting solutions.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             {showContactButton && (
               <Button
                 href="/contact"

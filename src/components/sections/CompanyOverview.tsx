@@ -19,18 +19,18 @@ export function CompanyOverview() {
     <Section id="about">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Left: narrative + trust checklist */}
-        <div>
+        <div className="text-center md:text-left">
           <p className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">
             About NEBCO
           </p>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-secondary md:text-4xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-secondary sm:text-3xl md:text-4xl">
             {companyOverview.title}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-text-muted">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-muted md:mx-0 md:text-lg">
             {companyOverview.description}
           </p>
 
-          <ul className="mt-8 space-y-4">
+          <ul className="mx-auto mt-8 max-w-md space-y-4 text-left md:mx-0 md:max-w-none">
             {trustPoints.map((point) => (
               <li key={point} className="flex items-start gap-3">
                 <span
@@ -56,7 +56,7 @@ export function CompanyOverview() {
             ))}
           </ul>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start">
             <Button href="/about">Learn More About Us</Button>
             <Button href="/contact" variant="outline">
               Contact Us

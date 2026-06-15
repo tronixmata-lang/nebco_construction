@@ -5,14 +5,17 @@ import { aboutContent, certificateSection } from "@/content/homepage";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CertificateGallery } from "@/components/sections/CertificateGallery";
 import { ValuePillars } from "@/components/sections/ValuePillars";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About Us",
   description:
     "Learn about NEBCO's history, mission, vision, and values as Nepal's trusted A-Class construction company, established in 1995 under the Shah Group.",
-};
+  path: "/about",
+});
 
 const storyHighlights = [
   { value: "1995", label: "Established" },
@@ -24,6 +27,7 @@ const storyHighlights = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/about")} />
       <PageIntro
         eyebrow="About NEBCO"
         title="Building Confidence. Creating Value."
@@ -39,11 +43,11 @@ export default function AboutPage() {
               description={aboutContent.history}
             />
 
-            <dl className="grid grid-cols-2 gap-x-8 gap-y-8">
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8">
               {storyHighlights.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-sm border border-neutral-border bg-neutral-muted p-5 transition-colors hover:border-primary/20"
+                  className="rounded-sm border border-neutral-border bg-neutral-muted p-4 text-center transition-colors hover:border-primary/20 sm:p-5 md:text-left"
                 >
                   <dt className="font-display text-2xl font-bold text-primary">
                     {item.value}
@@ -69,8 +73,8 @@ export default function AboutPage() {
             </div>
             <div className="absolute -top-5 -left-5 -z-10 hidden h-32 w-32 border-l-4 border-t-4 border-accent lg:block" />
             <div className="absolute -bottom-5 -right-5 -z-10 hidden h-32 w-32 border-b-4 border-r-4 border-primary lg:block" />
-            <div className="absolute -bottom-6 left-6 rounded-sm bg-primary px-6 py-4 shadow-lg">
-              <p className="font-display text-3xl font-bold text-neutral">30+</p>
+            <div className="absolute -bottom-4 left-1/2 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-sm bg-primary px-5 py-3 shadow-lg sm:-bottom-6 sm:left-6 sm:max-w-none sm:translate-x-0 sm:px-6 sm:py-4">
+              <p className="font-display text-2xl font-bold text-neutral sm:text-3xl">30+</p>
               <p className="text-xs font-medium tracking-widest text-neutral/80 uppercase">
                 Years of Excellence
               </p>
@@ -81,9 +85,9 @@ export default function AboutPage() {
 
       <Section variant="muted">
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl md:p-10">
+          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-8 md:p-10 md:text-left">
             <span className="absolute top-0 left-0 h-1 w-full bg-primary" />
-            <div className="flex h-12 w-12 items-center justify-center text-primary">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center text-primary md:mx-0">
               <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
                 <circle cx="12" cy="12" r="5" />
@@ -94,9 +98,9 @@ export default function AboutPage() {
             <p className="mt-4 leading-relaxed text-text-muted">{aboutContent.mission}</p>
           </div>
 
-          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl md:p-10">
+          <div className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl sm:p-8 md:p-10 md:text-left">
             <span className="absolute top-0 left-0 h-1 w-full bg-accent" />
-            <div className="flex h-12 w-12 items-center justify-center text-accent">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center text-accent md:mx-0">
               <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
                 <circle cx="12" cy="12" r="3" />
@@ -120,7 +124,7 @@ export default function AboutPage() {
           {aboutContent.values.map((value, index) => (
             <div
               key={value}
-              className="group flex flex-col gap-4 bg-neutral p-8 transition-all duration-300 hover:bg-neutral-muted"
+              className="group flex flex-col gap-4 bg-neutral p-6 text-center transition-all duration-300 hover:bg-neutral-muted sm:p-8 sm:text-left"
             >
               <span className="font-display text-2xl font-bold text-accent transition-colors group-hover:text-primary">
                 {String(index + 1).padStart(2, "0")}

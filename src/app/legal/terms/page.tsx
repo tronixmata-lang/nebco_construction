@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms of Use",
-};
+  description:
+    "Terms and conditions governing your use of the NEBCO Construction website and services.",
+  path: "/legal/terms",
+});
 
 export default function TermsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("/legal/terms")} />
       <PageIntro
         eyebrow="Legal"
         title="Terms of Use"

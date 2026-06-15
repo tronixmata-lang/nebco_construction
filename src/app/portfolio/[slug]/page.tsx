@@ -4,7 +4,14 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug, projects } from "@/content/projects";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Button } from "@/components/ui/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
+import {
+  breadcrumbSchema,
+  createPageMetadata,
+  projectImageAlt,
+  projectSchema,
+} from "@/lib/seo";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,10 +29,12 @@ export async function generateMetadata({
 
   if (!project) return { title: "Project Not Found" };
 
-  return {
+  return createPageMetadata({
     title: project.title,
     description: project.description,
-  };
+    path: `/portfolio/${project.slug}`,
+    image: project.image,
+  });
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
@@ -36,6 +45,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          projectSchema(project),
+          breadcrumbSchema(`/portfolio/${project.slug}`, project.title),
+        ]}
+      />
       <PageIntro
         eyebrow={`${project.category} Project`}
         title={project.title}
@@ -48,7 +63,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-sm bg-secondary shadow-xl">
             <Image
               src={project.image}
-              alt={project.title}
+              alt={projectImageAlt(project)}
               fill
               className="object-cover"
               sizes="(max-width: 896px) 100vw, 896px"

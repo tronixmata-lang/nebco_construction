@@ -14,7 +14,7 @@ export function SiteBreadcrumbBar() {
   return (
     <div className="relative bg-secondary">
       <div className="pointer-events-none absolute inset-0 bg-primary/5" />
-      <Container className="relative py-4">
+      <Container className="relative flex justify-center py-3 md:justify-start md:py-4">
         <Breadcrumbs currentLabel={context?.label} variant="dark" />
       </Container>
     </div>

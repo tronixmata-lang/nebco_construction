@@ -7,7 +7,7 @@ import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
 import { HeroTrustedStrip } from "@/components/sections/HeroTrustedStrip";
 
 const heroCtaBase =
-  "inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  "font-button inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
 export async function HeroSection() {
   const { hero, siteConfig } = await getSiteContent();
@@ -38,7 +38,7 @@ export async function HeroSection() {
           <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-accent uppercase">
             {siteConfig.parentOrganization} · {siteConfig.shortName}
           </p>
-          <h1 className="font-display text-3xl leading-[1.1] tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
+          <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
             {hero.headline}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral/85 sm:mt-6 sm:text-lg md:text-xl">

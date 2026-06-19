@@ -24,7 +24,7 @@ export async function CompanyOverview() {
           <p className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">
             About NEBCO
           </p>
-          <h2 className="font-display text-2xl tracking-tight text-secondary sm:text-3xl md:text-4xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-secondary sm:text-3xl md:text-4xl">
             {companyOverview.title}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-muted md:mx-0 md:text-lg">
@@ -60,7 +60,7 @@ export async function CompanyOverview() {
           <div className="mt-6 grid grid-cols-3 divide-x divide-neutral-border rounded-sm border border-neutral-border bg-neutral-muted">
             {proofStats.map((stat) => (
               <div key={stat.id} className="px-4 py-5 text-center">
-                <p className="font-display text-2xl text-primary">{stat.value}</p>
+                <p className="font-display text-2xl font-bold text-primary">{stat.value}</p>
                 <p className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase">{stat.label}</p>
               </div>
             ))}

@@ -23,7 +23,7 @@ export async function HeroTrustedStrip() {
                 key={stat.id}
                 className="text-center sm:border-l sm:border-neutral/10 sm:first:border-l-0 sm:px-2"
               >
-                <dt className="font-display text-xl text-primary sm:text-2xl">
+                <dt className="font-display text-xl font-bold text-primary sm:text-2xl">
                   {stat.value}
                 </dt>
                 <dd className="mt-1 text-[9px] font-medium leading-tight tracking-wide text-neutral/65 uppercase sm:text-[10px]">

@@ -25,7 +25,7 @@ export function Header({ variant = "default" }: HeaderProps) {
   return (
     <header
       className={cn(
-        "z-50",
+        "font-nav z-50",
         isHero
           ? "absolute top-0 right-0 left-0 border-none bg-transparent"
           : "sticky top-0 border-b border-neutral-border bg-neutral/95 backdrop-blur-sm",
@@ -45,7 +45,7 @@ export function Header({ variant = "default" }: HeaderProps) {
           </Link>
 
           <nav
-            className="font-nav hidden items-center gap-1 font-semibold lg:flex"
+            className="hidden items-center gap-1 lg:flex"
             aria-label="Main navigation"
           >
             {mainNavigation.map((item) =>
@@ -59,7 +59,7 @@ export function Header({ variant = "default" }: HeaderProps) {
                   <button
                     type="button"
                     className={cn(
-                      "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+                      "flex items-center gap-1 px-3 py-2 text-sm font-semibold transition-colors",
                       isHero
                         ? "text-neutral/90 hover:text-accent"
                         : "text-secondary hover:text-primary",
@@ -101,7 +101,7 @@ export function Header({ variant = "default" }: HeaderProps) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "px-3 py-2 text-sm font-medium transition-colors",
+                    "px-3 py-2 text-sm font-semibold transition-colors",
                     isHero
                       ? "text-neutral/90 hover:text-accent"
                       : "text-secondary hover:text-primary",
@@ -166,7 +166,7 @@ export function Header({ variant = "default" }: HeaderProps) {
       >
         <Container className="py-6">
           <nav
-            className="font-nav flex flex-col items-center gap-1 text-center font-semibold"
+            className="flex flex-col items-center gap-1 text-center"
             aria-label="Mobile navigation"
           >
             {mainNavigation.map((item) => (
@@ -174,7 +174,7 @@ export function Header({ variant = "default" }: HeaderProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    "block rounded-sm px-3 py-2.5 text-sm font-medium transition-colors",
+                    "block rounded-sm px-3 py-2.5 text-sm font-semibold transition-colors",
                     isHero
                       ? "text-neutral/90 hover:bg-neutral/10 hover:text-accent"
                       : "text-secondary hover:bg-neutral-muted hover:text-primary",

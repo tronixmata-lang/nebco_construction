@@ -73,18 +73,13 @@ export async function ValuePillars({
       )}
 
       <div className={gridClasses[columns]}>
-        {valuePillars.map((pillar, index) => (
+        {valuePillars.map((pillar) => (
           <div
             key={pillar.id}
             className="group relative flex flex-col items-center overflow-hidden rounded-sm border border-neutral-border bg-neutral px-6 pb-8 pt-10 text-center transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-xl"
           >
             {/* Animated top accent bar */}
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-
-            {/* Watermark index number */}
-            <span className="pointer-events-none absolute right-3 top-2 font-display text-5xl text-neutral-muted transition-colors duration-300 group-hover:text-primary/10">
-              {String(index + 1).padStart(2, "0")}
-            </span>
 
             <div className="relative mb-6 flex h-14 w-14 items-center justify-center text-primary">
               {pillarIcons[pillar.icon]}

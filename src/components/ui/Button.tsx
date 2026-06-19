@@ -53,7 +53,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const styles = cn(
-    "inline-flex items-center justify-center font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+    "font-button inline-flex items-center justify-center font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
     pill
       ? "rounded-full tracking-normal normal-case"
       : "rounded-sm tracking-wide uppercase",

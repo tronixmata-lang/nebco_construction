@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Poppins } from "next/font/google";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsScripts } from "@/components/seo/AnalyticsScripts";
@@ -21,8 +21,15 @@ const inter = Inter({
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["600", "800"],
+  weight: ["700", "800"],
   variable: "--font-montserrat",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -122,7 +129,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${poppins.variable}`}>
       <body className="flex min-h-screen flex-col">
         <AnalyticsScripts />
         <JsonLd

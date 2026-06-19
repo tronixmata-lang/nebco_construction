@@ -23,7 +23,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-neutral-border bg-secondary font-medium text-neutral">
+    <footer className="relative overflow-hidden border-t border-neutral-border bg-secondary text-neutral">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-neutral-border" />
 
       <Container className="py-12 md:py-16">
@@ -39,7 +39,7 @@ export function Footer() {
                   className="h-14 w-14 object-contain"
                 />
                 <div>
-                  <p className="font-display text-xl tracking-tight text-neutral">
+                  <p className="text-xl tracking-tight text-neutral">
                     {siteConfig.shortName}
                   </p>
                   <p className="text-xs tracking-wide text-neutral/60">
@@ -116,7 +116,7 @@ export function Footer() {
 
           <div className="grid gap-8 text-center sm:grid-cols-3 sm:text-left lg:col-span-7">
             <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-widest text-accent uppercase">
+              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
                 Company
               </h3>
               <ul className="space-y-2.5">
@@ -134,7 +134,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-widest text-accent uppercase">
+              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
                 Divisions
               </h3>
               <ul className="space-y-2.5">
@@ -152,7 +152,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-widest text-accent uppercase">
+              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
                 Resources
               </h3>
               <ul className="space-y-2.5">
@@ -181,7 +181,7 @@ export function Footer() {
               <span className="font-medium text-neutral/70">Nepatronix</span>
             </p>
           </div>
-          <p className="font-display text-sm tracking-wide text-neutral/40">
+          <p className="text-sm tracking-wide text-neutral/40">
             {siteConfig.tagline}
           </p>
           <div className="flex gap-6 text-sm text-neutral/50">

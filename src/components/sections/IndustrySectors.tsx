@@ -88,20 +88,15 @@ export async function IndustrySectors({ showHeader = true, className }: Industry
       )}
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {industrySectors.map((sector, index) => (
+        {industrySectors.map((sector) => (
           <div
             key={sector.id}
             className="group relative flex flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-8 md:text-left"
           >
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
-            <div className="relative flex min-h-10 items-center justify-center md:justify-between">
-              <span className="font-display text-3xl tabular-nums text-neutral-muted transition-colors duration-300 group-hover:text-primary/15">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="absolute top-0 right-0 md:static">
-                <TrustedBadgeProven />
-              </span>
+            <div className="flex min-h-10 items-center justify-center md:justify-end">
+              <TrustedBadgeProven />
             </div>
 
             <div className="mx-auto mt-5 flex h-14 w-14 items-center justify-center text-primary md:mx-0">

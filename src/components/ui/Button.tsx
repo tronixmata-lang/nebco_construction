@@ -7,6 +7,7 @@ type ButtonSize = "sm" | "md" | "lg";
 type ButtonBaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  pill?: boolean;
   className?: string;
   children: React.ReactNode;
 };
@@ -39,15 +40,23 @@ const sizeStyles: Record<ButtonSize, string> = {
   lg: "px-8 py-4 text-base",
 };
 
+function isExternalHref(href: string) {
+  return /^(https?:|mailto:|tel:)/i.test(href);
+}
+
 export function Button({
   variant = "primary",
   size = "md",
+  pill = false,
   className,
   children,
   ...props
 }: ButtonProps) {
   const styles = cn(
-    "inline-flex items-center justify-center rounded-sm font-medium tracking-wide uppercase transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+    "inline-flex items-center justify-center font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+    pill
+      ? "rounded-full tracking-normal normal-case"
+      : "rounded-sm tracking-wide uppercase",
     variantStyles[variant],
     sizeStyles[size],
     className,
@@ -55,6 +64,13 @@ export function Button({
 
   if ("href" in props && props.href) {
     const { href } = props;
+    if (isExternalHref(href)) {
+      return (
+        <a href={href} className={styles}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={styles}>
         {children}

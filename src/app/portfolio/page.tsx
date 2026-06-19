@@ -4,16 +4,21 @@ import { PageIntro } from "@/components/layout/PageIntro";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { getProjects } from "@/lib/data/projects";
+import { createStaticPageMetadata } from "@/lib/seo-metadata";
+import { breadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Project Portfolio",
-  description:
-    "Explore NEBCO's portfolio of commercial, residential, infrastructure, and industrial construction projects across Kathmandu and Nepal.",
-  path: "/portfolio",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return createStaticPageMetadata("/portfolio", {
+    title: "Project Portfolio",
+    description:
+      "Explore NEBCO's portfolio of commercial, residential, infrastructure, and industrial construction projects across Kathmandu and Nepal.",
+  });
+}
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const projects = await getProjects();
+
   return (
     <>
       <JsonLd data={breadcrumbSchema("/portfolio")} />
@@ -31,7 +36,7 @@ export default function PortfolioPage() {
           align="center"
           className="mx-auto"
         />
-        <PortfolioGrid />
+        <PortfolioGrid projects={projects} />
       </Section>
     </>
   );

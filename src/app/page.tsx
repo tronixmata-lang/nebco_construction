@@ -7,19 +7,20 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { IndustrySectors } from "@/components/sections/IndustrySectors";
 import { InsightsPreview } from "@/components/sections/InsightsPreview";
 import { LeadershipMessage } from "@/components/sections/LeadershipMessage";
-import { StatsBar } from "@/components/sections/StatsBar";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ValuePillars } from "@/components/sections/ValuePillars";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
-import { createPageMetadata, faqSchema } from "@/lib/seo";
+import { createStaticPageMetadata } from "@/lib/seo-metadata";
+import { faqSchema } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: siteConfig.seoTitle,
-  description: `${siteConfig.description} Explore residential, commercial, and infrastructure projects, business divisions, and trusted credentials.`,
-  path: "/",
-  absoluteTitle: true,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return createStaticPageMetadata("/", {
+    title: siteConfig.seoTitle,
+    description: `${siteConfig.description} Explore residential, commercial, and infrastructure projects, business divisions, and trusted credentials.`,
+    absoluteTitle: true,
+  });
+}
 
 const homeFaq = [
   {
@@ -44,7 +45,6 @@ export default function HomePage() {
     <>
       <JsonLd data={faqSchema([...homeFaq])} />
       <HeroSection />
-      <StatsBar />
       <CompanyOverview />
       <CertificateSection />
       <BusinessDivisions />

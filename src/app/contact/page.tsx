@@ -8,19 +8,20 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import {
   breadcrumbSchema,
   contactFaq,
-  createPageMetadata,
   faqSchema,
 } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Contact Us",
-  description:
-    "Contact NEBCO for construction, investment, and consulting inquiries in Kathmandu, Nepal. Call +977-9803850955 or email nebconepal@gmail.com.",
-  path: "/contact",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return createStaticPageMetadata("/contact", {
+    title: "Contact Us",
+    description:
+      "Contact NEBCO for construction, investment, and consulting inquiries in Kathmandu, Nepal. Call +977-9803850955 or email nebconepal@gmail.com.",
+  });
+}
 
 const contactItems = [
   {
@@ -68,7 +69,7 @@ const contactItems = [
 
 export default function ContactPage() {
   return (
-    <>
+    <div className="font-medium">
       <JsonLd
         data={[
           breadcrumbSchema("/contact"),
@@ -106,7 +107,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-bold text-secondary">Response Time</h3>
+                  <h3 className="font-display text-lg text-secondary">Response Time</h3>
                   <p className="mt-1 text-sm leading-relaxed text-text-muted">
                     Our team reviews every inquiry and responds within 2 business days with clear next steps.
                   </p>
@@ -124,7 +125,7 @@ export default function ContactPage() {
                     {item.icon}
                   </span>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-secondary">{item.title}</h3>
+                    <h3 className="font-display text-lg text-secondary">{item.title}</h3>
                     {item.href ? (
                       <a href={item.href} className="mt-2 block text-sm text-text-muted transition-colors hover:text-primary">
                         {item.value}
@@ -185,7 +186,7 @@ export default function ContactPage() {
               <p className="text-xs font-semibold tracking-widest text-accent uppercase">
                 {division.shortName}
               </p>
-              <h3 className="mt-2 font-display text-lg font-bold text-secondary transition-colors group-hover:text-primary">
+              <h3 className="mt-2 font-display text-lg text-secondary transition-colors group-hover:text-primary">
                 {division.name}
               </h3>
               <p className="mt-2 text-sm text-text-muted">{division.tagline}</p>
@@ -199,6 +200,6 @@ export default function ContactPage() {
       </Section>
 
       <CtaBanner showContactButton={false} />
-    </>
+    </div>
   );
 }

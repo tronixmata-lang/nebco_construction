@@ -7,11 +7,11 @@ export const companyOverview = {
 };
 
 export const heroContent = {
-  headline: '"A" Class Construction Company In Nepal',
+  headline: "Building the Projects You've Always Wanted",
   subheadline:
-    "Quality, Integrity & Timely. NEBCO specializes in construction, design, project management, and consultation services across Nepal and for NRNs worldwide.",
-  primaryCta: { label: "Explore Our Services", href: "/divisions" },
-  secondaryCta: { label: "Contact Us", href: "/contact" },
+    "Quality, Integrity & Timely. NEBCO is Nepal's trusted A-Class construction partner for residential, commercial, and infrastructure projects — from concept to completion.",
+  primaryCta: { label: "Start your project", href: "/contact" },
+  secondaryCta: { label: "Call Now", href: "/contact" },
 };
 
 export const companyStats: Stat[] = [

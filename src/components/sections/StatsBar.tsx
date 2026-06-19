@@ -1,22 +1,24 @@
-import { companyStats } from "@/content/homepage";
+import { getStats } from "@/lib/data/content";
 import { Container } from "@/components/ui/Container";
 
-export function StatsBar() {
+export async function StatsBar() {
+  const companyStats = await getStats();
+
   return (
-    <section className="border-b border-neutral-border bg-neutral-muted py-10 md:py-12">
-      <Container>
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
+    <section className="border-b border-neutral-border bg-neutral-muted">
+      <Container className="py-8">
+        <dl className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {companyStats.map((stat) => (
             <div key={stat.id} className="text-center">
-              <p className="font-display text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
+              <dt className="font-display text-2xl text-primary md:text-3xl">
                 {stat.value}
-              </p>
-              <p className="mt-1 text-[10px] font-medium tracking-wide text-text-muted uppercase sm:text-sm">
+              </dt>
+              <dd className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase sm:text-sm">
                 {stat.label}
-              </p>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </Container>
     </section>
   );

@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/Button";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
+const errorMessage = (
+  <p className="rounded-sm border border-primary/30 bg-primary/5 px-4 py-3 text-sm text-primary">
+    Something went wrong. Please try again or email us directly.
+  </p>
+);
+
 export function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle");
 
@@ -12,15 +18,40 @@ export function ContactForm() {
     e.preventDefault();
     setFormState("submitting");
 
-    // Placeholder: wire to API route / email service in CMS phase
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFormState("success");
+    const formData = new FormData(e.currentTarget);
+    const division = String(formData.get("division") ?? "");
+    const subject = division
+      ? `${division.charAt(0).toUpperCase()}${division.slice(1)} Inquiry`
+      : "General Inquiry";
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone") || undefined,
+          organization: formData.get("organization") || undefined,
+          subject,
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!res.ok) {
+        setFormState("error");
+        return;
+      }
+      setFormState("success");
+    } catch {
+      setFormState("error");
+    }
   }
 
   if (formState === "success") {
     return (
       <div className="rounded-sm border border-primary/20 bg-primary/5 p-8 text-center">
-        <p className="font-display text-xl font-bold text-secondary">
+        <p className="font-display text-xl text-secondary">
           Thank you for your inquiry
         </p>
         <p className="mt-2 text-text-muted">
@@ -82,6 +113,8 @@ export function ContactForm() {
           placeholder="Tell us about your project or inquiry..."
         />
       </div>
+      {formState === "error" && errorMessage}
+
       <Button
         type="submit"
         size="lg"

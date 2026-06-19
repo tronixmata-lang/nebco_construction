@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { IndustrySectors } from "@/components/sections/IndustrySectors";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { createStaticPageMetadata } from "@/lib/seo-metadata";
+import { breadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Industry Sectors",
-  description:
-    "NEBCO serves residential, commercial, infrastructure, real estate, industrial, and consulting sectors across Kathmandu and Nepal.",
-  path: "/sectors",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return createStaticPageMetadata("/sectors", {
+    title: "Industry Sectors",
+    description:
+      "NEBCO serves residential, commercial, infrastructure, real estate, industrial, and consulting sectors across Kathmandu and Nepal.",
+  });
+}
 
 export default function SectorsPage() {
   return (

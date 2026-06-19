@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { projectCategories, projects } from "@/content/projects";
-import type { ProjectCategory } from "@/types";
+import { projectCategories } from "@/content/projects";
+import type { Project, ProjectCategory } from "@/types";
 import { cn } from "@/lib/utils";
 import { ProjectCard } from "./ProjectCard";
 
-export function PortfolioGrid() {
-  const [activeCategory, setActiveCategory] = useState<
-    ProjectCategory | "all"
-  >("all");
+type PortfolioGridProps = {
+  projects: Project[];
+};
+
+export function PortfolioGrid({ projects }: PortfolioGridProps) {
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory | "all">("all");
 
   const filtered =
     activeCategory === "all"
@@ -19,10 +21,7 @@ export function PortfolioGrid() {
   return (
     <div>
       <div className="mb-10 flex flex-wrap justify-center gap-2">
-        <FilterButton
-          active={activeCategory === "all"}
-          onClick={() => setActiveCategory("all")}
-        >
+        <FilterButton active={activeCategory === "all"} onClick={() => setActiveCategory("all")}>
           All Projects
         </FilterButton>
         {projectCategories.map((cat) => (
@@ -43,9 +42,7 @@ export function PortfolioGrid() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="py-12 text-center text-text-muted">
-          No projects found in this category.
-        </p>
+        <p className="py-12 text-center text-text-muted">No projects found in this category.</p>
       )}
     </div>
   );

@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import { BreadcrumbProvider } from "@/components/layout/BreadcrumbContext";
-import { SiteBreadcrumbBar } from "@/components/layout/SiteBreadcrumbBar";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { Inter, Montserrat } from "next/font/google";
+import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AnalyticsScripts } from "@/components/seo/AnalyticsScripts";
 import { brandColors, siteConfig } from "@/config/site";
+import { getSeoSettings } from "@/lib/data/seo";
 import {
   localBusinessSchema,
   organizationSchema,
@@ -15,89 +14,103 @@ import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["600", "800"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.seoTitle,
-    template: `%s | ${siteConfig.shortName}`,
-  },
-  description: siteConfig.description,
-  keywords: [
-    "NEBCO",
-    "NEBCO Construction",
-    "construction company Nepal",
-    "A-Class construction Nepal",
-    "Kathmandu construction",
-    "residential construction Nepal",
-    "commercial construction Nepal",
-    "infrastructure Nepal",
-    "construction investment Nepal",
-    "Shah Group",
-    "NRN construction Nepal",
-    "best construction company Nepal",
-    "no 1 construction company Nepal",
-  ],
-  authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
-  creator: siteConfig.legalName,
-  publisher: siteConfig.legalName,
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  manifest: "/manifest.webmanifest",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: siteConfig.locale,
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: siteConfig.seoTitle,
-    description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.seoTitle,
-      },
+export async function generateMetadata(): Promise<Metadata> {
+  const seoSettings = await getSeoSettings();
+  const verification: Metadata["verification"] = {};
+  if (seoSettings.googleSiteVerification) {
+    verification.google = seoSettings.googleSiteVerification;
+  }
+  if (seoSettings.bingSiteVerification) {
+    verification.other = { "msvalidate.01": seoSettings.bingSiteVerification };
+  }
+
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: {
+      default: siteConfig.seoTitle,
+      template: seoSettings.titleTemplate || `%s | ${siteConfig.shortName}`,
+    },
+    description: seoSettings.defaultDescription || siteConfig.description,
+    keywords: seoSettings.keywords.length > 0 ? seoSettings.keywords : [
+      "NEBCO",
+      "NEBCO Construction",
+      "construction company Nepal",
+      "A-Class construction Nepal",
+      "Kathmandu construction",
+      "residential construction Nepal",
+      "commercial construction Nepal",
+      "infrastructure Nepal",
+      "construction investment Nepal",
+      "Shah Group",
+      "NRN construction Nepal",
+      "best construction company Nepal",
+      "no 1 construction company Nepal",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.seoTitle,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
+    creator: siteConfig.legalName,
+    publisher: siteConfig.legalName,
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    manifest: "/manifest.webmanifest",
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      type: "website",
+      locale: siteConfig.locale,
+      url: siteConfig.url,
+      siteName: siteConfig.name,
+      title: siteConfig.seoTitle,
+      description: seoSettings.defaultDescription || siteConfig.description,
+      images: [
+        {
+          url: seoSettings.defaultOgImage || siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.seoTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteConfig.seoTitle,
+      description: seoSettings.defaultDescription || siteConfig.description,
+      images: [seoSettings.defaultOgImage || siteConfig.ogImage],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: siteConfig.shortName,
-  },
-};
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: siteConfig.shortName,
+    },
+    verification,
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: brandColors.primary,
@@ -109,8 +122,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <body className="flex min-h-screen flex-col">
+        <AnalyticsScripts />
         <JsonLd
           data={[
             organizationSchema(),
@@ -118,12 +132,7 @@ export default function RootLayout({
             websiteSchema(),
           ]}
         />
-        <BreadcrumbProvider>
-          <Header />
-          <SiteBreadcrumbBar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </BreadcrumbProvider>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

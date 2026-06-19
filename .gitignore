@@ -39,3 +39,7 @@ yarn-error.log*
 public/sw.js
 public/sw.js.map
 public/swe-worker-*.js
+
+# uploaded admin images
+public/uploads/*
+!public/uploads/.gitkeep

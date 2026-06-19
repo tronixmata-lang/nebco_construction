@@ -18,6 +18,7 @@ type PageMetadataOptions = {
   publishedTime?: string;
   noIndex?: boolean;
   absoluteTitle?: boolean;
+  canonical?: string;
 };
 
 export function createPageMetadata({
@@ -29,8 +30,9 @@ export function createPageMetadata({
   publishedTime,
   noIndex = false,
   absoluteTitle = false,
+  canonical,
 }: PageMetadataOptions): Metadata {
-  const url = absoluteUrl(path);
+  const url = canonical ? absoluteUrl(canonical) : absoluteUrl(path);
   const ogImage = absoluteUrl(image ?? siteConfig.ogImage);
 
   return {

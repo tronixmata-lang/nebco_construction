@@ -86,3 +86,12 @@ export type Certificate = {
   image: string;
   alt: string;
 };
+
+export type SeoFields = {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: string;
+  focusKeyword?: string;
+  noIndex?: boolean;
+  canonical?: string;
+};

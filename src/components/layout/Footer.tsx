@@ -23,7 +23,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-neutral-border bg-secondary text-neutral">
+    <footer className="relative overflow-hidden border-t border-neutral-border bg-secondary font-medium text-neutral">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-neutral-border" />
 
       <Container className="py-12 md:py-16">
@@ -39,7 +39,7 @@ export function Footer() {
                   className="h-14 w-14 object-contain"
                 />
                 <div>
-                  <p className="font-display text-xl font-bold tracking-tight text-neutral">
+                  <p className="font-display text-xl tracking-tight text-neutral">
                     {siteConfig.shortName}
                   </p>
                   <p className="text-xs tracking-wide text-neutral/60">

@@ -1,29 +1,34 @@
 import type { MetadataRoute } from "next";
-import { sitePageIndex } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { insights } from "@/content/insights";
-import { projects } from "@/content/projects";
+import { STATIC_PAGES } from "@/lib/data/seo";
+import { getAllProjectsForSitemap } from "@/lib/data/projects-seo";
+import { getAllInsightsForSitemap } from "@/lib/data/insights-seo";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
 
-  const staticPages = sitePageIndex.map((page) => ({
-    url: page.href === "/" ? baseUrl : `${baseUrl}${page.href}`,
+  const [projects, insights] = await Promise.all([
+    getAllProjectsForSitemap(),
+    getAllInsightsForSitemap(),
+  ]);
+
+  const staticPages = STATIC_PAGES.map((page) => ({
+    url: page.path === "/" ? baseUrl : `${baseUrl}${page.path}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
-    priority: page.href === "/" ? 1 : 0.8,
+    priority: page.path === "/" ? 1 : 0.8,
   }));
 
   const projectPages = projects.map((project) => ({
     url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified: new Date(),
+    lastModified: project.lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
   const insightPages = insights.map((article) => ({
     url: `${baseUrl}/insights/${article.slug}`,
-    lastModified: new Date(article.date),
+    lastModified: article.lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

@@ -42,7 +42,7 @@ export function PageHeader({
       <div className="absolute inset-0 bg-primary/5" />
       <div className="absolute top-0 right-0 h-full w-1/3 bg-accent/5" />
 
-      <div className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 select-none font-display text-[10rem] font-bold leading-none text-neutral/[0.03] md:text-[14rem] lg:text-[18rem]">
+      <div className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 select-none font-display text-[10rem] leading-none text-neutral/[0.03] md:text-[14rem] lg:text-[18rem]">
         NEBCO
       </div>
 
@@ -55,7 +55,7 @@ export function PageHeader({
             <span className="h-px w-10 bg-accent" aria-hidden="true" />
           </div>
         )}
-        <h1 className="max-w-4xl font-display text-3xl font-bold tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
+        <h1 className="max-w-4xl font-display text-3xl tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
           {title}
         </h1>
         {description && (

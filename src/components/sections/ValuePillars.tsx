@@ -1,4 +1,4 @@
-import { valuePillars } from "@/content/pillars";
+import { getValuePillars } from "@/lib/data/content";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -45,7 +45,7 @@ const gridClasses = {
   three: "grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
 };
 
-export function ValuePillars({
+export async function ValuePillars({
   showHeader = true,
   eyebrow = "Why NEBCO",
   title = "Our Core Values",
@@ -54,6 +54,8 @@ export function ValuePillars({
   id = "values",
   columns = "five",
 }: ValuePillarsProps = {}) {
+  const valuePillars = await getValuePillars();
+
   return (
     <Section id={id} variant={variant} className="relative overflow-hidden">
       {/* Artistic backdrop */}
@@ -80,7 +82,7 @@ export function ValuePillars({
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
             {/* Watermark index number */}
-            <span className="pointer-events-none absolute right-3 top-2 font-display text-5xl font-bold text-neutral-muted transition-colors duration-300 group-hover:text-primary/10">
+            <span className="pointer-events-none absolute right-3 top-2 font-display text-5xl text-neutral-muted transition-colors duration-300 group-hover:text-primary/10">
               {String(index + 1).padStart(2, "0")}
             </span>
 
@@ -88,7 +90,7 @@ export function ValuePillars({
               {pillarIcons[pillar.icon]}
             </div>
 
-            <h3 className="font-display text-lg font-bold text-secondary">
+            <h3 className="font-display text-lg text-secondary">
               {pillar.title}
             </h3>
             <span className="mt-3 h-0.5 w-8 rounded-full bg-accent transition-all duration-300 group-hover:w-14" />

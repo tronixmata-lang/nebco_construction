@@ -1,11 +1,11 @@
-import { projects } from "@/content/projects";
+import { getFeaturedProjects } from "@/lib/data/projects";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
-export function FeaturedProjects() {
-  const featured = projects.slice(0, 4);
+export async function FeaturedProjects() {
+  const featured = await getFeaturedProjects(4);
 
   return (
     <Section variant="muted" id="portfolio">

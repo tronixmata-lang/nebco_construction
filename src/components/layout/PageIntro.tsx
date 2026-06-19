@@ -10,7 +10,7 @@ type PageIntroProps = {
   showStats?: boolean;
 };
 
-export function PageIntro({
+export async function PageIntro({
   title,
   description,
   eyebrow,

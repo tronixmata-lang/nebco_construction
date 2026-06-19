@@ -7,7 +7,7 @@ export function CtaBanner({ showContactButton = true }: { showContactButton?: bo
     <section className="bg-primary py-16 md:py-20">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl font-bold text-neutral md:text-4xl">
+          <h2 className="font-display text-3xl text-neutral md:text-4xl">
             Ready to Build Something Great?
           </h2>
           <p className="mt-4 text-lg text-neutral/80">

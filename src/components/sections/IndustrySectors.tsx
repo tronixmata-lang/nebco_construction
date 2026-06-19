@@ -1,4 +1,4 @@
-import { industrySectors } from "@/content/sectors";
+import { getSectors } from "@/lib/data/content";
 import { cn } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -70,7 +70,9 @@ function TrustedBadgeProven() {
   return <TrustedBadge label="Proven" />;
 }
 
-export function IndustrySectors({ showHeader = true, className }: IndustrySectorsProps) {
+export async function IndustrySectors({ showHeader = true, className }: IndustrySectorsProps) {
+  const industrySectors = await getSectors();
+
   return (
     <Section id="sectors" className={cn("relative overflow-hidden", className)}>
       <div className="pointer-events-none absolute -top-24 right-0 -z-10 h-72 w-72 rounded-full bg-accent/5 blur-3xl" />
@@ -94,7 +96,7 @@ export function IndustrySectors({ showHeader = true, className }: IndustrySector
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
             <div className="relative flex min-h-10 items-center justify-center md:justify-between">
-              <span className="font-display text-3xl font-bold tabular-nums text-neutral-muted transition-colors duration-300 group-hover:text-primary/15">
+              <span className="font-display text-3xl tabular-nums text-neutral-muted transition-colors duration-300 group-hover:text-primary/15">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="absolute top-0 right-0 md:static">
@@ -106,7 +108,7 @@ export function IndustrySectors({ showHeader = true, className }: IndustrySector
               {sectorIcons[sector.id]}
             </div>
 
-            <h3 className="mt-5 font-display text-lg font-bold text-secondary">
+            <h3 className="mt-5 font-display text-lg text-secondary">
               {sector.title}
             </h3>
             <span className="mx-auto mt-3 h-0.5 w-8 rounded-full bg-accent transition-all duration-300 group-hover:w-14 md:mx-0" />

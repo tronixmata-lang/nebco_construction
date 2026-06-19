@@ -1,9 +1,12 @@
-import { certificateSection } from "@/content/homepage";
+import { getCertificates, getSiteContent } from "@/lib/data/content";
 import { CertificateGallery } from "@/components/sections/CertificateGallery";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
-export function CertificateSection() {
+export async function CertificateSection() {
+  const { certificateSection } = await getSiteContent();
+  const certificates = await getCertificates();
+
   return (
     <Section variant="muted" id="certificate">
       <SectionHeader
@@ -13,9 +16,8 @@ export function CertificateSection() {
         align="center"
         className="mx-auto"
       />
-
       <div className="mt-10">
-        <CertificateGallery certificates={certificateSection.certificates} />
+        <CertificateGallery certificates={certificates} />
       </div>
     </Section>
   );

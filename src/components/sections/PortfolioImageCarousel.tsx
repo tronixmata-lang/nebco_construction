@@ -45,7 +45,7 @@ export function PortfolioImageCarousel() {
         <p className="text-xs font-semibold tracking-widest text-neutral/80 uppercase">
           Since 1995
         </p>
-        <p className="font-display text-lg font-bold text-neutral">
+        <p className="font-display text-lg text-neutral">
           A-Class Certified
         </p>
       </div>

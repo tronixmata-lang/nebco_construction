@@ -31,7 +31,7 @@ export function ProjectCard({ project, aspect = "16/10" }: ProjectCardProps) {
         <p className="text-xs font-medium tracking-wide text-accent uppercase">
           {project.category}, {project.year}
         </p>
-        <h3 className="mt-1 font-display text-lg font-bold text-secondary transition-colors group-hover:text-primary">
+        <h3 className="mt-1 font-display text-lg text-secondary transition-colors group-hover:text-primary">
           {project.title}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-text-muted line-clamp-3">

@@ -9,26 +9,45 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-export function Header() {
+type HeaderVariant = "default" | "hero";
+
+type HeaderProps = {
+  variant?: HeaderVariant;
+};
+
+export function Header({ variant = "default" }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const isHero = variant === "hero";
+
+  const logoSrc = isHero ? "/images/site/nebco-light-ligi.png" : siteConfig.logo;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-border bg-neutral/95 backdrop-blur-sm">
+    <header
+      className={cn(
+        "z-50",
+        isHero
+          ? "absolute top-0 right-0 left-0 border-none bg-transparent"
+          : "sticky top-0 border-b border-neutral-border bg-neutral/95 backdrop-blur-sm",
+      )}
+    >
       <Container>
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
-              src={siteConfig.logo}
+              src={logoSrc}
               alt={`${siteConfig.name} logo`}
               width={140}
               height={48}
-              className="h-12 w-auto"
+              className="h-11 w-auto sm:h-12"
               priority
             />
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+          <nav
+            className="font-nav hidden items-center gap-1 font-semibold lg:flex"
+            aria-label="Main navigation"
+          >
             {mainNavigation.map((item) =>
               item.children ? (
                 <div
@@ -39,7 +58,12 @@ export function Header() {
                 >
                   <button
                     type="button"
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-secondary transition-colors hover:text-primary"
+                    className={cn(
+                      "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+                      isHero
+                        ? "text-neutral/90 hover:text-accent"
+                        : "text-secondary hover:text-primary",
+                    )}
                     aria-expanded={openDropdown === item.label}
                   >
                     {item.label}
@@ -76,7 +100,12 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-secondary transition-colors hover:text-primary"
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium transition-colors",
+                    isHero
+                      ? "text-neutral/90 hover:text-accent"
+                      : "text-secondary hover:text-primary",
+                  )}
                 >
                   {item.label}
                 </Link>
@@ -85,14 +114,22 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="/contact" size="sm">
-              Contact Us
+            <Button
+              href="/contact"
+              size="sm"
+              pill={isHero}
+              className={isHero ? "normal-case" : undefined}
+            >
+              {isHero ? "Schedule a Call" : "Contact Us"}
             </Button>
           </div>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-sm p-2 text-secondary lg:hidden"
+            className={cn(
+              "inline-flex items-center justify-center rounded-sm p-2 lg:hidden",
+              isHero ? "text-neutral" : "text-secondary",
+            )}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -120,31 +157,49 @@ export function Header() {
 
       <div
         className={cn(
-          "overflow-hidden border-t border-neutral-border bg-neutral transition-all duration-300 lg:hidden",
+          "overflow-hidden transition-all duration-300 lg:hidden",
+          isHero
+            ? "border-t border-neutral/10 bg-secondary/95 backdrop-blur-md"
+            : "border-t border-neutral-border bg-neutral",
           mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
         <Container className="py-6">
           <nav
-            className="flex flex-col items-center gap-1 text-center"
+            className="font-nav flex flex-col items-center gap-1 text-center font-semibold"
             aria-label="Mobile navigation"
           >
             {mainNavigation.map((item) => (
               <div key={item.label} className="w-full max-w-xs">
                 <Link
                   href={item.href}
-                  className="block rounded-sm px-3 py-2.5 text-sm font-medium text-secondary transition-colors hover:bg-neutral-muted hover:text-primary"
+                  className={cn(
+                    "block rounded-sm px-3 py-2.5 text-sm font-medium transition-colors",
+                    isHero
+                      ? "text-neutral/90 hover:bg-neutral/10 hover:text-accent"
+                      : "text-secondary hover:bg-neutral-muted hover:text-primary",
+                  )}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
                 </Link>
                 {item.children && (
-                  <div className="mt-1 flex flex-col items-center gap-1 border-t border-neutral-border pt-2">
+                  <div
+                    className={cn(
+                      "mt-1 flex flex-col items-center gap-1 border-t pt-2",
+                      isHero ? "border-neutral/10" : "border-neutral-border",
+                    )}
+                  >
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-3 py-2 text-sm text-text-muted transition-colors hover:text-primary"
+                        className={cn(
+                          "block px-3 py-2 text-sm transition-colors",
+                          isHero
+                            ? "text-neutral/70 hover:text-accent"
+                            : "text-text-muted hover:text-primary",
+                        )}
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -155,8 +210,13 @@ export function Header() {
               </div>
             ))}
             <div className="mt-4 w-full max-w-xs px-3">
-              <Button href="/contact" size="sm" className="w-full">
-                Contact Us
+              <Button
+                href="/contact"
+                size="sm"
+                pill={isHero}
+                className={cn("w-full", isHero && "normal-case")}
+              >
+                {isHero ? "Schedule a Call" : "Contact Us"}
               </Button>
             </div>
           </nav>

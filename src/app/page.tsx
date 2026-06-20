@@ -45,8 +45,8 @@ export default function HomePage() {
     <>
       <JsonLd data={faqSchema([...homeFaq])} />
       <HeroSection />
-      <CompanyOverview />
       <CertificateSection />
+      <CompanyOverview />
       <BusinessDivisions />
       <ValuePillars />
       <FeaturedProjects />

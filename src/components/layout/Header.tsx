@@ -20,8 +20,6 @@ export function Header({ variant = "default" }: HeaderProps) {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const isHero = variant === "hero";
 
-  const logoSrc = isHero ? "/images/site/nebco-light-ligi.png" : siteConfig.logo;
-
   return (
     <header
       className={cn(
@@ -33,13 +31,13 @@ export function Header({ variant = "default" }: HeaderProps) {
     >
       <Container>
         <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href="/" className="flex h-20 shrink-0 items-center">
             <Image
-              src={logoSrc}
+              src={siteConfig.logo}
               alt={`${siteConfig.name} logo`}
-              width={140}
-              height={48}
-              className="h-11 w-auto sm:h-12"
+              width={300}
+              height={84}
+              className="h-[4.8125rem] w-auto object-contain sm:h-[4.9375rem]"
               priority
             />
           </Link>

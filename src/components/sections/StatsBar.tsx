@@ -1,4 +1,5 @@
 import { getStats } from "@/lib/data/content";
+import { AnimatedStatValue } from "@/components/ui/AnimatedStatValue";
 import { Container } from "@/components/ui/Container";
 
 export async function StatsBar() {
@@ -11,7 +12,7 @@ export async function StatsBar() {
           {companyStats.map((stat) => (
             <div key={stat.id} className="text-center">
               <dt className="font-display text-2xl text-primary md:text-3xl">
-                {stat.value}
+                <AnimatedStatValue value={stat.value} />
               </dt>
               <dd className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase sm:text-sm">
                 {stat.label}

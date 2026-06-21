@@ -1,4 +1,5 @@
 import { getSiteContent, getStats } from "@/lib/data/content";
+import { AnimatedStatValue } from "@/components/ui/AnimatedStatValue";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { PortfolioImageCarousel } from "@/components/sections/PortfolioImageCarousel";
@@ -60,7 +61,9 @@ export async function CompanyOverview() {
           <div className="mt-6 grid grid-cols-3 divide-x divide-neutral-border rounded-sm border border-neutral-border bg-neutral-muted">
             {proofStats.map((stat) => (
               <div key={stat.id} className="px-4 py-5 text-center">
-                <p className="font-display text-2xl font-bold text-primary">{stat.value}</p>
+                <p className="font-display text-2xl font-bold text-primary">
+                  <AnimatedStatValue value={stat.value} />
+                </p>
                 <p className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase">{stat.label}</p>
               </div>
             ))}

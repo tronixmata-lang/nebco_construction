@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AdminField, AdminFormActions, AdminToggle } from "@/components/admin/ResourceList";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { SeoFieldsForm, emptySeoFields } from "@/components/admin/SeoFieldsForm";
 import type { SeoFields } from "@/types";
 
@@ -15,6 +16,7 @@ type InsightForm = {
   category: string;
   date: string;
   readTime: string;
+  image: string;
   status: "draft" | "published";
   featured: boolean;
   seo: SeoFields;
@@ -28,6 +30,7 @@ const emptyForm: InsightForm = {
   category: "Construction",
   date: new Date().toISOString().split("T")[0],
   readTime: "5 min read",
+  image: "",
   status: "draft",
   featured: false,
   seo: emptySeoFields,
@@ -61,6 +64,7 @@ export default function InsightFormPage({ params }: { params: Promise<{ id: stri
             category: data.category ?? "Construction",
             date: data.date ?? "",
             readTime: data.readTime ?? "5 min read",
+            image: data.image ?? "",
             status: data.status ?? "draft",
             featured: data.featured ?? false,
             seo: { ...emptySeoFields, ...data.seo },
@@ -120,6 +124,12 @@ export default function InsightFormPage({ params }: { params: Promise<{ id: stri
         <AdminField label="Excerpt">
           <textarea className="admin-input min-h-20" value={form.excerpt} onChange={(e) => updateField("excerpt", e.target.value)} required />
         </AdminField>
+        <ImageUpload
+          label="Card Image"
+          hint="Shown at the top of the article card on the Insights page"
+          value={form.image}
+          onChange={(url) => updateField("image", url)}
+        />
         <AdminField label="Body" hint="Separate paragraphs with a blank line">
           <textarea className="admin-input min-h-48" value={form.body} onChange={(e) => updateField("body", e.target.value)} required />
         </AdminField>

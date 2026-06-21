@@ -91,7 +91,7 @@ export async function IndustrySectors({ showHeader = true, className }: Industry
         {industrySectors.map((sector) => (
           <div
             key={sector.id}
-            className="group relative flex flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-8 md:text-left"
+            className="group relative flex flex-col overflow-hidden rounded-sm border border-accent/45 bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-xl sm:p-8 md:text-left"
           >
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 

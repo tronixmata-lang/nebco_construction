@@ -3,17 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { buildBreadcrumbs, type BreadcrumbItem } from "@/lib/breadcrumbs";
+import { cn } from "@/lib/utils";
 
 type BreadcrumbsProps = {
   items?: BreadcrumbItem[];
   currentLabel?: string;
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "hero";
 };
 
 function ChevronIcon() {
   return (
     <svg
-      className="h-3.5 w-3.5 shrink-0 text-accent"
+      className="h-3 w-3 shrink-0 text-accent/80"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -55,20 +56,30 @@ export function Breadcrumbs({
 
   if (crumbs.length <= 1) return null;
 
-  const linkClass =
-    variant === "dark"
-      ? "inline-flex items-center gap-1.5 text-neutral/80 transition-colors hover:text-neutral"
-      : "inline-flex items-center gap-1.5 text-text-muted transition-colors hover:text-secondary";
+  const isHero = variant === "hero" || variant === "dark";
+
+  const linkClass = cn(
+    "inline-flex items-center gap-1.5 transition-colors",
+    isHero
+      ? "text-neutral/75 hover:text-neutral"
+      : "text-text-muted hover:text-secondary",
+  );
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center justify-center gap-2 text-sm md:justify-start">
+      <ol
+        className={cn(
+          "flex flex-wrap items-center justify-center gap-1.5 text-xs sm:gap-2 sm:text-sm md:justify-start",
+          isHero &&
+            "rounded-full border border-neutral/10 bg-secondary/40 px-3 py-1.5 backdrop-blur-md sm:px-4",
+        )}
+      >
         {crumbs.map((crumb, index) => {
           const isFirst = index === 0;
           const isLast = index === crumbs.length - 1;
 
           return (
-            <li key={`${crumb.label}-${index}`} className="flex items-center gap-2">
+            <li key={`${crumb.label}-${index}`} className="flex items-center gap-1.5 sm:gap-2">
               {index > 0 && <ChevronIcon />}
 
               {crumb.href ? (
@@ -77,7 +88,13 @@ export function Breadcrumbs({
                   <span>{isFirst ? "Home" : crumb.label}</span>
                 </Link>
               ) : (
-                <span className="font-medium text-accent" aria-current="page">
+                <span
+                  className={cn(
+                    "font-medium",
+                    isLast ? "text-accent" : isHero ? "text-neutral/60" : "text-text-muted",
+                  )}
+                  aria-current={isLast ? "page" : undefined}
+                >
                   {crumb.label}
                 </span>
               )}

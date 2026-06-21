@@ -168,6 +168,9 @@ export async function getLeaders(): Promise<Leader[]> {
         role: d.role,
         bio: d.bio,
         image: d.image,
+        linkedin: d.linkedin,
+        facebook: d.facebook,
+        email: d.email,
       }));
     }
   } catch {

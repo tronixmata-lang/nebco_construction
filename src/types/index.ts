@@ -52,6 +52,9 @@ export type Leader = {
   role: string;
   bio: string;
   image?: string;
+  linkedin?: string;
+  facebook?: string;
+  email?: string;
 };
 
 export type InsightArticle = {
@@ -63,6 +66,7 @@ export type InsightArticle = {
   category: string;
   date: string;
   readTime: string;
+  image?: string;
 };
 
 export type Testimonial = {

@@ -12,6 +12,7 @@ function toInsightType(doc: {
   category: string;
   date: string;
   readTime: string;
+  image?: string;
   legacyId?: string;
 }): InsightArticle {
   return {
@@ -23,6 +24,7 @@ function toInsightType(doc: {
     category: doc.category,
     date: doc.date,
     readTime: doc.readTime,
+    image: doc.image,
   };
 }
 

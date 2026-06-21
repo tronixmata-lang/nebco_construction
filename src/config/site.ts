@@ -39,11 +39,14 @@ export const siteConfig = {
   },
 } as const;
 
+export const NEBCO_FACEBOOK_URL = siteConfig.social.facebook;
+
 export function getSocialLinks(): string[] {
+  const facebook = siteConfig.social.facebook || NEBCO_FACEBOOK_URL;
   const candidates: string[] = [
     siteConfig.url,
     siteConfig.social.website,
-    siteConfig.social.facebook,
+    facebook,
     siteConfig.social.linkedin,
   ];
 

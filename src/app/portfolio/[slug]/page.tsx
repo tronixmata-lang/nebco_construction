@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Button } from "@/components/ui/Button";
+import { ContentCard } from "@/components/ui/ContentCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/data/projects";
@@ -62,21 +65,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         title={project.title}
         description={project.description}
         breadcrumbLabel={project.title}
+        backgroundImage={project.image}
+        backgroundAlt={projectImageAlt(project)}
+        showStats={false}
       />
-      <Section className="pt-10 md:pt-14">
-        <div className="mx-auto max-w-4xl">
+      <Section className="pt-10 md:pt-14" glow="primary">
+        <ScrollReveal className="mx-auto max-w-4xl">
           <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-sm bg-secondary shadow-xl">
             <Image
               src={project.image}
               alt={projectImageAlt(project)}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-500 hover:scale-105"
               sizes="(max-width: 896px) 100vw, 896px"
               priority
             />
             <div className="absolute inset-0 bg-secondary/25" />
           </div>
-          <div className="grid gap-6 rounded-sm border border-neutral-border bg-neutral-muted p-6 sm:grid-cols-3">
+          <ContentCard hover={false} className="grid gap-6 bg-neutral-muted p-6 sm:grid-cols-3">
             <div>
               <p className="text-xs font-semibold tracking-wide text-accent uppercase">Category</p>
               <p className="mt-1 font-medium text-secondary capitalize">{project.category}</p>
@@ -89,14 +95,15 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <p className="text-xs font-semibold tracking-wide text-accent uppercase">Year</p>
               <p className="mt-1 font-medium text-secondary">{project.year}</p>
             </div>
-          </div>
+          </ContentCard>
           <p className="mt-8 text-lg leading-relaxed text-text-muted">{project.description}</p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="/portfolio" variant="outline">Back to Portfolio</Button>
             <Button href="/contact">Discuss a Similar Project</Button>
           </div>
-        </div>
+        </ScrollReveal>
       </Section>
+      <CtaBanner />
     </>
   );
 }

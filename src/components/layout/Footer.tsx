@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
 import { Container } from "@/components/ui/Container";
 
 function ContactItem({
@@ -112,6 +113,8 @@ export function Footer() {
                 </a>
               </ContactItem>
             </ul>
+
+            <SiteSocialLinks variant="dark" className="mt-8" />
           </div>
 
           <div className="grid gap-8 text-center sm:grid-cols-3 sm:text-left lg:col-span-7">

@@ -12,10 +12,9 @@ export function SiteBreadcrumbBar() {
   if (pathname === "/") return null;
 
   return (
-    <div className="relative bg-secondary">
-      <div className="pointer-events-none absolute inset-0 bg-primary/5" />
-      <Container className="relative flex justify-center py-3 md:justify-start md:py-4">
-        <Breadcrumbs currentLabel={context?.label} variant="dark" />
+    <div className="pointer-events-none absolute top-20 right-0 left-0 z-40">
+      <Container className="pointer-events-auto flex justify-center py-2 md:justify-start">
+        <Breadcrumbs currentLabel={context?.label} variant="hero" />
       </Container>
     </div>
   );

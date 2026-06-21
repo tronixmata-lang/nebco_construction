@@ -170,20 +170,21 @@ export function CertificateGallery({ certificates }: CertificateGalleryProps) {
           )}
 
           <div
-            className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-sm bg-neutral shadow-2xl"
+            className="relative flex max-h-[90vh] w-full max-w-3xl flex-col rounded-sm bg-neutral shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="relative aspect-[3/4] w-full bg-neutral-muted sm:aspect-[4/5]">
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-auto bg-neutral-muted p-4 sm:p-6">
               <Image
                 src={activeCertificate.image}
                 alt={activeCertificate.alt}
-                fill
-                className="object-contain p-4 sm:p-6"
+                width={724}
+                height={1024}
+                className="h-auto max-h-[calc(90vh-9rem)] w-auto max-w-full object-contain"
                 sizes="(max-width: 768px) 100vw, 768px"
                 priority
               />
             </div>
-            <div className="border-t border-neutral-border px-5 py-4 text-center">
+            <div className="shrink-0 border-t border-neutral-border px-5 py-4 text-center">
               <p className="font-display text-lg font-semibold text-secondary">
                 {activeCertificate.title}
               </p>

@@ -14,6 +14,7 @@ export const breadcrumbLabels: Record<string, string> = {
   consulting: "NEBCO Consulting",
   privacy: "Privacy Policy",
   terms: "Terms of Use",
+  legal: "Legal",
 };
 
 /** All primary site routes for sitemap and page index. */

@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { getFeaturedInsights } from "@/lib/data/insights";
-import { formatDate } from "@/lib/utils";
+import { InsightCard } from "@/components/insights/InsightCard";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -21,19 +19,7 @@ export async function InsightsPreview() {
 
       <div className="grid gap-8 md:grid-cols-3">
         {preview.map((article) => (
-          <Card key={article.id} hover className="flex flex-col">
-            <p className="text-xs font-semibold tracking-wide text-accent uppercase">{article.category}</p>
-            <h3 className="mt-2 font-display text-lg text-secondary">
-              <Link href={`/insights/${article.slug}`} className="transition-colors hover:text-primary">
-                {article.title}
-              </Link>
-            </h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">{article.excerpt}</p>
-            <div className="mt-4 flex items-center justify-between text-xs text-text-muted">
-              <span>{formatDate(article.date)}</span>
-              <span>{article.readTime}</span>
-            </div>
-          </Card>
+          <InsightCard key={article.id} article={article} titleTag="h3" />
         ))}
       </div>
 

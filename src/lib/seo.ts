@@ -179,7 +179,7 @@ export function breadcrumbSchema(pathname: string, currentLabel?: string) {
       "@type": "ListItem",
       position: index + 1,
       name: crumb.label,
-      ...(crumb.href ? { item: absoluteUrl(crumb.href) } : {}),
+      item: absoluteUrl(crumb.href ?? pathname),
     })),
   };
 }

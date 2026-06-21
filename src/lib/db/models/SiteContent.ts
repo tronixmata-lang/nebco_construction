@@ -23,6 +23,7 @@ export type SiteContentDocument = {
     quote: string;
     author: string;
     role: string;
+    image?: string;
   };
   certificateSection: {
     title: string;
@@ -80,6 +81,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
       quote: { type: String, required: true },
       author: { type: String, required: true },
       role: { type: String, required: true },
+      image: { type: String, trim: true },
     },
     certificateSection: {
       title: { type: String, required: true },

@@ -11,6 +11,7 @@ export type InsightDocument = {
   category: string;
   date: string;
   readTime: string;
+  image?: string;
   status: "draft" | "published";
   featured: boolean;
   sortOrder: number;
@@ -29,6 +30,7 @@ const InsightSchema = new Schema<InsightDocument>(
     category: { type: String, required: true, trim: true },
     date: { type: String, required: true },
     readTime: { type: String, required: true, default: "5 min read" },
+    image: { type: String, trim: true },
     status: { type: String, enum: ["draft", "published"], default: "published" },
     featured: { type: Boolean, default: false },
     sortOrder: { type: Number, default: 0 },

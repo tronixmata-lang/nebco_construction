@@ -14,6 +14,7 @@ function mapInsight(doc: {
   category: string;
   date: string;
   readTime: string;
+  image?: string;
   legacyId?: string;
   seo?: SeoFields;
 }): InsightWithSeo {
@@ -26,6 +27,7 @@ function mapInsight(doc: {
     category: doc.category,
     date: doc.date,
     readTime: doc.readTime,
+    image: doc.image,
     seo: doc.seo ?? undefined,
   };
 }

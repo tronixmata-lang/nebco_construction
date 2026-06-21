@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { divisionIcons } from "@/lib/division-icons";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Button } from "@/components/ui/Button";
+import { ContentCard } from "@/components/ui/ContentCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DivisionCardHeader } from "@/components/ui/DivisionCardHeader";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { pageHeroImages } from "@/config/page-images";
 import { getDivisionBySlug, getDivisions } from "@/lib/data/content";
 import { breadcrumbSchema, createPageMetadata, serviceSchema } from "@/lib/seo";
 
@@ -37,34 +42,48 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
   return (
     <>
       <JsonLd data={[serviceSchema(division), breadcrumbSchema(`/divisions/${division.slug}`, division.name)]} />
-      <PageIntro eyebrow="Business Division" title={division.name} description={division.tagline} breadcrumbLabel={division.name} />
-      <Section className="pt-10 md:pt-14">
-        <DivisionCardHeader icon={divisionIcons[division.id]} />
-        <SectionHeader title="Overview" description={division.description} className="mt-6" />
+      <PageIntro
+        eyebrow="Business Division"
+        title={division.name}
+        description={division.tagline}
+        breadcrumbLabel={division.name}
+        backgroundImage={pageHeroImages.divisions}
+        backgroundAlt={`${division.name} — NEBCO`}
+      />
+      <Section className="pt-10 md:pt-14" glow="primary">
+        <ScrollReveal>
+          <DivisionCardHeader icon={divisionIcons[division.id]} />
+          <SectionHeader title="Overview" description={division.description} className="mt-6" />
+        </ScrollReveal>
       </Section>
-      <Section variant="muted">
-        <SectionHeader title="Our Services" description="Specialized capabilities delivered with NEBCO's trusted quality standards." />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Section variant="muted" glow="accent">
+        <ScrollReveal>
+          <SectionHeader title="Our Services" description="Specialized capabilities delivered with NEBCO's trusted quality standards." />
+        </ScrollReveal>
+        <StaggerReveal className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
           {division.services.map((service: string) => (
-            <div key={service} className="rounded-sm border border-neutral-border bg-neutral p-5 transition-colors hover:border-primary/30">
+            <ContentCard key={service} className="p-5">
               <p className="font-medium text-secondary">{service}</p>
-            </div>
+            </ContentCard>
           ))}
-        </div>
+        </StaggerReveal>
       </Section>
-      <Section>
-        <SectionHeader title="Other Divisions" align="center" className="mx-auto" />
-        <div className="grid gap-6 md:grid-cols-2">
+      <Section glow="primary">
+        <ScrollReveal>
+          <SectionHeader title="Other Divisions" align="center" className="mx-auto" />
+        </ScrollReveal>
+        <StaggerReveal className="grid gap-6 md:grid-cols-2" staggerMs={100}>
           {otherDivisions.map((other) => (
-            <div key={other.id} className="group rounded-sm border border-neutral-border bg-neutral p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg sm:text-left">
+            <ContentCard key={other.id} className="p-6 text-center sm:text-left">
               <span className="flex h-10 w-10 items-center justify-center text-primary">{divisionIcons[other.id]}</span>
               <h3 className="mt-4 font-display text-lg font-bold text-secondary">{other.name}</h3>
               <p className="mt-2 text-sm text-text-muted">{other.description}</p>
               <div className="mt-4"><Button href={other.href} variant="outline" size="sm">Explore {other.shortName}</Button></div>
-            </div>
+            </ContentCard>
           ))}
-        </div>
+        </StaggerReveal>
       </Section>
+      <CtaBanner />
     </>
   );
 }

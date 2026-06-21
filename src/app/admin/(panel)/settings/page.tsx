@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { AdminField, AdminFormActions } from "@/components/admin/ResourceList";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { NEBCO_FACEBOOK_URL } from "@/config/site";
 
 type SiteContentForm = {
   hero: {
@@ -18,7 +20,7 @@ type SiteContentForm = {
     values: string;
     history: string;
   };
-  chairmanMessage: { quote: string; author: string; role: string };
+  chairmanMessage: { quote: string; author: string; role: string; image: string };
   certificateSection: { title: string; description: string };
   siteConfig: {
     name: string;
@@ -41,7 +43,7 @@ const emptyForm: SiteContentForm = {
   },
   companyOverview: { title: "", description: "" },
   about: { mission: "", vision: "", values: "", history: "" },
-  chairmanMessage: { quote: "", author: "", role: "" },
+  chairmanMessage: { quote: "", author: "", role: "", image: "" },
   certificateSection: { title: "", description: "" },
   siteConfig: {
     name: "",
@@ -51,7 +53,7 @@ const emptyForm: SiteContentForm = {
     businessHours: "",
     tagline: "",
     description: "",
-    social: { facebook: "", linkedin: "", website: "" },
+    social: { facebook: NEBCO_FACEBOOK_URL, linkedin: "", website: "https://nebco.com.np" },
   },
 };
 
@@ -73,7 +75,11 @@ export default function AdminSettingsPage() {
             ...data.about,
             values: Array.isArray(data.about?.values) ? data.about.values.join("\n") : "",
           },
-          chairmanMessage: data.chairmanMessage ?? emptyForm.chairmanMessage,
+          chairmanMessage: {
+            ...emptyForm.chairmanMessage,
+            ...data.chairmanMessage,
+            image: data.chairmanMessage?.image ?? "",
+          },
           certificateSection: data.certificateSection ?? emptyForm.certificateSection,
           siteConfig: {
             ...emptyForm.siteConfig,
@@ -170,6 +176,12 @@ export default function AdminSettingsPage() {
           <AdminField label="Quote">
             <textarea className="admin-input min-h-32" value={form.chairmanMessage.quote} onChange={(e) => setForm({ ...form, chairmanMessage: { ...form.chairmanMessage, quote: e.target.value } })} />
           </AdminField>
+          <ImageUpload
+            label="Chairman Photo"
+            hint="Portrait shown alongside the chairman's message"
+            value={form.chairmanMessage.image}
+            onChange={(url) => setForm({ ...form, chairmanMessage: { ...form.chairmanMessage, image: url } })}
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <AdminField label="Author">
               <input className="admin-input" value={form.chairmanMessage.author} onChange={(e) => setForm({ ...form, chairmanMessage: { ...form.chairmanMessage, author: e.target.value } })} />

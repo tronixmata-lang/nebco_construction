@@ -1,12 +1,22 @@
 import { siteConfig } from "@/config/site";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function CtaBanner({ showContactButton = true }: { showContactButton?: boolean }) {
   return (
-    <section className="bg-primary py-16 md:py-20">
+    <section className="relative overflow-hidden bg-primary py-16 md:py-20">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+        aria-hidden="true"
+      />
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl text-neutral md:text-4xl">
             Ready to Build Something Great?
           </h2>
@@ -34,7 +44,7 @@ export function CtaBanner({ showContactButton = true }: { showContactButton?: bo
               View Our Work
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

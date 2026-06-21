@@ -5,6 +5,13 @@ export type BreadcrumbItem = {
   href?: string;
 };
 
+/** Parent path for nested routes (e.g. division slugs → /divisions). */
+const segmentParents: Record<string, string> = {
+  construction: "/divisions",
+  investment: "/divisions",
+  consulting: "/divisions",
+};
+
 function formatSegment(segment: string) {
   return segment
     .split("-")
@@ -18,17 +25,19 @@ export function buildBreadcrumbs(
 ): BreadcrumbItem[] {
   if (pathname === "/") return [];
 
-  if (pathname === "/legal/privacy") {
-    return [
-      { label: "Home", href: "/" },
-      { label: breadcrumbLabels.privacy },
-    ];
-  }
+  if (pathname.startsWith("/legal/")) {
+    const page = pathname.split("/").pop();
+    const label =
+      page === "privacy"
+        ? breadcrumbLabels.privacy
+        : page === "terms"
+          ? breadcrumbLabels.terms
+          : formatSegment(page ?? "");
 
-  if (pathname === "/legal/terms") {
     return [
       { label: "Home", href: "/" },
-      { label: breadcrumbLabels.terms },
+      { label: breadcrumbLabels.legal },
+      { label },
     ];
   }
 
@@ -40,14 +49,20 @@ export function buildBreadcrumbs(
   segments.forEach((segment, index) => {
     path += `/${segment}`;
     const isLast = index === segments.length - 1;
+    const parentPath = segmentParents[segment];
+    const labeledSegment = breadcrumbLabels[segment];
 
-    const label =
-      breadcrumbLabels[segment] ??
-      (isLast ? (currentLabel ?? formatSegment(segment)) : formatSegment(segment));
+    const label = labeledSegment
+      ?? (isLast ? (currentLabel ?? formatSegment(segment)) : formatSegment(segment));
+
+    if (isLast) {
+      items.push({ label });
+      return;
+    }
 
     items.push({
       label,
-      href: isLast ? undefined : path,
+      href: labeledSegment ? path : parentPath ?? path,
     });
   });
 

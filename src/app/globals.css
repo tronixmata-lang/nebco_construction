@@ -11,10 +11,10 @@
   --color-neutral-border: #e5e5e5;
   --color-text-muted: #666666;
 
-  --font-sans: var(--font-poppins), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-montserrat), system-ui, sans-serif;
-  --font-nav: var(--font-poppins), system-ui, sans-serif;
-  --font-button: var(--font-poppins), system-ui, sans-serif;
+  --font-nav: var(--font-montserrat), system-ui, sans-serif;
+  --font-button: var(--font-montserrat), system-ui, sans-serif;
 }
 
 html {
@@ -25,7 +25,7 @@ body {
   background-color: var(--color-neutral);
   color: var(--color-secondary);
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,6 +58,8 @@ h1 {
 .font-script {
   font-family: var(--font-dancing-script), "Segoe Script", cursive;
   font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.01em;
 }
 
 .font-display.font-bold,
@@ -74,7 +76,7 @@ h1.font-extrabold {
 footer,
 footer h3 {
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 ::selection {

@@ -8,6 +8,8 @@ type PageIntroProps = {
   eyebrow?: string;
   breadcrumbLabel?: string;
   showStats?: boolean;
+  backgroundImage?: string;
+  backgroundAlt?: string;
 };
 
 export async function PageIntro({
@@ -16,11 +18,19 @@ export async function PageIntro({
   eyebrow,
   breadcrumbLabel,
   showStats = true,
+  backgroundImage,
+  backgroundAlt,
 }: PageIntroProps) {
   return (
     <>
       <SetBreadcrumbLabel label={breadcrumbLabel} />
-      <PageHeader title={title} description={description} eyebrow={eyebrow} />
+      <PageHeader
+        title={title}
+        description={description}
+        eyebrow={eyebrow}
+        backgroundImage={backgroundImage}
+        backgroundAlt={backgroundAlt}
+      />
       <PageBodyLead showStats={showStats} />
     </>
   );

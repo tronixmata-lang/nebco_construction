@@ -7,6 +7,9 @@ export type LeaderDocument = {
   role: string;
   bio: string;
   image?: string;
+  linkedin?: string;
+  facebook?: string;
+  email?: string;
   sortOrder: number;
   published: boolean;
   createdAt: Date;
@@ -20,6 +23,9 @@ const LeaderSchema = new Schema<LeaderDocument>(
     role: { type: String, required: true, trim: true },
     bio: { type: String, required: true },
     image: { type: String },
+    linkedin: { type: String, trim: true },
+    facebook: { type: String, trim: true },
+    email: { type: String, trim: true },
     sortOrder: { type: Number, default: 0 },
     published: { type: Boolean, default: true },
   },

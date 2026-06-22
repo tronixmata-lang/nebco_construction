@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # First-time VPS setup using public IP only (no domain, no SSL).
 # Usage:
-#   chmod +x scripts/setup-ip-hosting.sh
-#   ./scripts/setup-ip-hosting.sh YOUR_VPS_IP
-# Or auto-detect public IP:
-#   ./scripts/setup-ip-hosting.sh
+#   ./scripts/setup-ip-hosting.sh YOUR_VPS_IP [PORT]
+# Examples:
+#   ./scripts/setup-ip-hosting.sh 163.47.151.250 3010
+#   ./scripts/setup-ip-hosting.sh                    # auto-detect IP + free port
 
 set -euo pipefail
 
@@ -12,7 +12,24 @@ APP_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 APP_NAME="${APP_NAME:-nebco}"
 cd "$APP_DIR"
 
+pick_free_port() {
+  local candidate
+  for candidate in 3010 3012 3015 3020 8080; do
+    if ! ss -tln 2>/dev/null | grep -q ":${candidate} "; then
+      echo "$candidate"
+      return 0
+    fi
+  done
+  echo "3010"
+}
+
+port_in_use() {
+  ss -tln 2>/dev/null | grep -q ":$1 "
+}
+
 VPS_IP="${1:-}"
+APP_PORT="${2:-}"
+
 if [ -z "$VPS_IP" ]; then
   echo "==> Detecting public IP..."
   VPS_IP="$(curl -fsSL --max-time 8 ifconfig.me 2>/dev/null || curl -fsSL --max-time 8 icanhazip.com 2>/dev/null || true)"
@@ -20,14 +37,23 @@ fi
 
 if [ -z "$VPS_IP" ]; then
   echo "ERROR: Could not detect public IP. Pass it as an argument:"
-  echo "  ./scripts/setup-ip-hosting.sh 203.0.113.10"
+  echo "  ./scripts/setup-ip-hosting.sh 163.47.151.250 3010"
   exit 1
 fi
 
-SITE_URL="http://${VPS_IP}:3000"
+if [ -z "$APP_PORT" ]; then
+  APP_PORT="$(pick_free_port)"
+  echo "==> Ports 3000/3001 in use — picked free port: $APP_PORT"
+elif port_in_use "$APP_PORT"; then
+  echo "ERROR: Port $APP_PORT is already in use. Pick another, e.g. 3012"
+  exit 1
+fi
+
+SITE_URL="http://${VPS_IP}:${APP_PORT}"
 echo "==> NEBCO IP-only hosting setup"
 echo "    Public URL: $SITE_URL"
 echo "    Admin:      $SITE_URL/admin/login"
+echo "    App port:   $APP_PORT"
 echo ""
 
 set_env() {
@@ -48,7 +74,7 @@ sed -i 's/\r$//' .env.local 2>/dev/null || true
 
 set_env "NEXT_PUBLIC_SITE_URL" "$SITE_URL"
 set_env "NODE_ENV" "production"
-set_env "PORT" "3000"
+set_env "PORT" "$APP_PORT"
 set_env "HOSTNAME" "0.0.0.0"
 
 if grep -q "^JWT_SECRET=change-me" .env.local || grep -q "^JWT_SECRET=$" .env.local; then
@@ -77,7 +103,7 @@ if ! command -v pm2 >/dev/null 2>&1; then
   sudo npm install -g pm2
 fi
 
-echo "==> Starting app with PM2..."
+echo "==> Starting app with PM2 on port $APP_PORT..."
 if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
   pm2 restart ecosystem.config.cjs --update-env
 else
@@ -87,9 +113,9 @@ else
 fi
 
 if command -v ufw >/dev/null 2>&1; then
-  echo "==> Opening firewall port 3000..."
+  echo "==> Opening firewall port $APP_PORT..."
   sudo ufw allow OpenSSH >/dev/null 2>&1 || true
-  sudo ufw allow 3000/tcp >/dev/null 2>&1 || true
+  sudo ufw allow "${APP_PORT}/tcp" >/dev/null 2>&1 || true
   sudo ufw --force enable >/dev/null 2>&1 || true
 fi
 

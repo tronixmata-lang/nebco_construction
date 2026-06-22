@@ -4,26 +4,26 @@ This guide deploys the Next.js app with **Node.js**, **PM2**, **MongoDB**, and o
 
 ## Quick start: IP only (no domain) — recommended for now
 
-Use your VPS public IP on port **3000**. No Nginx or SSL required. Admin panel works over HTTP.
+Use your VPS public IP. If **3000 and 3001 are already in use**, use port **3010** (or another free port).
 
 ```bash
 ssh root@YOUR_VPS_IP
 cd /var/www/nebco
 chmod +x scripts/*.sh
-./scripts/setup-ip-hosting.sh YOUR_VPS_IP
+./scripts/setup-ip-hosting.sh YOUR_VPS_IP 3010
 ```
 
 Then open:
 
-- **Site:** `http://YOUR_VPS_IP:3000`
-- **Admin:** `http://YOUR_VPS_IP:3000/admin/login`
+- **Site:** `http://YOUR_VPS_IP:3010`
+- **Admin:** `http://YOUR_VPS_IP:3010/admin/login`
 
-`.env.local` on the server must include:
+`.env.local` on the server must include (example for IP `163.47.151.250` on port `3010`):
 
 ```env
-NEXT_PUBLIC_SITE_URL=http://YOUR_VPS_IP:3000
+NEXT_PUBLIC_SITE_URL=http://163.47.151.250:3010
 NODE_ENV=production
-PORT=3000
+PORT=3010
 HOSTNAME=0.0.0.0
 MONGODB_URI=mongodb://127.0.0.1:27017/nebco
 JWT_SECRET=your-long-random-secret
@@ -31,7 +31,7 @@ ADMIN_EMAIL=admin@nebco.com.np
 ADMIN_PASSWORD=your-strong-password
 ```
 
-**Critical:** `NEXT_PUBLIC_SITE_URL` must be `http://YOUR_VPS_IP:3000` (not localhost, not a domain) **before** `npm run build`, or admin login cookies will not work.
+**Critical:** `NEXT_PUBLIC_SITE_URL` must match the exact URL you open (IP + port), e.g. `http://163.47.151.250:3010` — **before** `npm run build`.
 
 Verify after setup:
 

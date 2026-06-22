@@ -1,4 +1,5 @@
 import { getSiteContent, getStats } from "@/lib/data/content";
+import { getProjects } from "@/lib/data/projects";
 import { AnimatedStatValue } from "@/components/ui/AnimatedStatValue";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
@@ -12,8 +13,11 @@ const trustPoints = [
 ];
 
 export async function CompanyOverview() {
-  const { companyOverview } = await getSiteContent();
-  const companyStats = await getStats();
+  const [{ companyOverview }, companyStats, projects] = await Promise.all([
+    getSiteContent(),
+    getStats(),
+    getProjects(),
+  ]);
   const proofStats = companyStats.filter((stat) =>
     ["years", "clients", "completed"].includes(stat.id),
   );
@@ -55,7 +59,7 @@ export async function CompanyOverview() {
         </div>
 
         <div className="relative">
-          <PortfolioImageCarousel />
+          <PortfolioImageCarousel projects={projects} />
           <div className="absolute -top-5 -right-5 -z-10 hidden h-28 w-28 border-r-4 border-t-4 border-accent lg:block" />
           <div className="absolute -bottom-5 -left-5 -z-10 hidden h-28 w-28 border-b-4 border-l-4 border-primary lg:block" />
           <div className="mt-6 grid grid-cols-3 divide-x divide-neutral-border rounded-sm border border-neutral-border bg-neutral-muted">

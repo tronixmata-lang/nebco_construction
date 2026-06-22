@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { divisions } from "@/content/divisions";
 import { NEBCO_FACEBOOK_URL, siteConfig } from "@/config/site";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -12,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
-import { getSiteContent } from "@/lib/data/content";
+import { getDivisions, getSiteContent } from "@/lib/data/content";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import {
   breadcrumbSchema,
@@ -73,7 +72,10 @@ const contactItems = [
 ];
 
 export default async function ContactPage() {
-  const { pageHeroImages } = await getSiteContent();
+  const [{ pageHeroImages }, divisions] = await Promise.all([
+    getSiteContent(),
+    getDivisions(),
+  ]);
 
   return (
     <div className="font-medium">

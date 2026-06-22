@@ -77,7 +77,12 @@ ADMIN_PASSWORD=use-a-strong-password
 NEXT_PUBLIC_SITE_URL=https://nebco.com.np
 NODE_ENV=production
 PORT=3000
+HOSTNAME=0.0.0.0
 ```
+
+**Important:** `NEXT_PUBLIC_SITE_URL` is baked into the app at **build time**. Set it correctly in `.env.local` **before** `npm run build`. If you change the domain or port later, update `.env.local` and run `npm run build` again.
+
+`PORT` must stay **3000** unless you also change `proxy_pass` in `deploy/nginx*.conf` to the same port.
 
 Generate a JWT secret:
 
@@ -210,6 +215,7 @@ pm2 status              # App status
 pm2 logs nebco          # View logs
 pm2 restart nebco       # Restart app
 npm run reset-admin     # Reset admin password from .env.local
+npm run verify          # Check MongoDB, API, PM2, and Nginx alignment
 ```
 
 ## File locations
@@ -226,9 +232,10 @@ npm run reset-admin     # Reset admin password from .env.local
 - [ ] Domain DNS points to VPS IP
 - [ ] MongoDB running (local or Atlas)
 - [ ] `.env.local` configured with production secrets
-- [ ] `npm run build` succeeds
+- [ ] `npm run build` succeeds (with production `NEXT_PUBLIC_SITE_URL` already set)
 - [ ] `npm run seed` run once
 - [ ] PM2 running (`pm2 status`)
+- [ ] `npm run verify` passes on the server
 - [ ] Nginx proxying to port 3000
 - [ ] SSL certificate installed
 - [ ] Admin login works at `https://yourdomain.com/admin/login`

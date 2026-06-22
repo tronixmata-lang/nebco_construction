@@ -22,6 +22,11 @@ if [ ! -f ".env.local" ]; then
   exit 1
 fi
 
+# shellcheck disable=SC1091
+source "$(dirname "$0")/load-env.sh" .env.local
+echo "    Site URL: $NEXT_PUBLIC_SITE_URL"
+echo "    App port: $PORT"
+
 echo "==> Installing dependencies..."
 npm ci
 
@@ -55,8 +60,14 @@ if [ -n "$DOMAIN" ] && command -v nginx >/dev/null 2>&1; then
   fi
 fi
 
+if [ -x "scripts/verify-production.sh" ]; then
+  echo "==> Verifying production setup..."
+  bash scripts/verify-production.sh || true
+fi
+
 echo ""
 echo "Setup complete."
-echo "  Site:  http://127.0.0.1:3000 (or your domain if Nginx is configured)"
-echo "  Admin: /admin/login"
+echo "  Site:  ${NEXT_PUBLIC_SITE_URL:-http://127.0.0.1:3000}"
+echo "  Admin: ${NEXT_PUBLIC_SITE_URL:-http://127.0.0.1:3000}/admin/login"
+echo "  Verify: bash scripts/verify-production.sh"
 echo "  Logs:  pm2 logs $APP_NAME"

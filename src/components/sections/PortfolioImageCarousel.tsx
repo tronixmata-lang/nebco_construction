@@ -2,17 +2,20 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { projects } from "@/content/projects";
-
-const portfolioImages = projects.map((project) => ({
-  id: project.id,
-  src: project.image,
-  alt: `${project.title} — NEBCO construction project in ${project.location}`,
-}));
+import type { Project } from "@/types";
 
 const INTERVAL_MS = 2000;
 
-export function PortfolioImageCarousel() {
+type PortfolioImageCarouselProps = {
+  projects: Pick<Project, "id" | "title" | "location" | "image">[];
+};
+
+export function PortfolioImageCarousel({ projects }: PortfolioImageCarouselProps) {
+  const portfolioImages = projects.map((project) => ({
+    id: project.id,
+    src: project.image,
+    alt: `${project.title} — NEBCO construction project in ${project.location}`,
+  }));
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {

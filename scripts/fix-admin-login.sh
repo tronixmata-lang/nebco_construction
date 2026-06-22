@@ -38,4 +38,4 @@ npm run reset-admin
 echo "==> Done. Login with:"
 echo "    Email:    $ADMIN_EMAIL"
 echo "    Password: (value of ADMIN_PASSWORD in .env.local)"
-echo "    URL:      ${NEXT_PUBLIC_SITE_URL:-http://localhost:3010}/admin/login"
+echo "    URL:      ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}/admin/login"

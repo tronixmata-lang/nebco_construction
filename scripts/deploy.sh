@@ -13,6 +13,12 @@ if [ ! -f ".env.local" ]; then
   exit 1
 fi
 
+# NEXT_PUBLIC_* variables are embedded at build time — load env before npm run build.
+# shellcheck disable=SC1091
+source "$(dirname "$0")/load-env.sh" .env.local
+
+echo "    Building for: $NEXT_PUBLIC_SITE_URL (port $PORT)"
+
 echo "==> Pulling latest code..."
 git pull origin main
 
@@ -36,7 +42,12 @@ if command -v pm2 >/dev/null 2>&1; then
   fi
   pm2 status "$APP_NAME"
 else
-  echo "PM2 not installed. Start manually with: npm start"
+  echo "PM2 not installed. Start manually with: bash scripts/start-prod.sh"
+fi
+
+if [ -x "scripts/verify-production.sh" ]; then
+  echo "==> Running production checks..."
+  bash scripts/verify-production.sh || true
 fi
 
 echo "==> Deploy complete."

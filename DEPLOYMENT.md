@@ -106,7 +106,49 @@ pm2 save
 pm2 startup
 ```
 
-## 5. Nginx reverse proxy
+## 5. Access via IP or domain + port (simplest — no SSL)
+
+Use this when your domain still points to Cloudflare or another host, or you want to skip Certbot for now.
+
+### A. Direct port 3000 (recommended for quick testing)
+
+On the VPS, set `.env.local`:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://YOUR_VPS_IP:3000
+NODE_ENV=production
+PORT=3000
+HOSTNAME=0.0.0.0
+```
+
+Restart the app and open the firewall:
+
+```bash
+pm2 restart nebco
+sudo ufw allow 3000/tcp
+sudo ufw reload
+```
+
+Visit:
+
+- `http://YOUR_VPS_IP:3000`
+- `http://nebco.com.np:3000` (only if DNS A record points to this VPS)
+
+Admin login works over HTTP when `NEXT_PUBLIC_SITE_URL` starts with `http://`.
+
+### B. Nginx on port 8080 (optional)
+
+```bash
+sudo cp deploy/nginx-port.conf /etc/nginx/sites-available/nebco-port
+sudo sed -i 's/YOUR_VPS_IP/YOUR_ACTUAL_IP/g' /etc/nginx/sites-available/nebco-port
+sudo ln -sf /etc/nginx/sites-available/nebco-port /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo ufw allow 8080/tcp
+```
+
+Then set `NEXT_PUBLIC_SITE_URL=http://YOUR_VPS_IP:8080` and visit that URL.
+
+## 6. Nginx on port 80 (only when DNS points to this VPS)
 
 Edit `deploy/nginx.nebco.conf` — replace `YOUR_DOMAIN` with your domain, then:
 
@@ -118,19 +160,27 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## 6. HTTPS (required for admin login)
+## 7. HTTPS (only after DNS points to this VPS)
 
 ```bash
 sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d nebco.com.np -d www.nebco.com.np
 ```
 
-Admin cookies use `secure: true` in production, so HTTPS is required for `/admin/login`.
+Then update `.env.local`:
 
-## 7. Firewall
+```env
+NEXT_PUBLIC_SITE_URL=https://nebco.com.np
+```
+
+And restart: `pm2 restart nebco`
+
+## 8. Firewall
 
 ```bash
 sudo ufw allow OpenSSH
+sudo ufw allow 3000/tcp
+sudo ufw allow 8080/tcp
 sudo ufw allow 'Nginx Full'
 sudo ufw enable
 ```

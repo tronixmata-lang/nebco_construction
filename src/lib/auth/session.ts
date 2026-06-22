@@ -11,10 +11,17 @@ export async function verifySession(token: string): Promise<SessionPayload | nul
   return verifySessionToken(token);
 }
 
+function useSecureCookies() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  if (siteUrl.startsWith("https://")) return true;
+  if (siteUrl.startsWith("http://")) return false;
+  return process.env.NODE_ENV === "production";
+}
+
 export function getSessionCookieOptions() {
   return {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: useSecureCookies(),
     sameSite: "lax" as const,
     maxAge: SESSION_DURATION,
     path: "/",

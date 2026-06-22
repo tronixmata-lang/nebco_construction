@@ -4,7 +4,7 @@ module.exports = {
     {
       name: "nebco",
       script: "node_modules/next/dist/bin/next",
-      args: "start",
+      args: "start -H 0.0.0.0 -p 3000",
       cwd: __dirname,
       instances: 1,
       exec_mode: "fork",
@@ -13,6 +13,7 @@ module.exports = {
       env: {
         NODE_ENV: "production",
         PORT: 3000,
+        HOSTNAME: "0.0.0.0",
       },
     },
   ],

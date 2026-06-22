@@ -10,13 +10,13 @@ if [ ! -f ".env.local" ]; then
   exit 1
 fi
 
+# Strip Windows CRLF if present in env file
+sed -i 's/\r$//' .env.local 2>/dev/null || true
+
 set -a
 # shellcheck disable=SC1091
 source .env.local
 set +a
-
-# Strip Windows CRLF if present in env file
-sed -i 's/\r$//' .env.local 2>/dev/null || true
 
 missing=0
 for key in MONGODB_URI JWT_SECRET ADMIN_EMAIL ADMIN_PASSWORD; do

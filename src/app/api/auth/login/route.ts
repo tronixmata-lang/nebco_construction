@@ -57,6 +57,28 @@ export async function POST(request: Request) {
     return response;
   } catch (error) {
     console.error("[auth/login]", error);
+
+    if (error instanceof Error) {
+      if (error.message.includes("MONGODB_URI")) {
+        return NextResponse.json(
+          { error: "Database is not configured. Set MONGODB_URI in .env.local on the server." },
+          { status: 500 },
+        );
+      }
+      if (error.message.includes("JWT_SECRET")) {
+        return NextResponse.json(
+          { error: "Auth is not configured. Set JWT_SECRET in .env.local on the server." },
+          { status: 500 },
+        );
+      }
+      if (error.message.includes("ECONNREFUSED") || error.message.includes("MongoServerSelectionError")) {
+        return NextResponse.json(
+          { error: "Cannot connect to MongoDB. Check that mongod is running on the server." },
+          { status: 500 },
+        );
+      }
+    }
+
     const message =
       process.env.NODE_ENV === "development" && error instanceof Error
         ? error.message

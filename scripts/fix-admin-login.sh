@@ -15,6 +15,9 @@ set -a
 source .env.local
 set +a
 
+# Strip Windows CRLF if present in env file
+sed -i 's/\r$//' .env.local 2>/dev/null || true
+
 missing=0
 for key in MONGODB_URI JWT_SECRET ADMIN_EMAIL ADMIN_PASSWORD; do
   if [ -z "${!key:-}" ]; then

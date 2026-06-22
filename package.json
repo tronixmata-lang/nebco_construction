@@ -10,6 +10,7 @@
     "lint": "next lint",
     "seed": "tsx --env-file=.env.local scripts/seed.ts",
     "reset-admin": "tsx --env-file=.env.local scripts/reset-admin-password.ts",
+    "fix-admin": "bash scripts/fix-admin-login.sh",
     "start:prod": "NODE_ENV=production next start",
     "deploy": "bash scripts/deploy.sh",
     "setup:vps": "bash scripts/vps-setup.sh"

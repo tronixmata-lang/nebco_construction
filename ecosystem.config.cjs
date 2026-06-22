@@ -5,8 +5,8 @@ module.exports = {
   apps: [
     {
       name: "nebco",
-      script: "node_modules/next/dist/bin/next",
-      args: `start -H 0.0.0.0 -p ${port}`,
+      script: "scripts/start-prod.sh",
+      interpreter: "bash",
       cwd: __dirname,
       instances: 1,
       exec_mode: "fork",

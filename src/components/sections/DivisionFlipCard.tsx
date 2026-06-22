@@ -16,10 +16,11 @@ const cardFaceClass =
 
 export function DivisionFlipCard({ division, featured = false }: DivisionFlipCardProps) {
   return (
-    <div className="group h-full w-full [perspective:1200px]">
+    <div className="group relative h-full w-full min-h-[22rem] [perspective:1200px] md:min-h-[24rem]">
       <div
+        aria-hidden="true"
         className={cn(
-          "relative h-full min-h-[22rem] w-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] motion-reduce:transition-none md:min-h-[24rem]",
+          "pointer-events-none relative h-full w-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] motion-reduce:transition-none",
           "group-hover:[transform:rotateY(180deg)] motion-reduce:group-hover:[transform:rotateY(0deg)]",
         )}
       >
@@ -86,15 +87,18 @@ export function DivisionFlipCard({ division, featured = false }: DivisionFlipCar
             ))}
           </ul>
 
-          <Link
-            href={division.href}
-            className="font-button mt-6 inline-flex items-center justify-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-accent-light md:justify-start"
-          >
+          <span className="font-button mt-6 inline-flex items-center justify-center gap-2 text-sm font-semibold text-accent md:justify-start">
             Explore {division.shortName}
             <span aria-hidden="true">&rarr;</span>
-          </Link>
+          </span>
         </div>
       </div>
+
+      <Link
+        href={division.href}
+        aria-label={`Explore ${division.name}`}
+        className="absolute inset-0 z-20 cursor-pointer rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      />
     </div>
   );
 }

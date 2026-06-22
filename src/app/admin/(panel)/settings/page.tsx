@@ -5,14 +5,22 @@ import { AdminField, AdminFormActions } from "@/components/admin/ResourceList";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { ImageUpload } from "@/components/admin/ImageUpload";
 import { NEBCO_FACEBOOK_URL } from "@/config/site";
+import {
+  defaultPageHeroImages,
+  PAGE_HERO_IMAGE_KEYS,
+  PAGE_HERO_LABELS,
+  type PageHeroImages,
+} from "@/config/page-images";
 
 type SiteContentForm = {
   hero: {
     headline: string;
     subheadline: string;
+    backgroundImage: string;
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
+  pageHeroImages: PageHeroImages;
   companyOverview: { title: string; description: string };
   about: {
     mission: string;
@@ -38,9 +46,11 @@ const emptyForm: SiteContentForm = {
   hero: {
     headline: "",
     subheadline: "",
+    backgroundImage: "",
     primaryCta: { label: "", href: "" },
     secondaryCta: { label: "", href: "" },
   },
+  pageHeroImages: { ...defaultPageHeroImages },
   companyOverview: { title: "", description: "" },
   about: { mission: "", vision: "", values: "", history: "" },
   chairmanMessage: { quote: "", author: "", role: "", image: "" },
@@ -68,7 +78,15 @@ export default function AdminSettingsPage() {
       .then((r) => r.json())
       .then((data) => {
         setForm({
-          hero: data.hero ?? emptyForm.hero,
+          hero: {
+            ...emptyForm.hero,
+            ...data.hero,
+            backgroundImage: data.hero?.backgroundImage ?? "",
+          },
+          pageHeroImages: {
+            ...defaultPageHeroImages,
+            ...data.pageHeroImages,
+          },
           companyOverview: data.companyOverview ?? emptyForm.companyOverview,
           about: {
             ...emptyForm.about,
@@ -123,7 +141,7 @@ export default function AdminSettingsPage() {
     <>
       <AdminHeader
         title="Site Settings"
-        description="Manage homepage hero, about content, contact info, and global settings"
+        description="Manage homepage hero, page backgrounds, about content, contact info, and global settings"
       />
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -135,6 +153,12 @@ export default function AdminSettingsPage() {
           <AdminField label="Subheadline">
             <textarea className="admin-input min-h-20" value={form.hero.subheadline} onChange={(e) => setForm({ ...form, hero: { ...form.hero, subheadline: e.target.value } })} />
           </AdminField>
+          <ImageUpload
+            label="Homepage Hero Background"
+            hint="Full-screen background image for the homepage hero section"
+            value={form.hero.backgroundImage}
+            onChange={(url) => setForm({ ...form, hero: { ...form.hero, backgroundImage: url } })}
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <AdminField label="Primary CTA Label">
               <input className="admin-input" value={form.hero.primaryCta.label} onChange={(e) => setForm({ ...form, hero: { ...form.hero, primaryCta: { ...form.hero.primaryCta, label: e.target.value } } })} />
@@ -142,6 +166,29 @@ export default function AdminSettingsPage() {
             <AdminField label="Primary CTA Link">
               <input className="admin-input" value={form.hero.primaryCta.href} onChange={(e) => setForm({ ...form, hero: { ...form.hero, primaryCta: { ...form.hero.primaryCta, href: e.target.value } } })} />
             </AdminField>
+          </div>
+        </section>
+
+        <section className="admin-card space-y-4 p-6">
+          <h2 className="admin-section-title">Page Hero Backgrounds</h2>
+          <p className="text-sm text-[var(--admin-muted)]">
+            Background images for inner page hero sections. Leave blank to use the site default.
+          </p>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {PAGE_HERO_IMAGE_KEYS.map((key) => (
+              <ImageUpload
+                key={key}
+                label={PAGE_HERO_LABELS[key]}
+                hint={`Hero background for the ${PAGE_HERO_LABELS[key]} page`}
+                value={form.pageHeroImages[key]}
+                onChange={(url) =>
+                  setForm({
+                    ...form,
+                    pageHeroImages: { ...form.pageHeroImages, [key]: url },
+                  })
+                }
+              />
+            ))}
           </div>
         </section>
 

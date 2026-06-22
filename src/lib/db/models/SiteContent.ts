@@ -1,4 +1,5 @@
 import mongoose, { Schema, type Model } from "mongoose";
+import type { PageHeroImages } from "@/config/page-images";
 
 export type SiteContentDocument = {
   _id: mongoose.Types.ObjectId;
@@ -6,9 +7,11 @@ export type SiteContentDocument = {
   hero: {
     headline: string;
     subheadline: string;
+    backgroundImage?: string;
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
+  pageHeroImages?: Partial<PageHeroImages>;
   companyOverview: {
     title: string;
     description: string;
@@ -58,6 +61,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
     hero: {
       headline: { type: String, required: true },
       subheadline: { type: String, required: true },
+      backgroundImage: { type: String, trim: true },
       primaryCta: {
         label: { type: String, required: true },
         href: { type: String, required: true },
@@ -66,6 +70,16 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
         label: { type: String, required: true },
         href: { type: String, required: true },
       },
+    },
+    pageHeroImages: {
+      about: { type: String, trim: true },
+      portfolio: { type: String, trim: true },
+      divisions: { type: String, trim: true },
+      sectors: { type: String, trim: true },
+      insights: { type: String, trim: true },
+      leadership: { type: String, trim: true },
+      contact: { type: String, trim: true },
+      legal: { type: String, trim: true },
     },
     companyOverview: {
       title: { type: String, required: true },

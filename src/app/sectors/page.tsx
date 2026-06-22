@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { IndustrySectors } from "@/components/sections/IndustrySectors";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { pageHeroImages } from "@/config/page-images";
+import { getSiteContent } from "@/lib/data/content";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import { breadcrumbSchema } from "@/lib/seo";
 
@@ -16,7 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function SectorsPage() {
+export default async function SectorsPage() {
+  const { pageHeroImages } = await getSiteContent();
+
   return (
     <>
       <JsonLd data={breadcrumbSchema("/sectors")} />

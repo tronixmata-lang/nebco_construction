@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { pageHeroImages } from "@/config/page-images";
+import { getSiteContent } from "@/lib/data/content";
 import { getProjects } from "@/lib/data/projects";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -20,7 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PortfolioPage() {
-  const projects = await getProjects();
+  const [projects, { pageHeroImages }] = await Promise.all([
+    getProjects(),
+    getSiteContent(),
+  ]);
 
   return (
     <>

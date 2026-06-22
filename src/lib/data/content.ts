@@ -21,6 +21,11 @@ import {
   heroContent as staticHero,
   testimonials as staticTestimonials,
 } from "@/content/homepage";
+import {
+  defaultPageHeroImages,
+  resolveHomepageHeroImage,
+  resolvePageHeroImages,
+} from "@/config/page-images";
 import { siteConfig as staticSiteConfig } from "@/config/site";
 import type {
   Certificate as CertificateType,
@@ -38,7 +43,11 @@ export async function getSiteContent() {
     const doc = await SiteContentModel.findOne({ key: "global" }).lean();
     if (doc) {
       return {
-        hero: doc.hero,
+        hero: {
+          ...doc.hero,
+          backgroundImage: resolveHomepageHeroImage(doc.hero.backgroundImage),
+        },
+        pageHeroImages: resolvePageHeroImages(doc.pageHeroImages),
         companyOverview: doc.companyOverview,
         about: doc.about,
         chairmanMessage: doc.chairmanMessage,
@@ -50,7 +59,11 @@ export async function getSiteContent() {
     /* fallback */
   }
   return {
-    hero: staticHero,
+    hero: {
+      ...staticHero,
+      backgroundImage: resolveHomepageHeroImage(staticHero.backgroundImage),
+    },
+    pageHeroImages: defaultPageHeroImages,
     companyOverview: staticOverview,
     about: staticAbout,
     chairmanMessage: staticChairman,

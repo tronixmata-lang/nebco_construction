@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ContentCard } from "@/components/ui/ContentCard";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
-import { pageHeroImages } from "@/config/page-images";
+import { getSiteContent } from "@/lib/data/content";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -15,7 +15,9 @@ export const metadata: Metadata = createPageMetadata({
   path: "/legal/privacy",
 });
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const { pageHeroImages } = await getSiteContent();
+
   return (
     <>
       <JsonLd data={breadcrumbSchema("/legal/privacy")} />

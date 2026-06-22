@@ -9,7 +9,8 @@ export const companyOverview = {
 export const heroContent = {
   headline: "Building the Projects You've Always Wanted",
   subheadline:
-    "Quality, Integrity & Timely. NEBCO is Nepal's trusted A-Class construction partner for residential, commercial, and infrastructure projects — from concept to completion.",
+    "Quality, Integrity & Timely. NEBCO is Nepal's trusted A-Class construction partner for residential, commercial, and infrastructure projects - from concept to completion, SINCE 3 DECADE",
+  backgroundImage: "/images/home.jpg",
   primaryCta: { label: "Start your project", href: "/contact" },
   secondaryCta: { label: "Call Now", href: "/contact" },
 };

@@ -3,7 +3,8 @@ import { z } from "zod";
 import { connectDB } from "@/lib/db/connect";
 import { User } from "@/lib/db/models";
 import { verifyPassword } from "@/lib/auth/password";
-import { createSession, setSessionCookie } from "@/lib/auth/session";
+import { COOKIE_NAME } from "@/lib/auth/jwt";
+import { createSession, getSessionCookieOptions } from "@/lib/auth/session";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -43,9 +44,7 @@ export async function POST(request: Request) {
       role: user.role,
     });
 
-    await setSessionCookie(token);
-
-    return NextResponse.json({
+    const response = NextResponse.json({
       user: {
         id: user._id.toString(),
         email: user.email,
@@ -53,7 +52,15 @@ export async function POST(request: Request) {
         role: user.role,
       },
     });
-  } catch {
-    return NextResponse.json({ error: "Login failed" }, { status: 500 });
+
+    response.cookies.set(COOKIE_NAME, token, getSessionCookieOptions());
+    return response;
+  } catch (error) {
+    console.error("[auth/login]", error);
+    const message =
+      process.env.NODE_ENV === "development" && error instanceof Error
+        ? error.message
+        : "Login failed";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

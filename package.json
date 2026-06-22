@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
+    "dev:clean": "node -e \"const fs=require('fs'),p=require('path');try{fs.rmSync(p.join(process.cwd(),'.next'),{recursive:true,force:true})}catch{}\" && next dev --turbo",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx --env-file=.env.local scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local scripts/seed.ts",
+    "reset-admin": "tsx --env-file=.env.local scripts/reset-admin-password.ts"
   },
   "dependencies": {
     "@serwist/next": "^9.5.11",

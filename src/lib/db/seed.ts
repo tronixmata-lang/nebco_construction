@@ -31,6 +31,7 @@ import {
   heroContent,
   testimonials,
 } from "@/content/homepage";
+import { defaultPageHeroImages } from "@/config/page-images";
 import { siteConfig } from "@/config/site";
 import { STATIC_PAGES } from "@/lib/data/seo";
 
@@ -57,6 +58,7 @@ export async function seedDatabase() {
     {
       key: "global",
       hero: heroContent,
+      pageHeroImages: defaultPageHeroImages,
       companyOverview,
       about: aboutContent,
       chairmanMessage,

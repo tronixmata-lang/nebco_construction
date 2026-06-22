@@ -12,7 +12,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
-import { pageHeroImages } from "@/config/page-images";
+import { getSiteContent } from "@/lib/data/content";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import {
   breadcrumbSchema,
@@ -72,7 +72,9 @@ const contactItems = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { pageHeroImages } = await getSiteContent();
+
   return (
     <div className="font-medium">
       <JsonLd

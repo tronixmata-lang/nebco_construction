@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Section } from "@/components/ui/Section";
+import { getSiteContent } from "@/lib/data/content";
 import { getAllInsightSlugs, getInsightBySlug } from "@/lib/data/insights";
 import { getInsightWithSeo } from "@/lib/data/insights-seo";
 import { getSeoSettings, resolveSeoFields } from "@/lib/data/seo";
-import { pageHeroImages } from "@/config/page-images";
 import { articleSchema, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 const DEFAULT_INSIGHT_IMAGE = "/images/pexels-mike-van-schoonderwalt-1884800-5505119.jpg";
@@ -52,7 +52,10 @@ export async function generateMetadata({ params }: InsightPageProps): Promise<Me
 
 export default async function InsightDetailPage({ params }: InsightPageProps) {
   const { slug } = await params;
-  const article = await getInsightBySlug(slug);
+  const [article, { pageHeroImages }] = await Promise.all([
+    getInsightBySlug(slug),
+    getSiteContent(),
+  ]);
   if (!article) notFound();
 
   const heroImage = article.image ?? pageHeroImages.insights ?? DEFAULT_INSIGHT_IMAGE;

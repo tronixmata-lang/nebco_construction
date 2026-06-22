@@ -20,7 +20,7 @@ export function StaggerReveal({
         if (!isValidElement(child)) return child;
 
         return (
-          <ScrollReveal key={child.key ?? index} delay={index * staggerMs}>
+          <ScrollReveal key={child.key ?? index} delay={index * staggerMs} className="h-full">
             {child}
           </ScrollReveal>
         );

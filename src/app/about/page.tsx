@@ -13,7 +13,6 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
-import { pageHeroImages } from "@/config/page-images";
 import { getCertificates, getSiteContent } from "@/lib/data/content";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -34,7 +33,7 @@ const storyHighlights = [
 ];
 
 export default async function AboutPage() {
-  const { about: aboutContent, certificateSection } = await getSiteContent();
+  const { about: aboutContent, certificateSection, pageHeroImages } = await getSiteContent();
   const certificates = await getCertificates();
 
   return (
@@ -106,7 +105,6 @@ export default async function AboutPage() {
       <ScrollReveal>
         <LeadershipMessage />
       </ScrollReveal>
-
       <Section glow="primary">
         <ScrollReveal>
           <SectionHeader

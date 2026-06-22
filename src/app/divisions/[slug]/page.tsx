@@ -11,8 +11,7 @@ import { DivisionCardHeader } from "@/components/ui/DivisionCardHeader";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
-import { pageHeroImages } from "@/config/page-images";
-import { getDivisionBySlug, getDivisions } from "@/lib/data/content";
+import { getDivisionBySlug, getDivisions, getSiteContent } from "@/lib/data/content";
 import { breadcrumbSchema, createPageMetadata, serviceSchema } from "@/lib/seo";
 
 type DivisionPageProps = {
@@ -36,7 +35,10 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
   const division = await getDivisionBySlug(slug);
   if (!division) notFound();
 
-  const divisions = await getDivisions();
+  const [divisions, { pageHeroImages }] = await Promise.all([
+    getDivisions(),
+    getSiteContent(),
+  ]);
   const otherDivisions = divisions.filter((d) => d.slug !== slug);
 
   return (

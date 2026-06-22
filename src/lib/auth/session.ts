@@ -11,15 +11,19 @@ export async function verifySession(token: string): Promise<SessionPayload | nul
   return verifySessionToken(token);
 }
 
-export async function setSessionCookie(token: string): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.set(COOKIE_NAME, token, {
+export function getSessionCookieOptions() {
+  return {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "lax" as const,
     maxAge: SESSION_DURATION,
     path: "/",
-  });
+  };
+}
+
+export async function setSessionCookie(token: string): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE_NAME, token, getSessionCookieOptions());
 }
 
 export async function clearSessionCookie(): Promise<void> {

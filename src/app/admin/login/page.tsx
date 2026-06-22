@@ -1,13 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import "../admin.css";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,15 +20,16 @@ export default function AdminLoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        credentials: "same-origin",
+        body: JSON.stringify({ email: email.trim(), password }),
       });
       const data = await res.json();
       if (!res.ok) {
         setError(data.error ?? "Login failed");
         return;
       }
-      router.push("/admin");
-      router.refresh();
+      // Full navigation ensures the session cookie is sent on the next request.
+      window.location.assign("/admin");
     } catch {
       setError("Connection failed. Please try again.");
     } finally {

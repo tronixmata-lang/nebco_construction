@@ -9,7 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx --env-file=.env.local scripts/seed.ts",
-    "reset-admin": "tsx --env-file=.env.local scripts/reset-admin-password.ts"
+    "reset-admin": "tsx --env-file=.env.local scripts/reset-admin-password.ts",
+    "start:prod": "NODE_ENV=production next start",
+    "deploy": "bash scripts/deploy.sh",
+    "setup:vps": "bash scripts/vps-setup.sh"
   },
   "dependencies": {
     "@serwist/next": "^9.5.11",

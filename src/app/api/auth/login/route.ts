@@ -77,6 +77,12 @@ export async function POST(request: Request) {
           { status: 500 },
         );
       }
+      if (error.message.includes("requires authentication") || error.message.includes("Authentication failed")) {
+        return NextResponse.json(
+          { error: "MongoDB requires login. Update MONGODB_URI in .env.local with username and password." },
+          { status: 500 },
+        );
+      }
     }
 
     const message =

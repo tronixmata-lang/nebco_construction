@@ -73,14 +73,22 @@ for path in "/" "/api/public/redirects" "/admin/login"; do
 done
 
 echo ""
-echo "==> Admin login API"
-login_code=$(curl -s -o /tmp/nebco-login.json -w "%{http_code}" \
+echo "==> Admin login API (with session cookie)"
+login_tmp="$(mktemp)"
+login_code=$(curl -s -c "$login_tmp" -o /tmp/nebco-login.json -w "%{http_code}" \
   -X POST "${LOCAL_URL}/api/auth/login" \
   -H "Content-Type: application/json" \
   -d "{\"email\":\"${ADMIN_EMAIL:-admin@nebco.com.np}\",\"password\":\"${ADMIN_PASSWORD:-}\"}" || echo "000")
 
 if [ "$login_code" = "200" ]; then
   echo "  OK   POST /api/auth/login -> 200"
+  me_code=$(curl -s -b "$login_tmp" -o /dev/null -w "%{http_code}" "${LOCAL_URL}/api/auth/me" || echo "000")
+  if [ "$me_code" = "200" ]; then
+    echo "  OK   GET /api/auth/me -> 200 (session cookie works)"
+  else
+    echo "  FAIL GET /api/auth/me -> $me_code (admin panel may not stay logged in)"
+    fail=1
+  fi
 elif [ "$login_code" = "401" ]; then
   echo "  WARN POST /api/auth/login -> 401 (wrong ADMIN_PASSWORD; run: npm run fix-admin)"
   fail=1
@@ -90,8 +98,10 @@ else
   fail=1
 fi
 
+rm -f "$login_tmp" 2>/dev/null || true
+
 echo ""
-echo "==> Nginx (optional)"
+echo "==> Nginx (optional — skip for direct IP:3000 access)"
 if command -v nginx >/dev/null 2>&1; then
   if grep -R "proxy_pass http://127.0.0.1:${PORT}" /etc/nginx/sites-enabled/ >/dev/null 2>&1; then
     echo "  OK   Nginx proxies to port $PORT"

@@ -12,6 +12,7 @@
     "reset-admin": "tsx --env-file=.env.local scripts/reset-admin-password.ts",
     "fix-admin": "bash scripts/fix-admin-login.sh",
     "verify": "bash scripts/verify-production.sh",
+    "setup:ip": "bash scripts/setup-ip-hosting.sh",
     "setup:mongodb": "bash scripts/setup-mongodb-user.sh",
     "start:prod": "NODE_ENV=production next start",
     "deploy": "bash scripts/deploy.sh",

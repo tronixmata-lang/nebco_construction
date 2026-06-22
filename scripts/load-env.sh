@@ -32,3 +32,13 @@ if [ -z "${HOSTNAME:-}" ]; then
 fi
 
 [ "$missing" -eq 0 ] || exit 1
+
+if [ "${NODE_ENV:-}" = "production" ] && [[ "${NEXT_PUBLIC_SITE_URL}" == *"localhost"* ]]; then
+  echo "WARN: NEXT_PUBLIC_SITE_URL is localhost in production."
+  echo "      For VPS IP access use: http://YOUR_VPS_IP:3000"
+  echo "      Or run: ./scripts/setup-ip-hosting.sh YOUR_VPS_IP"
+fi
+
+if [[ "${NEXT_PUBLIC_SITE_URL}" == http://* ]] && [ "${NODE_ENV:-}" = "production" ]; then
+  echo "INFO: HTTP mode — admin cookies work without SSL (IP hosting)."
+fi

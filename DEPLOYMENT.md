@@ -1,13 +1,52 @@
 # Deploy NEBCO to a Linux VPS
 
-This guide deploys the Next.js app with **Node.js**, **PM2**, **MongoDB**, and **Nginx** on Ubuntu/Debian.
+This guide deploys the Next.js app with **Node.js**, **PM2**, **MongoDB**, and optional **Nginx** on Ubuntu/Debian.
+
+## Quick start: IP only (no domain) — recommended for now
+
+Use your VPS public IP on port **3000**. No Nginx or SSL required. Admin panel works over HTTP.
+
+```bash
+ssh root@YOUR_VPS_IP
+cd /var/www/nebco
+chmod +x scripts/*.sh
+./scripts/setup-ip-hosting.sh YOUR_VPS_IP
+```
+
+Then open:
+
+- **Site:** `http://YOUR_VPS_IP:3000`
+- **Admin:** `http://YOUR_VPS_IP:3000/admin/login`
+
+`.env.local` on the server must include:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://YOUR_VPS_IP:3000
+NODE_ENV=production
+PORT=3000
+HOSTNAME=0.0.0.0
+MONGODB_URI=mongodb://127.0.0.1:27017/nebco
+JWT_SECRET=your-long-random-secret
+ADMIN_EMAIL=admin@nebco.com.np
+ADMIN_PASSWORD=your-strong-password
+```
+
+**Critical:** `NEXT_PUBLIC_SITE_URL` must be `http://YOUR_VPS_IP:3000` (not localhost, not a domain) **before** `npm run build`, or admin login cookies will not work.
+
+Verify after setup:
+
+```bash
+npm run verify
+```
+
+---
 
 ## Requirements
 
 | Item | Notes |
 |------|-------|
 | Linux VPS | Ubuntu 22.04+ or Debian 12+ recommended |
-| Domain | Point DNS A record to your VPS IP |
+| Domain | Optional — use VPS IP + port 3000 without a domain |
 | MongoDB | Local install or [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) |
 | Node.js 20+ | Required for Next.js 15 |
 

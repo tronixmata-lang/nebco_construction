@@ -13,9 +13,9 @@ export async function verifySession(token: string): Promise<SessionPayload | nul
 
 function shouldUseSecureCookies() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
-  if (siteUrl.startsWith("https://")) return true;
-  if (siteUrl.startsWith("http://")) return false;
-  return process.env.NODE_ENV === "production";
+  // Secure cookies only when the public URL is HTTPS (domain or IP with TLS).
+  // HTTP access (e.g. http://VPS_IP:3000) must use non-secure cookies or login fails.
+  return siteUrl.startsWith("https://");
 }
 
 export function getSessionCookieOptions() {
@@ -35,7 +35,7 @@ export async function setSessionCookie(token: string): Promise<void> {
 
 export async function clearSessionCookie(): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.delete(COOKIE_NAME);
+  cookieStore.set(COOKIE_NAME, "", { ...getSessionCookieOptions(), maxAge: 0 });
 }
 
 export async function getSession(): Promise<SessionPayload | null> {

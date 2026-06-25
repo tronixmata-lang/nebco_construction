@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { projectCategories } from "@/content/projects";
 import { projectImageAlt } from "@/lib/seo";
@@ -27,7 +27,7 @@ export function PortfolioMosaicCard({ project, index, layout }: PortfolioMosaicC
         layout === "wide" && "min-h-[240px]",
       )}
     >
-      <Image
+      <CmsImage
         src={project.image}
         alt={projectImageAlt(project)}
         fill

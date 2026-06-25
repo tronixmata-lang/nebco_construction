@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import type { Project } from "@/types";
 import { projectImageAlt } from "@/lib/seo";
@@ -19,7 +19,7 @@ export function ProjectCard({ project, aspect = "16/10" }: ProjectCardProps) {
       className="group overflow-hidden rounded-sm border border-neutral-border bg-neutral transition-shadow hover:shadow-lg"
     >
       <div className={`relative ${aspectClass} bg-secondary`}>
-        <Image
+        <CmsImage
           src={project.image}
           alt={projectImageAlt(project)}
           fill

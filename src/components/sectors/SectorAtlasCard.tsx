@@ -1,8 +1,8 @@
 "use client";
 
+import { CmsImage } from "@/components/ui/CmsImage";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { SectorIcon } from "@/components/sectors/sector-icons";
 import { TrustedBadge } from "@/components/ui/TrustedBadge";
@@ -75,7 +75,7 @@ export function SectorAtlasCard({ sector, index }: SectorAtlasCardProps) {
       >
         <div className="sector-atlas-card__media relative min-h-[240px] overflow-hidden bg-secondary sm:min-h-[280px]">
           <div className="sector-atlas-card__media-inner absolute inset-0">
-            <Image
+            <CmsImage
               src={imageSrc}
               alt={sector.title}
               fill

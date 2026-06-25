@@ -34,7 +34,10 @@ echo "==> Building production app..."
 npm run build
 
 echo "==> Creating upload directory..."
-mkdir -p public/uploads
+mkdir -p uploads
+if [ -d public/uploads ]; then
+  cp -rn public/uploads/. uploads/ 2>/dev/null || true
+fi
 
 echo "==> Seeding database (safe to re-run)..."
 npm run seed

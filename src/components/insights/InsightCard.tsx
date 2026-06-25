@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { cn, formatDate } from "@/lib/utils";
 import type { InsightArticle } from "@/types";
@@ -25,7 +25,7 @@ export function InsightCard({ article, titleTag: TitleTag = "h2" }: InsightCardP
         tabIndex={-1}
         aria-hidden="true"
       >
-        <Image
+        <CmsImage
           src={imageSrc}
           alt={insightImageAlt(article)}
           fill

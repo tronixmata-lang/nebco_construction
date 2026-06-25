@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import type { DivisionCapability } from "@/types";
@@ -117,7 +117,7 @@ export function DivisionProjectsPreview({ projects }: DivisionProjectsPreviewPro
             className="division-project-card group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-xl"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-neutral-muted">
-              <Image
+              <CmsImage
                 src={project.image}
                 alt={project.title}
                 fill

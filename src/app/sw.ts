@@ -1,6 +1,6 @@
 import { defaultCache } from "@serwist/next/worker";
-import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import type { PrecacheEntry, SerwistGlobalConfig, RuntimeCaching } from "serwist";
+import { Serwist, NetworkFirst } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -10,6 +10,14 @@ declare global {
 }
 
 declare const self: ServiceWorkerGlobalScope;
+
+const uploadCache: RuntimeCaching = {
+  matcher: ({ url }) => url.pathname.startsWith("/uploads/"),
+  handler: new NetworkFirst({
+    cacheName: "cms-uploads",
+    networkTimeoutSeconds: 10,
+  }),
+};
 
 const serwist = new Serwist({
   // Precache the build output (HTML, JS, CSS) so the app shell works offline.
@@ -21,7 +29,7 @@ const serwist = new Serwist({
   // Sensible runtime caching strategies for pages, images, fonts, and APIs.
   // Tuned for poor/intermittent networks: serve cached content fast, then
   // update in the background where it's safe to do so.
-  runtimeCaching: defaultCache,
+  runtimeCaching: [uploadCache, ...defaultCache],
   // When a navigation fails completely (fully offline + not precached),
   // fall back to the cached home page so the user never sees a dead screen.
   fallbacks: {

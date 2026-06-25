@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type ImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { isAdminUploadSrc, normalizeMediaSrc } from "@/lib/media-url";
 import { cn } from "@/lib/utils";
 
 type ParallaxImageProps = {
@@ -48,21 +49,27 @@ export function ParallaxImage({
     };
   }, []);
 
+  const normalized = normalizeMediaSrc(src);
+  if (!normalized) return null;
+
+  const imageProps: ImageProps = {
+    src: normalized,
+    alt,
+    fill: true,
+    priority,
+    fetchPriority: priority ? "high" : undefined,
+    sizes,
+    className: cn(
+      "object-cover transition-transform duration-100 ease-out will-change-transform",
+      imageClassName,
+    ),
+    style: { transform: `translateY(${offset}px) scale(1.08)` },
+    unoptimized: isAdminUploadSrc(normalized),
+  };
+
   return (
     <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        fetchPriority={priority ? "high" : undefined}
-        sizes={sizes}
-        className={cn(
-          "object-cover transition-transform duration-100 ease-out will-change-transform",
-          imageClassName,
-        )}
-        style={{ transform: `translateY(${offset}px) scale(1.08)` }}
-      />
+      <Image {...imageProps} alt={alt} />
     </div>
   );
 }

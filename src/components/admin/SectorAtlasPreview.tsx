@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 
 type SectorAtlasPreviewProps = {
   title: string;
@@ -34,7 +34,7 @@ export function SectorAtlasPreview({
 
       <div className="grid md:grid-cols-2">
         <div className="relative min-h-[180px] bg-[var(--admin-bg-warm)]">
-          <Image
+          <CmsImage
             src={imageSrc}
             alt={title || "Sector preview"}
             fill

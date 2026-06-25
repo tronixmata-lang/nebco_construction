@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { getHeroBlurDataURL } from "@/lib/hero-images";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ type HeroBackgroundImageProps = {
 
 export function HeroBackgroundImage({ src, alt, className }: HeroBackgroundImageProps) {
   return (
-    <Image
+    <CmsImage
       src={src}
       alt={alt}
       fill

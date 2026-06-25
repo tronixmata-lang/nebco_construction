@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizeMediaSrc } from "@/lib/media-url";
 import { useRef, useState } from "react";
 import { FolderOpen, ImagePlus, Loader2, Trash2, Upload } from "lucide-react";
 import { AdminField } from "@/components/admin/ResourceList";
@@ -47,7 +48,7 @@ export function ImageUpload({
         return;
       }
 
-      onChange(data.url);
+      onChange(normalizeMediaSrc(data.url));
     } catch {
       setError("Upload failed");
     } finally {

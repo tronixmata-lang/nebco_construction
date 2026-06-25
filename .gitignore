@@ -40,6 +40,9 @@ public/sw.js
 public/sw.js.map
 public/swe-worker-*.js
 
-# uploaded admin images
+# uploaded admin images (served via /uploads/* route — not public/)
+/uploads/*
+!uploads/.gitkeep
+
+# legacy upload path (migrated to /uploads at project root)
 public/uploads/*
-!public/uploads/.gitkeep

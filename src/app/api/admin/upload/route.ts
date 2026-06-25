@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { saveUploadedFile } from "@/lib/upload/media";
 
 export async function POST(request: Request) {
@@ -14,6 +15,7 @@ export async function POST(request: Request) {
     }
 
     const saved = await saveUploadedFile(file);
+    revalidatePublicSite();
     return apiSuccess(saved, 201);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Upload failed";

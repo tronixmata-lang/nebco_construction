@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { cn, formatDate } from "@/lib/utils";
 import type { LeaderArticle } from "@/types";
@@ -27,7 +27,7 @@ export function LeaderArticleCard({
         tabIndex={-1}
         aria-hidden="true"
       >
-        <Image
+        <CmsImage
           src={imageSrc}
           alt={`${article.title}, NEBCO Leadership`}
           fill

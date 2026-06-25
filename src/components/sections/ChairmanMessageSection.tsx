@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { cn } from "@/lib/utils";
 
 export type ChairmanMessageData = {
@@ -52,7 +52,7 @@ export function ChairmanMessageSection({
                 : "border border-neutral-border shadow-[0_18px_40px_-16px_color-mix(in_srgb,var(--color-secondary)_18%,transparent)]",
             )}
           >
-            <Image
+            <CmsImage
               src={imageSrc}
               alt={`${message.author} — NEBCO Chairman`}
               fill

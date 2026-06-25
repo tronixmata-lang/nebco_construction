@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { NEBCO_FACEBOOK_URL } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -66,7 +66,7 @@ function LeaderCard({
       <Link href={`/leadership/${leader.id}`} className="flex flex-1 flex-col">
         <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
           {leader.image ? (
-            <Image
+            <CmsImage
               src={leader.image}
               alt={leader.name}
               fill

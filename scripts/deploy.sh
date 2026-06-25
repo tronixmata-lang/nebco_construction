@@ -29,7 +29,11 @@ echo "==> Building..."
 npm run build
 
 echo "==> Ensuring upload directory exists..."
-mkdir -p public/uploads
+mkdir -p uploads
+if [ -d public/uploads ]; then
+  cp -rn public/uploads/. uploads/ 2>/dev/null || true
+  rm -rf public/uploads
+fi
 
 if command -v pm2 >/dev/null 2>&1; then
   if pm2 describe "$APP_NAME" >/dev/null 2>&1; then

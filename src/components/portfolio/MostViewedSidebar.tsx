@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { projectCategories } from "@/content/projects";
 import type { Project } from "@/types";
@@ -42,7 +42,7 @@ export function MostViewedSidebar({ projects, className }: MostViewedSidebarProp
                   {index + 1}
                 </span>
                 <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-sm bg-secondary">
-                  <Image
+                  <CmsImage
                     src={project.image}
                     alt={projectImageAlt(project)}
                     fill

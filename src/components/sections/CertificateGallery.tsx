@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Certificate } from "@/types";
@@ -99,7 +99,7 @@ function CertificateLightbox({
           onClick={(event) => event.stopPropagation()}
         >
           <div className="certificate-lightbox__frame relative flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[min(100%,52rem)] items-center justify-center rounded-sm border border-accent/25 bg-neutral p-3 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] sm:p-5">
-            <Image
+            <CmsImage
               key={certificate.id}
               src={certificate.image}
               alt={certificate.alt}
@@ -180,7 +180,7 @@ export function CertificateGallery({ certificates }: CertificateGalleryProps) {
           >
             <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/40 group-hover:shadow-xl">
               <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden bg-neutral-muted">
-                <Image
+                <CmsImage
                   src={certificate.image}
                   alt={certificate.alt}
                   fill

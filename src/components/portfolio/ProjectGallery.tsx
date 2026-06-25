@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import type { Project } from "@/types";
 import { projectImageAlt } from "@/lib/seo";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -28,7 +28,7 @@ export function ProjectGallery({ project, images }: ProjectGalleryProps) {
             key={`${src}-${index}`}
             className="group relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary shadow-md"
           >
-            <Image
+            <CmsImage
               src={src}
               alt={`${projectImageAlt(project)} — gallery image ${index + 1}`}
               fill

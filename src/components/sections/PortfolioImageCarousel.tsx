@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { useEffect, useState } from "react";
 import type { Project } from "@/types";
 
@@ -29,7 +29,7 @@ export function PortfolioImageCarousel({ projects }: PortfolioImageCarouselProps
   return (
     <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-xl">
       {portfolioImages.map((image, index) => (
-        <Image
+        <CmsImage
           key={image.id}
           src={image.src}
           alt={image.alt}

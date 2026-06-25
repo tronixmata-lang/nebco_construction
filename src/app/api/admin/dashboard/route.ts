@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { dbErrorResponse } from "@/lib/db/api-errors";
 import {
@@ -104,6 +105,7 @@ export async function POST() {
 
   try {
     const counts = await seedDatabase();
+    revalidatePublicSite();
     return apiSuccess({ message: "Database seeded successfully", counts });
   } catch (error) {
     return dbErrorResponse(error, "Seed failed");

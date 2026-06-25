@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { SiteContent } from "@/lib/db/models";
 
@@ -26,6 +27,7 @@ export async function PUT(request: Request) {
       { $set: body },
       { new: true, upsert: true, runValidators: true },
     ).lean();
+    revalidatePublicSite();
     return apiSuccess(item);
   } catch {
     return apiError("Failed to update site content", 500);

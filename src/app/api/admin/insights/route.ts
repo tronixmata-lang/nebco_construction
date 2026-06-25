@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError, slugify } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { Insight } from "@/lib/db/models";
 
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
     }
     const count = await Insight.countDocuments();
     const item = await Insight.create({ ...body, slug, sortOrder: body.sortOrder ?? count });
+    revalidatePublicSite();
     return apiSuccess(item, 201);
   } catch {
     return apiError("Failed to create insight", 500);

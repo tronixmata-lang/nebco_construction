@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { PageSeo } from "@/lib/db/models";
 import { STATIC_PAGES } from "@/lib/data/seo";
@@ -56,6 +57,7 @@ export async function PUT(request: Request) {
       { new: true, upsert: true, runValidators: true },
     ).lean();
 
+    revalidatePublicSite();
     return apiSuccess(doc);
   } catch {
     return apiError("Failed to update page SEO", 500);

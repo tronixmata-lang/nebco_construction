@@ -1,5 +1,6 @@
 import type { Model } from "mongoose";
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { dbErrorResponse } from "@/lib/db/api-errors";
 
@@ -41,6 +42,7 @@ export function createCreateHandler({ model, resourceName }: CrudConfig) {
       await connectDB();
       const count = await model.countDocuments();
       const item = await model.create({ ...body, sortOrder: body.sortOrder ?? count });
+      revalidatePublicSite();
       return apiSuccess(item, 201);
     } catch (error) {
       return dbErrorResponse(error, `Failed to create ${resourceName}`);
@@ -72,6 +74,7 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       await connectDB();
       const item = await model.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
       if (!item) return apiError(`${resourceName} not found`, 404);
+      revalidatePublicSite();
       return apiSuccess(item);
     } catch (error) {
       return dbErrorResponse(error, `Failed to update ${resourceName}`);
@@ -86,6 +89,7 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       await connectDB();
       const item = await model.findByIdAndDelete(id);
       if (!item) return apiError(`${resourceName} not found`, 404);
+      revalidatePublicSite();
       return apiSuccess({ deleted: true });
     } catch (error) {
       return dbErrorResponse(error, `Failed to delete ${resourceName}`);

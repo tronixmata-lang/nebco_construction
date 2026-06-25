@@ -119,6 +119,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/** Public pages re-fetch CMS data from MongoDB at most every 60s (admin saves revalidate immediately). */
+export const revalidate = 60;
+
 export const viewport: Viewport = {
   themeColor: brandColors.primary,
 };

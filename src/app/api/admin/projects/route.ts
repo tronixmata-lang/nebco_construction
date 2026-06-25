@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError, slugify } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { Project } from "@/lib/db/models";
 
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
       sortOrder: body.sortOrder ?? count,
     });
 
+    revalidatePublicSite();
     return apiSuccess(item, 201);
   } catch {
     return apiError("Failed to create project", 500);

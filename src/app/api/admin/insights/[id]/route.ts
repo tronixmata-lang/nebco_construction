@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError, slugify } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { Insight } from "@/lib/db/models";
 import { dbErrorResponse } from "@/lib/db/api-errors";
@@ -37,6 +38,7 @@ export async function PUT(request: Request, context: RouteContext) {
 
     const item = await Insight.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
     if (!item) return apiError("Insight not found", 404);
+    revalidatePublicSite();
     return apiSuccess(item);
   } catch (error) {
     return dbErrorResponse(error, "Failed to update insight");
@@ -51,6 +53,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
     await connectDB();
     const item = await Insight.findByIdAndDelete(id);
     if (!item) return apiError("Insight not found", 404);
+    revalidatePublicSite();
     return apiSuccess({ deleted: true });
   } catch (error) {
     return dbErrorResponse(error, "Failed to delete insight");

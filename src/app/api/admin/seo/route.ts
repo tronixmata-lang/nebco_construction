@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { SeoSettings } from "@/lib/db/models";
 import { siteConfig } from "@/config/site";
@@ -37,6 +38,7 @@ export async function PUT(request: Request) {
       { $set: body },
       { new: true, upsert: true, runValidators: true },
     ).lean();
+    revalidatePublicSite();
     return apiSuccess(doc);
   } catch {
     return apiError("Failed to update SEO settings", 500);

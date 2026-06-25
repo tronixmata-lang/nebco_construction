@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { Redirect } from "@/lib/db/models";
 
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
     if (existing) return apiError("A redirect for this path already exists", 409);
 
     const item = await Redirect.create({ ...body, from, to });
+    revalidatePublicSite();
     return apiSuccess(item, 201);
   } catch {
     return apiError("Failed to create redirect", 500);

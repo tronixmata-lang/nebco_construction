@@ -1,4 +1,5 @@
 import { requireAuth, apiSuccess, apiError, slugify } from "@/lib/auth/guard";
+import { revalidatePublicSite } from "@/lib/admin/revalidate-public";
 import { connectDB } from "@/lib/db/connect";
 import { Project } from "@/lib/db/models";
 import { dbErrorResponse } from "@/lib/db/api-errors";
@@ -46,6 +47,7 @@ export async function PUT(request: Request, context: RouteContext) {
     }).lean();
 
     if (!item) return apiError("Project not found", 404);
+    revalidatePublicSite();
     return apiSuccess(item);
   } catch (error) {
     return dbErrorResponse(error, "Failed to update project");
@@ -61,6 +63,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
     await connectDB();
     const item = await Project.findByIdAndDelete(id);
     if (!item) return apiError("Project not found", 404);
+    revalidatePublicSite();
     return apiSuccess({ deleted: true });
   } catch (error) {
     return dbErrorResponse(error, "Failed to delete project");

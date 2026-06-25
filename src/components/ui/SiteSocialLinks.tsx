@@ -11,6 +11,11 @@ type SiteSocialLinksProps = {
   variant?: "light" | "dark";
   className?: string;
   label?: string;
+  social?: {
+    facebook?: string;
+    linkedin?: string;
+    website?: string;
+  };
 };
 
 type SocialEntry = {
@@ -43,9 +48,10 @@ function SocialIconButton({
   );
 }
 
-export function getSiteSocialEntries(): SocialEntry[] {
-  const facebook = siteConfig.social.facebook || NEBCO_FACEBOOK_URL;
-  const { linkedin, website } = siteConfig.social;
+export function getSiteSocialEntries(social?: SiteSocialLinksProps["social"]): SocialEntry[] {
+  const facebook = social?.facebook || siteConfig.social.facebook || NEBCO_FACEBOOK_URL;
+  const linkedin = social?.linkedin ?? siteConfig.social.linkedin;
+  const website = social?.website ?? siteConfig.social.website;
   const entries: SocialEntry[] = [];
 
   if (facebook) {
@@ -65,8 +71,9 @@ export function SiteSocialLinks({
   variant = "dark",
   className,
   label = "Follow Us",
+  social,
 }: SiteSocialLinksProps) {
-  const links = getSiteSocialEntries();
+  const links = getSiteSocialEntries(social);
 
   if (links.length === 0) return null;
 

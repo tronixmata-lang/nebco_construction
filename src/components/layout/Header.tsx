@@ -1,21 +1,30 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { mainNavigation } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
+import { siteConfig as staticSiteConfig } from "@/config/site";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 type HeaderVariant = "default" | "hero";
 
-type HeaderProps = {
-  variant?: HeaderVariant;
+export type HeaderBranding = {
+  logo: string;
+  name: string;
 };
 
-export function Header({ variant = "default" }: HeaderProps) {
+type HeaderProps = {
+  variant?: HeaderVariant;
+  branding?: HeaderBranding;
+};
+
+export function Header({
+  variant = "default",
+  branding = { logo: staticSiteConfig.logo, name: staticSiteConfig.name },
+}: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const isHero = variant === "hero";
@@ -35,9 +44,9 @@ export function Header({ variant = "default" }: HeaderProps) {
             href="/"
             className="relative z-20 flex shrink-0 self-start items-start pt-2 sm:pt-2.5"
           >
-            <Image
-              src={siteConfig.logo}
-              alt={`${siteConfig.name} logo`}
+            <CmsImage
+              src={branding.logo}
+              alt={`${branding.name} logo`}
               width={320}
               height={96}
               className="h-[5.5rem] w-auto max-w-[min(72vw,17.5rem)] object-contain object-left sm:h-24 sm:max-w-[19rem]"

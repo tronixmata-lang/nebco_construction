@@ -1,4 +1,4 @@
-import { getValuePillars } from "@/lib/data/content";
+import { getSiteContent, getValuePillars } from "@/lib/data/content";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -17,15 +17,24 @@ type ValuePillarsProps = {
 
 export async function ValuePillars({
   showHeader = true,
-  eyebrow = "Why NEBCO",
-  title = "Our Core Values",
-  description = "Five pillars that define how we work, how we partner, and how we deliver lasting results.",
+  eyebrow,
+  title,
+  description,
   variant = "default",
   id = "values",
   columns = "five",
   revealOnScroll = false,
 }: ValuePillarsProps = {}) {
-  const valuePillars = await getValuePillars();
+  const [valuePillars, { homepageSections }] = await Promise.all([
+    getValuePillars(),
+    getSiteContent(),
+  ]);
+
+  const heading = {
+    eyebrow: eyebrow ?? homepageSections.valuePillars.eyebrow,
+    title: title ?? homepageSections.valuePillars.title,
+    description: description ?? homepageSections.valuePillars.description,
+  };
 
   return (
     <Section id={id} variant={variant} className="relative overflow-hidden">
@@ -35,9 +44,9 @@ export async function ValuePillars({
       {showHeader && (
         <ScrollReveal>
           <SectionHeader
-            eyebrow={eyebrow}
-            title={title}
-            description={description}
+            eyebrow={heading.eyebrow}
+            title={heading.title}
+            description={heading.description}
             align="center"
             className="mx-auto"
           />

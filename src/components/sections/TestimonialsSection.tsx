@@ -1,12 +1,15 @@
-import { getStats, getTestimonials } from "@/lib/data/content";
+import { getStats, getSiteContent, getTestimonials } from "@/lib/data/content";
 import { AnimatedStatValue } from "@/components/ui/AnimatedStatValue";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TestimonialsCarousel } from "@/components/sections/TestimonialsCarousel";
 
 export async function TestimonialsSection() {
-  const testimonials = await getTestimonials();
-  const companyStats = await getStats();
+  const [{ homepageSections }, testimonials, companyStats] = await Promise.all([
+    getSiteContent(),
+    getTestimonials(),
+    getStats(),
+  ]);
   const trustStats = companyStats.filter((stat) =>
     ["clients", "completed", "years"].includes(stat.id),
   );
@@ -16,9 +19,9 @@ export async function TestimonialsSection() {
       <div className="pointer-events-none absolute -bottom-24 left-0 -z-10 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
       <SectionHeader
-        eyebrow="Trusted Partners"
-        title="What Our Clients Say"
-        description="Real feedback from homeowners, commercial clients, and hospitality partners who chose NEBCO for quality, transparency, and on-time delivery."
+        eyebrow={homepageSections.testimonials.eyebrow}
+        title={homepageSections.testimonials.title}
+        description={homepageSections.testimonials.description}
         align="center"
         className="mx-auto"
       />
@@ -31,7 +34,9 @@ export async function TestimonialsSection() {
             <p className="font-display text-xl text-primary sm:text-2xl md:text-3xl">
               <AnimatedStatValue value={stat.value} />
             </p>
-            <p className="mt-1 text-[10px] font-medium tracking-wide text-text-muted uppercase sm:text-xs">{stat.label}</p>
+            <p className="mt-1 text-[10px] font-medium tracking-wide text-text-muted uppercase sm:text-xs">
+              {stat.label}
+            </p>
           </div>
         ))}
       </div>

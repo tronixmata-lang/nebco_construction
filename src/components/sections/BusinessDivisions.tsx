@@ -1,4 +1,4 @@
-import { getDivisions } from "@/lib/data/content";
+import { getDivisions, getSiteContent } from "@/lib/data/content";
 import { Button } from "@/components/ui/Button";
 import { DivisionFlipCard } from "@/components/sections/DivisionFlipCard";
 import { Section } from "@/components/ui/Section";
@@ -14,20 +14,24 @@ function orderDivisionsForHomepage(divisions: Division[]) {
 }
 
 export async function BusinessDivisions() {
-  const divisions = orderDivisionsForHomepage(await getDivisions());
+  const [{ homepageSections }, divisions] = await Promise.all([
+    getSiteContent(),
+    getDivisions(),
+  ]);
+  const ordered = orderDivisionsForHomepage(divisions);
 
   return (
     <Section variant="muted" id="divisions">
       <SectionHeader
-        eyebrow="Our Verticals"
-        title="Integrated Solutions Across Three Core Businesses"
-        description="NEBCO operates through three strategically connected verticals, each delivering specialized expertise while working together to create comprehensive development solutions."
+        eyebrow={homepageSections.divisions.eyebrow}
+        title={homepageSections.divisions.title}
+        description={homepageSections.divisions.description}
         align="center"
         className="mx-auto"
       />
 
       <div className="grid items-stretch gap-8 md:grid-cols-3">
-        {divisions.map((division) => (
+        {ordered.map((division) => (
           <DivisionFlipCard
             key={division.id}
             division={division}

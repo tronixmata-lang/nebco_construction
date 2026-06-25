@@ -10,13 +10,10 @@ import {
 } from "@/lib/db/models";
 import { divisions as staticDivisions, getDivisionBySlug as staticGetDivision } from "@/content/divisions";
 import { valuePillars as staticPillars } from "@/content/pillars";
-import { leaders as staticLeaders, chairmanMessage as staticChairman } from "@/content/leadership";
+import { leaders as staticLeaders } from "@/content/leadership";
 import {
-  aboutContent as staticAbout,
   certificateSection as staticCertSection,
-  companyOverview as staticOverview,
   companyStats as staticStats,
-  heroContent as staticHero,
   testimonials as staticTestimonials,
 } from "@/content/homepage";
 import {
@@ -24,7 +21,6 @@ import {
   resolveHomepageHeroImage,
   resolvePageHeroImages,
 } from "@/config/page-images";
-import { siteConfig as staticSiteConfig } from "@/config/site";
 import type {
   Certificate as CertificateType,
   Division,
@@ -34,61 +30,39 @@ import type {
   Testimonial,
   ValuePillar,
 } from "@/types";
-import { mergeDbWithStatic, mergeAboutValues } from "@/lib/data/merge-with-static";
+import {
+  getDefaultSiteContent,
+  mapSiteContentDocument,
+} from "@/lib/data/site-content-defaults";
+import type { SiteContentDocument } from "@/lib/db/models/SiteContent";
 
 export async function getSiteContent() {
   try {
     await connectDB();
     const doc = await SiteContentModel.findOne({ key: "global" }).lean();
     if (doc) {
+      const content = mapSiteContentDocument(doc as SiteContentDocument);
       return {
+        ...content,
         hero: {
-          ...doc.hero,
-          backgroundImage: resolveHomepageHeroImage(doc.hero.backgroundImage),
+          ...content.hero,
+          backgroundImage: resolveHomepageHeroImage(content.hero.backgroundImage),
         },
-        pageHeroImages: resolvePageHeroImages(doc.pageHeroImages),
-        companyOverview: doc.companyOverview,
-        about: {
-          ...doc.about,
-          values: mergeAboutValues(doc.about?.values, staticAbout.values),
-        },
-        chairmanMessage: doc.chairmanMessage,
-        certificateSection: doc.certificateSection,
-        siteConfig: doc.siteConfig,
+        pageHeroImages: resolvePageHeroImages(content.pageHeroImages),
       };
     }
   } catch {
     /* fallback */
   }
+
+  const defaults = getDefaultSiteContent();
   return {
+    ...defaults,
     hero: {
-      ...staticHero,
-      backgroundImage: resolveHomepageHeroImage(staticHero.backgroundImage),
+      ...defaults.hero,
+      backgroundImage: resolveHomepageHeroImage(defaults.hero.backgroundImage),
     },
     pageHeroImages: defaultPageHeroImages,
-    companyOverview: staticOverview,
-    about: staticAbout,
-    chairmanMessage: staticChairman,
-    certificateSection: {
-      title: staticCertSection.title,
-      description: staticCertSection.description,
-    },
-    siteConfig: {
-      name: staticSiteConfig.name,
-      legalName: staticSiteConfig.legalName,
-      shortName: staticSiteConfig.shortName,
-      tagline: staticSiteConfig.tagline,
-      seoTitle: staticSiteConfig.seoTitle,
-      description: staticSiteConfig.description,
-      url: staticSiteConfig.url,
-      email: staticSiteConfig.email,
-      phone: staticSiteConfig.phone,
-      address: staticSiteConfig.address,
-      businessHours: staticSiteConfig.businessHours,
-      foundingDate: staticSiteConfig.foundingDate,
-      parentOrganization: staticSiteConfig.parentOrganization,
-      social: staticSiteConfig.social,
-    },
   };
 }
 
@@ -97,7 +71,7 @@ export async function getDivisions(): Promise<Division[]> {
     await connectDB();
     const docs = await DivisionModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbDivisions = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId,
         slug: d.slug,
         name: d.name,
@@ -107,7 +81,6 @@ export async function getDivisions(): Promise<Division[]> {
         services: d.services as string[],
         href: d.href,
       }));
-      return mergeDbWithStatic(dbDivisions, staticDivisions, (division) => division.id);
     }
   } catch {
     /* fallback */
@@ -147,13 +120,12 @@ export async function getValuePillars(): Promise<ValuePillar[]> {
     await connectDB();
     const docs = await ValuePillarModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbPillars = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId,
         title: d.title,
         description: d.description,
         icon: d.icon,
       }));
-      return mergeDbWithStatic(dbPillars, staticPillars, (pillar) => pillar.id);
     }
   } catch {
     /* fallback */
@@ -166,7 +138,7 @@ export async function getLeaders(): Promise<Leader[]> {
     await connectDB();
     const docs = await LeaderModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbLeaders = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId,
         name: d.name,
         role: d.role,
@@ -176,7 +148,6 @@ export async function getLeaders(): Promise<Leader[]> {
         facebook: d.facebook,
         email: d.email,
       }));
-      return mergeDbWithStatic(dbLeaders, staticLeaders, (leader) => leader.id);
     }
   } catch {
     /* fallback */
@@ -189,18 +160,13 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     await connectDB();
     const docs = await TestimonialModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbTestimonials = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId ?? d._id.toString(),
         quote: d.quote,
         author: d.author,
         organization: d.organization,
         role: d.role,
       }));
-      return mergeDbWithStatic(
-        dbTestimonials,
-        staticTestimonials,
-        (testimonial) => testimonial.id,
-      );
     }
   } catch {
     /* fallback */
@@ -213,12 +179,11 @@ export async function getStats(): Promise<Stat[]> {
     await connectDB();
     const docs = await StatModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbStats = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId,
         value: d.value,
         label: d.label,
       }));
-      return mergeDbWithStatic(dbStats, staticStats, (stat) => stat.id);
     }
   } catch {
     /* fallback */
@@ -231,18 +196,13 @@ export async function getCertificates(): Promise<CertificateType[]> {
     await connectDB();
     const docs = await CertificateModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      const dbCertificates = docs.map((d) => ({
+      return docs.map((d) => ({
         id: d.legacyId,
         title: d.title,
         subtitle: d.subtitle,
         image: d.image,
         alt: d.alt,
       }));
-      return mergeDbWithStatic(
-        dbCertificates,
-        staticCertSection.certificates,
-        (certificate) => certificate.id,
-      );
     }
   } catch {
     /* fallback */

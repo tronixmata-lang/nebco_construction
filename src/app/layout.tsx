@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Inter, Montserrat } from "next/font/google";
-import { SiteShell } from "@/components/layout/SiteShell";
+import { SiteShellWrapper } from "@/components/layout/SiteShellWrapper";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsScripts } from "@/components/seo/AnalyticsScripts";
-import { brandColors, siteConfig } from "@/config/site";
+import { brandColors, siteConfig as staticSiteConfig } from "@/config/site";
+import { getSiteContent } from "@/lib/data/content";
 import { getSeoSettings } from "@/lib/data/seo";
 import {
   localBusinessSchema,
@@ -34,7 +35,11 @@ const dancingScript = Dancing_Script({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const seoSettings = await getSeoSettings();
+  const [seoSettings, { siteConfig: cms }] = await Promise.all([
+    getSeoSettings(),
+    getSiteContent(),
+  ]);
+  const description = seoSettings.defaultDescription || cms.description;
   const verification: Metadata["verification"] = {};
   if (seoSettings.googleSiteVerification) {
     verification.google = seoSettings.googleSiteVerification;
@@ -44,12 +49,12 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    metadataBase: new URL(siteConfig.url),
+    metadataBase: new URL(cms.url),
     title: {
-      default: siteConfig.seoTitle,
-      template: seoSettings.titleTemplate || `%s | ${siteConfig.shortName}`,
+      default: cms.seoTitle,
+      template: seoSettings.titleTemplate || `%s | ${cms.shortName}`,
     },
-    description: seoSettings.defaultDescription || siteConfig.description,
+    description,
     keywords: seoSettings.keywords.length > 0 ? seoSettings.keywords : [
       "NEBCO",
       "NEBCO Construction",
@@ -65,9 +70,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "best construction company Nepal",
       "no 1 construction company Nepal",
     ],
-    authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
-    creator: siteConfig.legalName,
-    publisher: siteConfig.legalName,
+    authors: [{ name: cms.legalName, url: cms.url }],
+    creator: cms.legalName,
+    publisher: cms.legalName,
     formatDetection: {
       email: false,
       address: false,
@@ -79,25 +84,25 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      locale: siteConfig.locale,
-      url: siteConfig.url,
-      siteName: siteConfig.name,
-      title: siteConfig.seoTitle,
-      description: seoSettings.defaultDescription || siteConfig.description,
+      locale: staticSiteConfig.locale,
+      url: cms.url,
+      siteName: cms.name,
+      title: cms.seoTitle,
+      description,
       images: [
         {
-          url: seoSettings.defaultOgImage || siteConfig.ogImage,
+          url: seoSettings.defaultOgImage || staticSiteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: siteConfig.seoTitle,
+          alt: cms.seoTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: siteConfig.seoTitle,
-      description: seoSettings.defaultDescription || siteConfig.description,
-      images: [seoSettings.defaultOgImage || siteConfig.ogImage],
+      title: cms.seoTitle,
+      description,
+      images: [seoSettings.defaultOgImage || staticSiteConfig.ogImage],
     },
     robots: {
       index: true,
@@ -113,7 +118,7 @@ export async function generateMetadata(): Promise<Metadata> {
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: siteConfig.shortName,
+      title: cms.shortName,
     },
     verification,
   };
@@ -142,7 +147,7 @@ export default function RootLayout({
             websiteSchema(),
           ]}
         />
-        <SiteShell>{children}</SiteShell>
+        <SiteShellWrapper>{children}</SiteShellWrapper>
       </body>
     </html>
   );

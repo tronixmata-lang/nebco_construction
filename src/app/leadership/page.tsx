@@ -9,6 +9,7 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { siteConfig, NEBCO_FACEBOOK_URL } from "@/config/site";
 import { getLeaders, getSiteContent } from "@/lib/data/content";
+import { getLeaderProfileById } from "@/lib/data/leaders";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
 import { breadcrumbSchema } from "@/lib/seo";
 
@@ -21,10 +22,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function LeadershipPage() {
-  const [{ chairmanMessage, pageHeroImages }, leaders] = await Promise.all([
+  const [{ chairmanMessage, pageHeroImages }, leaders, chairmanProfile] = await Promise.all([
     getSiteContent(),
     getLeaders(),
+    getLeaderProfileById("chairman"),
   ]);
+
+  const featuredMessage = chairmanProfile
+    ? {
+        quote: chairmanProfile.message.quote || chairmanMessage.quote,
+        author: chairmanProfile.name,
+        role: chairmanProfile.role,
+        image: chairmanProfile.image ?? chairmanMessage.image,
+      }
+    : chairmanMessage;
 
   return (
     <>
@@ -39,7 +50,7 @@ export default async function LeadershipPage() {
       <Section className="pt-10 md:pt-14" glow="none">
         <ScrollReveal>
           <ChairmanMessageSection
-            message={chairmanMessage}
+            message={featuredMessage}
             variant="light"
             quoteVariant="standard"
             decorative

@@ -4,11 +4,17 @@ import { usePathname } from "next/navigation";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { BreadcrumbProvider } from "@/components/layout/BreadcrumbContext";
 import { SiteBreadcrumbBar } from "@/components/layout/SiteBreadcrumbBar";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { Footer, type FooterSiteConfig } from "@/components/layout/Footer";
+import { Header, type HeaderBranding } from "@/components/layout/Header";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
-export function SiteShell({ children }: { children: React.ReactNode }) {
+type SiteShellProps = {
+  children: React.ReactNode;
+  footerSiteConfig: FooterSiteConfig;
+  headerBranding: HeaderBranding;
+};
+
+export function SiteShell({ children, footerSiteConfig, headerBranding }: SiteShellProps) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
 
@@ -20,10 +26,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <SmoothScroll>
       <BreadcrumbProvider>
         <div className="relative flex min-h-screen flex-col">
-          <Header variant="hero" />
+          <Header variant="hero" branding={headerBranding} />
           <SiteBreadcrumbBar />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer siteConfig={footerSiteConfig} />
           <ScrollToTop />
         </div>
       </BreadcrumbProvider>

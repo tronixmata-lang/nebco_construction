@@ -1,5 +1,13 @@
 import mongoose, { Schema, type Model } from "mongoose";
 import type { PageHeroImages } from "@/config/page-images";
+import type {
+  AboutPageIntro,
+  CtaBannerContent,
+  HeroFeatureCard,
+  HomepageSections,
+} from "@/types/site-content";
+
+export type HeroFeatureCardDocument = HeroFeatureCard;
 
 export type SiteContentDocument = {
   _id: mongoose.Types.ObjectId;
@@ -11,10 +19,12 @@ export type SiteContentDocument = {
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
+  heroFeatureCards: HeroFeatureCardDocument[];
   pageHeroImages?: Partial<PageHeroImages>;
   companyOverview: {
     title: string;
     description: string;
+    trustPoints: string[];
   };
   about: {
     mission: string;
@@ -22,6 +32,7 @@ export type SiteContentDocument = {
     values: string[];
     history: string;
   };
+  aboutPageIntro: AboutPageIntro;
   chairmanMessage: {
     quote: string;
     author: string;
@@ -32,6 +43,8 @@ export type SiteContentDocument = {
     title: string;
     description: string;
   };
+  ctaBanner: CtaBannerContent;
+  homepageSections: HomepageSections;
   siteConfig: {
     name: string;
     legalName: string;
@@ -46,6 +59,8 @@ export type SiteContentDocument = {
     businessHours: string;
     foundingDate: string;
     parentOrganization: string;
+    logo?: string;
+    siteLogo?: string;
     social: {
       website: string;
       facebook: string;
@@ -54,6 +69,17 @@ export type SiteContentDocument = {
   };
   updatedAt: Date;
 };
+
+const HeroFeatureCardSchema = new Schema<HeroFeatureCardDocument>(
+  {
+    title: { type: String, required: true, trim: true },
+    cta: { type: String, required: true, trim: true },
+    href: { type: String, required: true, trim: true },
+    image: { type: String, required: true, trim: true },
+    imageAlt: { type: String, required: true, trim: true },
+  },
+  { _id: false },
+);
 
 const SiteContentSchema = new Schema<SiteContentDocument>(
   {
@@ -71,6 +97,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
         href: { type: String, required: true },
       },
     },
+    heroFeatureCards: [HeroFeatureCardSchema],
     pageHeroImages: {
       about: { type: String, trim: true },
       portfolio: { type: String, trim: true },
@@ -84,12 +111,19 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
     companyOverview: {
       title: { type: String, required: true },
       description: { type: String, required: true },
+      trustPoints: [{ type: String }],
     },
     about: {
       mission: { type: String, required: true },
       vision: { type: String, required: true },
       values: [{ type: String }],
       history: { type: String, required: true },
+    },
+    aboutPageIntro: {
+      eyebrow: { type: String, required: true, trim: true },
+      title: { type: String, required: true, trim: true },
+      description: { type: String, required: true },
+      backgroundAlt: { type: String, required: true, trim: true },
     },
     chairmanMessage: {
       quote: { type: String, required: true },
@@ -100,6 +134,51 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
     certificateSection: {
       title: { type: String, required: true },
       description: { type: String, required: true },
+    },
+    ctaBanner: {
+      title: { type: String, required: true, trim: true },
+      description: { type: String, required: true },
+      primaryCta: {
+        label: { type: String, required: true },
+        href: { type: String, required: true },
+      },
+      secondaryCta: {
+        label: { type: String, required: true },
+        href: { type: String, required: true },
+      },
+    },
+    homepageSections: {
+      certificates: { eyebrow: { type: String, required: true, trim: true } },
+      divisions: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
+      valuePillars: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
+      featuredProjects: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
+      sectors: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
+      testimonials: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
+      insights: {
+        eyebrow: { type: String, required: true, trim: true },
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+      },
     },
     siteConfig: {
       name: { type: String, required: true },
@@ -115,6 +194,8 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
       businessHours: { type: String, required: true },
       foundingDate: { type: String, required: true },
       parentOrganization: { type: String, required: true },
+      logo: { type: String, trim: true },
+      siteLogo: { type: String, trim: true },
       social: {
         website: { type: String, default: "" },
         facebook: { type: String, default: "" },

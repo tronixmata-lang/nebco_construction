@@ -5,13 +5,6 @@ import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { PortfolioImageCarousel } from "@/components/sections/PortfolioImageCarousel";
 
-const trustPoints = [
-  "A-Class construction license recognized across Nepal",
-  "Part of the esteemed Shah Group",
-  "Trusted by 500+ clients and NRNs worldwide",
-  "On-time, on-budget delivery, every project",
-];
-
 export async function CompanyOverview() {
   const [{ companyOverview }, companyStats, projects] = await Promise.all([
     getSiteContent(),
@@ -37,7 +30,7 @@ export async function CompanyOverview() {
           </p>
 
           <ul className="mx-auto mt-8 max-w-md space-y-4 text-left md:mx-0 md:max-w-none">
-            {trustPoints.map((point) => (
+            {companyOverview.trustPoints.map((point) => (
               <li key={point} className="flex items-start gap-3">
                 <span
                   className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSectors } from "@/lib/data/content";
+import { getSectors, getSiteContent } from "@/lib/data/content";
 import { cn } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -16,7 +16,10 @@ function TrustedBadgeProven() {
 }
 
 export async function IndustrySectors({ showHeader = true, className }: IndustrySectorsProps) {
-  const industrySectors = await getSectors();
+  const [industrySectors, { homepageSections }] = await Promise.all([
+    getSectors(),
+    getSiteContent(),
+  ]);
 
   return (
     <Section id="sectors" className={cn("relative overflow-hidden", className)}>
@@ -24,9 +27,9 @@ export async function IndustrySectors({ showHeader = true, className }: Industry
 
       {showHeader && (
         <SectionHeader
-          eyebrow="Industries We Serve"
-          title="Sector Expertise"
-          description="NEBCO serves a broad range of sectors with A-Class credentials, decades of experience, and a track record clients can verify."
+          eyebrow={homepageSections.sectors.eyebrow}
+          title={homepageSections.sectors.title}
+          description={homepageSections.sectors.description}
           align="center"
           className="mx-auto"
         />

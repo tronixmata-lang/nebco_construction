@@ -72,7 +72,7 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       const { id } = await context.params;
       const body = await request.json();
       await connectDB();
-      const item = await model.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
+      const item = await model.findByIdAndUpdate(id, { $set: body }, { new: true, runValidators: true }).lean();
       if (!item) return apiError(`${resourceName} not found`, 404);
       revalidatePublicSite();
       return apiSuccess(item);

@@ -3,7 +3,7 @@ import { HeroScrollStaticView } from "@/components/sections/HeroScrollStaticView
 import { HeroTrustedStrip } from "@/components/sections/HeroTrustedStrip";
 
 export async function HeroSection() {
-  const { hero, siteConfig } = await getSiteContent();
+  const { hero, heroFeatureCards, siteConfig } = await getSiteContent();
 
   const phoneHref = siteConfig.phone
     ? `tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`
@@ -19,6 +19,7 @@ export async function HeroSection() {
       phoneHref={phoneHref}
       parentOrganization={siteConfig.parentOrganization}
       shortName={siteConfig.shortName}
+      featureCards={heroFeatureCards}
     >
       <HeroTrustedStrip />
     </HeroScrollStaticView>

@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { heroFeatureCards } from "@/config/hero";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { cn } from "@/lib/utils";
+import type { HeroFeatureCard } from "@/types/site-content";
 
 const DISPLAY_MS = 3000;
 const FLIP_MS = 700;
@@ -12,16 +12,25 @@ const FLIP_MS = 700;
 const cardShellClass =
   "group absolute inset-0 overflow-hidden rounded-2xl border border-neutral/15 bg-secondary/55 shadow-2xl backdrop-blur-md [backface-visibility:hidden] [transform-style:preserve-3d]";
 
-export function HeroFeatureCards() {
+type HeroFeatureCardsProps = {
+  cards: HeroFeatureCard[];
+};
+
+export function HeroFeatureCards({ cards }: HeroFeatureCardsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const visibleCards = cards.filter((card) => card.title.trim() && card.image.trim());
 
   useEffect(() => {
+    if (visibleCards.length <= 1) return;
+
     const interval = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % heroFeatureCards.length);
+      setActiveIndex((current) => (current + 1) % visibleCards.length);
     }, DISPLAY_MS);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [visibleCards.length]);
+
+  if (visibleCards.length === 0) return null;
 
   return (
     <div
@@ -36,12 +45,12 @@ export function HeroFeatureCards() {
         className="relative h-[17.5rem] w-60 lg:h-[18rem] lg:w-64 xl:w-72"
         aria-label="NEBCO business verticals"
       >
-        {heroFeatureCards.map((card, index) => {
+        {visibleCards.map((card, index) => {
           const isActive = index === activeIndex;
 
           return (
             <Link
-              key={card.title}
+              key={`${card.title}-${index}`}
               href={card.href}
               aria-hidden={!isActive}
               tabIndex={isActive ? 0 : -1}
@@ -50,12 +59,12 @@ export function HeroFeatureCards() {
                 "origin-center transition-[transform,opacity] ease-in-out will-change-transform motion-reduce:transition-none",
                 isActive
                   ? "z-10 scale-100 opacity-100 [transform:rotateY(0deg)]"
-                  : "z-0 scale-[0.97] opacity-0 [transform:rotateY(90deg)] pointer-events-none",
+                  : "pointer-events-none z-0 scale-[0.97] opacity-0 [transform:rotateY(90deg)]",
               )}
               style={{ transitionDuration: `${FLIP_MS}ms` }}
             >
               <div className="relative h-36 w-full overflow-hidden sm:h-40">
-                <Image
+                <CmsImage
                   src={card.image}
                   alt={card.imageAlt}
                   fill
@@ -95,17 +104,19 @@ export function HeroFeatureCards() {
         })}
       </div>
 
-      <div className="mt-3 flex justify-center gap-1.5" aria-hidden="true">
-        {heroFeatureCards.map((item, index) => (
-          <span
-            key={item.title}
-            className={cn(
-              "h-1.5 rounded-full transition-all duration-500",
-              index === activeIndex ? "w-5 bg-accent" : "w-1.5 bg-neutral/40",
-            )}
-          />
-        ))}
-      </div>
+      {visibleCards.length > 1 && (
+        <div className="mt-3 flex justify-center gap-1.5" aria-hidden="true">
+          {visibleCards.map((item, index) => (
+            <span
+              key={`${item.title}-dot-${index}`}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-500",
+                index === activeIndex ? "w-5 bg-accent" : "w-1.5 bg-neutral/40",
+              )}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

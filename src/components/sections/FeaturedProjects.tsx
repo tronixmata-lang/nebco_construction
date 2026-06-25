@@ -1,18 +1,22 @@
 import { getFeaturedProjects } from "@/lib/data/projects";
+import { getSiteContent } from "@/lib/data/content";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export async function FeaturedProjects() {
-  const featured = await getFeaturedProjects(4);
+  const [{ homepageSections }, featured] = await Promise.all([
+    getSiteContent(),
+    getFeaturedProjects(4),
+  ]);
 
   return (
     <Section variant="muted" id="portfolio">
       <SectionHeader
-        eyebrow="Our Work"
-        title="Esteemed Projects"
-        description="A showcase of NEBCO's residential, commercial, and infrastructure projects across Nepal and beyond."
+        eyebrow={homepageSections.featuredProjects.eyebrow}
+        title={homepageSections.featuredProjects.title}
+        description={homepageSections.featuredProjects.description}
         align="center"
         className="mx-auto"
       />

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { HeroBackgroundImage } from "@/components/ui/HeroBackgroundImage";
 import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
+import type { HeroFeatureCard } from "@/types/site-content";
 
 const heroCtaBase =
   "font-button inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
@@ -34,6 +35,7 @@ export type HeroScrollContentProps = {
   phoneHref: string;
   parentOrganization: string;
   shortName: string;
+  featureCards: HeroFeatureCard[];
   children?: React.ReactNode;
 };
 
@@ -47,6 +49,7 @@ export function HeroScrollStaticView({
   phoneHref,
   parentOrganization,
   shortName,
+  featureCards,
   children,
 }: HeroScrollContentProps) {
   return (
@@ -104,7 +107,7 @@ export function HeroScrollStaticView({
           </div>
         </div>
       </Container>
-      <HeroFeatureCards />
+      <HeroFeatureCards cards={featureCards} />
       {children}
     </section>
   );

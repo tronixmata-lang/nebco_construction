@@ -21,19 +21,24 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const { about: aboutContent, certificateSection, pageHeroImages, chairmanMessage } =
-    await getSiteContent();
+  const {
+    about: aboutContent,
+    aboutPageIntro,
+    certificateSection,
+    pageHeroImages,
+    chairmanMessage,
+  } = await getSiteContent();
   const certificates = await getCertificates();
 
   return (
     <>
       <JsonLd data={breadcrumbSchema("/about")} />
       <PageIntro
-        eyebrow="About NEBCO"
-        title="Building Confidence. Creating Value."
-        description="For over three decades, NEBCO has been a trusted partner in construction, investment, and consulting across Nepal and beyond."
+        eyebrow={aboutPageIntro.eyebrow}
+        title={aboutPageIntro.title}
+        description={aboutPageIntro.description}
         backgroundImage={pageHeroImages.about}
-        backgroundAlt="NEBCO construction project in progress"
+        backgroundAlt={aboutPageIntro.backgroundAlt}
       />
 
       <AboutStorySection history={aboutContent.history} />

@@ -4,13 +4,13 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export async function CertificateSection() {
-  const { certificateSection } = await getSiteContent();
+  const { certificateSection, homepageSections } = await getSiteContent();
   const certificates = await getCertificates();
 
   return (
     <Section variant="default" id="certificate" className="relative z-10" glow="none">
       <SectionHeader
-        eyebrow="Certificate"
+        eyebrow={homepageSections.certificates.eyebrow}
         title={certificateSection.title}
         description={certificateSection.description}
         align="center"

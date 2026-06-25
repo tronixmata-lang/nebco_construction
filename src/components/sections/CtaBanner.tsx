@@ -1,9 +1,11 @@
-import { siteConfig } from "@/config/site";
+import { getSiteContent } from "@/lib/data/content";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-export function CtaBanner({ showContactButton = true }: { showContactButton?: boolean }) {
+export async function CtaBanner({ showContactButton = true }: { showContactButton?: boolean }) {
+  const { ctaBanner } = await getSiteContent();
+
   return (
     <section className="relative overflow-hidden bg-primary py-16 md:py-20">
       <div
@@ -17,31 +19,26 @@ export function CtaBanner({ showContactButton = true }: { showContactButton?: bo
       />
       <Container>
         <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl text-neutral md:text-4xl">
-            Ready to Build Something Great?
-          </h2>
-          <p className="mt-4 text-lg text-neutral/80">
-            Partner with {siteConfig.shortName} for integrated construction,
-            investment, and consulting solutions.
-          </p>
+          <h2 className="font-display text-3xl text-neutral md:text-4xl">{ctaBanner.title}</h2>
+          <p className="mt-4 text-lg text-neutral/80">{ctaBanner.description}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             {showContactButton && (
               <Button
-                href="/contact"
+                href={ctaBanner.primaryCta.href}
                 variant="secondary"
                 size="lg"
                 className="bg-neutral text-secondary hover:bg-neutral/90"
               >
-                Get in Touch
+                {ctaBanner.primaryCta.label}
               </Button>
             )}
             <Button
-              href="/portfolio"
+              href={ctaBanner.secondaryCta.href}
               variant="outline"
               size="lg"
               className="border-neutral text-neutral hover:bg-neutral hover:text-primary"
             >
-              View Our Work
+              {ctaBanner.secondaryCta.label}
             </Button>
           </div>
         </ScrollReveal>

@@ -4,7 +4,6 @@ import {
   leaderProfiles as staticLeaderProfiles,
   leaders as staticLeaders,
 } from "@/content/leadership";
-import { mergeKeys } from "@/lib/data/merge-with-static";
 import { connectDB } from "@/lib/db/connect";
 import { Leader as LeaderModel, type LeaderDocument } from "@/lib/db/models/Leader";
 import type { Leader, LeaderArticle, LeaderProfile } from "@/types";
@@ -39,24 +38,18 @@ function mapLeaderArticles(articles: LeaderDocument["articles"]): LeaderArticle[
 }
 
 function mergeProfile(base: Leader, doc?: LeaderDocument | null): LeaderProfile | undefined {
-  const staticProfile = staticLeaderProfiles[base.id];
-
   if (doc) {
-    const dbMessageBody = doc.messageBody ?? [];
-    const dbArticles = mapLeaderArticles(doc.articles);
-    const hasDbMessage = Boolean(doc.messageQuote?.trim()) || dbMessageBody.length > 0;
-    const hasDbArticles = dbArticles.length > 0;
-
     return {
       ...base,
       message: {
-        quote: hasDbMessage ? (doc.messageQuote ?? "") : (staticProfile?.message.quote ?? ""),
-        body: hasDbMessage ? dbMessageBody : (staticProfile?.message.body ?? []),
+        quote: doc.messageQuote ?? "",
+        body: doc.messageBody ?? [],
       },
-      articles: hasDbArticles ? dbArticles : (staticProfile?.articles ?? []),
+      articles: mapLeaderArticles(doc.articles),
     };
   }
 
+  const staticProfile = staticLeaderProfiles[base.id];
   if (!staticProfile) return undefined;
 
   return {
@@ -71,10 +64,7 @@ export async function getAllLeaderIds(): Promise<string[]> {
     await connectDB();
     const docs = await LeaderModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return mergeKeys(
-        docs.map((doc) => doc.legacyId),
-        staticLeaders.map((leader) => leader.id),
-      );
+      return docs.map((doc) => doc.legacyId);
     }
   } catch {
     /* fallback */

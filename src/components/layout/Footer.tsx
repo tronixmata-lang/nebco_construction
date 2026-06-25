@@ -1,9 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerNavigation } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
 import { Container } from "@/components/ui/Container";
+
+export type FooterSiteConfig = {
+  name: string;
+  legalName: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  email: string;
+  phone: string;
+  address: string;
+  parentOrganization: string;
+  siteLogo?: string;
+  social: {
+    website: string;
+    facebook: string;
+    linkedin: string;
+  };
+};
+
+type FooterProps = {
+  siteConfig: FooterSiteConfig;
+};
 
 function ContactItem({
   icon,
@@ -20,7 +42,7 @@ function ContactItem({
   );
 }
 
-export function Footer() {
+export function Footer({ siteConfig }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -32,13 +54,23 @@ export function Footer() {
           <div className="text-center lg:col-span-5 lg:text-left">
             <Link href="/" className="inline-block">
               <div className="inline-flex items-center gap-4 rounded-sm border border-neutral/10 bg-neutral/5 px-5 py-4">
-                <Image
-                  src={siteConfig.siteLogo}
-                  alt={`${siteConfig.name} logo`}
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 object-contain"
-                />
+                {siteConfig.siteLogo ? (
+                  <CmsImage
+                    src={siteConfig.siteLogo}
+                    alt={`${siteConfig.name} logo`}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 object-contain"
+                  />
+                ) : (
+                  <Image
+                    src="/images/site/NEBCO-Logo.png"
+                    alt={`${siteConfig.name} logo`}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 object-contain"
+                  />
+                )}
                 <div>
                   <p className="text-xl tracking-tight text-neutral">
                     {siteConfig.shortName}
@@ -62,7 +94,7 @@ export function Footer() {
                 A-Class Certified
               </span>
               <span className="rounded-full border border-neutral/20 bg-neutral/5 px-3 py-1 text-xs font-semibold tracking-wide text-neutral/80 uppercase">
-                Shah Group
+                {siteConfig.parentOrganization}
               </span>
             </div>
 
@@ -114,7 +146,7 @@ export function Footer() {
               </ContactItem>
             </ul>
 
-            <SiteSocialLinks variant="dark" className="mt-8" />
+            <SiteSocialLinks variant="dark" className="mt-8" social={siteConfig.social} />
           </div>
 
           <div className="grid gap-8 text-center sm:grid-cols-3 sm:text-left lg:col-span-7">

@@ -10,7 +10,7 @@ export async function HeroTrustedStrip() {
     return {
       id: item.id,
       value: match?.value ?? "—",
-      label: item.label,
+      label: match?.label ?? item.label,
     };
   });
 

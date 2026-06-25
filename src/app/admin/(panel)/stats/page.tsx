@@ -2,7 +2,7 @@
 
 import { ResourceList } from "@/components/admin/ResourceList";
 
-type Row = { _id: string; value: string; label: string; published: boolean };
+type Row = { _id: string; legacyId: string; value: string; label: string; published: boolean };
 
 export default function AdminStatsPage() {
   return (
@@ -13,6 +13,7 @@ export default function AdminStatsPage() {
       createHref="/admin/stats/new"
       editHref={(id) => `/admin/stats/${id}`}
       columns={[
+        { key: "legacyId", label: "ID" },
         { key: "value", label: "Value" },
         { key: "label", label: "Label" },
         {

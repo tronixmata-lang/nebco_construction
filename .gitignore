@@ -46,3 +46,6 @@ public/swe-worker-*.js
 
 # legacy upload path (migrated to /uploads at project root)
 public/uploads/*
+
+# local database + upload archives
+/backups/

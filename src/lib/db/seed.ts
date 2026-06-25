@@ -20,18 +20,12 @@ import { hashPassword } from "@/lib/auth/password";
 import { projects } from "@/content/projects";
 import { insights } from "@/content/insights";
 import { divisions } from "@/content/divisions";
+import { divisionProfiles } from "@/content/division-profiles";
 import { industrySectors, sectorProfiles } from "@/content/sectors";
 import { valuePillars } from "@/content/pillars";
-import { leaders, chairmanMessage, leaderProfiles } from "@/content/leadership";
-import {
-  aboutContent,
-  certificateSection,
-  companyOverview,
-  companyStats,
-  heroContent,
-  testimonials,
-} from "@/content/homepage";
-import { defaultPageHeroImages } from "@/config/page-images";
+import { leaders, leaderProfiles } from "@/content/leadership";
+import { companyStats, certificateSection, testimonials } from "@/content/homepage";
+import { getDefaultSiteContent } from "@/lib/data/site-content-defaults";
 import { siteConfig } from "@/config/site";
 import { STATIC_PAGES } from "@/lib/data/seo";
 
@@ -55,34 +49,7 @@ export async function seedDatabase() {
 
   await SiteContent.findOneAndUpdate(
     { key: "global" },
-    {
-      key: "global",
-      hero: heroContent,
-      pageHeroImages: defaultPageHeroImages,
-      companyOverview,
-      about: aboutContent,
-      chairmanMessage,
-      certificateSection: {
-        title: certificateSection.title,
-        description: certificateSection.description,
-      },
-      siteConfig: {
-        name: siteConfig.name,
-        legalName: siteConfig.legalName,
-        shortName: siteConfig.shortName,
-        tagline: siteConfig.tagline,
-        seoTitle: siteConfig.seoTitle,
-        description: siteConfig.description,
-        url: siteConfig.url,
-        email: siteConfig.email,
-        phone: siteConfig.phone,
-        address: siteConfig.address,
-        businessHours: siteConfig.businessHours,
-        foundingDate: siteConfig.foundingDate,
-        parentOrganization: siteConfig.parentOrganization,
-        social: siteConfig.social,
-      },
-    },
+    getDefaultSiteContent(),
     { upsert: true, new: true },
   );
 
@@ -162,6 +129,7 @@ export async function seedDatabase() {
   }
 
   for (const [index, division] of divisions.entries()) {
+    const profile = divisionProfiles[division.slug];
     await Division.findOneAndUpdate(
       { slug: division.slug },
       {
@@ -173,6 +141,12 @@ export async function seedDatabase() {
         description: division.description,
         services: division.services,
         href: division.href,
+        highlight: profile?.highlight ?? division.tagline,
+        overview: profile?.overview ?? division.description,
+        heroImage: profile?.heroImage,
+        capabilities: profile?.capabilities ?? [],
+        process: profile?.process ?? [],
+        commitments: profile?.commitments ?? [],
         sortOrder: index,
         published: true,
       },

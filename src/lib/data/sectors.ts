@@ -1,4 +1,3 @@
-import { mergeDbWithStatic } from "@/lib/data/merge-with-static";
 import {
   getSectorProfileById as getStaticSectorProfileById,
   sectorProfiles as staticSectorProfiles,
@@ -22,37 +21,26 @@ function mapSectorBase(
   };
 }
 
-function mergeProfile(base: IndustrySector, doc?: SectorDocument | null): SectorProfile | undefined {
+function mergeProfile(base: IndustrySector, doc: SectorDocument): SectorProfile {
   const staticProfile = staticSectorProfiles[base.id];
+  const dbCapabilities = doc.capabilities ?? [];
+  const dbMessageBody = doc.messageBody ?? [];
+  const hasDbMessage = Boolean(doc.messageQuote?.trim()) || dbMessageBody.length > 0;
 
-  if (doc) {
-    const dbMessageBody = doc.messageBody ?? [];
-    const dbCapabilities = doc.capabilities ?? [];
-    const hasDbMessage = Boolean(doc.messageQuote?.trim()) || dbMessageBody.length > 0;
-    const hasDbCapabilities = dbCapabilities.length > 0;
-
-    return {
-      ...base,
-      image: base.image ?? doc.image,
-      message: {
-        quote: hasDbMessage ? (doc.messageQuote ?? "") : (staticProfile?.message.quote ?? ""),
-        body: hasDbMessage ? dbMessageBody : (staticProfile?.message.body ?? []),
-      },
-      capabilities: hasDbCapabilities
+  return {
+    ...base,
+    image: doc.image || base.image,
+    message: {
+      quote: hasDbMessage ? (doc.messageQuote ?? "") : (staticProfile?.message.quote ?? ""),
+      body: hasDbMessage ? dbMessageBody : (staticProfile?.message.body ?? []),
+    },
+    capabilities:
+      dbCapabilities.length > 0
         ? dbCapabilities.map((item) => ({
             title: item.title,
             description: item.description,
           }))
         : (staticProfile?.capabilities ?? []),
-    };
-  }
-
-  if (!staticProfile) return undefined;
-
-  return {
-    ...base,
-    message: staticProfile.message,
-    capabilities: staticProfile.capabilities,
   };
 }
 
@@ -79,7 +67,7 @@ export async function getSectorsList(): Promise<IndustrySector[]> {
     await connectDB();
     const docs = await SectorModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return mergeDbWithStatic(docs.map(mapSectorBase), industrySectors, (sector) => sector.id);
+      return docs.map(mapSectorBase);
     }
   } catch {
     /* fallback */

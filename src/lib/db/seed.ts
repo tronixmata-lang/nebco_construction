@@ -70,6 +70,7 @@ export async function seedDatabase() {
       googleSiteVerification: "",
       bingSiteVerification: "",
       ga4MeasurementId: "",
+      ga4PropertyId: "",
       gtmContainerId: "",
       clarityProjectId: "",
       facebookPixelId: "",

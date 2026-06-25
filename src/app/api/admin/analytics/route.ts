@@ -2,6 +2,7 @@ import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
 import { connectDB } from "@/lib/db/connect";
 import { ContactInquiry, Insight, Project, SeoSettings } from "@/lib/db/models";
 import { getSeoSettings } from "@/lib/data/seo";
+import { fetchGa4VisitorsReport } from "@/lib/analytics/ga4";
 
 export async function GET() {
   const auth = await requireAuth();
@@ -34,6 +35,8 @@ export async function GET() {
       getSeoSettings(),
     ]);
 
+    const visitors = await fetchGa4VisitorsReport(seoSettings.ga4PropertyId);
+
     const dbSeo = await SeoSettings.findOne({ key: "global" }).lean();
 
     const tracking = {
@@ -63,6 +66,7 @@ export async function GET() {
       tracking,
       ids: {
         ga4MeasurementId: seoSettings.ga4MeasurementId,
+        ga4PropertyId: seoSettings.ga4PropertyId,
         gtmContainerId: seoSettings.gtmContainerId,
         clarityProjectId: seoSettings.clarityProjectId,
       },
@@ -79,6 +83,7 @@ export async function GET() {
         byStatus: statusBreakdown,
         recent: recentInquiries,
       },
+      visitors,
       links: {
         ga4: seoSettings.ga4MeasurementId
           ? `https://analytics.google.com/analytics/web/#/p${seoSettings.ga4MeasurementId.replace("G-", "")}/reports/intelligenthome`

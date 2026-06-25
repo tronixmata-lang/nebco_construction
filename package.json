@@ -22,6 +22,7 @@
     "setup:vps": "bash scripts/vps-setup.sh"
   },
   "dependencies": {
+    "@google-analytics/data": "^6.1.0",
     "@serwist/next": "^9.5.11",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",

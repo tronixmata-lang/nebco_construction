@@ -10,6 +10,7 @@ export type SeoSettingsDocument = {
   googleSiteVerification: string;
   bingSiteVerification: string;
   ga4MeasurementId: string;
+  ga4PropertyId: string;
   gtmContainerId: string;
   clarityProjectId: string;
   facebookPixelId: string;
@@ -26,6 +27,7 @@ const SeoSettingsSchema = new Schema<SeoSettingsDocument>(
     googleSiteVerification: { type: String, default: "" },
     bingSiteVerification: { type: String, default: "" },
     ga4MeasurementId: { type: String, default: "" },
+    ga4PropertyId: { type: String, default: "" },
     gtmContainerId: { type: String, default: "" },
     clarityProjectId: { type: String, default: "" },
     facebookPixelId: { type: String, default: "" },

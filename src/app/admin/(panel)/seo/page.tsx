@@ -15,6 +15,7 @@ type SeoSettingsForm = {
   googleSiteVerification: string;
   bingSiteVerification: string;
   ga4MeasurementId: string;
+  ga4PropertyId: string;
   gtmContainerId: string;
   clarityProjectId: string;
   facebookPixelId: string;
@@ -28,6 +29,7 @@ const emptyForm: SeoSettingsForm = {
   googleSiteVerification: "",
   bingSiteVerification: "",
   ga4MeasurementId: "",
+  ga4PropertyId: "",
   gtmContainerId: "",
   clarityProjectId: "",
   facebookPixelId: "",
@@ -51,6 +53,7 @@ export default function AdminSeoPage() {
           googleSiteVerification: data.googleSiteVerification ?? "",
           bingSiteVerification: data.bingSiteVerification ?? "",
           ga4MeasurementId: data.ga4MeasurementId ?? "",
+          ga4PropertyId: data.ga4PropertyId ?? "",
           gtmContainerId: data.gtmContainerId ?? "",
           clarityProjectId: data.clarityProjectId ?? "",
           facebookPixelId: data.facebookPixelId ?? "",
@@ -171,6 +174,17 @@ export default function AdminSeoPage() {
                 onChange={(e) => setForm({ ...form, ga4MeasurementId: e.target.value })}
                 placeholder="G-XXXXXXXXXX"
               />
+            </AdminField>
+            <AdminField label="GA4 Property ID (for admin dashboard)">
+              <input
+                className="admin-input"
+                value={form.ga4PropertyId}
+                onChange={(e) => setForm({ ...form, ga4PropertyId: e.target.value })}
+                placeholder="123456789"
+              />
+              <p className="mt-1 text-xs text-[var(--admin-muted)]">
+                Numeric property ID from GA4 Admin → Property settings. Used to load visitor stats in Analytics.
+              </p>
             </AdminField>
             <AdminField label="GTM Container ID">
               <input

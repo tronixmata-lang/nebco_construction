@@ -15,6 +15,25 @@ export type Division = {
   href: string;
 };
 
+export type DivisionCapability = {
+  title: string;
+  description: string;
+};
+
+export type DivisionProcessStep = {
+  title: string;
+  description: string;
+};
+
+export type DivisionProfile = Division & {
+  highlight: string;
+  overview: string;
+  heroImage?: string;
+  capabilities: DivisionCapability[];
+  process: DivisionProcessStep[];
+  commitments: string[];
+};
+
 export type ValuePillar = {
   id: string;
   title: string;

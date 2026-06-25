@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 import type { ValuePillar } from "@/types";
 import { pillarIcons } from "@/components/sections/value-pillar-icons";
@@ -8,6 +9,7 @@ import { pillarIcons } from "@/components/sections/value-pillar-icons";
 type ValuePillarsGridProps = {
   pillars: ValuePillar[];
   columns: "five" | "three";
+  revealOnScroll?: boolean;
 };
 
 const gridClasses = {
@@ -75,7 +77,29 @@ function ValuePillarCard({ pillar, connected = false, onEnter, onLeave }: ValueP
   );
 }
 
-export function ValuePillarsGrid({ pillars, columns }: ValuePillarsGridProps) {
+function PillarReveal({
+  index,
+  revealOnScroll,
+  className,
+  children,
+}: {
+  index: number;
+  revealOnScroll: boolean;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  if (!revealOnScroll) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <ScrollReveal delay={index * 110} className={cn("h-full min-w-0", className)}>
+      {children}
+    </ScrollReveal>
+  );
+}
+
+export function ValuePillarsGrid({ pillars, columns, revealOnScroll = false }: ValuePillarsGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
@@ -95,19 +119,27 @@ export function ValuePillarsGrid({ pillars, columns }: ValuePillarsGridProps) {
                 }
               />
             )}
-            <ValuePillarCard
-              pillar={pillar}
-              connected
-              onEnter={() => setActiveIndex(index)}
-              onLeave={() => setActiveIndex(null)}
-            />
+            <PillarReveal
+              index={index}
+              revealOnScroll={revealOnScroll}
+              className="min-w-0 flex-1"
+            >
+              <ValuePillarCard
+                pillar={pillar}
+                connected
+                onEnter={() => setActiveIndex(index)}
+                onLeave={() => setActiveIndex(null)}
+              />
+            </PillarReveal>
           </Fragment>
         ))}
       </div>
 
       <div className={cn(gridClasses[columns], "lg:hidden")}>
-        {pillars.map((pillar) => (
-          <ValuePillarCard key={pillar.id} pillar={pillar} />
+        {pillars.map((pillar, index) => (
+          <PillarReveal key={pillar.id} index={index} revealOnScroll={revealOnScroll}>
+            <ValuePillarCard pillar={pillar} />
+          </PillarReveal>
         ))}
       </div>
     </>

@@ -34,6 +34,7 @@ import type {
   Testimonial,
   ValuePillar,
 } from "@/types";
+import { mergeDbWithStatic, mergeAboutValues } from "@/lib/data/merge-with-static";
 
 export async function getSiteContent() {
   try {
@@ -47,7 +48,10 @@ export async function getSiteContent() {
         },
         pageHeroImages: resolvePageHeroImages(doc.pageHeroImages),
         companyOverview: doc.companyOverview,
-        about: doc.about,
+        about: {
+          ...doc.about,
+          values: mergeAboutValues(doc.about?.values, staticAbout.values),
+        },
         chairmanMessage: doc.chairmanMessage,
         certificateSection: doc.certificateSection,
         siteConfig: doc.siteConfig,
@@ -93,7 +97,7 @@ export async function getDivisions(): Promise<Division[]> {
     await connectDB();
     const docs = await DivisionModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbDivisions = docs.map((d) => ({
         id: d.legacyId,
         slug: d.slug,
         name: d.name,
@@ -103,6 +107,7 @@ export async function getDivisions(): Promise<Division[]> {
         services: d.services as string[],
         href: d.href,
       }));
+      return mergeDbWithStatic(dbDivisions, staticDivisions, (division) => division.id);
     }
   } catch {
     /* fallback */
@@ -142,12 +147,13 @@ export async function getValuePillars(): Promise<ValuePillar[]> {
     await connectDB();
     const docs = await ValuePillarModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbPillars = docs.map((d) => ({
         id: d.legacyId,
         title: d.title,
         description: d.description,
         icon: d.icon,
       }));
+      return mergeDbWithStatic(dbPillars, staticPillars, (pillar) => pillar.id);
     }
   } catch {
     /* fallback */
@@ -160,7 +166,7 @@ export async function getLeaders(): Promise<Leader[]> {
     await connectDB();
     const docs = await LeaderModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbLeaders = docs.map((d) => ({
         id: d.legacyId,
         name: d.name,
         role: d.role,
@@ -170,6 +176,7 @@ export async function getLeaders(): Promise<Leader[]> {
         facebook: d.facebook,
         email: d.email,
       }));
+      return mergeDbWithStatic(dbLeaders, staticLeaders, (leader) => leader.id);
     }
   } catch {
     /* fallback */
@@ -182,13 +189,18 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     await connectDB();
     const docs = await TestimonialModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbTestimonials = docs.map((d) => ({
         id: d.legacyId ?? d._id.toString(),
         quote: d.quote,
         author: d.author,
         organization: d.organization,
         role: d.role,
       }));
+      return mergeDbWithStatic(
+        dbTestimonials,
+        staticTestimonials,
+        (testimonial) => testimonial.id,
+      );
     }
   } catch {
     /* fallback */
@@ -201,11 +213,12 @@ export async function getStats(): Promise<Stat[]> {
     await connectDB();
     const docs = await StatModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbStats = docs.map((d) => ({
         id: d.legacyId,
         value: d.value,
         label: d.label,
       }));
+      return mergeDbWithStatic(dbStats, staticStats, (stat) => stat.id);
     }
   } catch {
     /* fallback */
@@ -218,13 +231,18 @@ export async function getCertificates(): Promise<CertificateType[]> {
     await connectDB();
     const docs = await CertificateModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const dbCertificates = docs.map((d) => ({
         id: d.legacyId,
         title: d.title,
         subtitle: d.subtitle,
         image: d.image,
         alt: d.alt,
       }));
+      return mergeDbWithStatic(
+        dbCertificates,
+        staticCertSection.certificates,
+        (certificate) => certificate.id,
+      );
     }
   } catch {
     /* fallback */

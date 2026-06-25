@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/db/connect";
 import { Project } from "@/lib/db/models";
 import { projects as staticProjects, getProjectBySlug as staticGetBySlug } from "@/content/projects";
+import { mergeDbWithStatic } from "@/lib/data/merge-with-static";
 import type { Project as ProjectType } from "@/types";
 
 function toProjectType(doc: {
@@ -42,7 +43,9 @@ export async function getProjects(): Promise<ProjectType[]> {
     const docs = await Project.find({ published: true })
       .sort({ featured: -1, sortOrder: 1 })
       .lean();
-    if (docs.length > 0) return docs.map(toProjectType);
+    if (docs.length > 0) {
+      return mergeDbWithStatic(docs.map(toProjectType), staticProjects, (project) => project.slug);
+    }
   } catch {
     /* fallback */
   }

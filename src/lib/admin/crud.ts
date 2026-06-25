@@ -1,6 +1,7 @@
 import type { Model } from "mongoose";
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
 import { connectDB } from "@/lib/db/connect";
+import { dbErrorResponse } from "@/lib/db/api-errors";
 
 type CrudConfig = {
   model: Model<Record<string, unknown>>;
@@ -25,8 +26,8 @@ export function createListHandler({ model, resourceName, searchFields, sort }: C
       }
       const items = await model.find(filter).sort(sort ?? { sortOrder: 1 }).lean();
       return apiSuccess(items);
-    } catch {
-      return apiError(`Failed to fetch ${resourceName}`, 500);
+    } catch (error) {
+      return dbErrorResponse(error, `Failed to fetch ${resourceName}`);
     }
   };
 }
@@ -41,8 +42,8 @@ export function createCreateHandler({ model, resourceName }: CrudConfig) {
       const count = await model.countDocuments();
       const item = await model.create({ ...body, sortOrder: body.sortOrder ?? count });
       return apiSuccess(item, 201);
-    } catch {
-      return apiError(`Failed to create ${resourceName}`, 500);
+    } catch (error) {
+      return dbErrorResponse(error, `Failed to create ${resourceName}`);
     }
   };
 }
@@ -57,8 +58,8 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       const item = await model.findById(id).lean();
       if (!item) return apiError(`${resourceName} not found`, 404);
       return apiSuccess(item);
-    } catch {
-      return apiError(`Failed to fetch ${resourceName}`, 500);
+    } catch (error) {
+      return dbErrorResponse(error, `Failed to fetch ${resourceName}`);
     }
   }
 
@@ -72,8 +73,8 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       const item = await model.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
       if (!item) return apiError(`${resourceName} not found`, 404);
       return apiSuccess(item);
-    } catch {
-      return apiError(`Failed to update ${resourceName}`, 500);
+    } catch (error) {
+      return dbErrorResponse(error, `Failed to update ${resourceName}`);
     }
   }
 
@@ -86,8 +87,8 @@ export function createItemHandlers({ model, resourceName }: CrudConfig) {
       const item = await model.findByIdAndDelete(id);
       if (!item) return apiError(`${resourceName} not found`, 404);
       return apiSuccess({ deleted: true });
-    } catch {
-      return apiError(`Failed to delete ${resourceName}`, 500);
+    } catch (error) {
+      return dbErrorResponse(error, `Failed to delete ${resourceName}`);
     }
   }
 

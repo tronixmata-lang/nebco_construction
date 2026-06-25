@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { connectDB } from "@/lib/db/connect";
 import { ContactInquiry } from "@/lib/db/models";
+import { mapDbError } from "@/lib/db/api-errors";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -29,7 +30,8 @@ export async function POST(request: Request) {
     );
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to submit inquiry." }, { status: 500 });
+  } catch (error) {
+    const mapped = mapDbError(error, "Failed to submit inquiry.");
+    return NextResponse.json({ error: mapped.message }, { status: mapped.status });
   }
 }

@@ -63,7 +63,7 @@ export function CoreValuesArrowFlow({ values }: CoreValuesArrowFlowProps) {
       </div>
 
       <div className="sm:hidden">
-        <div className="-mx-4 flex snap-x snap-mandatory items-stretch gap-0 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-4 flex snap-x snap-mandatory items-stretch gap-0 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-lenis-prevent>
           {values.map((value, index) => (
             <div key={value} className="flex shrink-0 snap-center items-center">
               <ValueSegment value={value} index={index} />

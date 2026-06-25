@@ -9,7 +9,7 @@ export const companyOverview = {
 export const heroContent = {
   headline: "Building the Projects You've Always Wanted",
   subheadline:
-    "Quality, Integrity & Timely. NEBCO is Nepal's trusted A-Class construction partner for residential, commercial, and infrastructure projects — from concept to completion, SINCE 3 DECADE",
+    "Quality, Integrity & Timely. NEBCO is Nepal's trusted A-Class construction partner for residential, commercial, and infrastructure projects, from concept to completion, for over three decades.",
   backgroundImage: "/images/home.jpg",
   primaryCta: { label: "Start your project", href: "/contact" },
   secondaryCta: { label: "Call Now", href: "/contact" },
@@ -103,7 +103,8 @@ export const aboutContent = {
     "Integrity in every relationship",
     "Timely execution of every commitment",
     "Innovation in every challenge",
-    "Excellence, collaboration, and client satisfaction",
+    "Excellence in every standard",
+    "Collaboration and client satisfaction",
   ],
   history:
     "National Estate Builders Co. Pvt. Ltd. (NEBCO) was established in 1995 and officially registered in 2001. Under the Shah Group, NEBCO has grown into one of Nepal's leading A-Class construction companies. From residential homes and commercial hotels to infrastructure projects in Bhutan, NEBCO has built a reputation for reliability, innovation, and quality craftsmanship trusted by clients across Nepal and beyond.",

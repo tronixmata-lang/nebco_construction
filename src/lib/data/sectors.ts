@@ -1,5 +1,5 @@
+import { mergeDbWithStatic } from "@/lib/data/merge-with-static";
 import {
-  getAllSectorIds as getStaticSectorIds,
   getSectorProfileById as getStaticSectorProfileById,
   sectorProfiles as staticSectorProfiles,
 } from "@/content/sectors";
@@ -57,14 +57,8 @@ function mergeProfile(base: IndustrySector, doc?: SectorDocument | null): Sector
 }
 
 export async function getAllSectorIds(): Promise<string[]> {
-  try {
-    await connectDB();
-    const docs = await SectorModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
-    if (docs.length > 0) return docs.map((doc) => doc.legacyId);
-  } catch {
-    /* fallback */
-  }
-  return getStaticSectorIds();
+  const sectors = await getSectorsList();
+  return sectors.map((sector) => sector.id);
 }
 
 export async function getSectorProfileById(id: string): Promise<SectorProfile | undefined> {
@@ -79,13 +73,17 @@ export async function getSectorProfileById(id: string): Promise<SectorProfile | 
 }
 
 export async function getSectorsList(): Promise<IndustrySector[]> {
+  const { industrySectors } = await import("@/content/sectors");
+
   try {
     await connectDB();
     const docs = await SectorModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
-    if (docs.length > 0) return docs.map(mapSectorBase);
+    if (docs.length > 0) {
+      return mergeDbWithStatic(docs.map(mapSectorBase), industrySectors, (sector) => sector.id);
+    }
   } catch {
     /* fallback */
   }
-  const { industrySectors } = await import("@/content/sectors");
+
   return industrySectors;
 }

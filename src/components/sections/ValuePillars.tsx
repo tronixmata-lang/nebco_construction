@@ -1,4 +1,5 @@
 import { getValuePillars } from "@/lib/data/content";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ValuePillarsGrid } from "@/components/sections/ValuePillarsGrid";
@@ -11,6 +12,7 @@ type ValuePillarsProps = {
   variant?: "default" | "muted" | "dark";
   id?: string;
   columns?: "five" | "three";
+  revealOnScroll?: boolean;
 };
 
 export async function ValuePillars({
@@ -21,6 +23,7 @@ export async function ValuePillars({
   variant = "default",
   id = "values",
   columns = "five",
+  revealOnScroll = false,
 }: ValuePillarsProps = {}) {
   const valuePillars = await getValuePillars();
 
@@ -30,16 +33,18 @@ export async function ValuePillars({
       <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 
       {showHeader && (
-        <SectionHeader
-          eyebrow={eyebrow}
-          title={title}
-          description={description}
-          align="center"
-          className="mx-auto"
-        />
+        <ScrollReveal>
+          <SectionHeader
+            eyebrow={eyebrow}
+            title={title}
+            description={description}
+            align="center"
+            className="mx-auto"
+          />
+        </ScrollReveal>
       )}
 
-      <ValuePillarsGrid pillars={valuePillars} columns={columns} />
+      <ValuePillarsGrid pillars={valuePillars} columns={columns} revealOnScroll={revealOnScroll} />
     </Section>
   );
 }

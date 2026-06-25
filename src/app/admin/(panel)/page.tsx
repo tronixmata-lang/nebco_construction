@@ -62,13 +62,20 @@ const statCards = [
 export default function AdminDashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [dbError, setDbError] = useState("");
   const [seeding, setSeeding] = useState(false);
   const [seedMsg, setSeedMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/dashboard")
-      .then((r) => r.json())
-      .then(setData)
+      .then(async (r) => {
+        const json = await r.json();
+        if (!r.ok) {
+          setDbError(json.error ?? "Failed to connect to the database.");
+          return;
+        }
+        setData(json);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -124,6 +131,18 @@ export default function AdminDashboardPage() {
           <span className="self-center text-sm text-[var(--admin-accent)]">{seedMsg}</span>
         )}
       </div>
+
+      {dbError && (
+        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">
+          <p className="font-semibold">Database connection issue</p>
+          <p className="mt-1">{dbError}</p>
+          <p className="mt-2 text-xs">
+            Verify <code className="font-mono">MONGODB_URI</code> on the server, run{" "}
+            <code className="font-mono">npm run seed</code>, then check{" "}
+            <code className="font-mono">/api/health</code>.
+          </p>
+        </div>
+      )}
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {statCards.map(({ key, label, icon: Icon, href, color }) => (

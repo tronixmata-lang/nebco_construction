@@ -1,13 +1,14 @@
-import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { AboutStoryReveal } from "@/components/sections/about/AboutStoryReveal";
+import { AboutTimelineScroll } from "@/components/sections/about/AboutTimelineScroll";
 
 const milestones = [
-  { value: "1995", label: "Established", detail: "Founded under the Shah Group vision" },
-  { value: "2001", label: "Officially Registered", detail: "Formal incorporation in Nepal" },
-  { value: "A-Class", label: "Construction License", detail: "Highest tier licensing in Nepal" },
-  { value: "Shah Group", label: "Parent Company", detail: "Part of a trusted business legacy" },
+  { year: "1995", title: "Founded", detail: "Established under the Shah Group vision" },
+  { year: "2001", title: "Registered", detail: "Formal incorporation in Nepal" },
+  { year: "A-Class", title: "Licensed", detail: "Highest-tier construction credentials" },
+  { year: "Today", title: "Trusted", detail: "Projects across Nepal and beyond" },
 ] as const;
 
 type AboutStorySectionProps = {
@@ -16,40 +17,21 @@ type AboutStorySectionProps = {
 
 export function AboutStorySection({ history }: AboutStorySectionProps) {
   return (
-    <Section className="pt-10 md:pt-14">
-      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-        <ScrollReveal>
-          <SectionHeader
-            eyebrow="Our Story"
-            title="Three Decades of Trusted Delivery"
-            description={history}
-          />
-
-          <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {milestones.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-sm border border-neutral-border bg-neutral p-5"
-              >
-                <dt className="font-display text-xl text-primary">{item.value}</dt>
-                <dd className="mt-1 text-sm font-semibold text-secondary">{item.label}</dd>
-                <dd className="mt-1 text-sm leading-relaxed text-text-muted">{item.detail}</dd>
-              </div>
-            ))}
-          </dl>
-        </ScrollReveal>
-
-        <ScrollReveal delay={80}>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-neutral-border bg-neutral-muted shadow-sm">
-            <Image
-              src="/images/site/1-7_11zon-scaled.jpg"
-              alt="A NEBCO construction project in progress"
-              fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover"
+    <Section className="pt-14 md:pt-20" glow="primary">
+      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 xl:gap-20">
+        <div>
+          <ScrollReveal>
+            <SectionHeader
+              eyebrow="Our Story"
+              title="Three Decades of Trusted Delivery"
+              description={history}
             />
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+
+          <AboutTimelineScroll milestones={milestones} />
+        </div>
+
+        <AboutStoryReveal />
       </div>
     </Section>
   );

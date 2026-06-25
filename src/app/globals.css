@@ -21,6 +21,27 @@ html {
   scroll-behavior: smooth;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lenis.lenis-smooth {
+    scroll-behavior: smooth !important;
+  }
+
+  .scroll-reveal {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 body {
   background-color: var(--color-neutral);
   color: var(--color-secondary);
@@ -1115,5 +1136,351 @@ section.contact-page-section--default {
   .sector-atlas-card__link:hover .sector-atlas-card__arrow,
   .sector-atlas-card__link:focus-visible .sector-atlas-card__arrow {
     transform: none;
+  }
+}
+
+/* About page — editorial blueprint layout */
+.about-story-visual__corner {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  pointer-events: none;
+}
+
+.about-story-visual__corner--tl {
+  top: 1rem;
+  left: 1rem;
+  border-top: 2px solid color-mix(in srgb, var(--color-accent) 70%, transparent);
+  border-left: 2px solid color-mix(in srgb, var(--color-accent) 70%, transparent);
+}
+
+.about-story-visual__corner--br {
+  right: 1rem;
+  bottom: 1rem;
+  border-right: 2px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+.about-timeline__node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-neutral));
+}
+
+.about-mission-panel--mission,
+.about-mission-panel--vision {
+  background: transparent;
+}
+
+.about-value-card {
+  background: var(--color-neutral);
+}
+
+.about-value-card__wash {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-accent) 7%, transparent) 0%,
+    transparent 52%
+  );
+}
+
+.about-values-grid {
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .about-values-grid > * {
+    min-height: 12.5rem;
+  }
+}
+
+/* Certificate lightbox */
+.certificate-lightbox {
+  animation: certificate-lightbox-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.certificate-lightbox__stage {
+  animation: certificate-lightbox-stage-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+.certificate-lightbox__frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  border-radius: 2px 2px 0 0;
+}
+
+.certificate-lightbox__image {
+  display: block;
+  margin: 0 auto;
+}
+
+@keyframes certificate-lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes certificate-lightbox-stage-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certificate-lightbox,
+  .certificate-lightbox__stage {
+    animation: none;
+  }
+}
+
+.about-credentials-frame {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-neutral-muted) 50%, var(--color-neutral)) 0%,
+    var(--color-neutral) 100%
+  );
+}
+
+/* Timeline — scroll-triggered stagger */
+.about-timeline__item .about-timeline__node,
+.about-timeline__item .about-timeline__content,
+.about-timeline__item .about-timeline__line {
+  opacity: 0;
+}
+
+.about-timeline--visible .about-timeline__item .about-timeline__node {
+  animation: about-timeline-node-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--item-index, 0) * 130ms);
+}
+
+.about-timeline--visible .about-timeline__item .about-timeline__content {
+  animation: about-timeline-content-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--item-index, 0) * 130ms + 80ms);
+}
+
+.about-timeline--visible .about-timeline__item .about-timeline__line {
+  animation: about-timeline-line-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--item-index, 0) * 130ms + 180ms);
+}
+
+@keyframes about-timeline-node-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent) 22%, transparent);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes about-timeline-content-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes about-timeline-line-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+/* Story visual — architectural clip reveal */
+.about-story-reveal__main {
+  clip-path: inset(0 100% 0 0);
+}
+
+.about-story-reveal__image {
+  transform: scale(1.08);
+}
+
+.about-story-reveal--visible .about-story-reveal__main {
+  animation: about-story-clip-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-story-reveal--visible .about-story-reveal__image {
+  animation: about-story-image-in 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-story-reveal__inset,
+.about-story-reveal__badge {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.about-story-reveal--visible .about-story-reveal__inset,
+.about-story-reveal--visible .about-story-reveal__badge {
+  animation: about-story-float-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes about-story-clip-in {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes about-story-image-in {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes about-story-float-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mission panels — scroll slide-in */
+.about-mission-reveal__panel {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.about-mission-reveal--visible .about-mission-reveal__panel {
+  animation: about-mission-panel-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--panel-index, 0) * 140ms);
+}
+
+@keyframes about-mission-panel-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-timeline__item .about-timeline__node,
+  .about-timeline__item .about-timeline__content,
+  .about-timeline__item .about-timeline__line,
+  .about-story-reveal__main,
+  .about-story-reveal__inset,
+  .about-story-reveal__badge,
+  .about-mission-reveal__panel {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    animation: none !important;
+  }
+
+  .about-story-reveal__image {
+    transform: none !important;
+  }
+}
+
+/* Division detail — scroll animations */
+.division-overview__media,
+.division-overview__copy {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.division-overview--visible .division-overview__media,
+.division-overview--visible .division-overview__copy {
+  animation: division-reveal-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+.division-process__step .division-process__card {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.division-process--visible .division-process__step .division-process__card {
+  animation: division-step-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--step-index, 0) * 110ms);
+}
+
+.division-process__connector {
+  position: absolute;
+  top: 2.75rem;
+  right: -0.75rem;
+  width: 1.5rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-accent) 70%, transparent),
+    color-mix(in srgb, var(--color-primary) 40%, transparent)
+  );
+  opacity: 0;
+}
+
+.division-process--visible .division-process__connector {
+  animation: division-connector-in 0.5s ease forwards;
+  animation-delay: calc(var(--step-index, 0) * 110ms + 200ms);
+}
+
+@keyframes division-reveal-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes division-step-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes division-connector-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .division-overview__media,
+  .division-overview__copy,
+  .division-process__step .division-process__card,
+  .division-process__connector {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }

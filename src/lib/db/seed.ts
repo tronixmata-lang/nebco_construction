@@ -152,6 +152,7 @@ export async function seedDatabase() {
         category: article.category,
         date: article.date,
         readTime: article.readTime,
+        image: article.image,
         status: "published",
         featured: index === 0,
         sortOrder: index,

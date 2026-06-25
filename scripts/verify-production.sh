@@ -62,15 +62,30 @@ fi
 
 echo ""
 echo "==> HTTP (local app on port $PORT)"
-for path in "/" "/api/public/redirects" "/admin/login"; do
+for path in "/" "/api/health" "/api/public/redirects" "/admin/login"; do
   code=$(curl -s -o /dev/null -w "%{http_code}" "${LOCAL_URL}${path}" || echo "000")
-  if [ "$code" = "200" ] || [ "$code" = "307" ] || [ "$code" = "308" ]; then
+  if [ "$path" = "/api/health" ]; then
+    if [ "$code" = "200" ] || [ "$code" = "503" ]; then
+      echo "  OK   GET ${path} -> $code"
+    else
+      echo "  FAIL GET ${path} -> $code"
+      fail=1
+    fi
+  elif [ "$code" = "200" ] || [ "$code" = "307" ] || [ "$code" = "308" ]; then
     echo "  OK   GET ${path} -> $code"
   else
     echo "  FAIL GET ${path} -> $code"
     fail=1
   fi
 done
+
+admin_code=$(curl -s -o /dev/null -w "%{http_code}" "${LOCAL_URL}/api/admin/dashboard" || echo "000")
+if [ "$admin_code" = "401" ]; then
+  echo "  OK   GET /api/admin/dashboard (no cookie) -> 401"
+else
+  echo "  FAIL GET /api/admin/dashboard (no cookie) -> $admin_code (expected 401)"
+  fail=1
+fi
 
 echo ""
 echo "==> Admin login API (with session cookie)"

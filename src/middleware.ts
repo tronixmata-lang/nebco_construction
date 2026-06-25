@@ -34,6 +34,22 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/api/admin")) {
+    const token = request.cookies.get(COOKIE_NAME)?.value;
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const session = await verifySessionToken(token);
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (pathname.startsWith("/api/admin/users") && session.role !== "superadmin") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+  }
+
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
     const token = request.cookies.get(COOKIE_NAME)?.value;
     if (!token) {
@@ -66,8 +82,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/admin/:path*",
-    "/((?!_next/static|_next/image|favicon.ico|uploads|.*\\..*).*)",
-  ],
+  matcher: ["/admin/:path*", "/api/admin/:path*", "/((?!_next/static|_next/image|favicon.ico|uploads|.*\\..*).*)"],
 };

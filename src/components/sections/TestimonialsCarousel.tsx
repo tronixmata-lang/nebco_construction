@@ -153,6 +153,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 
       <div
         ref={scrollRef}
+        data-lenis-prevent
         className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {testimonials.map((testimonial) => (

@@ -1,9 +1,10 @@
 import {
-  getAllLeaderIds as getStaticLeaderIds,
   getLeaderArticle as getStaticLeaderArticle,
   getLeaderProfileById as getStaticLeaderProfileById,
   leaderProfiles as staticLeaderProfiles,
+  leaders as staticLeaders,
 } from "@/content/leadership";
+import { mergeKeys } from "@/lib/data/merge-with-static";
 import { connectDB } from "@/lib/db/connect";
 import { Leader as LeaderModel, type LeaderDocument } from "@/lib/db/models/Leader";
 import type { Leader, LeaderArticle, LeaderProfile } from "@/types";
@@ -70,12 +71,15 @@ export async function getAllLeaderIds(): Promise<string[]> {
     await connectDB();
     const docs = await LeaderModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
     if (docs.length > 0) {
-      return docs.map((doc) => doc.legacyId);
+      return mergeKeys(
+        docs.map((doc) => doc.legacyId),
+        staticLeaders.map((leader) => leader.id),
+      );
     }
   } catch {
     /* fallback */
   }
-  return getStaticLeaderIds();
+  return staticLeaders.map((leader) => leader.id);
 }
 
 export async function getLeaderProfileById(id: string): Promise<LeaderProfile | undefined> {

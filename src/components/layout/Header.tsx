@@ -23,21 +23,24 @@ export function Header({ variant = "default" }: HeaderProps) {
   return (
     <header
       className={cn(
-        "font-nav z-50",
+        "font-nav z-50 overflow-visible",
         isHero
           ? "absolute top-0 right-0 left-0 border-none bg-transparent"
           : "sticky top-0 border-b border-neutral-border bg-neutral/95 backdrop-blur-sm",
       )}
     >
-      <Container>
-        <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex h-20 shrink-0 items-center">
+      <Container className="overflow-visible">
+        <div className="relative flex h-16 items-center justify-between overflow-visible">
+          <Link
+            href="/"
+            className="relative z-20 flex shrink-0 self-start items-start pt-2 sm:pt-2.5"
+          >
             <Image
               src={siteConfig.logo}
               alt={`${siteConfig.name} logo`}
-              width={300}
-              height={84}
-              className="h-[4.8125rem] w-auto object-contain sm:h-[4.9375rem]"
+              width={320}
+              height={96}
+              className="h-[5.5rem] w-auto max-w-[min(72vw,17.5rem)] object-contain object-left sm:h-24 sm:max-w-[19rem]"
               priority
             />
           </Link>

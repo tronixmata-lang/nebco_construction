@@ -1,5 +1,6 @@
 import { requireAuth, apiSuccess, apiError } from "@/lib/auth/guard";
 import { connectDB } from "@/lib/db/connect";
+import { dbErrorResponse } from "@/lib/db/api-errors";
 import {
   Certificate,
   ContactInquiry,
@@ -81,8 +82,8 @@ export async function GET() {
       recentInquiries,
       recentProjects,
     });
-  } catch {
-    return apiError("Failed to load dashboard", 500);
+  } catch (error) {
+    return dbErrorResponse(error, "Failed to load dashboard");
   }
 }
 
@@ -94,10 +95,17 @@ export async function POST() {
     return apiError("Only superadmin can re-seed database", 403);
   }
 
+  if (process.env.NODE_ENV === "production" && process.env.ALLOW_DB_SEED !== "true") {
+    return apiError(
+      "Database seed is disabled in production. Set ALLOW_DB_SEED=true to enable.",
+      403,
+    );
+  }
+
   try {
     const counts = await seedDatabase();
     return apiSuccess({ message: "Database seeded successfully", counts });
-  } catch {
-    return apiError("Seed failed", 500);
+  } catch (error) {
+    return dbErrorResponse(error, "Seed failed");
   }
 }

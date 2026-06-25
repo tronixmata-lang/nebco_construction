@@ -10,20 +10,22 @@ type AboutLeadershipSectionProps = {
 
 export function AboutLeadershipSection({ message }: AboutLeadershipSectionProps) {
   return (
-    <Section id="leadership">
-      <ScrollReveal>
-        <ChairmanMessageSection
-          message={message}
-          variant="light"
-          quoteVariant="standard"
-          decorative={false}
-          eyebrow="Chairman's Message"
-        >
-          <Button href="/leadership" variant="outline">
-            Meet Our Leadership
-          </Button>
-        </ChairmanMessageSection>
-      </ScrollReveal>
+    <Section id="leadership" variant="muted" className="py-14 md:py-20" glow="none">
+      <div className="about-leadership-shell mx-auto max-w-6xl rounded-sm border border-neutral-border bg-neutral px-6 py-10 shadow-[0_18px_50px_-28px_rgba(0,0,0,0.2)] sm:px-10 sm:py-12 lg:px-14">
+        <ScrollReveal>
+          <ChairmanMessageSection
+            message={message}
+            variant="light"
+            quoteVariant="standard"
+            decorative
+            eyebrow="Chairman's Message"
+          >
+            <Button href="/leadership" variant="outline">
+              Meet Our Leadership
+            </Button>
+          </ChairmanMessageSection>
+        </ScrollReveal>
+      </div>
     </Section>
   );
 }

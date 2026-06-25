@@ -41,7 +41,7 @@ export default async function PortfolioPage() {
           <SectionHeader
             eyebrow="Proven Results"
             title="Esteemed Projects"
-            description="Every project reflects NEBCO's commitment to quality craftsmanship, transparency, and on-time delivery."
+            description="Explore our work through an architectural mosaic: featured builds, sector diversity, and the craftsmanship behind every NEBCO delivery."
             align="center"
             className="mx-auto"
           />

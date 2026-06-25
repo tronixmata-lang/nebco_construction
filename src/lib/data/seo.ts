@@ -88,7 +88,7 @@ export const STATIC_PAGES = [
   { path: "/", label: "Homepage" },
   { path: "/about", label: "About Us" },
   { path: "/portfolio", label: "Portfolio" },
-  { path: "/divisions", label: "Divisions" },
+  { path: "/divisions", label: "Our Verticals" },
   { path: "/sectors", label: "Industry Sectors" },
   { path: "/leadership", label: "Leadership" },
   { path: "/insights", label: "Insights" },

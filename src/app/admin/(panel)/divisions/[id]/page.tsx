@@ -10,7 +10,7 @@ const fields = [
   { key: "tagline", label: "Tagline", type: "text" as const, required: true },
   { key: "description", label: "Description", type: "textarea" as const, required: true, rows: 4 },
   { key: "services", label: "Services (one per line)", type: "array" as const, required: true },
-  { key: "href", label: "Link Path", type: "text" as const, required: true, hint: "e.g. /divisions/construction" },
+  { key: "href", label: "Link Path", type: "text" as const, required: true, hint: "e.g. /divisions/construction (Our Verticals URL)" },
   { key: "sortOrder", label: "Sort Order", type: "number" as const },
 ];
 
@@ -31,8 +31,8 @@ export default function DivisionFormPage({ params }: { params: Promise<{ id: str
   return (
     <GenericResourceForm
       params={params}
-      title="Division"
-      description="Edit business division details"
+      title="Vertical"
+      description="Edit Our Verticals page content for this business unit"
       apiPath="/api/admin/divisions"
       listPath="/admin/divisions"
       fields={fields}

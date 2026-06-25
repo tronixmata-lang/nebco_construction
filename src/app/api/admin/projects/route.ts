@@ -19,7 +19,9 @@ export async function GET(request: Request) {
       ];
     }
 
-    const items = await Project.find(filter).sort({ sortOrder: 1, updatedAt: -1 }).lean();
+    const items = await Project.find(filter)
+      .sort({ featured: -1, sortOrder: 1, updatedAt: -1 })
+      .lean();
     return apiSuccess(items);
   } catch {
     return apiError("Failed to fetch projects", 500);

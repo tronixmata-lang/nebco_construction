@@ -20,9 +20,9 @@ import { hashPassword } from "@/lib/auth/password";
 import { projects } from "@/content/projects";
 import { insights } from "@/content/insights";
 import { divisions } from "@/content/divisions";
-import { industrySectors } from "@/content/sectors";
+import { industrySectors, sectorProfiles } from "@/content/sectors";
 import { valuePillars } from "@/content/pillars";
-import { leaders, chairmanMessage } from "@/content/leadership";
+import { leaders, chairmanMessage, leaderProfiles } from "@/content/leadership";
 import {
   aboutContent,
   certificateSection,
@@ -130,7 +130,9 @@ export async function seedDatabase() {
         year: project.year,
         description: project.description,
         image: project.image,
+        images: project.images,
         featured: index < 4,
+        showcaseLayout: index === 0 ? "hero" : "auto",
         published: true,
         sortOrder: index,
       },
@@ -178,6 +180,7 @@ export async function seedDatabase() {
   }
 
   for (const [index, sector] of industrySectors.entries()) {
+    const profile = sectorProfiles[sector.id];
     await Sector.findOneAndUpdate(
       { legacyId: sector.id },
       {
@@ -185,6 +188,10 @@ export async function seedDatabase() {
         title: sector.title,
         description: sector.description,
         highlight: sector.highlight,
+        image: sector.image,
+        messageQuote: profile?.message.quote ?? "",
+        messageBody: profile?.message.body ?? [],
+        capabilities: profile?.capabilities ?? [],
         sortOrder: index,
         published: true,
       },
@@ -208,6 +215,7 @@ export async function seedDatabase() {
   }
 
   for (const [index, leader] of leaders.entries()) {
+    const profile = leaderProfiles[leader.id];
     await Leader.findOneAndUpdate(
       { legacyId: leader.id },
       {
@@ -219,6 +227,9 @@ export async function seedDatabase() {
         linkedin: leader.linkedin,
         facebook: leader.facebook,
         email: leader.email,
+        messageQuote: profile?.message.quote ?? "",
+        messageBody: profile?.message.body ?? [],
+        articles: profile?.articles ?? [],
         sortOrder: index,
         published: true,
       },

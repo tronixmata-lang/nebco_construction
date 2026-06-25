@@ -4,7 +4,7 @@ import type { NavItem } from "@/types";
 export const breadcrumbLabels: Record<string, string> = {
   about: "About Us",
   contact: "Contact Us",
-  divisions: "Business Divisions",
+  divisions: "Our Verticals",
   sectors: "Industry Sectors",
   portfolio: "Project Portfolio",
   insights: "Insights & News",
@@ -21,7 +21,7 @@ export const breadcrumbLabels: Record<string, string> = {
 export const sitePageIndex = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Business Divisions", href: "/divisions" },
+  { label: "Our Verticals", href: "/divisions" },
   { label: "NEBCO Construction", href: "/divisions/construction" },
   { label: "NEBCO Investment", href: "/divisions/investment" },
   { label: "NEBCO Consulting", href: "/divisions/consulting" },
@@ -38,7 +38,7 @@ export const mainNavigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   {
-    label: "Divisions",
+    label: "Our Verticals",
     href: "/divisions",
     children: [
       { label: "NEBCO Construction", href: "/divisions/construction" },
@@ -56,7 +56,7 @@ export const mainNavigation: NavItem[] = [
 export const footerNavigation = {
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Business Divisions", href: "/divisions" },
+    { label: "Our Verticals", href: "/divisions" },
     { label: "Leadership", href: "/leadership" },
     { label: "Industry Sectors", href: "/sectors" },
     { label: "Contact Us", href: "/contact" },

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
+import { HeroBackgroundImage } from "@/components/ui/HeroBackgroundImage";
 import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
 
 const heroCtaBase =
@@ -51,14 +51,7 @@ export function HeroScrollStaticView({
 }: HeroScrollContentProps) {
   return (
     <section className="relative flex min-h-[100dvh] flex-col overflow-hidden" data-hero>
-      <Image
-        src={backgroundImage}
-        alt={backgroundAlt}
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      <HeroBackgroundImage src={backgroundImage} alt={backgroundAlt} />
       <div className="absolute inset-0 bg-secondary/50" />
       <div
         className="absolute inset-0 bg-gradient-to-t from-secondary/85 via-secondary/35 to-secondary/15"

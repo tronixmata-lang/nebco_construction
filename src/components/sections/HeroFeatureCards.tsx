@@ -34,7 +34,7 @@ export function HeroFeatureCards() {
     >
       <div
         className="relative h-[17.5rem] w-60 lg:h-[18rem] lg:w-64 xl:w-72"
-        aria-label="NEBCO business divisions"
+        aria-label="NEBCO business verticals"
       >
         {heroFeatureCards.map((card, index) => {
           const isActive = index === activeIndex;
@@ -59,9 +59,9 @@ export function HeroFeatureCards() {
                   src={card.image}
                   alt={card.imageAlt}
                   fill
+                  loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="288px"
-                  priority={index === 0}
+                  sizes="(max-width: 1024px) 0px, 288px"
                 />
                 <div
                   className="absolute inset-0 bg-secondary/30 mix-blend-multiply"

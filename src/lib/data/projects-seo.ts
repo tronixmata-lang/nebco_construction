@@ -14,6 +14,11 @@ function mapProject(doc: {
   year: string;
   description: string;
   image: string;
+  images?: string[];
+  featured?: boolean;
+  sortOrder?: number;
+  showcaseLayout?: ProjectType["showcaseLayout"];
+  viewCount?: number;
   legacyId?: string;
   seo?: SeoFields;
 }): ProjectWithSeo {
@@ -26,6 +31,11 @@ function mapProject(doc: {
     year: doc.year,
     description: doc.description,
     image: doc.image,
+    images: doc.images,
+    featured: doc.featured,
+    sortOrder: doc.sortOrder,
+    showcaseLayout: doc.showcaseLayout ?? "auto",
+    viewCount: doc.viewCount ?? 0,
     seo: doc.seo ?? undefined,
   };
 }

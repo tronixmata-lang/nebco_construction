@@ -8,7 +8,7 @@ export async function CertificateSection() {
   const certificates = await getCertificates();
 
   return (
-    <Section variant="muted" id="certificate" className="relative z-10">
+    <Section variant="default" id="certificate" className="relative z-10" glow="none">
       <SectionHeader
         eyebrow="Certificate"
         title={certificateSection.title}

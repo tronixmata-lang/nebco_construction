@@ -12,6 +12,11 @@ function toProjectType(doc: {
   year: string;
   description: string;
   image: string;
+  images?: string[];
+  featured?: boolean;
+  sortOrder?: number;
+  showcaseLayout?: ProjectType["showcaseLayout"];
+  viewCount?: number;
   legacyId?: string;
 }): ProjectType {
   return {
@@ -23,13 +28,20 @@ function toProjectType(doc: {
     year: doc.year,
     description: doc.description,
     image: doc.image,
+    images: doc.images,
+    featured: doc.featured,
+    sortOrder: doc.sortOrder,
+    showcaseLayout: doc.showcaseLayout ?? "auto",
+    viewCount: doc.viewCount ?? 0,
   };
 }
 
 export async function getProjects(): Promise<ProjectType[]> {
   try {
     await connectDB();
-    const docs = await Project.find({ published: true }).sort({ sortOrder: 1 }).lean();
+    const docs = await Project.find({ published: true })
+      .sort({ featured: -1, sortOrder: 1 })
+      .lean();
     if (docs.length > 0) return docs.map(toProjectType);
   } catch {
     /* fallback */
@@ -63,6 +75,29 @@ export async function getProjectBySlug(slug: string): Promise<ProjectType | unde
     /* fallback */
   }
   return staticGetBySlug(slug);
+}
+
+export async function getMostViewedProjects(
+  limit = 5,
+  excludeSlug?: string,
+): Promise<ProjectType[]> {
+  try {
+    await connectDB();
+    const query: Record<string, unknown> = { published: true };
+    if (excludeSlug) query.slug = { $ne: excludeSlug };
+
+    const docs = await Project.find(query)
+      .sort({ viewCount: -1, featured: -1, sortOrder: 1 })
+      .limit(limit)
+      .lean();
+
+    if (docs.length > 0) return docs.map(toProjectType);
+  } catch {
+    /* fallback */
+  }
+
+  const pool = staticProjects.filter((project) => project.slug !== excludeSlug);
+  return pool.slice(0, limit);
 }
 
 export async function getAllProjectSlugs(): Promise<string[]> {

@@ -27,6 +27,20 @@ export type IndustrySector = {
   title: string;
   description: string;
   highlight: string;
+  image?: string;
+};
+
+export type SectorCapability = {
+  title: string;
+  description: string;
+};
+
+export type SectorProfile = IndustrySector & {
+  message: {
+    quote: string;
+    body?: string[];
+  };
+  capabilities: SectorCapability[];
 };
 
 export type ProjectCategory =
@@ -34,6 +48,8 @@ export type ProjectCategory =
   | "residential"
   | "infrastructure"
   | "industrial";
+
+export type ProjectShowcaseLayout = "auto" | "hero" | "wide" | "standard";
 
 export type Project = {
   id: string;
@@ -44,6 +60,11 @@ export type Project = {
   year: string;
   description: string;
   image: string;
+  images?: string[];
+  featured?: boolean;
+  sortOrder?: number;
+  showcaseLayout?: ProjectShowcaseLayout;
+  viewCount?: number;
 };
 
 export type Leader = {
@@ -55,6 +76,25 @@ export type Leader = {
   linkedin?: string;
   facebook?: string;
   email?: string;
+};
+
+export type LeaderArticle = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  body: string[];
+  category: string;
+  date: string;
+  readTime: string;
+  image?: string;
+};
+
+export type LeaderProfile = Leader & {
+  message: {
+    quote: string;
+    body?: string[];
+  };
+  articles: LeaderArticle[];
 };
 
 export type InsightArticle = {

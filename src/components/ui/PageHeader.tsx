@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Container } from "./Container";
+import { HeroBackgroundImage } from "./HeroBackgroundImage";
 
 type PageHeaderProps = {
   title: string;
@@ -48,13 +48,9 @@ export function PageHeader({
     <section className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-secondary">
       {hasImage && backgroundImage && (
         <>
-          <Image
+          <HeroBackgroundImage
             src={backgroundImage}
             alt={backgroundAlt}
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
           />
           <div className="absolute inset-0 bg-secondary/70" />
           <div

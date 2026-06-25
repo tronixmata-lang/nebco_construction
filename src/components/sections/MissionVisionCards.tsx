@@ -1,6 +1,9 @@
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
+
 type MissionVisionCardsProps = {
   mission: string;
   vision: string;
+  animated?: boolean;
 };
 
 function MissionVisionCard({
@@ -62,9 +65,9 @@ function MissionVisionCard({
   );
 }
 
-export function MissionVisionCards({ mission, vision }: MissionVisionCardsProps) {
-  return (
-    <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 md:gap-8">
+export function MissionVisionCards({ mission, vision, animated = false }: MissionVisionCardsProps) {
+  const cards = (
+    <>
       <MissionVisionCard
         label="Mission"
         title="Our Mission"
@@ -77,6 +80,18 @@ export function MissionVisionCards({ mission, vision }: MissionVisionCardsProps)
         body={vision}
         accent="accent"
       />
+    </>
+  );
+
+  return (
+    <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 md:gap-8">
+      {animated ? (
+        <StaggerReveal className="contents" staggerMs={120}>
+          {cards}
+        </StaggerReveal>
+      ) : (
+        cards
+      )}
     </div>
   );
 }

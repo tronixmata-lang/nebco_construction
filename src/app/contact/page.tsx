@@ -197,9 +197,9 @@ export default async function ContactPage() {
       <Section variant="muted" glow="primary">
         <ScrollReveal>
           <SectionHeader
-            eyebrow="Divisions"
+            eyebrow="Our Verticals"
             title="Reach the Right Team"
-            description="Not sure where to start? Select a division below or use the form above and we will route your inquiry to the right specialists."
+            description="Not sure where to start? Select a vertical below or use the form above and we will route your inquiry to the right specialists."
             align="center"
             className="mx-auto"
           />

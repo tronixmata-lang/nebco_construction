@@ -14,9 +14,9 @@ import { breadcrumbSchema } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/divisions", {
-    title: "Business Divisions",
+    title: "Our Verticals",
     description:
-      "Explore NEBCO's three integrated business divisions: NEBCO Construction, NEBCO Investment, and NEBCO Consulting in Nepal.",
+      "Explore NEBCO's three integrated verticals: NEBCO Construction, NEBCO Investment, and NEBCO Consulting in Nepal.",
   });
 }
 
@@ -30,9 +30,9 @@ export default async function DivisionsPage() {
     <>
       <JsonLd data={breadcrumbSchema("/divisions")} />
       <PageIntro
-        eyebrow="Our Divisions"
-        title="Integrated Business Structure"
-        description="Three strategically connected divisions delivering comprehensive, trusted development solutions across Nepal."
+        eyebrow="NEBCO"
+        title="Our Verticals"
+        description="Three strategically connected verticals delivering comprehensive, trusted development solutions across Nepal."
         backgroundImage={pageHeroImages.divisions}
         backgroundAlt="NEBCO integrated construction and development"
       />
@@ -41,7 +41,7 @@ export default async function DivisionsPage() {
           <SectionHeader
             eyebrow="Three Core Businesses"
             title="Specialized Expertise, Unified Delivery"
-            description="Each division brings deep capability while working together as one trusted partner from concept to completion."
+            description="Each vertical brings deep capability while working together as one trusted partner from concept to completion."
             align="center"
             className="mx-auto"
           />
@@ -58,7 +58,7 @@ export default async function DivisionsPage() {
       </Section>
       <Section variant="muted" glow="primary">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <p className="font-display text-2xl text-secondary">Need a solution that spans multiple divisions?</p>
+          <p className="font-display text-2xl text-secondary">Need a solution that spans multiple verticals?</p>
           <p className="mt-3 text-text-muted">NEBCO&apos;s integrated structure means one trusted partner for construction, investment, and consulting — from concept to completion.</p>
           <div className="mt-8"><Button href="/contact">Contact Our Team</Button></div>
         </ScrollReveal>

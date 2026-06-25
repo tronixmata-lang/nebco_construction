@@ -19,9 +19,9 @@ export async function BusinessDivisions() {
   return (
     <Section variant="muted" id="divisions">
       <SectionHeader
-        eyebrow="Our Divisions"
+        eyebrow="Our Verticals"
         title="Integrated Solutions Across Three Core Businesses"
-        description="NEBCO operates through three strategically connected divisions, each delivering specialized expertise while working together to create comprehensive development solutions."
+        description="NEBCO operates through three strategically connected verticals, each delivering specialized expertise while working together to create comprehensive development solutions."
         align="center"
         className="mx-auto"
       />
@@ -38,7 +38,7 @@ export async function BusinessDivisions() {
 
       <div className="mt-12 text-center">
         <Button href="/divisions" variant="outline">
-          View All Divisions
+          View Our Verticals
         </Button>
       </div>
     </Section>

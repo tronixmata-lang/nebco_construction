@@ -12,3 +12,10 @@ export function formatDate(dateString: string): string {
     day: "numeric",
   });
 }
+
+export function truncateText(text: string, maxLength = 180): string {
+  if (text.length <= maxLength) return text;
+  const trimmed = text.slice(0, maxLength);
+  const lastSpace = trimmed.lastIndexOf(" ");
+  return `${lastSpace > 0 ? trimmed.slice(0, lastSpace) : trimmed}…`;
+}

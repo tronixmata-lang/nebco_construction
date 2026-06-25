@@ -10,6 +10,7 @@ import {
   Inbox,
   Layers,
   Newspaper,
+  Factory,
   RefreshCw,
 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
@@ -53,7 +54,8 @@ const statCards = [
   { key: "insights", label: "Insights", icon: Newspaper, href: "/admin/insights", color: "#c9a227" },
   { key: "newInquiries", label: "New Inquiries", icon: Inbox, href: "/admin/inquiries", color: "#222222" },
   { key: "testimonials", label: "Testimonials", icon: Award, href: "/admin/testimonials", color: "#7a1619" },
-  { key: "divisions", label: "Divisions", icon: Layers, href: "/admin/divisions", color: "#c9a227" },
+  { key: "divisions", label: "Verticals", icon: Layers, href: "/admin/divisions", color: "#c9a227" },
+  { key: "sectors", label: "Sectors", icon: Factory, href: "/admin/sectors", color: "#7a1619" },
   { key: "certificates", label: "Certificates", icon: Award, href: "/admin/certificates", color: "#a51e22" },
 ] as const;
 

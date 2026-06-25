@@ -32,7 +32,7 @@ export const pageHeroImages = defaultPageHeroImages;
 export const PAGE_HERO_LABELS: Record<PageHeroImageKey, string> = {
   about: "About",
   portfolio: "Portfolio",
-  divisions: "Divisions",
+  divisions: "Our Verticals",
   sectors: "Sectors",
   insights: "Insights",
   leadership: "Leadership",

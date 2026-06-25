@@ -82,7 +82,7 @@ export default async function InsightDetailPage({ params }: InsightPageProps) {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 768px"
-                priority
+                loading="lazy"
               />
             </div>
           )}

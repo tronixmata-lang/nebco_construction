@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: DivisionPageProps): Promise<Metadata> {
   const { slug } = await params;
   const division = await getDivisionBySlug(slug);
-  if (!division) return { title: "Division Not Found" };
+  if (!division) return { title: "Vertical Not Found" };
   return createPageMetadata({ title: division.name, description: division.description, path: `/divisions/${division.slug}` });
 }
 
@@ -45,7 +45,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
     <>
       <JsonLd data={[serviceSchema(division), breadcrumbSchema(`/divisions/${division.slug}`, division.name)]} />
       <PageIntro
-        eyebrow="Business Division"
+        eyebrow="Our Vertical"
         title={division.name}
         description={division.tagline}
         breadcrumbLabel={division.name}
@@ -72,7 +72,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
       </Section>
       <Section glow="primary">
         <ScrollReveal>
-          <SectionHeader title="Other Divisions" align="center" className="mx-auto" />
+          <SectionHeader title="Other Verticals" align="center" className="mx-auto" />
         </ScrollReveal>
         <StaggerReveal className="grid gap-6 md:grid-cols-2" staggerMs={100}>
           {otherDivisions.map((other) => (

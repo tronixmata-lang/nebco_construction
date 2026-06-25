@@ -18,7 +18,7 @@ import { faqSchema } from "@/lib/seo";
 export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/", {
     title: siteConfig.seoTitle,
-    description: `${siteConfig.description} Explore residential, commercial, and infrastructure projects, business divisions, and trusted credentials.`,
+    description: `${siteConfig.description} Explore residential, commercial, and infrastructure projects, our verticals, and trusted credentials.`,
     absoluteTitle: true,
   });
 }

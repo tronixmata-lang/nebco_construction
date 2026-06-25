@@ -32,13 +32,18 @@ export default async function LeadershipPage() {
       <PageIntro
         eyebrow="Leadership"
         title="Guiding Vision, Driving Excellence"
-        description="Decades of experience in construction, investment, and consulting — led with integrity under the Shah Group."
+        description="Decades of experience in construction, investment, and consulting, led with integrity under the Shah Group."
         backgroundImage={pageHeroImages.leadership}
         backgroundAlt="NEBCO leadership and construction team"
       />
-      <Section variant="dark" className="pt-10 md:pt-14" glow="accent">
+      <Section className="pt-10 md:pt-14" glow="none">
         <ScrollReveal>
-          <ChairmanMessageSection message={chairmanMessage} variant="dark" />
+          <ChairmanMessageSection
+            message={chairmanMessage}
+            variant="light"
+            quoteVariant="standard"
+            decorative
+          />
         </ScrollReveal>
       </Section>
       <Section variant="muted" glow="primary">

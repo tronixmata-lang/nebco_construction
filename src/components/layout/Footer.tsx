@@ -138,7 +138,7 @@ export function Footer() {
 
             <div>
               <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
-                Divisions
+                Our Verticals
               </h3>
               <ul className="space-y-2.5">
                 {footerNavigation.divisions.map((item) => (

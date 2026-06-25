@@ -3,14 +3,12 @@ import {
   Certificate as CertificateModel,
   Division as DivisionModel,
   Leader as LeaderModel,
-  Sector as SectorModel,
   SiteContent as SiteContentModel,
   Stat as StatModel,
   Testimonial as TestimonialModel,
   ValuePillar as ValuePillarModel,
 } from "@/lib/db/models";
 import { divisions as staticDivisions, getDivisionBySlug as staticGetDivision } from "@/content/divisions";
-import { industrySectors as staticSectors } from "@/content/sectors";
 import { valuePillars as staticPillars } from "@/content/pillars";
 import { leaders as staticLeaders, chairmanMessage as staticChairman } from "@/content/leadership";
 import {
@@ -135,21 +133,8 @@ export async function getDivisionBySlug(slug: string): Promise<Division | undefi
 }
 
 export async function getSectors(): Promise<IndustrySector[]> {
-  try {
-    await connectDB();
-    const docs = await SectorModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
-    if (docs.length > 0) {
-      return docs.map((d) => ({
-        id: d.legacyId,
-        title: d.title,
-        description: d.description,
-        highlight: d.highlight,
-      }));
-    }
-  } catch {
-    /* fallback */
-  }
-  return staticSectors;
+  const { getSectorsList } = await import("@/lib/data/sectors");
+  return getSectorsList();
 }
 
 export async function getValuePillars(): Promise<ValuePillar[]> {

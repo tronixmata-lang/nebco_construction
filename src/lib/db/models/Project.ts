@@ -1,5 +1,5 @@
 import mongoose, { Schema, type Model } from "mongoose";
-import type { ProjectCategory } from "@/types";
+import type { ProjectCategory, ProjectShowcaseLayout } from "@/types";
 import { seoFieldsSchema, type SeoFieldsDocument } from "./SeoSettings";
 
 export type ProjectDocument = {
@@ -14,8 +14,10 @@ export type ProjectDocument = {
   image: string;
   images?: string[];
   featured: boolean;
+  showcaseLayout: ProjectShowcaseLayout;
   published: boolean;
   sortOrder: number;
+  viewCount: number;
   seo: SeoFieldsDocument;
   createdAt: Date;
   updatedAt: Date;
@@ -37,15 +39,21 @@ const ProjectSchema = new Schema<ProjectDocument>(
     image: { type: String, required: true },
     images: [{ type: String }],
     featured: { type: Boolean, default: false },
+    showcaseLayout: {
+      type: String,
+      enum: ["auto", "hero", "wide", "standard"],
+      default: "auto",
+    },
     published: { type: Boolean, default: true },
     sortOrder: { type: Number, default: 0 },
+    viewCount: { type: Number, default: 0 },
     seo: seoFieldsSchema,
   },
   { timestamps: true },
 );
-
 ProjectSchema.index({ category: 1, published: 1, sortOrder: 1 });
 ProjectSchema.index({ featured: 1, published: 1 });
+ProjectSchema.index({ published: 1, viewCount: -1 });
 
 export const Project: Model<ProjectDocument> =
   mongoose.models.Project ?? mongoose.model<ProjectDocument>("Project", ProjectSchema);

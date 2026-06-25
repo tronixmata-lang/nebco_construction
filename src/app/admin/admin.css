@@ -135,6 +135,39 @@
   opacity: 0.65;
 }
 
+.admin-input-password-wrap {
+  position: relative;
+}
+
+.admin-input-with-toggle {
+  padding-right: 2.75rem;
+}
+
+.admin-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--brand-text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.admin-password-toggle:hover {
+  color: var(--brand-charcoal);
+}
+
+.admin-password-toggle:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
 .admin-label {
   display: block;
   font-size: 0.625rem;

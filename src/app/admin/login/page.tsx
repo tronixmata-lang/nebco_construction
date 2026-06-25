@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import "../admin.css";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -95,15 +97,30 @@ export default function AdminLoginPage() {
               <label htmlFor="password" className="admin-label">
                 Password
               </label>
-              <input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="admin-input"
-                placeholder="••••••••"
-              />
+              <div className="admin-input-password-wrap">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="admin-input admin-input-with-toggle"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  className="admin-password-toggle"
+                  onClick={() => setShowPassword((visible) => !visible)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" aria-hidden />
+                  ) : (
+                    <Eye className="h-4 w-4" aria-hidden />
+                  )}
+                </button>
+              </div>
             </div>
 
             {error && (

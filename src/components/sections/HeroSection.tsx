@@ -1,6 +1,5 @@
 import { getSiteContent } from "@/lib/data/content";
 import { HeroScrollStaticView } from "@/components/sections/HeroScrollStaticView";
-import { HeroTrustedStrip } from "@/components/sections/HeroTrustedStrip";
 
 export async function HeroSection() {
   const { hero, heroFeatureCards, siteConfig } = await getSiteContent();
@@ -20,8 +19,6 @@ export async function HeroSection() {
       parentOrganization={siteConfig.parentOrganization}
       shortName={siteConfig.shortName}
       featureCards={heroFeatureCards}
-    >
-      <HeroTrustedStrip />
-    </HeroScrollStaticView>
+    />
   );
 }

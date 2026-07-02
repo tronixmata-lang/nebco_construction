@@ -16,7 +16,7 @@ export const heroContent = {
 };
 
 export const companyStats: Stat[] = [
-  { id: "years", value: "30+", label: "Years of Excellence" },
+  { id: "years", value: "35+", label: "Years of Excellence" },
   { id: "clients", value: "500+", label: "Happy Clients" },
   { id: "completed", value: "200+", label: "Completed Projects" },
   { id: "running", value: "25+", label: "Running Projects" },

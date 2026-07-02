@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { HeroBackgroundImage } from "@/components/ui/HeroBackgroundImage";
+import { HeroBottomChrome } from "@/components/ui/HeroBottomChrome";
 import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
 import type { HeroFeatureCard } from "@/types/site-content";
 
@@ -109,6 +110,7 @@ export function HeroScrollStaticView({
       </Container>
       <HeroFeatureCards cards={featureCards} />
       {children}
+      <HeroBottomChrome />
     </section>
   );
 }

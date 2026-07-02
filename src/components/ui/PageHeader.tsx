@@ -1,5 +1,6 @@
 import { Container } from "./Container";
 import { HeroBackgroundImage } from "./HeroBackgroundImage";
+import { HeroBottomChrome } from "./HeroBottomChrome";
 
 type PageHeaderProps = {
   title: string;
@@ -9,30 +10,6 @@ type PageHeaderProps = {
   backgroundAlt?: string;
   children?: React.ReactNode;
 };
-
-function ScrollHint() {
-  return (
-    <div
-      className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral/40 md:flex"
-      aria-hidden="true"
-    >
-      <span className="text-[10px] font-semibold tracking-[0.2em] uppercase">
-        Explore
-      </span>
-      <svg
-        className="h-4 w-4 animate-bounce"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
-    </div>
-  );
-}
 
 export function PageHeader({
   title,
@@ -91,9 +68,7 @@ export function PageHeader({
         {children}
       </Container>
 
-      {!children && <ScrollHint />}
-
-      <div className="relative h-1 shrink-0 bg-primary" />
+      <HeroBottomChrome showExplore={!children} />
     </section>
   );
 }

@@ -4,7 +4,7 @@ import { CertificateSection } from "@/components/sections/CertificateSection";
 import { CompanyOverview } from "@/components/sections/CompanyOverview";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { PortfolioScrollSection } from "@/components/sections/PortfolioScrollSection";
+import { PageBodyLead } from "@/components/layout/PageBodyLead";
 import { IndustrySectors } from "@/components/sections/IndustrySectors";
 import { InsightsPreview } from "@/components/sections/InsightsPreview";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -46,6 +46,7 @@ export default function HomePage() {
     <>
       <JsonLd data={faqSchema([...homeFaq])} />
       <HeroSection />
+      <PageBodyLead />
       <CertificateSection />
       <ScrollReveal delay={50}>
         <CompanyOverview />
@@ -68,7 +69,6 @@ export default function HomePage() {
       <ScrollReveal delay={50}>
         <InsightsPreview />
       </ScrollReveal>
-      <PortfolioScrollSection />
     </>
   );
 }

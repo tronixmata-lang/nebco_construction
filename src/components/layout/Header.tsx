@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { mainNavigation } from "@/config/navigation";
+import type { NavItem } from "@/types";
 import { siteConfig as staticSiteConfig } from "@/config/site";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { TopRibbon } from "@/components/layout/TopRibbon";
 
 type HeaderVariant = "default" | "hero";
 
@@ -21,10 +24,32 @@ type HeaderProps = {
   branding?: HeaderBranding;
 };
 
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isNavGroupActive(pathname: string, item: NavItem) {
+  if (isNavActive(pathname, item.href)) return true;
+  return item.children?.some((child) => isNavActive(pathname, child.href)) ?? false;
+}
+
+function navItemClassName(isHero: boolean, isHighlighted: boolean) {
+  return cn(
+    "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
+    isHighlighted
+      ? "bg-neutral text-secondary shadow-sm"
+      : isHero
+        ? "text-neutral/90 hover:bg-neutral hover:text-secondary hover:shadow-sm"
+        : "text-secondary hover:bg-neutral hover:text-secondary hover:shadow-sm",
+  );
+}
+
 export function Header({
   variant = "default",
   branding = { logo: staticSiteConfig.logo, name: staticSiteConfig.name },
 }: HeaderProps) {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const isHero = variant === "hero";
@@ -38,6 +63,7 @@ export function Header({
           : "sticky top-0 border-b border-neutral-border bg-neutral/95 backdrop-blur-sm",
       )}
     >
+      <TopRibbon />
       <Container className="overflow-visible">
         <div className="relative flex h-16 items-center justify-between overflow-visible">
           <Link
@@ -68,17 +94,15 @@ export function Header({
                 >
                   <button
                     type="button"
-                    className={cn(
-                      "flex items-center gap-1 px-3 py-2 text-sm font-semibold transition-colors",
-                      isHero
-                        ? "text-neutral/90 hover:text-accent"
-                        : "text-secondary hover:text-primary",
+                    className={navItemClassName(
+                      isHero,
+                      openDropdown === item.label || isNavGroupActive(pathname, item),
                     )}
                     aria-expanded={openDropdown === item.label}
                   >
                     {item.label}
                     <svg
-                      className="h-4 w-4"
+                      className="h-4 w-4 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -110,12 +134,8 @@ export function Header({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={cn(
-                    "px-3 py-2 text-sm font-semibold transition-colors",
-                    isHero
-                      ? "text-neutral/90 hover:text-accent"
-                      : "text-secondary hover:text-primary",
-                  )}
+                  className={navItemClassName(isHero, isNavActive(pathname, item.href))}
+                  aria-current={isNavActive(pathname, item.href) ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
@@ -184,11 +204,10 @@ export function Header({
                 <Link
                   href={item.href}
                   className={cn(
-                    "block rounded-sm px-3 py-2.5 text-sm font-semibold transition-colors",
-                    isHero
-                      ? "text-neutral/90 hover:bg-neutral/10 hover:text-accent"
-                      : "text-secondary hover:bg-neutral-muted hover:text-primary",
+                    navItemClassName(isHero, isNavGroupActive(pathname, item)),
+                    "block w-full text-center",
                   )}
+                  aria-current={isNavGroupActive(pathname, item) ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -205,11 +224,10 @@ export function Header({
                         key={child.href}
                         href={child.href}
                         className={cn(
-                          "block px-3 py-2 text-sm transition-colors",
-                          isHero
-                            ? "text-neutral/70 hover:text-accent"
-                            : "text-text-muted hover:text-primary",
+                          navItemClassName(isHero, isNavActive(pathname, child.href)),
+                          "text-sm",
                         )}
+                        aria-current={isNavActive(pathname, child.href) ? "page" : undefined}
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}

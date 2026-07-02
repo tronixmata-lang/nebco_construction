@@ -34,6 +34,13 @@ export const sitePageIndex = [
   { label: "Terms of Use", href: "/legal/terms" },
 ] as const;
 
+/** Compact links shown in the red ribbon above the main navbar. */
+export const topRibbonLinks = [
+  { label: "NEBCO Construction", href: "/divisions/construction" },
+  { label: "NEBCO Investment", href: "/divisions/investment" },
+  { label: "NEBCO Consulting", href: "/divisions/consulting" },
+] as const;
+
 export const mainNavigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },

@@ -2,6 +2,34 @@
 
 This guide deploys the Next.js app with **Node.js**, **PM2**, **MongoDB**, and optional **Nginx** on Ubuntu/Debian.
 
+## Vercel (optional)
+
+If you deploy on [Vercel](https://vercel.com) instead of a VPS, fix the **404: NOT_FOUND** error with these steps:
+
+1. **Vercel dashboard → Project → Settings → General → Build & Development Settings**
+   - **Framework Preset:** `Next.js` (not "Other")
+   - **Root Directory:** leave empty (app is at repo root)
+   - **Build Command:** `npm run build`
+   - **Output Directory:** leave empty (auto-detected)
+
+2. **Environment variables** (Settings → Environment Variables) — required for production:
+
+   | Variable | Example |
+   |----------|---------|
+   | `MONGODB_URI` | MongoDB Atlas connection string (localhost will **not** work on Vercel) |
+   | `JWT_SECRET` | Long random string (`openssl rand -base64 48`) |
+   | `NEXT_PUBLIC_SITE_URL` | Your Vercel URL, e.g. `https://nebco-construction.vercel.app` |
+   | `ADMIN_EMAIL` | Admin login email |
+   | `ADMIN_PASSWORD` | Admin password (run seed once or create user manually) |
+
+3. **Redeploy** after saving env vars (Deployments → … → Redeploy).
+
+4. Open the **Production** deployment URL from the Vercel dashboard (not an old preview link).
+
+5. Use **MongoDB Atlas** (free tier) — create a cluster, allow `0.0.0.0/0` access, and paste the connection string into `MONGODB_URI`.
+
+> **Note:** Admin file uploads (`/uploads`) do not persist on Vercel serverless. For full CMS + uploads, use the VPS guide below.
+
 ## Quick start: IP only (no domain) — recommended for now
 
 Use your VPS public IP. If **3000 and 3001 are already in use**, use port **3010** (or another free port).

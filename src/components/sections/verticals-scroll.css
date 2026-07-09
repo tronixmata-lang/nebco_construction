@@ -1,0 +1,88 @@
+/* Three-card in-view reveal for Our Verticals — gap-free, normal height */
+
+.verticals-scroll {
+  --verticals-gutter: clamp(1rem, 4vw, 2rem);
+  --verticals-track-width: min(1200px, calc(100vw - (2 * var(--verticals-gutter))));
+  --verticals-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.verticals-scroll__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--verticals-track-width);
+  margin-inline: auto;
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+/* Give the large display heading enough line-box room so ascenders
+   are never clipped. */
+.verticals-scroll__inner h2 {
+  line-height: 1.18;
+  padding-top: 0.06em;
+}
+
+.verticals-scroll__track {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: stretch;
+}
+
+.verticals-scroll__slot {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition:
+    opacity 0.7s var(--verticals-ease),
+    transform 0.7s var(--verticals-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+/* Side cards ease in from behind the featured card (fan-out effect) */
+.verticals-scroll__slot--left {
+  transform: translate(46px, 18px) scale(0.94);
+}
+
+.verticals-scroll__slot--right {
+  transform: translate(-46px, 18px) scale(0.94);
+}
+
+.is-revealed .verticals-scroll__slot {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+.verticals-scroll__cta {
+  text-align: center;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .verticals-scroll__track {
+    grid-template-columns: 1fr;
+    max-width: min(420px, 100%);
+    margin-inline: auto;
+    gap: 1.25rem;
+  }
+
+  .verticals-scroll__slot--left,
+  .verticals-scroll__slot--right {
+    transform: translateY(30px) scale(0.96);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .verticals-scroll__slot {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

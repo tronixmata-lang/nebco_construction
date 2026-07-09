@@ -51,9 +51,7 @@ export default function HomePage() {
       <ScrollReveal delay={50}>
         <CompanyOverview />
       </ScrollReveal>
-      <ScrollReveal delay={50}>
-        <BusinessDivisions />
-      </ScrollReveal>
+      <BusinessDivisions />
       <ScrollReveal delay={50}>
         <ValuePillars />
       </ScrollReveal>

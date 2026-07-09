@@ -42,7 +42,8 @@ export function DivisionFlipCard({ division, featured = false }: DivisionFlipCar
             {division.description}
           </p>
           <p className="mt-6 text-xs font-semibold tracking-wide text-primary/70 uppercase">
-            Hover to explore services
+            <span className="hidden [@media(hover:hover)]:inline">Hover to explore services</span>
+            <span className="[@media(hover:hover)]:hidden">Tap to explore services</span>
           </p>
         </div>
 

@@ -1,11 +1,47 @@
-/* Three-card in-view reveal for Our Verticals — gap-free, normal height */
+/* Three-card scroll-scrubbed reveal for Our Verticals */
 
 .verticals-scroll {
   --verticals-gutter: clamp(1rem, 4vw, 2rem);
   --verticals-track-width: min(1200px, calc(100vw - (2 * var(--verticals-gutter))));
-  --verticals-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Spacer provides the scroll distance that drives the pinned stage. */
+.verticals-scroll__spacer {
+  position: relative;
+  min-height: 200vh;
+}
+
+.verticals-scroll__stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  padding-inline: var(--verticals-gutter);
+}
+
+.verticals-scroll__backdrop {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 42%,
+      color-mix(in srgb, var(--color-accent) 9%, transparent) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-neutral-muted) 0%,
+      color-mix(in srgb, var(--color-neutral) 94%, var(--color-neutral-muted)) 100%
+    );
+}
+
+/* Centered group: heading + cards + button move together. */
 .verticals-scroll__inner {
   position: relative;
   z-index: 1;
@@ -14,7 +50,7 @@
   align-items: center;
   width: var(--verticals-track-width);
   margin-inline: auto;
-  gap: clamp(1.75rem, 3vw, 2.75rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 /* Give the large display heading enough line-box room so ascenders
@@ -35,54 +71,56 @@
 
 .verticals-scroll__slot {
   min-width: 0;
-  opacity: 0;
-  transform: translateY(30px) scale(0.96);
-  transition:
-    opacity 0.7s var(--verticals-ease),
-    transform 0.7s var(--verticals-ease);
-  transition-delay: var(--reveal-delay, 0ms);
+  transform-origin: center center;
+  backface-visibility: hidden;
   will-change: transform, opacity;
-}
-
-/* Side cards ease in from behind the featured card (fan-out effect) */
-.verticals-scroll__slot--left {
-  transform: translate(46px, 18px) scale(0.94);
-}
-
-.verticals-scroll__slot--right {
-  transform: translate(-46px, 18px) scale(0.94);
-}
-
-.is-revealed .verticals-scroll__slot {
+  /* Default (pre-JS / SSR) state: resting and visible */
   opacity: 1;
-  transform: none;
-  will-change: auto;
 }
 
 .verticals-scroll__cta {
   text-align: center;
 }
 
+/* Cards ignore hover/click until the reveal has settled */
+.verticals-scroll__track:not(.verticals-scroll__track--settled) .verticals-scroll__slot {
+  pointer-events: none;
+}
+
+.verticals-scroll__track--settled .verticals-scroll__slot {
+  pointer-events: auto;
+  will-change: auto;
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 767px) {
+  .verticals-scroll__spacer {
+    min-height: 175vh;
+  }
+
   .verticals-scroll__track {
     grid-template-columns: 1fr;
     max-width: min(420px, 100%);
     margin-inline: auto;
     gap: 1.25rem;
   }
-
-  .verticals-scroll__slot--left,
-  .verticals-scroll__slot--right {
-    transform: translateY(30px) scale(0.96);
-  }
 }
 
-/* ---------- Reduced motion ---------- */
+/* ---------- Reduced motion: plain static grid ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .verticals-scroll__spacer {
+    min-height: auto;
+  }
+
+  .verticals-scroll__stage {
+    position: relative;
+    height: auto;
+    padding-block: 3rem;
+    overflow: visible;
+  }
+
   .verticals-scroll__slot {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
 }

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { DivisionFlipCard } from "@/components/sections/DivisionFlipCard";
-import { easeInOutCubic, easeOutCubic, getSpacerProgress, lerp } from "@/lib/hero-scroll-motion";
+import { easeInOutCubic, easeOutCubic, lerp } from "@/lib/hero-scroll-motion";
 import { cn } from "@/lib/utils";
 import type { Division } from "@/types";
 import "./verticals-scroll.css";
@@ -32,9 +32,21 @@ function measure(track: HTMLElement, isMobile: boolean): Metrics {
   const trackWidth = track.offsetWidth;
   const gap = Number.parseFloat(getComputedStyle(track).columnGap || "0") || 0;
   const columnWidth = isMobile ? trackWidth : (trackWidth - gap * 2) / 3;
-  const featuredStartScale = isMobile ? 1 : 1.22;
+  const featuredStartScale = isMobile ? 1 : 1.16;
 
   return { isMobile, spread: columnWidth + gap, featuredStartScale };
+}
+
+/** Scroll progress driven by the cards' position in the viewport (no pin).
+   Timed to the track (cards) so the reveal plays while the cards cross into
+   view, not while the heading above them is still entering. */
+function getViewportProgress(track: HTMLElement): number {
+  const rect = track.getBoundingClientRect();
+  const vh = window.innerHeight || 1;
+  const start = vh * 0.95; // progress 0 as the cards enter from the bottom
+  const end = vh * 0.4; // progress 1 once the cards sit comfortably in view
+  const raw = (start - rect.top) / (start - end);
+  return Math.min(1, Math.max(0, raw));
 }
 
 export function VerticalsScrollGrid({
@@ -44,7 +56,7 @@ export function VerticalsScrollGrid({
   title,
   description,
 }: VerticalsScrollGridProps) {
-  const spacerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const metricsRef = useRef<Metrics | null>(null);
@@ -58,9 +70,9 @@ export function VerticalsScrollGrid({
   );
 
   useEffect(() => {
-    const spacer = spacerRef.current;
+    const inner = innerRef.current;
     const track = trackRef.current;
-    if (!spacer || !track) return;
+    if (!inner || !track) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       track.classList.add("verticals-scroll__track--settled");
@@ -87,37 +99,37 @@ export function VerticalsScrollGrid({
 
       if (metrics.isMobile) {
         cards.forEach((slot, index) => {
-          const t = phase(progress, index * 0.16, 0.5, easeInOutCubic);
+          const t = phase(progress, index * 0.16, 0.55, easeInOutCubic);
           slot.style.opacity = String(t);
           slot.style.transform = `translate3d(0, ${lerp(36, 0, t)}px, 0) scale(${lerp(0.95, 1, t)})`;
         });
-        setSettled(progress > 0.8);
+        setSettled(progress > 0.85);
         return;
       }
 
       cards.forEach((slot, index) => {
         if (index === featuredIndex) {
-          const t = phase(progress, 0, 0.62, easeInOutCubic);
+          const t = phase(progress, 0, 0.66, easeInOutCubic);
           slot.style.opacity = "1";
           slot.style.transform = `translate3d(0,0,0) scale(${lerp(metrics.featuredStartScale, 1, t)})`;
-          slot.style.zIndex = progress < 0.82 ? "3" : "2";
+          slot.style.zIndex = progress < 0.9 ? "3" : "2";
           return;
         }
 
-        const t = phase(progress, 0.16, 0.64, easeInOutCubic);
+        const t = phase(progress, 0.18, 0.68, easeInOutCubic);
         const direction = index < featuredIndex ? 1 : -1;
         slot.style.opacity = String(t);
-        slot.style.transform = `translate3d(${lerp(direction * metrics.spread * 0.92, 0, t)}px, 0, 0) scale(${lerp(0.88, 1, t)})`;
+        slot.style.transform = `translate3d(${lerp(direction * metrics.spread * 0.9, 0, t)}px, 0, 0) scale(${lerp(0.9, 1, t)})`;
         slot.style.zIndex = "1";
       });
 
-      setSettled(progress > 0.85);
+      setSettled(progress > 0.9);
     };
 
     let lastProgress = -1;
     const tick = () => {
       rafRef.current = 0;
-      const progress = getSpacerProgress(spacer, 0.9);
+      const progress = getViewportProgress(track);
       if (progress === lastProgress) return;
       lastProgress = progress;
       render(progress);
@@ -135,7 +147,7 @@ export function VerticalsScrollGrid({
     };
 
     refresh();
-    render(getSpacerProgress(spacer, 0.9));
+    render(getViewportProgress(track));
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -144,7 +156,7 @@ export function VerticalsScrollGrid({
       },
       { rootMargin: "200px 0px" },
     );
-    observer.observe(spacer);
+    observer.observe(inner);
 
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", onResize, { passive: true });
@@ -161,42 +173,36 @@ export function VerticalsScrollGrid({
 
   return (
     <div className="verticals-scroll">
-      <div ref={spacerRef} className="verticals-scroll__spacer">
-        <div className="verticals-scroll__stage">
-          <div className="verticals-scroll__backdrop" aria-hidden="true" />
+      <div ref={innerRef} className="verticals-scroll__inner">
+        <SectionHeader
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          align="center"
+          className="mx-auto mb-0 max-w-3xl"
+        />
 
-          <div className="verticals-scroll__inner">
-            <SectionHeader
-              eyebrow={eyebrow}
-              title={title}
-              description={description}
-              align="center"
-              className="mx-auto mb-0 max-w-3xl"
-            />
-
-            <div ref={trackRef} className="verticals-scroll__track">
-              {divisions.map((division, index) => (
-                <div
-                  key={division.id}
-                  ref={(element) => {
-                    slotRefs.current[index] = element;
-                  }}
-                  className={cn(
-                    "verticals-scroll__slot",
-                    index === featuredIndex && "verticals-scroll__slot--featured",
-                  )}
-                >
-                  <DivisionFlipCard division={division} featured={division.id === featuredId} />
-                </div>
-              ))}
+        <div ref={trackRef} className="verticals-scroll__track">
+          {divisions.map((division, index) => (
+            <div
+              key={division.id}
+              ref={(element) => {
+                slotRefs.current[index] = element;
+              }}
+              className={cn(
+                "verticals-scroll__slot",
+                index === featuredIndex && "verticals-scroll__slot--featured",
+              )}
+            >
+              <DivisionFlipCard division={division} featured={division.id === featuredId} />
             </div>
+          ))}
+        </div>
 
-            <div className="verticals-scroll__cta">
-              <Button href="/divisions" variant="outline">
-                View Our Verticals
-              </Button>
-            </div>
-          </div>
+        <div className="verticals-scroll__cta">
+          <Button href="/divisions" variant="outline">
+            View Our Verticals
+          </Button>
         </div>
       </div>
     </div>

@@ -1,47 +1,10 @@
-/* Three-card scroll-scrubbed reveal for Our Verticals */
+/* Three-card scroll-linked reveal for Our Verticals — normal height, no pin, no gaps */
 
 .verticals-scroll {
   --verticals-gutter: clamp(1rem, 4vw, 2rem);
   --verticals-track-width: min(1200px, calc(100vw - (2 * var(--verticals-gutter))));
 }
 
-/* Spacer provides the scroll distance that drives the pinned stage. */
-.verticals-scroll__spacer {
-  position: relative;
-  min-height: 200vh;
-}
-
-.verticals-scroll__stage {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  padding-inline: var(--verticals-gutter);
-}
-
-.verticals-scroll__backdrop {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse 70% 55% at 50% 42%,
-      color-mix(in srgb, var(--color-accent) 9%, transparent) 0%,
-      transparent 70%
-    ),
-    linear-gradient(
-      to bottom,
-      var(--color-neutral-muted) 0%,
-      color-mix(in srgb, var(--color-neutral) 94%, var(--color-neutral-muted)) 100%
-    );
-}
-
-/* Centered group: heading + cards + button move together. */
 .verticals-scroll__inner {
   position: relative;
   z-index: 1;
@@ -50,7 +13,7 @@
   align-items: center;
   width: var(--verticals-track-width);
   margin-inline: auto;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  gap: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 /* Give the large display heading enough line-box room so ascenders
@@ -94,10 +57,6 @@
 
 /* ---------- Mobile ---------- */
 @media (max-width: 767px) {
-  .verticals-scroll__spacer {
-    min-height: 175vh;
-  }
-
   .verticals-scroll__track {
     grid-template-columns: 1fr;
     max-width: min(420px, 100%);
@@ -108,17 +67,6 @@
 
 /* ---------- Reduced motion: plain static grid ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .verticals-scroll__spacer {
-    min-height: auto;
-  }
-
-  .verticals-scroll__stage {
-    position: relative;
-    height: auto;
-    padding-block: 3rem;
-    overflow: visible;
-  }
-
   .verticals-scroll__slot {
     opacity: 1 !important;
     transform: none !important;

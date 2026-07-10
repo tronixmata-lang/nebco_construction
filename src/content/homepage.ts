@@ -72,7 +72,7 @@ export const certificateSection = {
     {
       id: "ghuran-mandal",
       title: "Mr. Ghuran Mandal Khang",
-      subtitle: "Supervisor — Scaffolding & Form Work, 2013",
+      subtitle: "Supervisor, Scaffolding & Form Work, 2013",
       image: "/images/site/certificate-ghuran-mandal-khang.png",
       alt: "Appreciation certificate awarded to Mr. Ghuran Mandal Khang",
     },
@@ -86,7 +86,7 @@ export const certificateSection = {
     {
       id: "maila-shrestha",
       title: "Mr. Maila Shrestha",
-      subtitle: "Senior Mason — 20+ years of service, 2013",
+      subtitle: "Senior Mason, 20+ years of service, 2013",
       image: "/images/site/certificate-maila-shrestha.png",
       alt: "Appreciation certificate awarded to Mr. Maila Shrestha",
     },

@@ -246,7 +246,7 @@ export default function AdminAnalyticsPage() {
           <section className="mb-8">
             <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
               <h2 className="text-sm font-semibold tracking-widest text-[var(--admin-muted)] uppercase">
-                Website Visitors — Last {visitors.period.days} Days
+                Website Visitors, Last {visitors.period.days} Days
               </h2>
               <p className="text-xs text-[var(--admin-muted)]">
                 {visitors.period.start} to {visitors.period.end}
@@ -463,7 +463,7 @@ export default function AdminAnalyticsPage() {
       </div>
 
       <section className="admin-card mb-8 p-6">
-        <h2 className="admin-section-title mb-4">Inquiries — Last 30 Days</h2>
+        <h2 className="admin-section-title mb-4">Inquiries, Last 30 Days</h2>
         {data.inquiries.byDay.length === 0 ? (
           <p className="text-sm text-[var(--admin-muted)]">No inquiries in the last 30 days</p>
         ) : (

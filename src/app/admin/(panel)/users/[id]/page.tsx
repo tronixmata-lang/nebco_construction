@@ -133,8 +133,8 @@ export default function UserFormPage({ params }: { params: Promise<{ id: string 
 
         <AdminField label="Role">
           <select className="admin-input" value={form.role} onChange={(e) => updateField("role", e.target.value as UserForm["role"])}>
-            <option value="editor">Editor — content management only</option>
-            <option value="superadmin">Superadmin — full access</option>
+            <option value="editor">Editor, content management only</option>
+            <option value="superadmin">Superadmin, full access</option>
           </select>
         </AdminField>
 

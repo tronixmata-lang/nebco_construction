@@ -88,7 +88,7 @@ export function ImageUpload({
                 <>
                   <ImagePlus className="h-8 w-8 text-[var(--admin-muted)]" />
                   <p className="mt-2 text-sm text-[var(--admin-muted)]">Click to upload</p>
-                  <p className="text-xs text-[var(--admin-muted)]">JPEG, PNG, WebP, GIF — max 5 MB</p>
+                  <p className="text-xs text-[var(--admin-muted)]">JPEG, PNG, WebP, GIF. Max 5 MB</p>
                 </>
               )}
             </div>

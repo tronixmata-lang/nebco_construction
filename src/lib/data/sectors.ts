@@ -1,3 +1,4 @@
+import { cache } from "react";
 import {
   getSectorProfileById as getStaticSectorProfileById,
   sectorProfiles as staticSectorProfiles,
@@ -49,7 +50,7 @@ export async function getAllSectorIds(): Promise<string[]> {
   return sectors.map((sector) => sector.id);
 }
 
-export async function getSectorProfileById(id: string): Promise<SectorProfile | undefined> {
+export const getSectorProfileById = cache(async (id: string): Promise<SectorProfile | undefined> => {
   try {
     await connectDB();
     const doc = await SectorModel.findOne({ legacyId: id, published: true }).lean();
@@ -58,9 +59,9 @@ export async function getSectorProfileById(id: string): Promise<SectorProfile | 
     /* fallback */
   }
   return getStaticSectorProfileById(id);
-}
+});
 
-export async function getSectorsList(): Promise<IndustrySector[]> {
+export const getSectorsList = cache(async (): Promise<IndustrySector[]> => {
   const { industrySectors } = await import("@/content/sectors");
 
   try {
@@ -74,4 +75,4 @@ export async function getSectorsList(): Promise<IndustrySector[]> {
   }
 
   return industrySectors;
-}
+});

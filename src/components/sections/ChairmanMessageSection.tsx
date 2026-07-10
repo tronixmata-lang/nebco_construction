@@ -54,7 +54,7 @@ export function ChairmanMessageSection({
           >
             <CmsImage
               src={imageSrc}
-              alt={`${message.author} — NEBCO Chairman`}
+              alt={`${message.author}, NEBCO Chairman`}
               fill
               sizes="(max-width: 1024px) 280px, 280px"
               className="object-cover object-top"

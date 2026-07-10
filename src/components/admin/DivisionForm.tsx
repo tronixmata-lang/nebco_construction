@@ -417,7 +417,7 @@ export function DivisionForm({ params }: DivisionFormProps) {
                 Process Steps
               </h2>
               <p className="mt-1 text-sm text-[var(--admin-muted)]">
-                How we deliver — shown as a timeline on the detail page.
+                How we deliver, shown as a timeline on the detail page.
               </p>
             </div>
             <button

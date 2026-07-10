@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import {
   PageSeo as PageSeoModel,
@@ -27,7 +28,8 @@ const defaultSeoSettings = {
   facebookPixelId: "",
 };
 
-export async function getSeoSettings() {
+/** Deduped per request via React cache — called from layout metadata, analytics, and pages. */
+export const getSeoSettings = cache(async () => {
   try {
     await connectDB();
     const doc = await SeoSettingsModel.findOne({ key: "global" }).lean();
@@ -50,7 +52,7 @@ export async function getSeoSettings() {
     /* fallback */
   }
   return defaultSeoSettings;
-}
+});
 
 export async function getPageSeoList() {
   try {
@@ -63,7 +65,7 @@ export async function getPageSeoList() {
   return STATIC_PAGES;
 }
 
-export async function getPageSeoByPath(path: string) {
+export const getPageSeoByPath = cache(async (path: string) => {
   try {
     await connectDB();
     const doc = await PageSeoModel.findOne({ path }).lean();
@@ -72,7 +74,7 @@ export async function getPageSeoByPath(path: string) {
     /* fallback */
   }
   return STATIC_PAGES.find((p) => p.path === path);
-}
+});
 
 export async function getActiveRedirects(): Promise<
   { from: string; to: string; statusCode: 301 | 302 }[]

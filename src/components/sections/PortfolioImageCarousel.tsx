@@ -14,7 +14,7 @@ export function PortfolioImageCarousel({ projects }: PortfolioImageCarouselProps
   const portfolioImages = projects.map((project) => ({
     id: project.id,
     src: project.image,
-    alt: `${project.title} — NEBCO construction project in ${project.location}`,
+    alt: `${project.title}, NEBCO construction project in ${project.location}`,
   }));
   const [activeIndex, setActiveIndex] = useState(0);
 

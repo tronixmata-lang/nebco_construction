@@ -67,7 +67,7 @@ export function SeoFieldsForm({
         onChange={(url) => update("ogImage", url)}
       />
 
-      <AdminField label="Canonical URL" hint="Optional — override the default URL">
+      <AdminField label="Canonical URL" hint="Optional. Override the default URL">
         <input
           className="admin-input"
           value={seo.canonical ?? ""}

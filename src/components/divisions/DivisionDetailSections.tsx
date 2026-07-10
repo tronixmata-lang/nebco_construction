@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { Award, Handshake, MessageSquareQuote, ShieldCheck, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { cn } from "@/lib/utils";
 import type { DivisionCapability } from "@/types";
 
 type DivisionCapabilitiesSectionProps = {
@@ -15,12 +18,12 @@ export function DivisionCapabilitiesSection({
 }: DivisionCapabilitiesSectionProps) {
   return (
     <div>
-      <ScrollReveal>
+      <ScrollReveal className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">What We Deliver</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">
           Capabilities Across {divisionName}
         </h2>
-        <p className="mt-4 max-w-3xl text-base text-text-muted">
+        <p className="mt-4 text-base text-text-muted">
           Specialized services backed by A-Class credentials, disciplined project controls, and teams
           that understand Nepal&apos;s construction landscape.
         </p>
@@ -54,34 +57,57 @@ type DivisionCommitmentsProps = {
   commitments: string[];
 };
 
+const commitmentIcons: LucideIcon[] = [ShieldCheck, Handshake, MessageSquareQuote, Award, Sparkles];
+
 export function DivisionCommitments({ commitments }: DivisionCommitmentsProps) {
+  const columnClass =
+    commitments.length === 3
+      ? "sm:grid-cols-2 lg:grid-cols-3"
+      : commitments.length === 4
+        ? "sm:grid-cols-2"
+        : "sm:grid-cols-2 lg:grid-cols-3";
+
   return (
-    <div className="division-commitments rounded-sm border border-accent/25 bg-neutral p-6 sm:p-8 lg:p-10">
-      <ScrollReveal>
+    <div>
+      <ScrollReveal className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Our Commitment</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">
           How We Work With Clients
         </h2>
+        <p className="mt-4 text-base leading-relaxed text-text-muted">
+          Principles we uphold on every engagement, from first briefing through final delivery.
+        </p>
+        <span className="mx-auto mt-5 block h-0.5 w-12 rounded-full bg-primary" aria-hidden="true" />
       </ScrollReveal>
 
-      <StaggerReveal className="mt-8 grid gap-4 sm:grid-cols-2" staggerMs={70}>
-        {commitments.map((item) => (
-          <div
-            key={item}
-            className="flex items-start gap-3 rounded-sm border border-neutral-border/80 bg-neutral-muted/40 px-4 py-4"
-          >
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.25a1 1 0 0 1-1.414 0l-3.25-3.25a1 1 0 1 1 1.414-1.414l2.543 2.543 6.543-6.543a1 1 0 0 1 1.413-.006Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <p className="text-sm leading-relaxed text-secondary sm:text-base">{item}</p>
-          </div>
-        ))}
+      <StaggerReveal
+        className={cn("mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-5", columnClass)}
+        staggerMs={80}
+      >
+        {commitments.map((item, index) => {
+          const Icon = commitmentIcons[index % commitmentIcons.length];
+
+          return (
+            <article
+              key={item}
+              className="group relative flex h-full flex-col rounded-sm border border-neutral-border/80 bg-neutral p-6 shadow-[0_8px_28px_-18px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_16px_36px_-20px_rgba(0,0,0,0.18)] sm:p-7"
+            >
+              <span
+                className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-accent to-primary transition-transform duration-300 group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <div className="flex items-start justify-between gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/20 bg-accent/10 text-accent">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                </span>
+                <span className="font-mono text-xs font-semibold tracking-[0.18em] text-primary/45">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <p className="mt-5 flex-1 text-base leading-relaxed text-secondary">{item}</p>
+            </article>
+          );
+        })}
       </StaggerReveal>
     </div>
   );
@@ -101,10 +127,10 @@ export function DivisionProjectsPreview({ projects }: DivisionProjectsPreviewPro
 
   return (
     <div>
-      <ScrollReveal>
+      <ScrollReveal className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Proven Work</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Featured Projects</h2>
-        <p className="mt-4 max-w-2xl text-base text-text-muted">
+        <p className="mt-4 text-base text-text-muted">
           A sample of completed and ongoing work that reflects the quality and scale of our delivery.
         </p>
       </ScrollReveal>

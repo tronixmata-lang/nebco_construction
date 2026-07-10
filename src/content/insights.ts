@@ -26,7 +26,7 @@ export const insights: InsightArticle[] = [
     body: [
       "Nepal's geography demands construction practices that account for seismic risk from the earliest design phase. NEBCO integrates structural engineering principles, appropriate reinforcement detailing, and code-aligned construction methods to improve building resilience.",
       "Our teams evaluate soil conditions, load paths, and material specifications before work begins on site. This proactive approach reduces structural vulnerabilities and supports safer outcomes for occupants and investors alike.",
-      "Earthquake-resistant construction is not a single technique — it is a disciplined process spanning design review, quality-controlled execution, and ongoing site supervision. NEBCO applies that process consistently across projects of varying scale and complexity.",
+      "Earthquake-resistant construction is not a single technique. It is a disciplined process spanning design review, quality-controlled execution, and ongoing site supervision. NEBCO applies that process consistently across projects of varying scale and complexity.",
     ],
     category: "Engineering",
     date: "2024-05-15",
@@ -42,7 +42,7 @@ export const insights: InsightArticle[] = [
     body: [
       "Sustainable construction balances environmental responsibility with practical performance and lifecycle value. NEBCO evaluates material choices, energy efficiency opportunities, and waste reduction strategies as part of every project plan.",
       "Where appropriate, we incorporate durable materials, efficient building systems, and construction methods that minimize environmental impact without compromising structural integrity or client requirements.",
-      "Our goal is to deliver buildings that serve communities well today while reducing long-term operating costs and environmental footprint — a standard that reflects both professional responsibility and client expectations.",
+      "Our goal is to deliver buildings that serve communities well today while reducing long-term operating costs and environmental footprint, a standard that reflects both professional responsibility and client expectations.",
     ],
     category: "Sustainability",
     date: "2024-04-22",
@@ -57,7 +57,7 @@ export const insights: InsightArticle[] = [
       "NEBCO bridges geographical distances by providing complete construction solutions and efficient communication for Non-Resident Nepalis worldwide.",
     body: [
       "For Non-Resident Nepalis planning projects in Nepal, distance and coordination are often the biggest challenges. NEBCO provides end-to-end construction management with structured updates, milestone reporting, and accountable on-site execution.",
-      "Clients overseas receive clear visibility into progress, budget alignment, and quality checkpoints — supported by a team that understands both local construction realities and the expectations of international clients.",
+      "Clients overseas receive clear visibility into progress, budget alignment, and quality checkpoints, supported by a team that understands both local construction realities and the expectations of international clients.",
       "From residential builds to investment properties, NEBCO helps NRNs move forward with confidence, knowing their project is managed by a licensed, experienced builder with a reputation earned over decades.",
     ],
     category: "Services",

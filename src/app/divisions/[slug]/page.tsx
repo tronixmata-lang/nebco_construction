@@ -7,6 +7,7 @@ import {
   DivisionProjectsPreview,
 } from "@/components/divisions/DivisionDetailSections";
 import { DivisionOtherVerticals } from "@/components/divisions/DivisionOtherVerticals";
+import { DivisionBookingSection } from "@/components/divisions/ConsultingBookingSection";
 import { DivisionOverviewReveal } from "@/components/divisions/DivisionOverviewReveal";
 import { DivisionProcessFlow } from "@/components/divisions/DivisionProcessFlow";
 import { PageIntro } from "@/components/layout/PageIntro";
@@ -110,10 +111,10 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
       </Section>
 
       <Section className="py-14 md:py-20" glow="none">
-        <ScrollReveal>
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">How We Deliver</p>
           <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Our Delivery Process</h2>
-          <p className="mt-4 max-w-3xl text-base text-text-muted">
+          <p className="mt-4 text-base text-text-muted">
             A structured approach that keeps scope, quality, and timelines aligned from first consultation
             through final handover.
           </p>
@@ -125,6 +126,10 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
 
       <Section variant="muted" className="py-14 md:py-20" glow="primary">
         <DivisionCommitments commitments={division.commitments} />
+      </Section>
+
+      <Section className="py-14 md:py-20" glow="none">
+        <DivisionBookingSection divisionSlug={division.id} divisionName={division.name} />
       </Section>
 
       <Section className="py-14 md:py-20" glow="accent">

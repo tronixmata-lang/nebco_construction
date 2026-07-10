@@ -70,7 +70,7 @@ export default async function InsightDetailPage({ params }: InsightPageProps) {
         breadcrumbLabel={article.title}
         showStats={false}
         backgroundImage={heroImage}
-        backgroundAlt={`${article.title} — NEBCO Construction`}
+        backgroundAlt={`${article.title}, NEBCO Construction`}
       />
       <Section className="pt-10 md:pt-14" glow="accent">
         <ScrollReveal className="mx-auto max-w-3xl">

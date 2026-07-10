@@ -59,7 +59,7 @@ export default async function DivisionsPage() {
       <Section variant="muted" glow="primary">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="font-display text-2xl text-secondary">Need a solution that spans multiple verticals?</p>
-          <p className="mt-3 text-text-muted">NEBCO&apos;s integrated structure means one trusted partner for construction, investment, and consulting — from concept to completion.</p>
+          <p className="mt-3 text-text-muted">NEBCO&apos;s integrated structure means one trusted partner for construction, investment, and consulting, from concept to completion.</p>
           <div className="mt-8"><Button href="/contact">Contact Our Team</Button></div>
         </ScrollReveal>
       </Section>

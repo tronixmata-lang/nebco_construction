@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import { Insight as InsightModel } from "@/lib/db/models";
 import { getInsightBySlug as staticGetBySlug } from "@/content/insights";
@@ -32,7 +33,7 @@ function mapInsight(doc: {
   };
 }
 
-export async function getInsightWithSeo(slug: string): Promise<InsightWithSeo | undefined> {
+export const getInsightWithSeo = cache(async (slug: string): Promise<InsightWithSeo | undefined> => {
   try {
     await connectDB();
     const doc = await InsightModel.findOne({ slug, status: "published" }).lean();
@@ -42,7 +43,7 @@ export async function getInsightWithSeo(slug: string): Promise<InsightWithSeo | 
   }
   const staticArticle = staticGetBySlug(slug);
   return staticArticle ? { ...staticArticle, seo: undefined } : undefined;
-}
+});
 
 export async function getAllInsightsForSitemap() {
   try {

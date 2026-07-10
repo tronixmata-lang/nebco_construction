@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import {
   Certificate as CertificateModel,
@@ -36,7 +37,8 @@ import {
 } from "@/lib/data/site-content-defaults";
 import type { SiteContentDocument } from "@/lib/db/models/SiteContent";
 
-export async function getSiteContent() {
+/** Deduped per request via React cache — many components call this in a single render. */
+export const getSiteContent = cache(async () => {
   try {
     await connectDB();
     const doc = await SiteContentModel.findOne({ key: "global" }).lean();
@@ -64,9 +66,9 @@ export async function getSiteContent() {
     },
     pageHeroImages: defaultPageHeroImages,
   };
-}
+});
 
-export async function getDivisions(): Promise<Division[]> {
+export const getDivisions = cache(async (): Promise<Division[]> => {
   try {
     await connectDB();
     const docs = await DivisionModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -86,9 +88,9 @@ export async function getDivisions(): Promise<Division[]> {
     /* fallback */
   }
   return staticDivisions;
-}
+});
 
-export async function getDivisionBySlug(slug: string): Promise<Division | undefined> {
+export const getDivisionBySlug = cache(async (slug: string): Promise<Division | undefined> => {
   try {
     await connectDB();
     const doc = await DivisionModel.findOne({ slug, published: true }).lean();
@@ -108,14 +110,14 @@ export async function getDivisionBySlug(slug: string): Promise<Division | undefi
     /* fallback */
   }
   return staticGetDivision(slug);
-}
+});
 
 export async function getSectors(): Promise<IndustrySector[]> {
   const { getSectorsList } = await import("@/lib/data/sectors");
   return getSectorsList();
 }
 
-export async function getValuePillars(): Promise<ValuePillar[]> {
+export const getValuePillars = cache(async (): Promise<ValuePillar[]> => {
   try {
     await connectDB();
     const docs = await ValuePillarModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -131,9 +133,9 @@ export async function getValuePillars(): Promise<ValuePillar[]> {
     /* fallback */
   }
   return staticPillars;
-}
+});
 
-export async function getLeaders(): Promise<Leader[]> {
+export const getLeaders = cache(async (): Promise<Leader[]> => {
   try {
     await connectDB();
     const docs = await LeaderModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -153,9 +155,9 @@ export async function getLeaders(): Promise<Leader[]> {
     /* fallback */
   }
   return staticLeaders;
-}
+});
 
-export async function getTestimonials(): Promise<Testimonial[]> {
+export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
   try {
     await connectDB();
     const docs = await TestimonialModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -172,9 +174,9 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     /* fallback */
   }
   return staticTestimonials;
-}
+});
 
-export async function getStats(): Promise<Stat[]> {
+export const getStats = cache(async (): Promise<Stat[]> => {
   try {
     await connectDB();
     const docs = await StatModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -189,9 +191,9 @@ export async function getStats(): Promise<Stat[]> {
     /* fallback */
   }
   return staticStats;
-}
+});
 
-export async function getCertificates(): Promise<CertificateType[]> {
+export const getCertificates = cache(async (): Promise<CertificateType[]> => {
   try {
     await connectDB();
     const docs = await CertificateModel.find({ published: true }).sort({ sortOrder: 1 }).lean();
@@ -208,4 +210,4 @@ export async function getCertificates(): Promise<CertificateType[]> {
     /* fallback */
   }
   return staticCertSection.certificates;
-}
+});

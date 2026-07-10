@@ -376,7 +376,7 @@ export default function AdminSettingsPage() {
                 }
               />
             </AdminField>
-            <AdminField label="Phone Button Label" hint="Secondary button — links to the site phone number">
+            <AdminField label="Phone Button Label" hint="Secondary button, links to the site phone number">
               <input
                 className="admin-input"
                 value={form.hero.secondaryCta.label}

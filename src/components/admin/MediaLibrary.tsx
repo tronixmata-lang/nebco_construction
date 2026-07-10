@@ -204,7 +204,7 @@ export function MediaLibraryGrid({
         <div className="admin-card flex flex-col items-center justify-center py-16 text-center">
           <ImagePlus className="h-12 w-12 text-[var(--admin-muted)]" />
           <p className="mt-4 text-[var(--admin-muted)]">
-            {query ? "No files match your search" : "No uploads yet — click Upload to add images"}
+            {query ? "No files match your search" : "No uploads yet. Click Upload to add images"}
           </p>
         </div>
       ) : view === "grid" || compact ? (

@@ -17,7 +17,7 @@ export function ProjectGallery({ project, images }: ProjectGalleryProps) {
       <SectionHeader
         eyebrow="Visual Tour"
         title="Project Gallery"
-        description="Additional views from the build — craftsmanship, scale, and finish quality."
+        description="Additional views from the build: craftsmanship, scale, and finish quality."
       />
       <StaggerReveal
         className="grid gap-4 sm:grid-cols-2"
@@ -30,7 +30,7 @@ export function ProjectGallery({ project, images }: ProjectGalleryProps) {
           >
             <CmsImage
               src={src}
-              alt={`${projectImageAlt(project)} — gallery image ${index + 1}`}
+              alt={`${projectImageAlt(project)}, gallery image ${index + 1}`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 640px) 100vw, 50vw"

@@ -4,6 +4,7 @@ import {
   leaderProfiles as staticLeaderProfiles,
   leaders as staticLeaders,
 } from "@/content/leadership";
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import { Leader as LeaderModel, type LeaderDocument } from "@/lib/db/models/Leader";
 import type { Leader, LeaderArticle, LeaderProfile } from "@/types";
@@ -72,7 +73,7 @@ export async function getAllLeaderIds(): Promise<string[]> {
   return staticLeaders.map((leader) => leader.id);
 }
 
-export async function getLeaderProfileById(id: string): Promise<LeaderProfile | undefined> {
+export const getLeaderProfileById = cache(async (id: string): Promise<LeaderProfile | undefined> => {
   try {
     await connectDB();
     const doc = await LeaderModel.findOne({ legacyId: id, published: true }).lean();
@@ -83,7 +84,7 @@ export async function getLeaderProfileById(id: string): Promise<LeaderProfile | 
     /* fallback */
   }
   return getStaticLeaderProfileById(id);
-}
+});
 
 export async function getLeaderArticle(leaderId: string, articleSlug: string) {
   try {

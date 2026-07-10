@@ -212,7 +212,7 @@ export function articleSchema(article: InsightArticle) {
 }
 
 export function projectImageAlt(project: Project): string {
-  return `${project.title} — NEBCO ${project.category} construction project in ${project.location}, Nepal`;
+  return `${project.title}, NEBCO ${project.category} construction project in ${project.location}, Nepal`;
 }
 
 export function serviceSchema(division: Division) {

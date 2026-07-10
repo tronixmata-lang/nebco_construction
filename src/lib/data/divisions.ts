@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getStaticDivisionProfile } from "@/content/division-profiles";
 import { connectDB } from "@/lib/db/connect";
 import {
@@ -65,16 +66,19 @@ function mapDivisionDocToProfile(doc: DivisionDocument): DivisionProfile {
   };
 }
 
-export async function getDivisionProfileBySlug(slug: string): Promise<DivisionProfile | undefined> {
-  try {
-    await connectDB();
-    const doc = await DivisionModel.findOne({ slug, published: true }).lean();
-    if (doc) {
-      return mapDivisionDocToProfile(doc);
+/** Deduped per request — generateMetadata and the page body both call this. */
+export const getDivisionProfileBySlug = cache(
+  async (slug: string): Promise<DivisionProfile | undefined> => {
+    try {
+      await connectDB();
+      const doc = await DivisionModel.findOne({ slug, published: true }).lean();
+      if (doc) {
+        return mapDivisionDocToProfile(doc);
+      }
+    } catch {
+      /* fallback */
     }
-  } catch {
-    /* fallback */
-  }
 
-  return getStaticDivisionProfile(slug) ?? undefined;
-}
+    return getStaticDivisionProfile(slug) ?? undefined;
+  },
+);

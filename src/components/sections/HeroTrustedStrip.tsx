@@ -9,7 +9,7 @@ export async function HeroTrustedStrip() {
     const match = companyStats.find((stat) => stat.id === item.id);
     return {
       id: item.id,
-      value: match?.value ?? "—",
+      value: match?.value ?? "-",
       label: match?.label ?? item.label,
     };
   });

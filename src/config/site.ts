@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "National Estate Builders Co. Pvt. Ltd.",
   shortName: "NEBCO",
   tagline: "Quality. Integrity. Timely.",
-  seoTitle: "NEBCO — Best and No 1 Construction Company in Nepal",
+  seoTitle: "NEBCO | Best and No 1 Construction Company in Nepal",
   description:
     "Established in 1995, NEBCO is an A-Class construction company in Nepal specializing in residential, commercial, and infrastructure projects across Kathmandu and beyond.",
   url: "https://nebco.com.np",

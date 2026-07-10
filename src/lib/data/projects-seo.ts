@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import { Project as ProjectModel } from "@/lib/db/models";
 import { getProjectBySlug as staticGetBySlug } from "@/content/projects";
@@ -40,7 +41,7 @@ function mapProject(doc: {
   };
 }
 
-export async function getProjectWithSeo(slug: string): Promise<ProjectWithSeo | undefined> {
+export const getProjectWithSeo = cache(async (slug: string): Promise<ProjectWithSeo | undefined> => {
   try {
     await connectDB();
     const doc = await ProjectModel.findOne({ slug, published: true }).lean();
@@ -50,7 +51,7 @@ export async function getProjectWithSeo(slug: string): Promise<ProjectWithSeo | 
   }
   const staticProject = staticGetBySlug(slug);
   return staticProject ? { ...staticProject, seo: undefined } : undefined;
-}
+});
 
 export async function getAllProjectsForSitemap() {
   try {

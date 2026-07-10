@@ -27,11 +27,13 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+// Decorative font used only in the chairman quote (below the fold) — one weight, no preload
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400"],
   variable: "--font-dancing-script",
   display: "swap",
+  preload: false,
 });
 
 export async function generateMetadata(): Promise<Metadata> {

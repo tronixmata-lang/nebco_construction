@@ -49,7 +49,7 @@ export const projects: Project[] = [
     location: "Kathmandu",
     year: "2024",
     description:
-      "Custom residence designed and constructed to meet the client's vision with premium finishes throughout. NEBCO managed the full build cycle — from structural work to interior detailing — ensuring quality at every step.",
+      "Custom residence designed and constructed to meet the client's vision with premium finishes throughout. NEBCO managed the full build cycle, from structural work to interior detailing, ensuring quality at every step.",
     image: "/images/site/IMG_4349-scaled.jpg",
   },
   {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     location: "Bhutan",
     year: "2024",
     description:
-      "International infrastructure project — hospital construction demonstrating NEBCO's cross-border capability. Our experienced team deployed specialized skills and rigorous safety standards to support critical healthcare infrastructure abroad.",
+      "International infrastructure project: hospital construction demonstrating NEBCO's cross-border capability. Our experienced team deployed specialized skills and rigorous safety standards to support critical healthcare infrastructure abroad.",
     image: "/images/site/1-7_11zon-scaled.jpg",
   },
   {
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     location: "Kathmandu",
     year: "2024",
     description:
-      "Private residence built with NEBCO's commitment to quality and client satisfaction. Every detail — from structural framing to final finishes — was executed with the care and accountability our clients expect.",
+      "Private residence built with NEBCO's commitment to quality and client satisfaction. Every detail, from structural framing to final finishes, was executed with the care and accountability our clients expect.",
     image: "/images/site/IMG_4352_11zon-scaled.jpg",
   },
   {

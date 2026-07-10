@@ -172,7 +172,7 @@ export default async function ContactPage() {
               <SectionHeader
                 eyebrow="Visit Us"
                 title="Our Kathmandu Office"
-                description="Located in Kuleshwor, our office is open Sunday through Friday. Walk-ins are welcome — we recommend scheduling a visit for project consultations."
+                description="Located in Kuleshwor, our office is open Sunday through Friday. Walk-ins are welcome. We recommend scheduling a visit for project consultations."
               />
               <p className="font-medium text-secondary">{siteConfig.address}</p>
               <a

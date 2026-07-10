@@ -13,10 +13,10 @@ export function DivisionOtherVerticals({ divisions }: DivisionOtherVerticalsProp
 
   return (
     <div>
-      <ScrollReveal>
+      <ScrollReveal className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Integrated Group</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Explore Other Verticals</h2>
-        <p className="mt-4 max-w-2xl text-base text-text-muted">
+        <p className="mt-4 text-base text-text-muted">
           NEBCO&apos;s verticals work together so clients can move from advisory and investment through
           construction with one trusted partner.
         </p>

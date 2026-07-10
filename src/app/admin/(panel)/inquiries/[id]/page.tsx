@@ -54,7 +54,7 @@ export default function InquiryDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <>
-      <AdminHeader title="Inquiry Details" description={`From ${inquiry.name} — ${new Date(inquiry.createdAt).toLocaleString()}`} />
+      <AdminHeader title="Inquiry Details" description={`From ${inquiry.name}, ${new Date(inquiry.createdAt).toLocaleString()}`} />
 
       <div className="admin-card mb-6 space-y-4 p-6">
         <div className="grid gap-4 sm:grid-cols-2">

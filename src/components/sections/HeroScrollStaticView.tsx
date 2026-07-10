@@ -11,9 +11,18 @@ const heroCtaBase =
 
 const sinceDecadesPattern = /^(.*?)(,?\s*SINCE\s+3\s+DECADES?)\s*$/i;
 
+function normalizeHeroSubheadline(text: string): string {
+  return text
+    .replace(/\s*—\s*/g, ", ")
+    .replace(/\s*–\s*/g, ", ")
+    .replace(/,\s*,/g, ",")
+    .trim();
+}
+
 function renderHeroSubheadline(subheadline: string) {
-  const match = subheadline.match(sinceDecadesPattern);
-  if (!match) return subheadline;
+  const normalized = normalizeHeroSubheadline(subheadline);
+  const match = normalized.match(sinceDecadesPattern);
+  if (!match) return normalized;
 
   const [, before, highlight] = match;
   return (
@@ -69,7 +78,7 @@ export function HeroScrollStaticView({
           <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
             {headline}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral/85 sm:mt-6 sm:text-lg md:text-xl">
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral/85 sm:mt-6 sm:text-base md:text-lg">
             {renderHeroSubheadline(subheadline)}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">

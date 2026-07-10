@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import { Project } from "@/lib/db/models";
 import { projects as staticProjects, getProjectBySlug as staticGetBySlug } from "@/content/projects";
@@ -36,7 +37,7 @@ function toProjectType(doc: {
   };
 }
 
-export async function getProjects(): Promise<ProjectType[]> {
+export const getProjects = cache(async (): Promise<ProjectType[]> => {
   try {
     await connectDB();
     const docs = await Project.find({ published: true })
@@ -49,7 +50,7 @@ export async function getProjects(): Promise<ProjectType[]> {
     /* fallback */
   }
   return staticProjects;
-}
+});
 
 export async function getFeaturedProjects(limit = 4): Promise<ProjectType[]> {
   try {
@@ -68,7 +69,7 @@ export async function getFeaturedProjects(limit = 4): Promise<ProjectType[]> {
   return staticProjects.slice(0, limit);
 }
 
-export async function getProjectBySlug(slug: string): Promise<ProjectType | undefined> {
+export const getProjectBySlug = cache(async (slug: string): Promise<ProjectType | undefined> => {
   try {
     await connectDB();
     const doc = await Project.findOne({ slug, published: true }).lean();
@@ -77,7 +78,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectType | unde
     /* fallback */
   }
   return staticGetBySlug(slug);
-}
+});
 
 export async function getMostViewedProjects(
   limit = 5,

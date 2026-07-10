@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDB } from "@/lib/db/connect";
 import { Insight } from "@/lib/db/models";
 import { insights as staticInsights, getInsightBySlug as staticGetBySlug } from "@/content/insights";
@@ -28,7 +29,7 @@ function toInsightType(doc: {
   };
 }
 
-export async function getInsights(): Promise<InsightArticle[]> {
+export const getInsights = cache(async (): Promise<InsightArticle[]> => {
   try {
     await connectDB();
     const docs = await Insight.find({ status: "published" }).sort({ date: -1 }).lean();
@@ -39,7 +40,7 @@ export async function getInsights(): Promise<InsightArticle[]> {
     /* fallback */
   }
   return staticInsights;
-}
+});
 
 export async function getInsightBySlug(slug: string): Promise<InsightArticle | undefined> {
   try {

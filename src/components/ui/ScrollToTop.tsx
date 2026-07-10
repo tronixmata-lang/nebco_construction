@@ -39,7 +39,7 @@ export function ScrollToTop() {
       aria-label="Scroll to top"
       title="Back to top"
       className={cn(
-        "scroll-to-top fixed right-5 bottom-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-accent/35 bg-secondary text-neutral shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)] transition-[opacity,transform,box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:right-6 sm:bottom-6",
+        "scroll-to-top fixed right-4 bottom-[5.75rem] z-50 flex h-11 w-11 items-center justify-center rounded-full border border-accent/35 bg-secondary text-neutral shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)] transition-[opacity,transform,box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:right-6 sm:bottom-[6.25rem]",
         visible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0",

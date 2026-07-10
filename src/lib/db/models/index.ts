@@ -9,6 +9,7 @@ export { Testimonial, type TestimonialDocument } from "./Testimonial";
 export { Stat, type StatDocument } from "./Stat";
 export { Certificate, type CertificateDocument } from "./Certificate";
 export { ContactInquiry, type ContactInquiryDocument } from "./ContactInquiry";
+export { AssistantChat, type AssistantChatDocument } from "./AssistantChat";
 export { SiteContent, type SiteContentDocument } from "./SiteContent";
 export { SeoSettings, seoFieldsSchema, type SeoSettingsDocument, type SeoFieldsDocument } from "./SeoSettings";
 export { Redirect, type RedirectDocument } from "./Redirect";

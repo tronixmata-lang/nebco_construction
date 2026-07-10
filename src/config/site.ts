@@ -18,9 +18,11 @@ export const siteConfig = {
   siteLogo: "/images/site/NEBCO-Logo.png",
   ogImage: "/opengraph-image",
   geo: {
-    latitude: 27.703,
-    longitude: 85.3,
+    latitude: 27.686732,
+    longitude: 85.299335,
   },
+  googleMapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2091.6367497500523!2d85.29933496371326!3d27.686732295252533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1996b5fc27a7%3A0xf16f8d7e7c578dab!2sNEBCO-%20Best%20Construction%20Company%20In%20Nepal!5e0!3m2!1sen!2snp!4v1783666307998!5m2!1sen!2snp",
   areaServed: ["Kathmandu", "Nepal", "South Asia"],
   knowsAbout: [
     "Construction",

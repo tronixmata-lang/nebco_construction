@@ -1,9 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import type { Testimonial } from "@/types";
 
-const AUTO_SCROLL_MS = 4000;
+const AUTO_ADVANCE_MS = 5000;
+const CARD_GAP_PX = 16;
 
 function getInitials(name: string) {
   return name
@@ -13,6 +15,31 @@ function getInitials(name: string) {
     .map((part) => part[0])
     .join("")
     .toUpperCase();
+}
+
+function useVisibleCount() {
+  const [visibleCount, setVisibleCount] = useState(1);
+
+  useEffect(() => {
+    const querySm = window.matchMedia("(min-width: 640px)");
+    const queryLg = window.matchMedia("(min-width: 1024px)");
+
+    const update = () => {
+      if (queryLg.matches) setVisibleCount(3);
+      else if (querySm.matches) setVisibleCount(2);
+      else setVisibleCount(1);
+    };
+
+    update();
+    querySm.addEventListener("change", update);
+    queryLg.addEventListener("change", update);
+    return () => {
+      querySm.removeEventListener("change", update);
+      queryLg.removeEventListener("change", update);
+    };
+  }, []);
+
+  return visibleCount;
 }
 
 function QuoteIcon() {
@@ -52,18 +79,21 @@ function VerifiedBadge() {
 function ScrollButton({
   direction,
   onClick,
+  disabled,
 }: {
   direction: "left" | "right";
   onClick: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       aria-label={
-        direction === "left" ? "Scroll testimonials left" : "Scroll testimonials right"
+        direction === "left" ? "Show previous testimonials" : "Show next testimonials"
       }
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-neutral-border bg-neutral text-secondary transition-colors hover:border-primary/30 hover:text-primary"
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-neutral-border bg-neutral text-secondary transition-colors hover:border-primary/30 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
     >
       <svg
         className="h-4 w-4"
@@ -85,58 +115,90 @@ function ScrollButton({
   );
 }
 
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <article className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-5 transition-colors duration-300 hover:border-primary/25 hover:shadow-lg">
+      <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+
+      <div className="flex items-start justify-between gap-2">
+        <QuoteIcon />
+        <VerifiedBadge />
+      </div>
+
+      <blockquote className="mt-3 flex-1">
+        <p className="line-clamp-5 text-sm leading-relaxed text-secondary">
+          &ldquo;{testimonial.quote}&rdquo;
+        </p>
+      </blockquote>
+
+      <div className="mt-4 flex items-center gap-3 border-t border-neutral-border pt-4">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-neutral">
+          {getInitials(testimonial.author)}
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-secondary">{testimonial.author}</p>
+          <p className="truncate text-xs text-text-muted">{testimonial.role}</p>
+          <p className="truncate text-[10px] font-medium tracking-wide text-accent uppercase">
+            {testimonial.organization}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 type TestimonialsCarouselProps = {
   testimonials: Testimonial[];
 };
 
 export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const visibleCount = useVisibleCount();
+  const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [stepPx, setStepPx] = useState(0);
+  const [cardWidthPx, setCardWidthPx] = useState(0);
 
-  const getScrollDistance = useCallback(() => {
-    const container = scrollRef.current;
-    if (!container) return 0;
-
-    const card = container.querySelector<HTMLElement>("[data-testimonial-card]");
-    const cardWidth = card?.offsetWidth ?? container.clientWidth / 3;
-    return cardWidth + 16;
-  }, []);
-
-  const scroll = useCallback(
-    (direction: "left" | "right") => {
-      const container = scrollRef.current;
-      if (!container) return;
-
-      const distance = getScrollDistance();
-      const maxScroll = container.scrollWidth - container.clientWidth;
-
-      if (direction === "right" && container.scrollLeft >= maxScroll - 8) {
-        container.scrollTo({ left: 0, behavior: "smooth" });
-        return;
-      }
-
-      if (direction === "left" && container.scrollLeft <= 8) {
-        container.scrollTo({ left: maxScroll, behavior: "smooth" });
-        return;
-      }
-
-      container.scrollBy({
-        left: direction === "left" ? -distance : distance,
-        behavior: "smooth",
-      });
-    },
-    [getScrollDistance],
-  );
+  const maxIndex = Math.max(0, testimonials.length - visibleCount);
+  const canSlide = maxIndex > 0;
 
   useEffect(() => {
-    if (isPaused) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
 
-    const interval = window.setInterval(() => {
-      scroll("right");
-    }, AUTO_SCROLL_MS);
+    const updateStep = () => {
+      const width = viewport.clientWidth;
+      const cardWidth = (width - CARD_GAP_PX * (visibleCount - 1)) / visibleCount;
+      setCardWidthPx(cardWidth);
+      setStepPx(cardWidth + CARD_GAP_PX);
+    };
 
+    updateStep();
+    const observer = new ResizeObserver(updateStep);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [visibleCount]);
+
+  const goNext = useCallback(() => {
+    setIndex((current) => (current >= maxIndex ? 0 : current + 1));
+  }, [maxIndex]);
+
+  const goPrev = useCallback(() => {
+    setIndex((current) => (current <= 0 ? maxIndex : current - 1));
+  }, [maxIndex]);
+
+  useEffect(() => {
+    setIndex((current) => Math.min(current, maxIndex));
+  }, [maxIndex]);
+
+  useEffect(() => {
+    if (isPaused || !canSlide) return;
+
+    const interval = window.setInterval(goNext, AUTO_ADVANCE_MS);
     return () => window.clearInterval(interval);
-  }, [isPaused, scroll]);
+  }, [canSlide, goNext, isPaused]);
+
+  if (testimonials.length === 0) return null;
 
   return (
     <div
@@ -146,53 +208,31 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
     >
-      <div className="mb-4 flex items-center justify-end gap-2">
-        <ScrollButton direction="left" onClick={() => scroll("left")} />
-        <ScrollButton direction="right" onClick={() => scroll("right")} />
-      </div>
+      {canSlide ? (
+        <div className="mb-4 flex items-center justify-end gap-2">
+          <ScrollButton direction="left" onClick={goPrev} />
+          <ScrollButton direction="right" onClick={goNext} />
+        </div>
+      ) : null}
 
-      <div
-        ref={scrollRef}
-        data-lenis-prevent
-        className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {testimonials.map((testimonial) => (
-          <article
-            key={testimonial.id}
-            data-testimonial-card
-            className="group relative flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral p-5 transition-all duration-300 hover:border-primary/25 hover:shadow-lg sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
-          >
-            <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-
-            <div className="flex items-start justify-between gap-2">
-              <QuoteIcon />
-              <VerifiedBadge />
+      <div ref={viewportRef} className="overflow-hidden">
+        <div
+          className={cn(
+            "flex gap-4 will-change-transform",
+            canSlide && "transition-transform duration-500 ease-out motion-reduce:transition-none",
+          )}
+          style={{ transform: `translate3d(-${index * stepPx}px, 0, 0)` }}
+        >
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="shrink-0"
+              style={cardWidthPx > 0 ? { width: cardWidthPx } : undefined}
+            >
+              <TestimonialCard testimonial={testimonial} />
             </div>
-
-            <blockquote className="mt-3 flex-1">
-              <p className="line-clamp-5 text-sm leading-relaxed text-secondary">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-            </blockquote>
-
-            <div className="mt-4 flex items-center gap-3 border-t border-neutral-border pt-4">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-neutral">
-                {getInitials(testimonial.author)}
-              </div>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-secondary">
-                  {testimonial.author}
-                </p>
-                <p className="truncate text-xs text-text-muted">
-                  {testimonial.role}
-                </p>
-                <p className="truncate text-[10px] font-medium tracking-wide text-accent uppercase">
-                  {testimonial.organization}
-                </p>
-              </div>
-            </div>
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -22,20 +22,26 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 
     const lenis = new Lenis({
       autoRaf: true,
-      lerp: 0.08,
-      duration: 1.15,
+      lerp: 0.1,
+      duration: 1.05,
       easing: easeOutExpo,
       smoothWheel: true,
-      wheelMultiplier: 0.92,
-      touchMultiplier: 1.2,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+      syncTouch: false,
       anchors: {
         offset: HEADER_OFFSET,
         duration: 1.2,
         easing: easeOutExpo,
       },
-      prevent: (node) => Boolean(node.closest("[data-lenis-prevent]")),
+      prevent: (node) => {
+        if (node.closest("[data-lenis-prevent]")) return true;
+        const element = node as HTMLElement;
+        if (element.tagName === "IFRAME") {
+          return !element.classList.contains("pointer-events-none");
+        }
+        return false;
+      },
     });
 
     setLenis(lenis);

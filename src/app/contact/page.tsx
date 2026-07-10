@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactMapEmbed } from "@/components/contact/ContactMapEmbed";
 import { NEBCO_FACEBOOK_URL, siteConfig } from "@/config/site";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -166,8 +167,8 @@ export default async function ContactPage() {
       </Section>
 
       <Section glow="accent">
-        <ScrollReveal>
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <ScrollReveal>
             <div>
               <SectionHeader
                 eyebrow="Visit Us"
@@ -182,16 +183,12 @@ export default async function ContactPage() {
                 {siteConfig.phone}
               </a>
             </div>
-            <div className="overflow-hidden rounded-sm border border-neutral-border shadow-lg transition-shadow duration-300 hover:shadow-xl">
-              <iframe
-                title="NEBCO office location in Kuleshwor, Kathmandu"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=85.295%2C27.698%2C85.305%2C27.708&layer=mapnik&marker=27.703%2C85.300"
-                className="h-64 w-full border-0 md:h-72"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+          <ContactMapEmbed
+            src={siteConfig.googleMapsEmbedUrl}
+            title="NEBCO office location in Kuleshwor, Kathmandu"
+          />
+        </div>
       </Section>
 
       <Section variant="muted" glow="primary">

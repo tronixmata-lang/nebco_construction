@@ -25,6 +25,7 @@ export const adminNav = [
       { label: "SEO & Analytics", href: "/admin/seo", icon: "search" },
       { label: "Analytics", href: "/admin/analytics", icon: "line-chart" },
       { label: "Contact Inquiries", href: "/admin/inquiries", icon: "inbox" },
+      { label: "Assistant Chats", href: "/admin/assistant-chats", icon: "bot" },
       { label: "Admin Users", href: "/admin/users", icon: "user-cog" },
     ],
   },

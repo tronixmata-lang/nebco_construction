@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   Award,
   BarChart3,
+  Bot,
   Building2,
   ExternalLink,
   Factory,
@@ -46,6 +47,7 @@ const iconMap = {
   "line-chart": LineChart,
   settings: Settings,
   inbox: Inbox,
+  bot: Bot,
   "user-cog": UserCog,
 } as const;
 

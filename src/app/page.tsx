@@ -47,11 +47,11 @@ export default function HomePage() {
       <JsonLd data={faqSchema([...homeFaq])} />
       <HeroSection />
       <PageBodyLead />
+      <BusinessDivisions />
       <CertificateSection />
       <ScrollReveal delay={50}>
         <CompanyOverview />
       </ScrollReveal>
-      <BusinessDivisions />
       <ScrollReveal delay={50}>
         <ValuePillars />
       </ScrollReveal>

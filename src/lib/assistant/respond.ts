@@ -60,7 +60,7 @@ export function detectSmallTalk(
   return null;
 }
 
-export function getSuggestionsForTopic(topicId: string, knowledge: AssistantKnowledge): string[] {
+export function getSuggestionsForTopic(topicId: string): string[] {
   const map: Record<string, string[]> = {
     about: ["What services do you offer?", "Are you A-Class licensed?", "Book a consultation"],
     divisions: ["Tell me about Construction", "Book Construction meeting", "View portfolio"],
@@ -155,7 +155,7 @@ export function formatTopicReply(
       return {
         text: `${site.legalName} has operated since ${site.foundingDate} under ${site.parentOrganization}. ${truncate(site.description, 220)} Our tagline is "${site.tagline}". Would you like to explore our divisions or schedule a consultation?`,
         links: entry.link ? [entry.link] : [{ label: "About NEBCO", href: "/about" }],
-        suggestions: getSuggestionsForTopic("about", knowledge),
+        suggestions: getSuggestionsForTopic("about"),
       };
 
     case "contact":
@@ -166,7 +166,7 @@ export function formatTopicReply(
           { label: `Call ${site.phone}`, href: `tel:${site.phone.replace(/\s/g, "")}` },
           { label: "Send email", href: `mailto:${site.email}` },
         ],
-        suggestions: getSuggestionsForTopic("contact", knowledge),
+        suggestions: getSuggestionsForTopic("contact"),
       };
 
     case "divisions": {
@@ -185,7 +185,7 @@ export function formatTopicReply(
       return {
         text: `Here are some of our recent projects:\n\n${lines.map((l) => `• ${truncate(l, 120)}`).join("\n")}\n\nWant to see the full portfolio or discuss a similar project?`,
         links: entry.link ? [entry.link] : [{ label: "View portfolio", href: "/portfolio" }],
-        suggestions: getSuggestionsForTopic("projects", knowledge),
+        suggestions: getSuggestionsForTopic("projects"),
       };
     }
 
@@ -193,26 +193,26 @@ export function formatTopicReply(
       return {
         text: `Our leadership team guides NEBCO across construction, investment, and consulting.\n\n${truncate(entry.content, 320)}`,
         links: entry.link ? [entry.link] : [{ label: "Meet the team", href: "/leadership" }],
-        suggestions: getSuggestionsForTopic("leadership", knowledge),
+        suggestions: getSuggestionsForTopic("leadership"),
       };
 
     case "certificates":
       return {
         text: `Yes, NEBCO is a licensed A-Class construction company in Nepal. ${truncate(entry.content, 240)}`,
         links: entry.link ? [entry.link] : undefined,
-        suggestions: getSuggestionsForTopic("certificates", knowledge),
+        suggestions: getSuggestionsForTopic("certificates"),
       };
 
     case "stats":
       return {
         text: `A few highlights about our track record:\n\n${entry.content.split("\n").map((s) => `• ${s}`).join("\n")}`,
-        suggestions: getSuggestionsForTopic("stats", knowledge),
+        suggestions: getSuggestionsForTopic("stats"),
       };
 
     case "testimonials":
       return {
         text: `Clients across residential, commercial, and hospitality trust NEBCO for quality and on-time delivery.\n\n${truncate(entry.content, 300)}`,
-        suggestions: getSuggestionsForTopic("testimonials", knowledge),
+        suggestions: getSuggestionsForTopic("testimonials"),
       };
 
     case "booking":
@@ -234,7 +234,7 @@ export function formatTopicReply(
       return {
         text: "Yes, we regularly work with NRN and international clients on residential, commercial, and investment projects in Nepal. We focus on clear communication and professional project management throughout.",
         links: [{ label: "Contact NEBCO", href: "/contact" }],
-        suggestions: getSuggestionsForTopic("nrn", knowledge),
+        suggestions: getSuggestionsForTopic("nrn"),
       };
 
     default:
@@ -245,21 +245,21 @@ export function formatTopicReply(
           links: entry.link ? [entry.link] : undefined,
           suggestions: division
             ? [`Book ${division.name}`, "Our divisions", "Contact info"]
-            : getSuggestionsForTopic("divisions", knowledge),
+            : getSuggestionsForTopic("divisions"),
         };
       }
 
       if (entry.id.startsWith("faq-")) {
         return {
           text: entry.content,
-          suggestions: getSuggestionsForTopic(topicId, knowledge),
+          suggestions: getSuggestionsForTopic(topicId),
         };
       }
 
       return {
         text: truncate(entry.content, 360),
         links: entry.link ? [entry.link] : undefined,
-        suggestions: getSuggestionsForTopic(topicId, knowledge),
+        suggestions: getSuggestionsForTopic(topicId),
       };
   }
 }

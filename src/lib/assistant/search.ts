@@ -283,7 +283,7 @@ export function isBackIntent(query: string): boolean {
   return /^(back|previous|go back)\b/.test(normalize(query));
 }
 
-export function resolveTopicEntryId(topicId: string, entries: KnowledgeEntry[]): string {
+export function resolveTopicEntryId(topicId: string): string {
   if (topicId === "construction") return "division-construction";
   if (topicId === "investment") return "division-investment";
   if (topicId === "consulting") return "division-consulting";

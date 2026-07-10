@@ -218,7 +218,7 @@ export function NebcoAssistance() {
 
   const getEntry = useCallback(
     (topicId: string, data: AssistantKnowledge) => {
-      const entryId = resolveTopicEntryId(topicId, data.entries);
+      const entryId = resolveTopicEntryId(topicId);
       return data.entries.find((item) => item.id === entryId) ?? data.entries.find((item) => item.id === topicId);
     },
     [],
@@ -412,7 +412,7 @@ export function NebcoAssistance() {
 
       await reply(formatFallback(knowledge));
     },
-    [appendMessage, bookingActive, bookingStep, handleBookingText, handleTopic, knowledge, reply, startBookingWithDivision],
+    [appendMessage, bookingActive, bookingStep, handleBookingText, handleTopic, knowledge, messages, reply, startBookingWithDivision],
   );
 
   const submitBooking = useCallback(async () => {

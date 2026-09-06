@@ -1,13 +1,20 @@
 import { getSiteContent } from "@/lib/data/content";
+import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-export async function CtaBanner({ showContactButton = true }: { showContactButton?: boolean }) {
+export async function CtaBanner({
+  showContactButton = true,
+  className,
+}: {
+  showContactButton?: boolean;
+  className?: string;
+}) {
   const { ctaBanner } = await getSiteContent();
 
   return (
-    <section className="relative overflow-hidden bg-primary py-16 md:py-20">
+    <section className={cn("relative overflow-hidden bg-primary pt-12 pb-10 md:pt-14 md:pb-12", className)}>
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{

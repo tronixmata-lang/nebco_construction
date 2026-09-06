@@ -17,7 +17,7 @@ export function VerticalsScrollShowcase({
   return (
     <section
       id="divisions"
-      className="relative overflow-x-clip bg-neutral-muted py-14 md:py-24"
+      className="relative overflow-x-clip bg-neutral-muted py-10 md:py-14"
     >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-neutral-border/80"

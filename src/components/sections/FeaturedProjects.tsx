@@ -12,7 +12,7 @@ export async function FeaturedProjects() {
   ]);
 
   return (
-    <Section variant="muted" id="portfolio">
+    <Section variant="muted" id="portfolio" className="pt-6 pb-6 md:pt-8 md:pb-8">
       <SectionHeader
         eyebrow={homepageSections.featuredProjects.eyebrow}
         title={homepageSections.featuredProjects.title}

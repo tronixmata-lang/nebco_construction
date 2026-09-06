@@ -9,7 +9,7 @@ type AboutMissionSectionProps = {
 
 export function AboutMissionSection({ mission, vision }: AboutMissionSectionProps) {
   return (
-    <Section className="bg-neutral py-14 md:py-20" glow="none">
+    <Section className="bg-neutral pt-6 pb-6 md:pt-8 md:pb-8" glow="none">
       <ScrollReveal>
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
           <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase">Purpose & Direction</p>

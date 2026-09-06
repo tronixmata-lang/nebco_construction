@@ -47,7 +47,7 @@ export default async function LeadershipPage() {
         backgroundImage={pageHeroImages.leadership}
         backgroundAlt="NEBCO leadership and construction team"
       />
-      <Section className="pt-10 md:pt-14" glow="none">
+      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="none">
         <ScrollReveal>
           <ChairmanMessageSection
             message={featuredMessage}
@@ -57,14 +57,14 @@ export default async function LeadershipPage() {
           />
         </ScrollReveal>
       </Section>
-      <Section variant="muted" glow="primary">
+      <Section variant="muted" className="pt-4 pb-12 md:pt-4 md:pb-16" glow="primary">
         <ScrollReveal>
           <SectionHeader
             eyebrow="Our Team"
             title="Leadership Team"
             description="The people who lead NEBCO's strategic direction and operational excellence."
             align="center"
-            className="mx-auto"
+            className="mx-auto mb-4 md:mb-6"
           />
         </ScrollReveal>
         <ScrollReveal delay={120}>
@@ -77,7 +77,7 @@ export default async function LeadershipPage() {
           />
         </ScrollReveal>
       </Section>
-      <CtaBanner />
+      <CtaBanner className="pt-6 pb-10 md:pt-8 md:pb-12" />
     </>
   );
 }

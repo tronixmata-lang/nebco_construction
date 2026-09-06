@@ -30,7 +30,7 @@ export function DivisionCapabilitiesSection({
       </ScrollReveal>
 
       <StaggerReveal
-        className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+        className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:mt-8"
         staggerMs={85}
       >
         {capabilities.map((capability, index) => (
@@ -77,11 +77,11 @@ export function DivisionCommitments({ commitments }: DivisionCommitmentsProps) {
         <p className="mt-4 text-base leading-relaxed text-text-muted">
           Principles we uphold on every engagement, from first briefing through final delivery.
         </p>
-        <span className="mx-auto mt-5 block h-0.5 w-12 rounded-full bg-primary" aria-hidden="true" />
+        <span className="mx-auto mt-4 block h-0.5 w-12 rounded-full bg-primary" aria-hidden="true" />
       </ScrollReveal>
 
       <StaggerReveal
-        className={cn("mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-5", columnClass)}
+        className={cn("mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-5 md:mt-8", columnClass)}
         staggerMs={80}
       >
         {commitments.map((item, index) => {
@@ -135,7 +135,7 @@ export function DivisionProjectsPreview({ projects }: DivisionProjectsPreviewPro
         </p>
       </ScrollReveal>
 
-      <StaggerReveal className="mt-10 grid gap-6 md:grid-cols-3" staggerMs={100}>
+      <StaggerReveal className="mt-6 grid gap-6 md:mt-8 md:grid-cols-3" staggerMs={100}>
         {projects.map((project) => (
           <Link
             key={project.slug}

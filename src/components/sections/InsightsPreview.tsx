@@ -12,7 +12,7 @@ export async function InsightsPreview() {
   ]);
 
   return (
-    <Section id="insights">
+    <Section id="insights" className="pt-6 pb-12 md:pt-8 md:pb-16">
       <SectionHeader
         eyebrow={homepageSections.insights.eyebrow}
         title={homepageSections.insights.title}

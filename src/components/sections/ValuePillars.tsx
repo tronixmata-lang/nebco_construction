@@ -1,4 +1,5 @@
 import { getSiteContent, getValuePillars } from "@/lib/data/content";
+import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -13,6 +14,7 @@ type ValuePillarsProps = {
   id?: string;
   columns?: "five" | "three";
   revealOnScroll?: boolean;
+  className?: string;
 };
 
 export async function ValuePillars({
@@ -24,6 +26,7 @@ export async function ValuePillars({
   id = "values",
   columns = "five",
   revealOnScroll = false,
+  className,
 }: ValuePillarsProps = {}) {
   const [valuePillars, { homepageSections }] = await Promise.all([
     getValuePillars(),
@@ -37,7 +40,7 @@ export async function ValuePillars({
   };
 
   return (
-    <Section id={id} variant={variant} className="relative overflow-hidden">
+    <Section id={id} variant={variant} className={cn("relative overflow-hidden", className)}>
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-neutral-border" />
       <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 

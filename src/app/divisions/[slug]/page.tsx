@@ -77,9 +77,9 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
         backgroundAlt={`${division.name}, NEBCO`}
       />
 
-      <Section className="pt-10 md:pt-14" glow="primary">
+      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="primary">
         <ScrollReveal>
-          <div className="mx-auto mb-10 flex max-w-6xl flex-col gap-4 rounded-sm border border-accent/30 bg-accent/5 px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8">
+          <div className="mx-auto mb-6 flex max-w-6xl flex-col gap-4 rounded-sm border border-accent/30 bg-accent/5 px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-neutral text-primary">
               {divisionIcons[division.id]}
             </span>
@@ -103,14 +103,14 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
         />
       </Section>
 
-      <Section variant="muted" className="py-14 md:py-20" glow="accent">
+      <Section variant="muted" className="pt-4 pb-6 md:pt-4 md:pb-8" glow="accent">
         <DivisionCapabilitiesSection
           capabilities={division.capabilities}
           divisionName={division.shortName}
         />
       </Section>
 
-      <Section className="py-14 md:py-20" glow="none">
+      <Section className="pt-4 pb-4 md:pt-4 md:pb-4" glow="none">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">How We Deliver</p>
           <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Our Delivery Process</h2>
@@ -119,28 +119,28 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
             through final handover.
           </p>
         </ScrollReveal>
-        <div className="mt-10">
+        <div className="mt-6 md:mt-8">
           <DivisionProcessFlow steps={division.process} />
         </div>
       </Section>
 
-      <Section variant="muted" className="py-14 md:py-20" glow="primary">
+      <Section variant="muted" className="pt-4 pb-6 md:pt-4 md:pb-8" glow="primary">
         <DivisionCommitments commitments={division.commitments} />
       </Section>
 
-      <Section className="py-14 md:py-20" glow="none">
+      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="none">
         <DivisionBookingSection divisionSlug={division.id} divisionName={division.name} />
       </Section>
 
-      <Section className="py-14 md:py-20" glow="accent">
+      <Section className="pt-4 pb-4 md:pt-4 md:pb-4" glow="accent">
         <DivisionProjectsPreview projects={featuredProjects} />
       </Section>
 
-      <Section variant="muted" className="py-14 md:py-20" glow="none">
+      <Section variant="muted" className="pt-4 pb-4 md:pt-4 md:pb-4" glow="none">
         <DivisionOtherVerticals divisions={otherDivisions} />
       </Section>
 
-      <CtaBanner />
+      <CtaBanner className="pt-4 pb-10 md:pt-4 md:pb-12" />
     </>
   );
 }

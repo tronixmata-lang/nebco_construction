@@ -36,14 +36,14 @@ export default async function PortfolioPage() {
         backgroundAlt="NEBCO construction cranes at a project site"
       />
 
-      <Section className="pt-10 md:pt-14" glow="primary">
+      <Section className="pt-6 pb-6 md:pt-8 md:pb-8" glow="primary">
         <ScrollReveal>
           <SectionHeader
             eyebrow="Proven Results"
             title="Esteemed Projects"
             description="Explore our work through an architectural mosaic: featured builds, sector diversity, and the craftsmanship behind every NEBCO delivery."
             align="center"
-            className="mx-auto"
+            className="mx-auto mb-6 md:mb-8"
           />
         </ScrollReveal>
         <ScrollReveal delay={120}>
@@ -51,7 +51,7 @@ export default async function PortfolioPage() {
         </ScrollReveal>
       </Section>
 
-      <CtaBanner />
+      <CtaBanner className="pt-6 pb-10 md:pt-8 md:pb-12" />
     </>
   );
 }

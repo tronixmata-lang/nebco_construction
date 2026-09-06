@@ -14,7 +14,7 @@
   align-items: center;
   width: var(--verticals-track-width);
   margin-inline: auto;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
+  gap: clamp(1rem, 1.75vw, 1.5rem);
 }
 
 /* Give the large display heading enough line-box room so ascenders
@@ -29,7 +29,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
   align-items: stretch;
 }
 
@@ -44,6 +44,7 @@
 
 .verticals-scroll__cta {
   text-align: center;
+  margin-top: 0.5rem;
 }
 
 /* Cards ignore hover/click until the reveal has settled */

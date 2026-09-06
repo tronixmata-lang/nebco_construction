@@ -17,7 +17,7 @@ type AboutStorySectionProps = {
 
 export function AboutStorySection({ history }: AboutStorySectionProps) {
   return (
-    <Section className="pt-14 md:pt-20" glow="primary">
+    <Section className="pt-14 pb-6 md:pt-20 md:pb-8" glow="primary">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 xl:gap-20">
         <div>
           <ScrollReveal>

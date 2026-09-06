@@ -209,7 +209,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
       onBlur={() => setIsPaused(false)}
     >
       {canSlide ? (
-        <div className="mb-4 flex items-center justify-end gap-2">
+        <div className="mb-2 flex items-center justify-end gap-2">
           <ScrollButton direction="left" onClick={goPrev} />
           <ScrollButton direction="right" onClick={goNext} />
         </div>

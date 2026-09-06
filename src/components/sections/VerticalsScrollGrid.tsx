@@ -179,7 +179,7 @@ export function VerticalsScrollGrid({
           title={title}
           description={description}
           align="center"
-          className="mx-auto mb-0 max-w-3xl"
+          className="mx-auto mb-0 max-w-3xl [&>div:first-child]:mb-3 [&_span.mt-4]:mt-3.5 [&_p:last-of-type]:mt-4"
         />
 
         <div ref={trackRef} className="verticals-scroll__track">

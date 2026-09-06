@@ -15,7 +15,7 @@ export async function TestimonialsSection() {
   );
 
   return (
-    <Section variant="muted" id="testimonials" className="relative overflow-hidden">
+    <Section variant="muted" id="testimonials" className="relative overflow-hidden pt-6 pb-6 md:pt-8 md:pb-8">
       <div className="pointer-events-none absolute -bottom-24 left-0 -z-10 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
       <SectionHeader
@@ -23,7 +23,7 @@ export async function TestimonialsSection() {
         title={homepageSections.testimonials.title}
         description={homepageSections.testimonials.description}
         align="center"
-        className="mx-auto"
+        className="mx-auto mb-4 md:mb-6"
       />
 
       <TestimonialsCarousel testimonials={testimonials} />

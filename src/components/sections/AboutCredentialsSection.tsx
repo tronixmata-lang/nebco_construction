@@ -18,7 +18,7 @@ export function AboutCredentialsSection({
   certificates,
 }: AboutCredentialsSectionProps) {
   return (
-    <Section variant="default" className="py-14 md:py-20" glow="primary">
+    <Section variant="default" className="pt-6 pb-6 md:pt-8 md:pb-8" glow="primary">
       <ScrollReveal>
         <SectionHeader
           eyebrow={eyebrow}

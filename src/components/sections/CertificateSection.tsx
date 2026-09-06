@@ -8,15 +8,15 @@ export async function CertificateSection() {
   const certificates = await getCertificates();
 
   return (
-    <Section variant="default" id="certificate" className="relative z-10 pt-10 md:pt-14" glow="none">
+    <Section variant="default" id="certificate" className="relative z-10 py-8 md:py-12" glow="none">
       <SectionHeader
         eyebrow={homepageSections.certificates.eyebrow}
         title={certificateSection.title}
         description={certificateSection.description}
         align="center"
-        className="mx-auto"
+        className="mx-auto mb-8 md:mb-10"
       />
-      <div className="mt-10">
+      <div className="mt-0">
         <CertificateGallery certificates={certificates} />
       </div>
     </Section>

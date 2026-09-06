@@ -22,7 +22,7 @@ export function DivisionOtherVerticals({ divisions }: DivisionOtherVerticalsProp
         </p>
       </ScrollReveal>
 
-      <StaggerReveal className="mt-10 grid gap-6 md:grid-cols-2" staggerMs={100}>
+      <StaggerReveal className="mt-6 grid gap-6 md:mt-8 md:grid-cols-2" staggerMs={100}>
         {divisions.map((division) => (
           <article
             key={division.id}

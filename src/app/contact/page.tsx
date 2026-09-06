@@ -95,7 +95,7 @@ export default async function ContactPage() {
         backgroundAlt="Contact NEBCO construction team"
       />
 
-      <Section variant="muted" className="pt-10 md:pt-14" glow="primary">
+      <Section variant="muted" className="pt-6 pb-6 md:pt-8 md:pb-8" glow="primary">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
           <ScrollReveal className="lg:col-span-3">
             <ContentCard hover={false} className="p-6 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] sm:p-8 md:p-10">
@@ -166,14 +166,15 @@ export default async function ContactPage() {
         </div>
       </Section>
 
-      <Section glow="accent">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="accent">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <ScrollReveal>
             <div>
               <SectionHeader
                 eyebrow="Visit Us"
                 title="Our Kathmandu Office"
                 description="Located in Kuleshwor, our office is open Sunday through Friday. Walk-ins are welcome. We recommend scheduling a visit for project consultations."
+                className="mb-6 md:mb-8"
               />
               <p className="font-medium text-secondary">{siteConfig.address}</p>
               <a
@@ -191,14 +192,14 @@ export default async function ContactPage() {
         </div>
       </Section>
 
-      <Section variant="muted" glow="primary">
+      <Section variant="muted" className="pt-4 pb-6 md:pt-4 md:pb-8" glow="primary">
         <ScrollReveal>
           <SectionHeader
             eyebrow="Our Verticals"
             title="Reach the Right Team"
             description="Not sure where to start? Select a vertical below or use the form above and we will route your inquiry to the right specialists."
             align="center"
-            className="mx-auto"
+            className="mx-auto mb-4 md:mb-6"
           />
         </ScrollReveal>
         <StaggerReveal className="grid gap-4 sm:grid-cols-3" staggerMs={100}>
@@ -222,7 +223,7 @@ export default async function ContactPage() {
         </StaggerReveal>
       </Section>
 
-      <CtaBanner showContactButton={false} />
+      <CtaBanner showContactButton={false} className="pt-6 pb-10 md:pt-8 md:pb-12" />
     </div>
   );
 }

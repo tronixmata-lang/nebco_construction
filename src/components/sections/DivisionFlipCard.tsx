@@ -12,11 +12,11 @@ type DivisionFlipCardProps = {
 };
 
 const cardFaceClass =
-  "absolute inset-0 flex h-full w-full flex-col rounded-sm border bg-neutral p-6 text-center [backface-visibility:hidden] sm:p-8 md:text-left";
+  "absolute inset-0 flex h-full w-full flex-col rounded-sm border bg-neutral p-5 text-center [backface-visibility:hidden] sm:p-7 md:text-left";
 
 export function DivisionFlipCard({ division, featured = false }: DivisionFlipCardProps) {
   return (
-    <div className="group relative h-full w-full min-h-[22rem] [perspective:1200px] md:min-h-[24rem]">
+    <div className="group relative h-full w-full min-h-[20rem] [perspective:1200px] md:min-h-[22rem]">
       <div
         aria-hidden="true"
         className={cn(
@@ -36,12 +36,12 @@ export function DivisionFlipCard({ division, featured = false }: DivisionFlipCar
             <span className="absolute inset-x-0 top-0 h-1 bg-primary" aria-hidden="true" />
           )}
           <DivisionCardHeader icon={divisionIcons[division.id]} />
-          <h3 className="mt-5 font-display text-xl text-secondary">{division.name}</h3>
+          <h3 className="mt-4 font-display text-xl text-secondary">{division.name}</h3>
           <p className="mt-1 text-sm font-medium text-accent">{division.tagline}</p>
-          <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
             {division.description}
           </p>
-          <p className="mt-6 text-xs font-semibold tracking-wide text-primary/70 uppercase">
+          <p className="mt-5 text-xs font-semibold tracking-wide text-primary/70 uppercase">
             <span className="hidden [@media(hover:hover)]:inline">Hover to explore services</span>
             <span className="[@media(hover:hover)]:hidden">Tap to explore services</span>
           </p>

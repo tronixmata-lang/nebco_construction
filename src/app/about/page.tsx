@@ -57,6 +57,7 @@ export default async function AboutPage() {
         description="A reputation built on quality craftsmanship, transparency, and results clients can rely on."
         columns="three"
         revealOnScroll
+        className="pt-6 pb-6 md:pt-8 md:pb-8"
       />
 
       <AboutCredentialsSection
@@ -66,7 +67,7 @@ export default async function AboutPage() {
         certificates={certificates}
       />
 
-      <CtaBanner />
+      <CtaBanner className="pt-8 pb-10 md:pt-10 md:pb-12" />
     </>
   );
 }

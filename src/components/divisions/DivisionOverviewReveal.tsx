@@ -48,7 +48,7 @@ export function DivisionOverviewReveal({
     <div
       ref={rootRef}
       className={cn(
-        "division-overview grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16",
+        "division-overview grid items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12",
         visible && "division-overview--visible",
       )}
     >

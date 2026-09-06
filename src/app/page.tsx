@@ -53,13 +53,13 @@ export default function HomePage() {
         <CompanyOverview />
       </ScrollReveal>
       <ScrollReveal delay={50}>
-        <ValuePillars />
+        <ValuePillars className="pt-6 pb-6 md:pt-8 md:pb-8" />
       </ScrollReveal>
       <ScrollReveal delay={50}>
         <FeaturedProjects />
       </ScrollReveal>
       <ScrollReveal delay={50}>
-        <IndustrySectors />
+        <IndustrySectors className="pt-6 pb-6 md:pt-8 md:pb-8" />
       </ScrollReveal>
       <TestimonialsSection />
       <ScrollReveal delay={50}>

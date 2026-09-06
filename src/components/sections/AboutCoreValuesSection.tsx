@@ -19,7 +19,7 @@ type AboutCoreValuesSectionProps = {
 
 export function AboutCoreValuesSection({ values }: AboutCoreValuesSectionProps) {
   return (
-    <Section variant="muted" className="py-14 md:py-20" glow="none">
+    <Section variant="muted" className="pt-6 pb-6 md:pt-8 md:pb-8" glow="none">
       <ScrollReveal>
         <SectionHeader
           eyebrow="What We Stand For"

@@ -16,7 +16,7 @@ export async function CompanyOverview() {
   );
 
   return (
-    <Section id="about">
+    <Section id="about" className="pt-8 pb-6 md:pt-10 md:pb-8">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="text-center md:text-left">
           <p className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">

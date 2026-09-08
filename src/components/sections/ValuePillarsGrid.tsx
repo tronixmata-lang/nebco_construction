@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 import type { ValuePillar } from "@/types";
-import { pillarIcons } from "@/components/sections/value-pillar-icons";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 type ValuePillarsGridProps = {
   pillars: ValuePillar[];
@@ -20,7 +20,7 @@ const gridClasses = {
 function ValuePillarConnector({ active }: { active: boolean }) {
   return (
     <div
-      className="value-pillar-connector hidden w-5 shrink-0 self-start pt-[2.8125rem] lg:block xl:w-7"
+      className="value-pillar-connector hidden w-5 shrink-0 self-stretch pt-[0.7rem] lg:block xl:w-7"
       aria-hidden="true"
     >
       <div
@@ -46,7 +46,7 @@ type ValuePillarCardProps = {
 function ValuePillarCard({ pillar, connected = false, onEnter, onLeave }: ValuePillarCardProps) {
   return (
     <div
-      className="value-pillar-card group relative flex min-w-0 flex-1 flex-col items-center overflow-hidden rounded-sm border border-neutral-border bg-neutral px-6 pb-8 pt-10 text-center"
+      className="value-pillar-card group relative flex h-full min-w-0 flex-col items-center overflow-visible rounded-sm border border-neutral-border bg-neutral px-5 pb-6 pt-1 text-center"
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
@@ -61,18 +61,18 @@ function ValuePillarCard({ pillar, connected = false, onEnter, onLeave }: ValueP
         </span>
       )}
 
-      <div className="value-pillar-card__icon relative mb-6 flex h-14 w-14 items-center justify-center rounded-full text-primary">
-        {pillarIcons[pillar.icon]}
+      <div className="value-pillar-card__icon relative -mt-6 mb-0 flex h-[170px] w-[170px] shrink-0 items-center justify-center">
+        <BrandIcon name={pillar.icon} title={pillar.title} className="h-[170px] w-[170px]" alt={pillar.title} />
       </div>
 
-      <h3 className="value-pillar-card__title font-display text-lg text-secondary">
+      <h3 className="value-pillar-card__title -mt-8 font-display text-lg leading-snug text-secondary">
         {pillar.title}
       </h3>
       <span
-        className="value-pillar-card__accent mt-3 block h-0.5 w-8 rounded-full bg-accent"
+        className="value-pillar-card__accent mt-2 block h-0.5 w-8 shrink-0 rounded-full bg-accent"
         aria-hidden="true"
       />
-      <p className="mt-4 text-sm leading-relaxed text-text-muted">{pillar.description}</p>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">{pillar.description}</p>
     </div>
   );
 }
@@ -93,7 +93,7 @@ function PillarReveal({
   }
 
   return (
-    <ScrollReveal delay={index * 110} className={cn("h-full min-w-0", className)}>
+    <ScrollReveal delay={index * 110} className={cn("flex h-full min-w-0", className)}>
       {children}
     </ScrollReveal>
   );
@@ -106,7 +106,7 @@ export function ValuePillarsGrid({ pillars, columns, revealOnScroll = false }: V
     <>
       <div className="relative hidden items-stretch lg:flex">
         <div
-          className="value-pillars-spine pointer-events-none absolute inset-x-0 top-[2.8125rem] hidden h-px lg:block"
+          className="value-pillars-spine pointer-events-none absolute inset-x-0 top-[0.7rem] hidden h-px lg:block"
           aria-hidden="true"
         />
         {pillars.map((pillar, index) => (
@@ -120,9 +120,9 @@ export function ValuePillarsGrid({ pillars, columns, revealOnScroll = false }: V
               />
             )}
             <PillarReveal
-              index={index}
+              index={0}
               revealOnScroll={revealOnScroll}
-              className="min-w-0 flex-1"
+              className="flex min-w-0 flex-1"
             >
               <ValuePillarCard
                 pillar={pillar}

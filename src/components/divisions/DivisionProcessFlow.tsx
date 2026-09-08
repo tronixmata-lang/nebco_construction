@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { DivisionProcessStep } from "@/types";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 type DivisionProcessFlowProps = {
   steps: DivisionProcessStep[];
@@ -54,6 +55,7 @@ export function DivisionProcessFlow({ steps }: DivisionProcessFlowProps) {
             <span className="division-process__node font-mono text-xs font-bold text-accent">
               {String(index + 1).padStart(2, "0")}
             </span>
+            <BrandIcon title={step.title} fallbackIndex={index} className="mt-4 h-[170px] w-[170px]" alt="" />
             <h3 className="mt-4 font-display text-lg text-secondary">{step.title}</h3>
             <span className="mt-3 block h-0.5 w-10 rounded-full bg-primary/80" aria-hidden="true" />
             <p className="mt-4 text-sm leading-relaxed text-text-muted">{step.description}</p>

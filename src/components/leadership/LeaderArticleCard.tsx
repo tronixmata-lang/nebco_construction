@@ -37,7 +37,7 @@ export function LeaderArticleCard({
       </Link>
       <span className="block h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
       <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs font-semibold tracking-wide text-accent uppercase">{article.category}</p>
+        <p className="font-label text-xs text-accent">{article.category}</p>
         <TitleTag
           className={cn(
             "mt-2 font-display text-secondary",

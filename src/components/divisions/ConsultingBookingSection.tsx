@@ -169,7 +169,7 @@ export function DivisionBookingSection({
   return (
     <div>
       <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Schedule a Session</p>
+        <p className="font-label text-xs text-accent">Schedule a Session</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Book a Consultation</h2>
         <p className="mt-4 text-base text-text-muted">
           Choose your preferred date, time, and consultation purpose. Our team will follow up to confirm
@@ -207,7 +207,7 @@ export function DivisionBookingSection({
 
             <p className="mb-4 text-center font-display text-base text-secondary">{monthLabel}</p>
 
-            <div className="grid grid-cols-7 gap-1 text-center text-xs font-semibold tracking-wide text-text-muted uppercase">
+            <div className="font-label grid grid-cols-7 gap-1 text-center text-xs text-text-muted">
               {WEEKDAYS.map((day) => (
                 <span key={day} className="py-2">
                   {day}

@@ -103,6 +103,7 @@ export function getDefaultSiteContent(): SiteContentData {
     about: {
       mission: staticAbout.mission,
       vision: staticAbout.vision,
+      ethos: staticAbout.ethos,
       values: [...staticAbout.values],
       history: staticAbout.history,
     },
@@ -274,7 +275,13 @@ export function mapSiteContentDocument(doc: SiteContentDocument): SiteContentDat
     about: {
       mission: doc.about.mission,
       vision: doc.about.vision,
-      values: doc.about.values ?? [],
+      ethos: doc.about.ethos ?? defaults.about.ethos,
+      values:
+        Array.isArray(doc.about.values) &&
+        doc.about.values.length > 0 &&
+        !doc.about.values.some((value) => /in every |and client satisfaction/i.test(value))
+          ? doc.about.values
+          : defaults.about.values,
       history: doc.about.history,
     },
     aboutPageIntro: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -13,6 +13,14 @@ const errorMessage = (
 
 export function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle");
+  const [topic, setTopic] = useState("");
+  const [division, setDivision] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setTopic(params.get("topic") ?? "");
+    setDivision(params.get("division") ?? "");
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -88,6 +96,8 @@ export function ContactForm() {
         <select
           id="division"
           name="division"
+          value={division}
+          onChange={(event) => setDivision(event.target.value)}
           className="w-full rounded-sm border border-neutral-border bg-neutral px-4 py-3 text-sm text-secondary transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         >
           <option value="">Select a division</option>
@@ -109,6 +119,12 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
+          defaultValue={
+            topic
+              ? `I would like to book a 30-minute NRN consultation on: ${topic}.`
+              : undefined
+          }
+          key={topic || "message"}
           className="w-full resize-y rounded-sm border border-neutral-border bg-neutral px-4 py-3 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           placeholder="Tell us about your project or inquiry..."
         />

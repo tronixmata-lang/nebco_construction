@@ -72,10 +72,10 @@ export function HeroScrollStaticView({
       />
       <Container className="relative z-10 flex flex-1 flex-col justify-center pb-8 pt-28 sm:pt-32 md:pb-12 md:pt-36">
         <div className="max-w-2xl text-left">
-          <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-accent uppercase">
+          <p className="font-label mb-4 text-sm text-accent">
             {parentOrganization} · {shortName}
           </p>
-          <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
+          <h1 className="font-display text-3xl leading-[1.1] tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
             {headline}
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral/85 sm:mt-6 sm:text-base md:text-lg">

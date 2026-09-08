@@ -82,7 +82,7 @@ export function ChairmanMessageSection({
         <div className="text-center lg:text-left">
           <p
             className={cn(
-              "mb-6 text-sm font-semibold tracking-[0.2em] uppercase",
+              "font-label mb-6 text-sm",
               eyebrowColor,
             )}
           >
@@ -92,7 +92,7 @@ export function ChairmanMessageSection({
             className={cn(
               quoteVariant === "standard"
                 ? "text-lg leading-relaxed md:text-xl md:leading-relaxed"
-                : "font-script text-2xl leading-relaxed md:text-3xl md:leading-snug lg:text-[2rem] lg:leading-snug",
+                : "font-quote text-2xl leading-relaxed md:text-3xl md:leading-snug lg:text-[2rem] lg:leading-snug",
               quoteColor,
             )}
           >

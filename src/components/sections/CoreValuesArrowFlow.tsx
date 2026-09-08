@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 type CoreValuesArrowFlowProps = {
   values: string[];
@@ -29,6 +30,7 @@ function ValueSegment({ value, index }: { value: string; index: number }) {
         "hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md",
       )}
     >
+      <BrandIcon title={value} fallbackIndex={index} className="mb-2 h-9 w-9" alt="" />
       <span
         className={cn(
           "font-display text-xl leading-none sm:text-2xl",

@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
     localPatterns: [
       { pathname: "/images/**" },
       { pathname: "/uploads/**" },
+      { pathname: "/icons/**" },
     ],
   },
   async rewrites() {

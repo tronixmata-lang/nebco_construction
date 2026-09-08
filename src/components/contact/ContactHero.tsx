@@ -19,7 +19,7 @@ function ScrollHint() {
       className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 md:flex"
       aria-hidden="true"
     >
-      <span className="text-[10px] font-semibold tracking-[0.2em] uppercase">
+      <span className="font-label text-[10px]">
         Explore
       </span>
       <svg
@@ -83,7 +83,7 @@ export function ContactHero({
           >
             {eyebrow && (
               <div className="mb-4 flex flex-col items-center gap-2 sm:mb-5">
-                <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase sm:text-sm">
+                <p className="font-label text-xs text-accent sm:text-sm">
                   {eyebrow}
                 </p>
                 <span className="h-px w-10 bg-accent/80" aria-hidden="true" />

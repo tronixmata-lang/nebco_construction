@@ -48,7 +48,7 @@ export function ProjectSpecs({ project }: ProjectSpecsProps) {
               <Icon className="h-4 w-4" aria-hidden="true" />
             </span>
             <div>
-              <p className="text-xs font-semibold tracking-wide text-accent uppercase">{label}</p>
+              <p className="font-label text-xs text-accent">{label}</p>
               <p className="mt-1 font-medium text-secondary">{value(project)}</p>
             </div>
           </div>
@@ -56,7 +56,7 @@ export function ProjectSpecs({ project }: ProjectSpecsProps) {
       </div>
       {project.featured && (
         <div className="border-t border-neutral-border bg-accent/5 px-5 py-3">
-          <p className="text-xs font-semibold tracking-[0.15em] text-accent uppercase">
+          <p className="font-label text-xs text-accent">
             Featured Project
           </p>
         </div>

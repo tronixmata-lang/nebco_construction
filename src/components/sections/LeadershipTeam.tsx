@@ -1,8 +1,9 @@
 import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { NEBCO_FACEBOOK_URL } from "@/config/site";
-import { cn } from "@/lib/utils";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import { FacebookIcon, LinkedInIcon, MailIcon } from "@/components/ui/SocialIcons";
+import { cn } from "@/lib/utils";
 import type { Leader } from "@/types";
 
 type SocialFallback = {
@@ -82,6 +83,7 @@ function LeaderCard({
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/35 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-5">
+            <BrandIcon name="integrity" title={leader.role} className="mb-2 h-8 w-8" surface="dark" alt="" />
             <h3 className="font-display text-lg leading-tight text-neutral">{leader.name}</h3>
             <p className="mt-1 text-sm font-medium text-accent">{leader.role}</p>
           </div>
@@ -89,7 +91,7 @@ function LeaderCard({
 
         <div className="flex flex-1 flex-col p-5">
           <p className="flex-1 text-sm leading-relaxed text-text-muted">{leader.bio}</p>
-          <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold tracking-wide text-primary uppercase">
+          <span className="mt-4 inline-flex items-center gap-1 font-label text-xs text-primary">
             View profile
             <span aria-hidden="true">&rarr;</span>
           </span>

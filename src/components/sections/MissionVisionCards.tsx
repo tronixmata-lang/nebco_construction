@@ -1,4 +1,5 @@
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 type MissionVisionCardsProps = {
   mission: string;
@@ -20,12 +21,10 @@ function MissionVisionCard({
   const accentStyles = {
     primary: {
       stripe: "bg-primary",
-      icon: "bg-primary/10 text-primary",
       label: "text-primary",
     },
     accent: {
       stripe: "bg-accent",
-      icon: "bg-accent/10 text-accent",
       label: "text-accent",
     },
   }[accent];
@@ -37,23 +36,14 @@ function MissionVisionCard({
         aria-hidden="true"
       />
       <div className="flex items-center gap-3">
-        <span
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${accentStyles.icon}`}
-          aria-hidden="true"
-        >
-          {accent === "primary" ? (
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-          ) : (
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-          )}
+        <span className="flex shrink-0 items-center justify-center">
+          <BrandIcon
+            name={accent === "primary" ? "mission" : "vision"}
+            className="h-[170px] w-[170px]"
+            alt=""
+          />
         </span>
-        <p className={`text-xs font-semibold tracking-[0.2em] uppercase ${accentStyles.label}`}>
+        <p className={`font-label text-xs ${accentStyles.label}`}>
           {label}
         </p>
       </div>

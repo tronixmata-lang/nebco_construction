@@ -7,6 +7,7 @@ type SectionHeaderProps = {
   align?: "left" | "center";
   className?: string;
   dark?: boolean;
+  eyebrowTone?: "accent" | "primary";
 };
 
 export function SectionHeader({
@@ -16,6 +17,7 @@ export function SectionHeader({
   align = "left",
   className,
   dark = false,
+  eyebrowTone = "accent",
 }: SectionHeaderProps) {
   return (
     <div
@@ -34,7 +36,12 @@ export function SectionHeader({
             align === "left" && "items-center md:items-start",
           )}
         >
-          <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase">
+          <p
+            className={cn(
+              "font-label text-sm",
+              eyebrowTone === "primary" ? "text-primary" : "text-accent",
+            )}
+          >
             {eyebrow}
           </p>
           <span className="h-px w-8 bg-accent" aria-hidden="true" />

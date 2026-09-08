@@ -18,6 +18,8 @@ export function revalidatePublicSite(): void {
   revalidatePath("/", "page");
   revalidatePath("/about", "page");
   revalidatePath("/contact", "page");
+  revalidatePath("/nrn", "page");
+  revalidatePath("/nrn/book", "page");
   revalidatePath("/legal/privacy", "page");
   revalidatePath("/legal/terms", "page");
 }

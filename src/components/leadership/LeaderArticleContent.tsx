@@ -10,7 +10,7 @@ export function LeaderArticleContent({ leader, article }: LeaderArticleContentPr
   return (
     <>
       <div className="mb-10 rounded-sm border border-accent/30 bg-accent/5 px-6 py-5 sm:px-8">
-        <p className="text-xs font-semibold tracking-[0.15em] text-accent uppercase">
+        <p className="font-label text-xs text-accent">
           Author
         </p>
         <p className="mt-2 font-display text-lg text-secondary">{leader.name}</p>

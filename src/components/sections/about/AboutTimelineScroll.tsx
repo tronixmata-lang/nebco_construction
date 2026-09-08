@@ -62,7 +62,7 @@ export function AboutTimelineScroll({ milestones }: AboutTimelineScrollProps) {
           </div>
           <div className="about-timeline__content min-w-0 pb-1 pt-0.5">
             <p className="font-display text-xl text-primary sm:text-2xl">{item.year}</p>
-            <p className="mt-1 text-sm font-semibold tracking-wide text-secondary uppercase">
+            <p className="font-label mt-1 text-sm text-secondary">
               {item.title}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-text-muted">{item.detail}</p>

@@ -57,7 +57,7 @@ function QuoteIcon() {
 
 function VerifiedBadge() {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-primary uppercase">
+    <span className="font-label inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[9px] text-primary">
       <svg
         className="h-2.5 w-2.5"
         viewBox="0 0 24 24"
@@ -138,7 +138,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-secondary">{testimonial.author}</p>
           <p className="truncate text-xs text-text-muted">{testimonial.role}</p>
-          <p className="truncate text-[10px] font-medium tracking-wide text-accent uppercase">
+          <p className="font-label truncate text-[10px] text-accent">
             {testimonial.organization}
           </p>
         </div>

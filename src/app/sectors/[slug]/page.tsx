@@ -62,12 +62,15 @@ export default async function SectorDetailPage({ params }: SectorPageProps) {
 
       <Section className="pt-10 md:pt-14" glow="none">
         <ScrollReveal>
-          <div className="mx-auto mb-10 flex max-w-6xl items-center gap-4 rounded-sm border border-accent/30 bg-accent/5 px-6 py-4 sm:px-8">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-neutral text-primary">
-              <SectorIcon id={sector.id} className="[&_svg]:h-6 [&_svg]:w-6" />
+          <div className="mx-auto mb-10 flex max-w-6xl items-center gap-4 px-0 sm:px-0">
+            <span className="flex shrink-0 items-center justify-center">
+              <SectorIcon
+                id={sector.id}
+                className="sector-card-icon h-16 w-16 sm:h-[4.75rem] sm:w-[4.75rem]"
+              />
             </span>
             <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
+              <p className="font-label text-xs text-accent">
                 Sector Highlight
               </p>
               <p className="mt-1 font-medium text-secondary">{sector.highlight}</p>

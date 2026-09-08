@@ -2,8 +2,9 @@
 
 import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
-import type { Project } from "@/types";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import { projectImageAlt } from "@/lib/seo";
+import type { Project } from "@/types";
 
 type ProjectCardProps = {
   project: Project;
@@ -28,9 +29,12 @@ export function ProjectCard({ project, aspect = "16/10" }: ProjectCardProps) {
         />
       </div>
       <div className="p-5">
-        <p className="text-xs font-medium tracking-wide text-accent uppercase">
-          {project.category}, {project.year}
-        </p>
+        <div className="flex items-center gap-2">
+          <BrandIcon name={project.category} title={project.category} className="h-8 w-8" alt="" />
+          <p className="font-label text-xs text-accent">
+            {project.category}, {project.year}
+          </p>
+        </div>
         <h3 className="mt-1 font-display text-lg text-secondary transition-colors group-hover:text-primary">
           {project.title}
         </h3>

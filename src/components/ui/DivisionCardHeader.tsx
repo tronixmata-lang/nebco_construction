@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { TrustedBadge } from "@/components/ui/TrustedBadge";
 
 type DivisionCardHeaderProps = {
   icon: React.ReactNode;
@@ -10,14 +9,11 @@ export function DivisionCardHeader({ icon, className }: DivisionCardHeaderProps)
   return (
     <div
       className={cn(
-        "relative flex min-h-14 items-center justify-center md:justify-between",
+        "relative -mt-6 -ml-10 flex w-full items-start justify-start sm:-ml-14",
         className,
       )}
     >
-      <span className="flex h-14 w-14 items-center justify-center text-primary">
-        {icon}
-      </span>
-      <TrustedBadge className="absolute top-0 right-0 md:static" />
+      {icon}
     </div>
   );
 }

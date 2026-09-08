@@ -8,7 +8,7 @@ export function HeroExploreHint() {
       className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral/40 md:flex"
       aria-hidden="true"
     >
-      <span className="text-[10px] font-semibold tracking-[0.2em] uppercase">
+      <span className="font-label text-[10px]">
         Explore
       </span>
       <svg

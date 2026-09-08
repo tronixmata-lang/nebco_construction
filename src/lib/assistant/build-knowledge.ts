@@ -35,9 +35,10 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
         companyOverview.description,
         `Mission: ${about.mission}`,
         `Vision: ${about.vision}`,
+        `Ethos: ${about.ethos}`,
         about.history,
       ].join("\n\n"),
-      keywords: ["about", "company", "history", "mission", "vision", "founded", "shah group", "a class"],
+      keywords: ["about", "company", "history", "mission", "vision", "ethos", "founded", "shah group", "a class"],
       link: { label: "Learn more on About page", href: "/about" },
     },
     {

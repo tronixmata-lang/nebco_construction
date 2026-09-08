@@ -21,7 +21,7 @@ export function MostViewedSidebar({ projects, className }: MostViewedSidebarProp
     <aside className={cn("lg:sticky lg:top-28 lg:self-start", className)}>
       <div className="overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-sm">
         <div className="border-b border-neutral-border bg-neutral-muted px-5 py-4">
-          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+          <p className="font-label text-xs text-accent">
             Explore More
           </p>
           <h2 className="mt-1 font-display text-xl text-secondary">Most Viewed</h2>
@@ -51,7 +51,7 @@ export function MostViewedSidebar({ projects, className }: MostViewedSidebarProp
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-semibold tracking-wide text-accent uppercase">
+                  <p className="font-label text-[11px] text-accent">
                     {categoryLabel(project.category)}
                   </p>
                   <p className="mt-0.5 font-display text-sm leading-snug text-secondary transition-colors group-hover:text-primary">

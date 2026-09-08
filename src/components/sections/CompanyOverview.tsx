@@ -19,7 +19,7 @@ export async function CompanyOverview() {
     <Section id="about" className="pt-8 pb-6 md:pt-10 md:pb-8">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="text-center md:text-left">
-          <p className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">
+          <p className="font-label mb-3 text-sm text-accent">
             About NEBCO
           </p>
           <h2 className="font-display text-2xl font-bold tracking-tight text-secondary sm:text-3xl md:text-4xl">
@@ -61,7 +61,7 @@ export async function CompanyOverview() {
                 <p className="font-display text-2xl font-bold text-primary">
                   <AnimatedStatValue value={stat.value} />
                 </p>
-                <p className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase">{stat.label}</p>
+                <p className="font-label mt-1 text-xs text-text-muted">{stat.label}</p>
               </div>
             ))}
           </div>

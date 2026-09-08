@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Dancing_Script, Inter, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, Montserrat } from "next/font/google";
 import { SiteShellWrapper } from "@/components/layout/SiteShellWrapper";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsScripts } from "@/components/seo/AnalyticsScripts";
@@ -13,25 +13,25 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const inter = Inter({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-inter",
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-montserrat",
   display: "swap",
 });
 
-// Decorative font used only in the chairman quote (below the fold) — one weight, no preload
-const dancingScript = Dancing_Script({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-dancing-script",
+  weight: ["400", "500"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
   preload: false,
 });
@@ -139,7 +139,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${dancingScript.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${montserrat.variable} ${ibmPlexMono.variable}`}>
       <body className="flex min-h-screen flex-col">
         <AnalyticsScripts />
         <JsonLd

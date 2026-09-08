@@ -40,7 +40,7 @@ export function TrustBadges() {
       {badges.map((badge) => (
         <span
           key={badge.label}
-          className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase md:px-3 md:text-xs ${badge.className}`}
+          className={`font-label inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] md:px-3 md:text-xs ${badge.className}`}
         >
           {badge.icon && <ShieldIcon />}
           {badge.label}

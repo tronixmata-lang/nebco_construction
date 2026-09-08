@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { cn } from "@/lib/utils";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import type { HeroFeatureCard } from "@/types/site-content";
 
 const DISPLAY_MS = 3000;
@@ -78,10 +79,13 @@ export function HeroFeatureCards({ cards }: HeroFeatureCardsProps) {
                 />
               </div>
               <div className="flex items-end justify-between gap-3 px-4 py-4">
-                <span className="text-base font-medium leading-snug text-neutral lg:text-lg">
-                  {card.title}
+                <span className="flex min-w-0 items-center gap-2">
+                  <BrandIcon title={card.title} className="h-9 w-9 shrink-0" surface="dark" alt="" />
+                  <span className="text-base font-medium leading-snug text-neutral lg:text-lg">
+                    {card.title}
+                  </span>
                 </span>
-                <span className="flex shrink-0 items-center gap-1.5 text-[10px] font-semibold tracking-[0.2em] text-neutral/75 uppercase transition-colors group-hover:text-accent">
+              <span className="font-label flex shrink-0 items-center gap-1.5 text-[10px] text-neutral/75 transition-colors group-hover:text-accent">
                   {card.cta}
                   <svg
                     className="h-3.5 w-3.5"

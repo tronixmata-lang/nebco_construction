@@ -72,7 +72,7 @@ export function AboutStoryReveal() {
         className="about-story-reveal__badge absolute -top-4 -right-4 hidden rounded-sm border border-accent/40 bg-neutral px-4 py-3 shadow-md sm:block"
         style={{ "--reveal-delay": "420ms" } as CSSProperties}
       >
-        <p className="text-[10px] font-semibold tracking-[0.2em] text-accent uppercase">Since</p>
+        <p className="font-label text-[10px] text-accent">Since</p>
         <p className="font-display text-2xl text-primary">1995</p>
       </div>
     </div>

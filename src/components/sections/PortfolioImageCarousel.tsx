@@ -45,7 +45,7 @@ export function PortfolioImageCarousel({ projects }: PortfolioImageCarouselProps
       <div className="pointer-events-none absolute inset-0 z-20 bg-secondary/20" />
 
       <div className="absolute bottom-5 left-5 z-20 rounded-sm bg-primary px-5 py-3 shadow-lg">
-        <p className="text-xs font-semibold tracking-widest text-neutral/80 uppercase">
+        <p className="font-label text-xs text-neutral/80">
           Since 1995
         </p>
         <p className="font-display text-lg text-neutral">

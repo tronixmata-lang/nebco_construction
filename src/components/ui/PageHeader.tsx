@@ -51,7 +51,7 @@ export function PageHeader({
       <Container className="relative flex flex-1 flex-col items-center justify-center px-4 pt-28 pb-12 text-center sm:pt-32 sm:pb-16 md:pb-20">
         {eyebrow && (
           <div className="mb-4 flex flex-col items-center gap-2 sm:mb-5">
-            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase sm:text-sm">
+            <p className="font-label text-xs text-accent sm:text-sm">
               {eyebrow}
             </p>
             <span className="h-px w-10 bg-accent" aria-hidden="true" />

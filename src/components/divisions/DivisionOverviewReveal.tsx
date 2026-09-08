@@ -58,13 +58,13 @@ export function DivisionOverviewReveal({
       >
         <CmsImage src={image} alt={imageAlt} fill sizes="(min-width: 1024px) 46vw, 100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent" />
-        <span className="absolute top-4 left-4 rounded-sm border border-accent/40 bg-neutral/95 px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-accent uppercase">
+        <span className="font-label absolute top-4 left-4 rounded-sm border border-accent/40 bg-neutral/95 px-3 py-1.5 text-[10px] text-accent">
           {divisionName}
         </span>
       </div>
 
       <div className="division-overview__copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-        <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Vertical Overview</p>
+        <p className="font-label text-xs text-accent">Vertical Overview</p>
         <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Built for Serious Projects</h2>
         <span className="mt-4 block h-0.5 w-14 rounded-full bg-primary" aria-hidden="true" />
         <p className="mt-6 text-base leading-relaxed text-text-muted sm:text-lg">{overview}</p>

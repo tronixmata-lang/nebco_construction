@@ -14,7 +14,7 @@ export async function StatsBar() {
               <dt className="font-display text-2xl text-primary md:text-3xl">
                 <AnimatedStatValue value={stat.value} />
               </dt>
-              <dd className="mt-1 text-xs font-medium tracking-wide text-text-muted uppercase sm:text-sm">
+              <dd className="font-label mt-1 text-xs text-text-muted sm:text-sm">
                 {stat.label}
               </dd>
             </div>

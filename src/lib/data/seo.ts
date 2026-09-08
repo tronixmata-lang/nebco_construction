@@ -96,6 +96,8 @@ export const STATIC_PAGES = [
   { path: "/sectors", label: "Industry Sectors" },
   { path: "/leadership", label: "Leadership" },
   { path: "/insights", label: "Insights" },
+  { path: "/nrn", label: "NRN Services" },
+  { path: "/nrn/book", label: "Book Appointment" },
   { path: "/contact", label: "Contact" },
 ] as const;
 

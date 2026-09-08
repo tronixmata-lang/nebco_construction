@@ -34,7 +34,7 @@ export async function TestimonialsSection() {
             <p className="font-display text-xl text-primary sm:text-2xl md:text-3xl">
               <AnimatedStatValue value={stat.value} />
             </p>
-            <p className="mt-1 text-[10px] font-medium tracking-wide text-text-muted uppercase sm:text-xs">
+            <p className="font-label mt-1 text-[10px] text-text-muted sm:text-xs">
               {stat.label}
             </p>
           </div>

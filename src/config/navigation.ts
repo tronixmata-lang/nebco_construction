@@ -8,6 +8,8 @@ export const breadcrumbLabels: Record<string, string> = {
   sectors: "Industry Sectors",
   portfolio: "Project Portfolio",
   insights: "Insights & News",
+  nrn: "NRN Services",
+  book: "Book Appointment",
   leadership: "Leadership",
   construction: "NEBCO Construction",
   investment: "NEBCO Investment",
@@ -29,6 +31,8 @@ export const sitePageIndex = [
   { label: "Industry Sectors", href: "/sectors" },
   { label: "Leadership", href: "/leadership" },
   { label: "Insights & News", href: "/insights" },
+  { label: "NRN Services", href: "/nrn" },
+  { label: "Book Appointment", href: "/nrn/book" },
   { label: "Contact Us", href: "/contact" },
   { label: "Privacy Policy", href: "/legal/privacy" },
   { label: "Terms of Use", href: "/legal/terms" },
@@ -57,6 +61,7 @@ export const mainNavigation: NavItem[] = [
   { label: "Sectors", href: "/sectors" },
   { label: "Leadership", href: "/leadership" },
   { label: "Insights", href: "/insights" },
+  { label: "NRN", href: "/nrn" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -76,6 +81,7 @@ export const footerNavigation = {
   resources: [
     { label: "Project Portfolio", href: "/portfolio" },
     { label: "Insights & News", href: "/insights" },
+    { label: "NRN Services", href: "/nrn" },
     { label: "Privacy Policy", href: "/legal/privacy" },
     { label: "Terms of Use", href: "/legal/terms" },
   ],

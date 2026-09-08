@@ -81,7 +81,7 @@ export function SiteSocialLinks({
     <div className={className}>
       <p
         className={cn(
-          "mb-3 text-xs font-semibold tracking-widest uppercase",
+          "font-label mb-3 text-xs",
           variant === "dark" ? "text-accent" : "text-accent",
         )}
       >

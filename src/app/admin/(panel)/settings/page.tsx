@@ -35,6 +35,7 @@ type SiteContentForm = {
   about: {
     mission: string;
     vision: string;
+    ethos: string;
     values: string;
     history: string;
   };
@@ -81,7 +82,7 @@ const emptyForm: SiteContentForm = {
   heroFeatureCards: [],
   pageHeroImages: { ...defaultPageHeroImages },
   companyOverview: { title: "", description: "", trustPoints: "" },
-  about: { mission: "", vision: "", values: "", history: "" },
+  about: { mission: "", vision: "", ethos: "", values: "", history: "" },
   aboutPageIntro: { eyebrow: "", title: "", description: "", backgroundAlt: "" },
   chairmanMessage: { quote: "", author: "", role: "", image: "" },
   certificateSection: { title: "", description: "" },
@@ -720,6 +721,13 @@ export default function AdminSettingsPage() {
               className="admin-input"
               value={form.about.vision}
               onChange={(e) => setForm({ ...form, about: { ...form.about, vision: e.target.value } })}
+            />
+          </AdminField>
+          <AdminField label="Ethos">
+            <textarea
+              className="admin-input min-h-32"
+              value={form.about.ethos}
+              onChange={(e) => setForm({ ...form, about: { ...form.about, ethos: e.target.value } })}
             />
           </AdminField>
           <AdminField label="Values (one per line)">

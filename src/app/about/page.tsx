@@ -43,7 +43,11 @@ export default async function AboutPage() {
 
       <AboutStorySection history={aboutContent.history} />
 
-      <AboutMissionSection mission={aboutContent.mission} vision={aboutContent.vision} />
+      <AboutMissionSection
+        mission={aboutContent.mission}
+        vision={aboutContent.vision}
+        ethos={aboutContent.ethos}
+      />
 
       <AboutLeadershipSection message={chairmanMessage} />
 

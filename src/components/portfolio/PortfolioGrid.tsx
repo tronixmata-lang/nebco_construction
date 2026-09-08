@@ -30,7 +30,7 @@ export function PortfolioGrid({ projects }: PortfolioGridProps) {
     <div>
       <div className="mb-8 flex flex-col gap-6 border-b border-neutral-border pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+          <p className="font-label text-xs text-accent">
             Filter by Sector
           </p>
           <p className="mt-2 font-display text-2xl text-secondary sm:text-3xl">

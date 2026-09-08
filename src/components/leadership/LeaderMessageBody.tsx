@@ -15,7 +15,7 @@ export function LeaderMessageBody({ paragraphs }: LeaderMessageBodyProps) {
       />
 
       <header className="mb-8 pl-1">
-        <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+        <p className="font-label text-xs text-accent">
           Full Statement
         </p>
         <div className="mt-3 flex items-center gap-3">

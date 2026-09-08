@@ -14,7 +14,7 @@ export function TopRibbon() {
             <Link
               key={item.href}
               href={item.href}
-              className="shrink-0 font-nav text-[9px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap text-neutral transition-colors hover:text-accent sm:text-[10px] md:text-[11px]"
+              className="font-label shrink-0 text-[9px] whitespace-nowrap text-neutral transition-colors hover:text-accent sm:text-[10px] md:text-[11px]"
             >
               {item.label}
             </Link>

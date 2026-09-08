@@ -616,7 +616,7 @@ export function NebcoAssistance() {
             {bookingActive && knowledge ? (
               <div className="ml-10 space-y-3 rounded-md border border-neutral-border bg-neutral-muted/40 p-3">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-xs font-semibold tracking-wide text-accent uppercase">Schedule meeting</p>
+                  <p className="font-label text-xs text-accent">Schedule meeting</p>
                   <button type="button" onClick={() => void cancelBooking()} className="text-xs text-text-muted hover:text-primary">
                     Cancel
                   </button>

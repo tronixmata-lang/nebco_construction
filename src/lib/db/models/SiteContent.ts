@@ -29,6 +29,7 @@ export type SiteContentDocument = {
   about: {
     mission: string;
     vision: string;
+    ethos: string;
     values: string[];
     history: string;
   };
@@ -104,6 +105,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
       divisions: { type: String, trim: true },
       sectors: { type: String, trim: true },
       insights: { type: String, trim: true },
+      nrn: { type: String, trim: true },
       leadership: { type: String, trim: true },
       contact: { type: String, trim: true },
       legal: { type: String, trim: true },
@@ -116,6 +118,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
     about: {
       mission: { type: String, required: true },
       vision: { type: String, required: true },
+      ethos: { type: String, default: "" },
       values: [{ type: String }],
       history: { type: String, required: true },
     },

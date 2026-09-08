@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactMapEmbed } from "@/components/contact/ContactMapEmbed";
 import { NEBCO_FACEBOOK_URL, siteConfig } from "@/config/site";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ContentCard } from "@/components/ui/ContentCard";
@@ -32,43 +33,24 @@ const contactItems = [
   {
     title: "Office",
     value: siteConfig.address,
-    icon: (
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
-        <circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
+    icon: <BrandIcon title="Office" className="h-[170px] w-[170px]" alt="" />,
   },
   {
     title: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
-    icon: (
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <rect width="20" height="16" x="2" y="4" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
+    icon: <BrandIcon title="Email" className="h-[170px] w-[170px]" alt="" />,
   },
   {
     title: "Phone",
     value: siteConfig.phone,
     href: `tel:${siteConfig.phone}`,
-    icon: (
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
-      </svg>
-    ),
+    icon: <BrandIcon title="Phone" className="h-[170px] w-[170px]" alt="" />,
   },
   {
     title: "Business Hours",
     value: siteConfig.businessHours,
-    icon: (
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
+    icon: <BrandIcon title="Business Hours" className="h-[170px] w-[170px]" alt="" />,
   },
 ];
 
@@ -133,7 +115,7 @@ export default async function ContactPage() {
               {contactItems.map((item) => (
                 <ContentCard key={item.title} className="p-6">
                   <div className="flex items-start gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center text-primary">
+                    <span className="flex shrink-0 items-center justify-center text-primary">
                       {item.icon}
                     </span>
                     <div>
@@ -206,14 +188,14 @@ export default async function ContactPage() {
           {divisions.map((division) => (
             <Link key={division.id} href={division.href}>
               <ContentCard className="h-full p-6 text-center sm:text-left">
-                <p className="text-xs font-semibold tracking-widest text-accent uppercase">
+                <p className="font-label text-xs text-accent">
                   {division.shortName}
                 </p>
                 <h3 className="mt-2 font-display text-lg text-secondary transition-colors group-hover:text-primary">
                   {division.name}
                 </h3>
                 <p className="mt-2 text-sm text-text-muted">{division.tagline}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold tracking-wide text-primary uppercase">
+                <span className="mt-4 inline-flex items-center gap-1 font-label text-xs text-primary">
                   Learn more
                   <span aria-hidden="true">&rarr;</span>
                 </span>

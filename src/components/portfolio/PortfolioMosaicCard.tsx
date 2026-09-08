@@ -2,6 +2,7 @@ import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
 import { projectCategories } from "@/content/projects";
 import { projectImageAlt } from "@/lib/seo";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
 
@@ -54,23 +55,24 @@ export function PortfolioMosaicCard({ project, index, layout }: PortfolioMosaicC
       <span className="portfolio-mosaic-card__corner portfolio-mosaic-card__corner--br" aria-hidden="true" />
 
       <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 sm:p-5">
-        <span className="inline-flex items-center gap-2 rounded-sm bg-secondary/55 px-2.5 py-1 font-mono text-[11px] font-semibold tracking-widest text-neutral backdrop-blur-sm">
+        <span className="font-label inline-flex items-center gap-2 rounded-sm bg-secondary/55 px-2.5 py-1 text-[11px] text-neutral backdrop-blur-sm">
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="flex flex-wrap items-center justify-end gap-2">
           {project.featured && (
-            <span className="rounded-sm bg-accent/90 px-2 py-1 text-[10px] font-semibold tracking-wide text-secondary uppercase">
+            <span className="font-label rounded-sm bg-accent/90 px-2 py-1 text-[10px] text-secondary">
               Featured
             </span>
           )}
-          <span className="rounded-sm border border-accent/40 bg-secondary/55 px-2 py-1 text-[10px] font-semibold tracking-wide text-accent uppercase backdrop-blur-sm">
+          <span className="font-label inline-flex items-center gap-1.5 rounded-sm border border-accent/40 bg-secondary/55 px-2 py-1 text-[10px] text-accent backdrop-blur-sm">
+            <BrandIcon name={project.category} title={label} className="h-4 w-4" surface="dark" alt="" />
             {label}
           </span>
         </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 lg:p-6">
-        <p className="text-[11px] font-semibold tracking-[0.18em] text-accent uppercase">
+        <p className="font-label text-[11px] text-accent">
           {project.year}
           <span className="mx-2 text-neutral/40">·</span>
           {project.location}
@@ -91,7 +93,7 @@ export function PortfolioMosaicCard({ project, index, layout }: PortfolioMosaicC
         >
           {project.description}
         </p>
-        <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-neutral uppercase opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 translate-y-2">
+        <span className="mt-4 inline-flex items-center gap-2 font-label text-xs text-neutral opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 translate-y-2">
           View Project
           <span aria-hidden="true" className="text-accent">&rarr;</span>
         </span>

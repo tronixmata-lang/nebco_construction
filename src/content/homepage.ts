@@ -95,16 +95,18 @@ export const certificateSection = {
 
 export const aboutContent = {
   mission:
-    "To deliver high-quality construction, design, and consultation services that turn our clients' visions into reality, on time, within budget, and to the highest standards.",
+    "Our mission is to provide world-class construction services that exceed the expectations of our clients. We are dedicated to delivering projects on time, within budget, and to the highest standards of quality. By leveraging our expertise, experience, and collaborative approach, we aim to build iconic structures that inspire and leave a lasting impact on the built environment. We are driven by our passion for construction and a deep sense of responsibility to create spaces that enhance the lives of people around the globe.",
   vision:
-    "To be Nepal's most trusted A-Class construction company, recognized for quality craftsmanship, transparency, and sustainable building practices.",
+    "Our vision is to be a globally recognized A-class construction company, known for our unwavering commitment to quality, customer satisfaction, and sustainable practices. We strive to be at the forefront of technological advancements and industry trends, continuously pushing the boundaries of construction excellence. Through our vision, we aim to contribute to the growth and development of communities worldwide.",
+  ethos:
+    "At NEBCO, we believe in fostering a culture of excellence, integrity, and innovation in everything we do. Our ethos is centered around delivering exceptional construction services while upholding the highest ethical standards. We are committed to building strong relationships with our clients, partners, and communities based on trust, transparency, and mutual respect.",
   values: [
-    "Quality in every deliverable",
-    "Integrity in every relationship",
-    "Timely execution of every commitment",
-    "Innovation in every challenge",
-    "Excellence in every standard",
-    "Collaboration and client satisfaction",
+    "Excellence",
+    "Integrity",
+    "Innovation",
+    "Customer Focus",
+    "Collaboration",
+    "Safety and Sustainability",
   ],
   history:
     "National Estate Builders Co. Pvt. Ltd. (NEBCO) was established in 1995 and officially registered in 2001. Under the Shah Group, NEBCO has grown into one of Nepal's leading A-Class construction companies. From residential homes and commercial hotels to infrastructure projects in Bhutan, NEBCO has built a reputation for reliability, innovation, and quality craftsmanship trusted by clients across Nepal and beyond.",

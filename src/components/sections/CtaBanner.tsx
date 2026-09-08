@@ -14,7 +14,7 @@ export async function CtaBanner({
   const { ctaBanner } = await getSiteContent();
 
   return (
-    <section className={cn("relative overflow-hidden bg-primary pt-12 pb-10 md:pt-14 md:pb-12", className)}>
+    <section className={cn("relative overflow-hidden bg-primary py-10 md:py-12", className)}>
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{
@@ -25,10 +25,12 @@ export async function CtaBanner({
         aria-hidden="true"
       />
       <Container>
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl text-neutral md:text-4xl">{ctaBanner.title}</h2>
-          <p className="mt-4 text-lg text-neutral/80">{ctaBanner.description}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+        <ScrollReveal className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="max-w-xl text-left">
+            <h2 className="font-display text-3xl text-neutral md:text-4xl">{ctaBanner.title}</h2>
+            <p className="mt-3 text-base text-neutral/80 md:text-lg">{ctaBanner.description}</p>
+          </div>
+          <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4">
             {showContactButton && (
               <Button
                 href={ctaBanner.primaryCta.href}

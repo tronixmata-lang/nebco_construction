@@ -29,12 +29,19 @@ function toInsightType(doc: {
   };
 }
 
+function withMissingStatic(articles: InsightArticle[]): InsightArticle[] {
+  const have = new Set(articles.map((article) => article.slug));
+  const missing = staticInsights.filter((article) => !have.has(article.slug));
+  if (missing.length === 0) return articles;
+  return [...articles, ...missing].sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
 export const getInsights = cache(async (): Promise<InsightArticle[]> => {
   try {
     await connectDB();
     const docs = await Insight.find({ status: "published" }).sort({ date: -1 }).lean();
     if (docs.length > 0) {
-      return docs.map(toInsightType);
+      return withMissingStatic(docs.map(toInsightType));
     }
   } catch {
     /* fallback */
@@ -58,7 +65,7 @@ export async function getAllInsightSlugs(): Promise<string[]> {
     await connectDB();
     const docs = await Insight.find({ status: "published" }).select("slug").lean();
     if (docs.length > 0) {
-      return docs.map((d) => d.slug);
+      return [...new Set([...docs.map((d) => d.slug), ...staticInsights.map((a) => a.slug)])];
     }
   } catch {
     /* fallback */

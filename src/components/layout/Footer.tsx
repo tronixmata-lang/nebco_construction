@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerNavigation } from "@/config/navigation";
 import { CmsImage } from "@/components/ui/CmsImage";
-import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
 import { Container } from "@/components/ui/Container";
+import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 export type FooterSiteConfig = {
   name: string;
@@ -87,13 +88,13 @@ export function Footer({ siteConfig }: FooterProps) {
             </p>
 
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-              <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-neutral uppercase">
+              <span className="font-label rounded-full bg-primary px-3 py-1 text-xs text-neutral">
                 Since 1995
               </span>
-              <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold tracking-wide text-accent uppercase">
+              <span className="font-label rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
                 A-Class Certified
               </span>
-              <span className="rounded-full border border-neutral/20 bg-neutral/5 px-3 py-1 text-xs font-semibold tracking-wide text-neutral/80 uppercase">
+              <span className="font-label rounded-full border border-neutral/20 bg-neutral/5 px-3 py-1 text-xs text-neutral/80">
                 {siteConfig.parentOrganization}
               </span>
             </div>
@@ -110,36 +111,16 @@ export function Footer({ siteConfig }: FooterProps) {
               ))}
             </div>
 
-            <ul className="mx-auto mt-8 max-w-sm space-y-3 text-left lg:mx-0 lg:max-w-none">
-              <ContactItem
-                icon={
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                }
-              >
+            <ul className="footer-contact mx-auto mt-8 max-w-sm space-y-3 text-left lg:mx-0 lg:max-w-none">
+              <ContactItem icon={<BrandIcon title="Office" className="h-8 w-8" surface="dark" alt="" />}>
                 {siteConfig.address}
               </ContactItem>
-              <ContactItem
-                icon={
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
-                  </svg>
-                }
-              >
+              <ContactItem icon={<BrandIcon title="Phone" className="h-8 w-8" surface="dark" alt="" />}>
                 <a href={`tel:${siteConfig.phone}`} className="transition-colors hover:text-neutral">
                   {siteConfig.phone}
                 </a>
               </ContactItem>
-              <ContactItem
-                icon={
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <rect width="20" height="16" x="2" y="4" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                }
-              >
+              <ContactItem icon={<BrandIcon title="Email" className="h-8 w-8" surface="dark" alt="" />}>
                 <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-neutral">
                   {siteConfig.email}
                 </a>
@@ -151,7 +132,7 @@ export function Footer({ siteConfig }: FooterProps) {
 
           <div className="grid gap-8 text-center sm:grid-cols-3 sm:text-left lg:col-span-7">
             <div>
-              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
+              <h3 className="font-label mb-4 text-sm text-accent">
                 Company
               </h3>
               <ul className="space-y-2.5">
@@ -169,7 +150,7 @@ export function Footer({ siteConfig }: FooterProps) {
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
+              <h3 className="font-label mb-4 text-sm text-accent">
                 Our Verticals
               </h3>
               <ul className="space-y-2.5">
@@ -187,7 +168,7 @@ export function Footer({ siteConfig }: FooterProps) {
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm tracking-widest text-accent uppercase">
+              <h3 className="font-label mb-4 text-sm text-accent">
                 Resources
               </h3>
               <ul className="space-y-2.5">

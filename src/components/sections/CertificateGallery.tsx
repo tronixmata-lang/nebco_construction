@@ -59,7 +59,7 @@ function CertificateLightbox({
 
         <div className="flex shrink-0 items-center gap-3">
           {hasMultiple && (
-            <p className="hidden text-xs font-medium tracking-wide text-neutral/60 uppercase sm:block">
+            <p className="font-label hidden text-xs text-neutral/60 sm:block">
               {activeIndex + 1} / {certificates.length}
             </p>
           )}
@@ -135,7 +135,7 @@ function CertificateLightbox({
 
       {hasMultiple && (
         <footer className="relative z-10 shrink-0 border-t border-neutral/10 px-4 py-3 text-center sm:hidden">
-          <p className="text-xs font-medium tracking-wide text-neutral/60 uppercase">
+          <p className="font-label text-xs text-neutral/60">
             {activeIndex + 1} of {certificates.length}
           </p>
         </footer>

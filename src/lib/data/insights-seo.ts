@@ -52,10 +52,19 @@ export async function getAllInsightsForSitemap() {
       .select("slug date updatedAt")
       .lean();
     if (docs.length > 0) {
-      return docs.map((d) => ({
+      const listed = new Set(docs.map((d) => d.slug));
+      const { insights } = await import("@/content/insights");
+      const fromDb = docs.map((d) => ({
         slug: d.slug,
         lastModified: new Date(d.date),
       }));
+      const extra = insights
+        .filter((article) => !listed.has(article.slug))
+        .map((article) => ({
+          slug: article.slug,
+          lastModified: new Date(article.date),
+        }));
+      return [...fromDb, ...extra];
     }
   } catch {
     /* fallback */

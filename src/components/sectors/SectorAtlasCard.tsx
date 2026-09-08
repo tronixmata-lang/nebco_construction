@@ -54,18 +54,6 @@ export function SectorAtlasCard({ sector, index }: SectorAtlasCardProps) {
         reversed && "sector-atlas-card--reversed",
       )}
     >
-      <div
-        className={cn(
-          "sector-atlas-card__line absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-primary via-accent to-transparent lg:block",
-          index === 0 ? "top-8" : "top-0",
-        )}
-        aria-hidden="true"
-      />
-      <span
-        className="sector-atlas-card__node absolute left-4 top-10 z-10 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-neutral lg:block"
-        aria-hidden="true"
-      />
-
       <Link
         href={`/sectors/${sector.id}`}
         className={cn(
@@ -73,7 +61,7 @@ export function SectorAtlasCard({ sector, index }: SectorAtlasCardProps) {
           reversed && "lg:[&>*:first-child]:order-2",
         )}
       >
-        <div className="sector-atlas-card__media relative min-h-[240px] overflow-hidden bg-secondary sm:min-h-[280px]">
+        <div className="sector-atlas-card__media relative min-h-[200px] overflow-hidden bg-secondary sm:min-h-[220px]">
           <div className="sector-atlas-card__media-inner absolute inset-0">
             <CmsImage
               src={imageSrc}
@@ -89,34 +77,34 @@ export function SectorAtlasCard({ sector, index }: SectorAtlasCardProps) {
           </div>
         </div>
 
-        <div className="sector-atlas-card__content relative flex flex-col p-6 sm:p-8 lg:p-10">
+        <div className="sector-atlas-card__content relative flex flex-col p-5 sm:p-6">
           <span
             className="sector-atlas-card__top-bar absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary"
             aria-hidden="true"
           />
 
           <div className="sector-atlas-card__content-inner flex flex-1 flex-col">
-            <div className="sector-atlas-card__reveal-item flex items-center justify-between gap-4">
-              <span className="sector-atlas-card__icon flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary">
-                <SectorIcon id={sector.id} />
+            <div className="sector-atlas-card__reveal-item flex items-start justify-between gap-3">
+              <span className="sector-atlas-card__icon">
+                <SectorIcon id={sector.id} className="sector-card-icon h-12 w-12" />
               </span>
               <TrustedBadge label="Proven" />
             </div>
 
-            <h3 className="sector-atlas-card__reveal-item mt-6 font-display text-2xl text-secondary transition-colors group-hover:text-primary sm:text-3xl">
+            <h3 className="sector-atlas-card__reveal-item mt-2.5 font-display text-2xl leading-tight text-secondary transition-colors group-hover:text-primary sm:text-3xl">
               {sector.title}
             </h3>
             <span
-              className="sector-atlas-card__accent-line sector-atlas-card__reveal-item mt-4 h-0.5 w-12 rounded-full bg-accent"
+              className="sector-atlas-card__accent-line sector-atlas-card__reveal-item mt-2 h-0.5 w-12 rounded-full bg-accent"
               aria-hidden="true"
             />
 
-            <p className="sector-atlas-card__reveal-item mt-5 flex-1 text-sm leading-relaxed text-text-muted sm:text-base">
+            <p className="sector-atlas-card__reveal-item mt-3 text-sm leading-relaxed text-text-muted">
               {sector.description}
             </p>
 
-            <div className="sector-atlas-card__reveal-item mt-6 flex flex-col gap-4 border-t border-neutral-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-              <p className="flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase">
+            <div className="sector-atlas-card__reveal-item mt-4 flex flex-col gap-2 border-t border-neutral-border pt-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="flex items-center gap-2 font-label text-xs leading-snug text-primary">
                 <svg
                   className="sector-atlas-card__check h-4 w-4 shrink-0 text-accent"
                   viewBox="0 0 24 24"
@@ -131,7 +119,7 @@ export function SectorAtlasCard({ sector, index }: SectorAtlasCardProps) {
                 </svg>
                 {sector.highlight}
               </p>
-              <span className="sector-atlas-card__cta inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-accent uppercase">
+              <span className="sector-atlas-card__cta inline-flex items-center gap-2 font-label text-xs text-accent">
                 Explore Sector
                 <span className="sector-atlas-card__arrow" aria-hidden="true">
                   &rarr;

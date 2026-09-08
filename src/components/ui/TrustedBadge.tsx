@@ -19,7 +19,7 @@ export function TrustedBadge({
   return (
     <span
       className={cn(
-        `inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase`,
+        `font-label inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs`,
         styles,
         className,
       )}

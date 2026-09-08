@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { divisionIcons } from "@/lib/division-icons";
+import { DivisionIcon } from "@/lib/division-icons";
 import {
   DivisionCapabilitiesSection,
   DivisionCommitments,
@@ -80,11 +80,11 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
       <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="primary">
         <ScrollReveal>
           <div className="mx-auto mb-6 flex max-w-6xl flex-col gap-4 rounded-sm border border-accent/30 bg-accent/5 px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-neutral text-primary">
-              {divisionIcons[division.id]}
+            <span className="flex shrink-0 items-center justify-center">
+              <DivisionIcon id={division.id} className="h-[170px] w-[170px]" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
+              <p className="font-label text-xs text-accent">
                 Vertical Highlight
               </p>
               <p className="mt-1 text-base font-medium leading-relaxed text-secondary sm:text-lg">
@@ -112,7 +112,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
 
       <Section className="pt-4 pb-4 md:pt-4 md:pb-4" glow="none">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">How We Deliver</p>
+          <p className="font-label text-xs text-accent">How We Deliver</p>
           <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Our Delivery Process</h2>
           <p className="mt-4 text-base text-text-muted">
             A structured approach that keeps scope, quality, and timelines aligned from first consultation

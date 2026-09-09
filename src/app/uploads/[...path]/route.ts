@@ -1,8 +1,7 @@
 import { readFile, stat } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
-import { ALLOWED_IMAGE_EXTENSIONS, UPLOAD_DIR } from "@/lib/upload/config";
-import { resolveSafeFilename } from "@/lib/upload/media";
+import { ALLOWED_IMAGE_EXTENSIONS, UPLOAD_DIR, resolveSafeFilename } from "@/lib/upload/config";
 
 const MIME_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -14,6 +13,23 @@ const MIME_TYPES: Record<string, string> = {
 };
 
 export const dynamic = "force-dynamic";
+
+function onDisk(...parts: string[]) {
+  // Resolve from "." so NFT does not copy process.cwd() (public/, node_modules/) into this function.
+  return path.resolve(".", ...parts);
+}
+
+async function readUpload(filePath: string, ext: string) {
+  const info = await stat(filePath);
+  if (!info.isFile()) return null;
+  const buffer = await readFile(filePath);
+  return new NextResponse(buffer, {
+    headers: {
+      "Content-Type": MIME_TYPES[ext] ?? "application/octet-stream",
+      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+    },
+  });
+}
 
 export async function GET(
   _request: Request,
@@ -32,38 +48,19 @@ export async function GET(
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const filePath = path.join(process.cwd(), UPLOAD_DIR, safe);
+  try {
+    const response = await readUpload(onDisk(UPLOAD_DIR, safe), ext);
+    if (response) return response;
+  } catch {
+    // Fall through to the legacy public/uploads location.
+  }
 
   try {
-    const info = await stat(filePath);
-    if (!info.isFile()) {
-      return new NextResponse("Not found", { status: 404 });
-    }
-
-    const buffer = await readFile(filePath);
-    return new NextResponse(buffer, {
-      headers: {
-        "Content-Type": MIME_TYPES[ext] ?? "application/octet-stream",
-        "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-      },
-    });
+    const response = await readUpload(onDisk("public", "uploads", safe), ext);
+    if (response) return response;
   } catch {
-    // Legacy: files uploaded before the storage move may still live in public/uploads.
-    const legacyPath = path.join(process.cwd(), "public", "uploads", safe);
-    try {
-      const info = await stat(legacyPath);
-      if (!info.isFile()) {
-        return new NextResponse("Not found", { status: 404 });
-      }
-      const buffer = await readFile(legacyPath);
-      return new NextResponse(buffer, {
-        headers: {
-          "Content-Type": MIME_TYPES[ext] ?? "application/octet-stream",
-          "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-        },
-      });
-    } catch {
-      return new NextResponse("Not found", { status: 404 });
-    }
+    // Not found in either location.
   }
+
+  return new NextResponse("Not found", { status: 404 });
 }

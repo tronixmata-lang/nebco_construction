@@ -5,6 +5,7 @@ import {
   ALLOWED_IMAGE_TYPES,
   MAX_UPLOAD_BYTES,
   UPLOAD_DIR,
+  resolveSafeFilename,
 } from "./config";
 
 export type MediaFile = {
@@ -22,13 +23,7 @@ function sanitizeFilename(name: string): string {
   return name.replace(/[^a-zA-Z0-9.-]/g, "-").toLowerCase();
 }
 
-export function resolveSafeFilename(filename: string): string | null {
-  const base = path.basename(filename);
-  if (base !== filename || base.includes("..")) return null;
-  const ext = path.extname(base).toLowerCase();
-  if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) return null;
-  return base;
-}
+export { resolveSafeFilename };
 
 export async function saveUploadedFile(file: File): Promise<MediaFile> {
   if (!ALLOWED_IMAGE_TYPES.has(file.type)) {

@@ -57,7 +57,7 @@ export function PageHeader({
             <span className="h-px w-10 bg-accent" aria-hidden="true" />
           </div>
         )}
-        <h1 className="max-w-4xl font-display text-3xl tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
+        <h1 className="max-w-5xl font-display text-3xl tracking-tight text-neutral sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
           {title}
         </h1>
         {description && (

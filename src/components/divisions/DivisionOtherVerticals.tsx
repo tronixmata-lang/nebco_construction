@@ -1,5 +1,6 @@
 import { DivisionIcon } from "@/lib/division-icons";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { Button } from "@/components/ui/Button";
 import type { Division } from "@/types";
@@ -13,28 +14,29 @@ export function DivisionOtherVerticals({ divisions }: DivisionOtherVerticalsProp
 
   return (
     <div>
-      <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="font-label text-xs text-accent">Integrated Group</p>
-        <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Explore Other Verticals</h2>
-        <p className="mt-4 text-base text-text-muted">
-          NEBCO&apos;s verticals work together so clients can move from advisory and investment through
-          construction with one trusted partner.
-        </p>
+      <ScrollReveal>
+        <SectionHeader
+          eyebrow="Integrated Group"
+          title="Explore Other Verticals"
+          description="NEBCO's verticals work together so clients can move from advisory and investment through construction with one trusted partner."
+          align="center"
+          className="mx-auto mb-8 md:mb-10"
+        />
       </ScrollReveal>
 
-      <StaggerReveal className="mt-6 grid gap-6 md:mt-8 md:grid-cols-2" staggerMs={100}>
+      <StaggerReveal className="grid gap-6 md:grid-cols-2" staggerMs={100}>
         {divisions.map((division) => (
           <article
             key={division.id}
             className="group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg sm:p-8"
           >
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-            <span className="flex shrink-0 items-center justify-center">
-              <DivisionIcon id={division.id} className="h-[170px] w-[170px]" />
+            <span className="flex shrink-0 items-center justify-start">
+              <DivisionIcon id={division.id} className="division-mark" />
             </span>
-            <h3 className="mt-5 font-display text-xl text-secondary">{division.name}</h3>
+            <h3 className="mt-5 font-display text-2xl text-secondary">{division.name}</h3>
             <p className="mt-1 text-sm font-medium text-accent">{division.tagline}</p>
-            <p className="mt-3 text-sm leading-relaxed text-text-muted line-clamp-3">{division.description}</p>
+            <p className="mt-3 text-sm leading-relaxed text-text-muted">{division.description}</p>
             <div className="mt-6">
               <Button href={division.href} variant="outline" size="sm">
                 Explore {division.shortName}

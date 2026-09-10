@@ -57,6 +57,7 @@ export type SiteContentDocument = {
     email: string;
     phone: string;
     address: string;
+    googleMapsEmbedUrl?: string;
     businessHours: string;
     foundingDate: string;
     parentOrganization: string;
@@ -194,6 +195,7 @@ const SiteContentSchema = new Schema<SiteContentDocument>(
       email: { type: String, required: true },
       phone: { type: String, required: true },
       address: { type: String, required: true },
+      googleMapsEmbedUrl: { type: String, default: "", trim: true },
       businessHours: { type: String, required: true },
       foundingDate: { type: String, required: true },
       parentOrganization: { type: String, required: true },

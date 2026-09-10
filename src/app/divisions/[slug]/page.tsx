@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { DivisionIcon } from "@/lib/division-icons";
+import { ConsultingDivisionPage } from "@/components/divisions/consulting/ConsultingDivisionPage";
+import { ConstructionDivisionPage } from "@/components/divisions/construction/ConstructionDivisionPage";
+import { InvestmentDivisionPage } from "@/components/divisions/investment/InvestmentDivisionPage";
 import {
   DivisionCapabilitiesSection,
   DivisionCommitments,
@@ -14,16 +16,61 @@ import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { TrustedBadge } from "@/components/ui/TrustedBadge";
 import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getDivisions, getSiteContent } from "@/lib/data/content";
 import { getDivisionProfileBySlug } from "@/lib/data/divisions";
 import { getProjects } from "@/lib/data/projects";
 import { breadcrumbSchema, createPageMetadata, serviceSchema } from "@/lib/seo";
+import type { Project } from "@/types";
 
 type DivisionPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const DIVISION_PROJECT_CATEGORIES: Record<string, Project["category"][]> = {
+  construction: ["residential", "commercial", "industrial"],
+  investment: ["infrastructure", "commercial"],
+  consulting: ["residential", "commercial", "infrastructure"],
+};
+
+const DIVISION_OVERVIEW_STATS: Record<string, Array<{ value: string; label: string }>> = {
+  investment: [
+    { value: "35+", label: "Years of Trust" },
+    { value: "Scale", label: "Infrastructure" },
+    { value: "Shah Group", label: "Backed" },
+  ],
+  consulting: [
+    { value: "Design", label: "To Delivery" },
+    { value: "A-Class", label: "Standards" },
+    { value: "Owner", label: "Advisory" },
+  ],
+};
+
+function featuredProjectsForDivision(slug: string, projects: Project[]) {
+  const categories = DIVISION_PROJECT_CATEGORIES[slug];
+  const pool = categories
+    ? projects.filter((project) => categories.includes(project.category))
+    : projects;
+  const source = pool.length >= 3 ? pool : projects;
+
+  const picked: Project[] = [];
+  if (categories) {
+    for (const category of categories) {
+      const match = source.find(
+        (project) => project.category === category && !picked.some((item) => item.id === project.id),
+      );
+      if (match) picked.push(match);
+    }
+  }
+
+  for (const project of source) {
+    if (picked.length >= 3) break;
+    if (!picked.some((item) => item.id === project.id)) picked.push(project);
+  }
+
+  return picked.slice(0, 3);
+}
 
 export async function generateStaticParams() {
   const divisions = await getDivisions();
@@ -54,13 +101,27 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
   ]);
 
   const otherDivisions = divisions.filter((d) => d.slug !== slug);
+
+  if (slug === "construction") {
+    return (
+      <ConstructionDivisionPage
+        division={division}
+        projects={projects}
+      />
+    );
+  }
+
+  if (slug === "investment") {
+    return <InvestmentDivisionPage division={division} />;
+  }
+
+  if (slug === "consulting") {
+    return <ConsultingDivisionPage division={division} />;
+  }
+
   const heroImage = division.heroImage ?? pageHeroImages.divisions;
-  const featuredProjects = projects.slice(0, 3).map((project) => ({
-    slug: project.slug,
-    title: project.title,
-    location: project.location,
-    image: project.image ?? project.images?.[0] ?? "/images/home.jpg",
-  }));
+  const featuredProjects = featuredProjectsForDivision(slug, projects);
+  const overviewStats = DIVISION_OVERVIEW_STATS[slug];
 
   return (
     <>
@@ -72,75 +133,58 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
         title={division.name}
         description={division.tagline}
         breadcrumbLabel={division.name}
-        showStats={false}
         backgroundImage={heroImage}
         backgroundAlt={`${division.name}, NEBCO`}
       />
 
-      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="primary">
-        <ScrollReveal>
-          <div className="mx-auto mb-6 flex max-w-6xl flex-col gap-4 rounded-sm border border-accent/30 bg-accent/5 px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8">
-            <span className="flex shrink-0 items-center justify-center">
-              <DivisionIcon id={division.id} className="h-[170px] w-[170px]" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="font-label text-xs text-accent">
-                Vertical Highlight
-              </p>
-              <p className="mt-1 text-base font-medium leading-relaxed text-secondary sm:text-lg">
-                {division.highlight}
-              </p>
-            </div>
-            <TrustedBadge label="A-Class" className="self-start sm:self-center" />
-          </div>
-        </ScrollReveal>
-
+      <Section className="pt-10 pb-10 md:pt-14 md:pb-14" glow="primary">
         <DivisionOverviewReveal
           overview={division.overview}
           image={heroImage}
           imageAlt={`${division.name} project showcase`}
           divisionName={division.shortName}
+          stats={overviewStats}
+          title="Built for Serious Projects"
         />
       </Section>
 
-      <Section variant="muted" className="pt-4 pb-6 md:pt-4 md:pb-8" glow="accent">
+      <Section variant="muted" className="pt-10 pb-12 md:pt-12 md:pb-16" glow="accent">
         <DivisionCapabilitiesSection
           capabilities={division.capabilities}
           divisionName={division.shortName}
         />
       </Section>
 
-      <Section className="pt-4 pb-4 md:pt-4 md:pb-4" glow="none">
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <p className="font-label text-xs text-accent">How We Deliver</p>
-          <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Our Delivery Process</h2>
-          <p className="mt-4 text-base text-text-muted">
-            A structured approach that keeps scope, quality, and timelines aligned from first consultation
-            through final handover.
-          </p>
+      <Section className="pt-10 pb-12 md:pt-12 md:pb-16" glow="none">
+        <ScrollReveal>
+          <SectionHeader
+            eyebrow="How We Deliver"
+            title="Our Delivery Process"
+            description="A structured approach that keeps scope, quality, and timelines aligned from first consultation through final handover."
+            align="center"
+            className="mx-auto mb-10 md:mb-12"
+          />
         </ScrollReveal>
-        <div className="mt-6 md:mt-8">
-          <DivisionProcessFlow steps={division.process} />
-        </div>
+        <DivisionProcessFlow steps={division.process} />
       </Section>
 
-      <Section variant="muted" className="pt-4 pb-6 md:pt-4 md:pb-8" glow="primary">
+      <Section variant="dark" className="border-y border-accent/20 pt-10 pb-12 md:pt-12 md:pb-16" glow="none">
         <DivisionCommitments commitments={division.commitments} />
       </Section>
 
-      <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="none">
+      <Section id="book-consultation" className="pt-10 pb-12 md:pt-12 md:pb-16" glow="none">
         <DivisionBookingSection divisionSlug={division.id} divisionName={division.name} />
       </Section>
 
-      <Section className="pt-4 pb-4 md:pt-4 md:pb-4" glow="accent">
+      <Section className="pt-10 pb-12 md:pt-12 md:pb-16" glow="accent">
         <DivisionProjectsPreview projects={featuredProjects} />
       </Section>
 
-      <Section variant="muted" className="pt-4 pb-4 md:pt-4 md:pb-4" glow="none">
+      <Section variant="muted" className="pt-10 pb-12 md:pt-12 md:pb-16" glow="none">
         <DivisionOtherVerticals divisions={otherDivisions} />
       </Section>
 
-      <CtaBanner className="pt-4 pb-10 md:pt-4 md:pb-12" />
+      <CtaBanner className="pt-10 pb-12 md:pt-12 md:pb-16" />
     </>
   );
 }

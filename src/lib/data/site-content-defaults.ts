@@ -134,6 +134,7 @@ export function getDefaultSiteContent(): SiteContentData {
       email: staticSiteConfig.email,
       phone: staticSiteConfig.phone,
       address: staticSiteConfig.address,
+      googleMapsEmbedUrl: staticSiteConfig.googleMapsEmbedUrl,
       businessHours: staticSiteConfig.businessHours,
       foundingDate: staticSiteConfig.foundingDate,
       parentOrganization: staticSiteConfig.parentOrganization,
@@ -324,6 +325,8 @@ export function mapSiteContentDocument(doc: SiteContentDocument): SiteContentDat
     },
     siteConfig: {
       ...doc.siteConfig,
+      googleMapsEmbedUrl:
+        doc.siteConfig.googleMapsEmbedUrl || defaults.siteConfig.googleMapsEmbedUrl,
       logo: doc.siteConfig.logo || defaults.siteConfig.logo,
       siteLogo: doc.siteConfig.siteLogo || defaults.siteConfig.siteLogo,
       social: { ...doc.siteConfig.social },

@@ -117,16 +117,33 @@ export function Header({
                     </svg>
                   </button>
                   {openDropdown === item.label && (
-                    <div className="absolute top-full left-0 min-w-[220px] border border-neutral-border bg-neutral py-2 shadow-lg">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-4 py-2.5 text-sm text-secondary transition-colors hover:bg-neutral-muted hover:text-primary"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 min-w-full pt-1">
+                      <div
+                        className={cn(
+                          "w-max min-w-full overflow-hidden rounded-2xl py-1.5 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)]",
+                          isHero
+                            ? "border border-neutral/15 bg-secondary/35 backdrop-blur-xl"
+                            : "border border-secondary/10 bg-secondary/80 backdrop-blur-xl",
+                        )}
+                      >
+                        {item.children.map((child) => {
+                          const active = isNavActive(pathname, child.href);
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={cn(
+                                "block whitespace-nowrap px-4 py-2.5 text-sm transition-colors",
+                                active
+                                  ? "bg-neutral/10 text-accent"
+                                  : "text-neutral/90 hover:bg-neutral/10 hover:text-accent",
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { CmsImage } from "@/components/ui/CmsImage";
+import { PortfolioMosaicCard } from "@/components/portfolio/PortfolioMosaicCard";
 import { BrandIcon } from "@/components/ui/BrandIcon";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { cn } from "@/lib/utils";
-import type { DivisionCapability } from "@/types";
+import type { DivisionCapability, Project } from "@/types";
 
 type DivisionCapabilitiesSectionProps = {
   capabilities: DivisionCapability[];
@@ -15,41 +16,78 @@ export function DivisionCapabilitiesSection({
   capabilities,
   divisionName,
 }: DivisionCapabilitiesSectionProps) {
+  const featured = capabilities.slice(0, 2);
+  const rest = capabilities.slice(2);
+
   return (
     <div>
-      <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="font-label text-xs text-accent">What We Deliver</p>
-        <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">
-          Capabilities Across {divisionName}
-        </h2>
-        <p className="mt-4 text-base text-text-muted">
-          Specialized services backed by A-Class credentials, disciplined project controls, and teams
-          that understand Nepal&apos;s construction landscape.
-        </p>
+      <ScrollReveal>
+        <SectionHeader
+          eyebrow="What We Deliver"
+          title={`Capabilities Across ${divisionName}`}
+          description="Specialized services backed by A-Class credentials, disciplined project controls, and teams that understand Nepal's construction landscape."
+          align="center"
+          className="mx-auto mb-8 md:mb-10"
+        />
       </ScrollReveal>
 
-      <StaggerReveal
-        className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:mt-8"
-        staggerMs={85}
-      >
-        {capabilities.map((capability, index) => (
-          <article
-            key={capability.title}
-            className="division-capability-card group relative h-full overflow-hidden rounded-sm border border-neutral-border/90 bg-neutral p-6 shadow-[0_8px_30px_-18px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg sm:p-7"
-          >
-            <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
-            <span className="font-label text-xs text-primary/55">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <BrandIcon title={capability.title} fallbackIndex={index} className="mt-4 h-[170px] w-[170px]" alt="" />
-            <h3 className="mt-4 font-display text-lg text-secondary transition-colors group-hover:text-primary">
-              {capability.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-text-muted">{capability.description}</p>
-          </article>
-        ))}
-      </StaggerReveal>
+      {featured.length > 0 ? (
+        <StaggerReveal className="grid gap-5 md:grid-cols-2 lg:gap-6" staggerMs={80}>
+          {featured.map((capability, index) => (
+            <CapabilityCard key={capability.title} capability={capability} index={index} featured />
+          ))}
+        </StaggerReveal>
+      ) : null}
+
+      {rest.length > 0 ? (
+        <StaggerReveal
+          className="mt-5 grid gap-5 sm:grid-cols-2 lg:mt-6 lg:grid-cols-4 lg:gap-6"
+          staggerMs={70}
+        >
+          {rest.map((capability, index) => (
+            <CapabilityCard
+              key={capability.title}
+              capability={capability}
+              index={index + featured.length}
+            />
+          ))}
+        </StaggerReveal>
+      ) : null}
     </div>
+  );
+}
+
+function CapabilityCard({
+  capability,
+  index,
+  featured = false,
+}: {
+  capability: DivisionCapability;
+  index: number;
+  featured?: boolean;
+}) {
+  return (
+    <article
+      className={cn(
+        "division-capability-card group relative h-full overflow-hidden rounded-sm border border-neutral-border/90 bg-neutral shadow-[0_8px_30px_-18px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg",
+        featured ? "p-6 sm:p-8" : "p-5 sm:p-6",
+      )}
+    >
+      <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
+      <div className="flex items-start justify-between gap-4">
+        <BrandIcon title={capability.title} fallbackIndex={index} className="division-mark" alt="" />
+        <span className="font-label text-xs text-primary/50">{String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <h3
+        className={cn(
+          "mt-5 font-display text-secondary transition-colors group-hover:text-primary",
+          featured ? "text-2xl" : "text-lg",
+        )}
+      >
+        {capability.title}
+      </h3>
+      <p className="mt-3 text-sm leading-relaxed text-text-muted">{capability.description}</p>
+    </article>
   );
 }
 
@@ -58,46 +96,29 @@ type DivisionCommitmentsProps = {
 };
 
 export function DivisionCommitments({ commitments }: DivisionCommitmentsProps) {
-  const columnClass =
-    commitments.length === 3
-      ? "sm:grid-cols-2 lg:grid-cols-3"
-      : commitments.length === 4
-        ? "sm:grid-cols-2"
-        : "sm:grid-cols-2 lg:grid-cols-3";
-
   return (
     <div>
-      <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="font-label text-xs text-accent">Our Commitment</p>
-        <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">
-          How We Work With Clients
-        </h2>
-        <p className="mt-4 text-base leading-relaxed text-text-muted">
-          Principles we uphold on every engagement, from first briefing through final delivery.
-        </p>
-        <span className="mx-auto mt-4 block h-0.5 w-12 rounded-full bg-primary" aria-hidden="true" />
+      <ScrollReveal>
+        <SectionHeader
+          eyebrow="Our Commitment"
+          title="How We Work With Clients"
+          description="Principles we uphold on every engagement, from first briefing through final delivery."
+          align="center"
+          dark
+          className="mx-auto mb-8 md:mb-10"
+        />
       </ScrollReveal>
 
       <StaggerReveal
-        className={cn("mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-5 md:mt-8", columnClass)}
-        staggerMs={80}
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8"
+        staggerMs={70}
       >
         {commitments.map((item, index) => (
-          <article
-            key={item}
-            className="group relative flex h-full flex-col rounded-sm border border-neutral-border/80 bg-neutral p-6 shadow-[0_8px_28px_-18px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_16px_36px_-20px_rgba(0,0,0,0.18)] sm:p-7"
-          >
-            <span
-              className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-accent to-primary transition-transform duration-300 group-hover:scale-x-100"
-              aria-hidden="true"
-            />
-            <div className="flex items-start justify-between gap-4">
-              <BrandIcon title={item} fallbackIndex={index} className="h-[170px] w-[170px]" alt="" />
-              <span className="font-label text-xs text-primary/45">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <p className="mt-5 flex-1 text-base leading-relaxed text-secondary">{item}</p>
+          <article key={item} className="group relative border-t border-neutral/15 pt-5">
+            <span className="font-display text-2xl leading-none text-accent/80">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <p className="mt-4 text-sm leading-relaxed text-neutral/85">{item}</p>
           </article>
         ))}
       </StaggerReveal>
@@ -106,12 +127,7 @@ export function DivisionCommitments({ commitments }: DivisionCommitmentsProps) {
 }
 
 type DivisionProjectsPreviewProps = {
-  projects: Array<{
-    slug: string;
-    title: string;
-    location: string;
-    image: string;
-  }>;
+  projects: Project[];
 };
 
 export function DivisionProjectsPreview({ projects }: DivisionProjectsPreviewProps) {
@@ -119,40 +135,33 @@ export function DivisionProjectsPreview({ projects }: DivisionProjectsPreviewPro
 
   return (
     <div>
-      <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="font-label text-xs text-accent">Proven Work</p>
-        <h2 className="mt-3 font-display text-2xl text-secondary sm:text-3xl">Featured Projects</h2>
-        <p className="mt-4 text-base text-text-muted">
-          A sample of completed and ongoing work that reflects the quality and scale of our delivery.
-        </p>
+      <ScrollReveal>
+        <SectionHeader
+          eyebrow="Proven Work"
+          title="Featured Projects"
+          description="A sample of completed and ongoing work that reflects the quality and scale of our delivery."
+          align="center"
+          className="mx-auto mb-8 md:mb-10"
+        />
       </ScrollReveal>
 
-      <StaggerReveal className="mt-6 grid gap-6 md:mt-8 md:grid-cols-3" staggerMs={100}>
-        {projects.map((project) => (
-          <Link
-            key={project.slug}
-            href={`/portfolio/${project.slug}`}
-            className="division-project-card group relative overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-xl"
+      <div className="portfolio-mosaic-grid grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-rows-[minmax(220px,1fr)_minmax(220px,1fr)] lg:gap-5">
+        {projects.map((project, index) => (
+          <div
+            key={project.id}
+            className={cn(
+              index === 0 && projects.length > 1 && "sm:col-span-2 lg:col-span-1 lg:row-span-2",
+              index === 0 ? "min-h-[320px] lg:min-h-0" : "min-h-[240px]",
+            )}
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-muted">
-              <CmsImage
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 via-secondary/10 to-transparent" />
-            </div>
-            <div className="p-5">
-              <h3 className="font-display text-lg text-secondary transition-colors group-hover:text-primary">
-                {project.title}
-              </h3>
-              <p className="mt-1 text-sm text-text-muted">{project.location}</p>
-            </div>
-          </Link>
+            <PortfolioMosaicCard
+              project={project}
+              index={index}
+              layout={index === 0 ? "hero" : "standard"}
+            />
+          </div>
         ))}
-      </StaggerReveal>
+      </div>
 
       <ScrollReveal className="mt-8 text-center">
         <Link

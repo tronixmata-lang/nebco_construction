@@ -9,200 +9,199 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
   construction: {
     ...construction,
     highlight:
-      "A-Class licensed construction for homes, commercial buildings, and civil works, delivered with disciplined site management and transparent client communication.",
+      "A-Class licensed construction for homes, commercial buildings, apartments, renovations, industrial structures, and civil works, with engineers on every site.",
     overview:
-      "NEBCO Construction is where vision becomes built reality. From private residences and apartment developments to commercial complexes and civil engineering works, our teams manage every stage with rigorous quality control, safety protocols, and schedule accountability. As part of the Shah Group, we combine decades of institutional trust with hands-on craftsmanship on every site.",
+      "Nepal's most trusted construction partner, built on decades of delivery. From 1–5 storey private homes to commercial buildings, apartment complexes, renovations, industrial structures, and civil works, NEBCO manages design, BOQ, construction, and handover with licensed supervision and a structural warranty.",
     heroImage: "/images/site/1-7_11zon-scaled.jpg",
     capabilities: [
       {
-        title: "Residential Construction",
-        description:
-          "Custom homes, housing colonies, and multi-family residences built to A-Class standards with durable materials and refined finishing.",
+        title: "Residential homes",
+        description: "1–5 storey private homes, custom designs.",
       },
       {
-        title: "Commercial Construction",
-        description:
-          "Hotels, offices, retail, and mixed-use developments engineered for performance, compliance, and long-term operational value.",
+        title: "Commercial buildings",
+        description: "Offices, showrooms, multi-use buildings.",
       },
       {
-        title: "Apartment & Housing Infrastructure",
-        description:
-          "Structured delivery for apartment blocks and housing infrastructure, from foundations and MEP coordination through final handover.",
+        title: "Apartment complexes",
+        description: "Multi-unit investment properties.",
       },
       {
-        title: "Interior Design Build",
-        description:
-          "Integrated interior execution aligned with architectural intent, ensuring cohesive spaces that match the quality of the structure.",
+        title: "Renovation & extension",
+        description: "Adding floors, interior redesign, structural upgrades.",
       },
       {
-        title: "Civil Engineering Works",
-        description:
-          "Earthworks, structural systems, and site infrastructure executed with technical precision and safety-first supervision.",
+        title: "Industrial structures",
+        description: "Warehouses, factories, workshops.",
       },
       {
-        title: "Turnkey Project Delivery",
-        description:
-          "Single-point accountability from planning and procurement to construction management, reporting, and client handover.",
+        title: "Road & civil work",
+        description: "Site development, retaining walls, drainage.",
       },
     ],
     process: [
       {
-        title: "Consult & Define Scope",
+        title: "Consultation",
         description:
-          "We align on objectives, budget parameters, timelines, and regulatory requirements before mobilizing design and site teams.",
+          "We listen to the brief, site, budget, and timeline before any drawings leave the office.",
       },
       {
-        title: "Design & Engineer",
+        title: "Design & BOQ",
         description:
-          "Architectural and structural coordination ensures buildability, code compliance, and value-engineered material selections.",
+          "Architectural coordination and a quantified bill of quantities so costs are visible before you sign.",
       },
       {
-        title: "Build with Discipline",
-        description:
-          "Dedicated site leadership, quality checkpoints, and safety supervision keep progress visible and standards consistent.",
+        title: "Contract & Timeline",
+        description: "Scope, milestones, and a delivery calendar you can hold us to.",
       },
       {
-        title: "Handover & Support",
+        title: "Construction",
         description:
-          "Final inspections, documentation, and post-handover responsiveness so clients move in with confidence.",
+          "Licensed engineers on site, phase inspections, and reporting until the structure is complete.",
+      },
+      {
+        title: "Handover & Warranty",
+        description:
+          "Final walkthrough, documentation, and a structural warranty so occupancy is not a leap of faith.",
       },
     ],
     commitments: [
-      "Transparent milestone reporting at every project stage",
-      "A-Class construction standards on every site",
-      "Safety-first culture for workers and surrounding communities",
-      "On-time delivery backed by accountable project leadership",
-      "Quality materials sourced through trusted supply partners",
+      "Licensed engineers on every site",
+      "In-house architectural design team",
+      "Quality materials sourced and verified",
+      "Structural warranty included",
+      "Client portal for tracking",
+      "Independent phase inspections",
     ],
   },
   investment: {
     ...investment,
     highlight:
-      "Large-scale infrastructure and real estate development that strengthens communities and creates lasting asset value across Nepal.",
+      "Apartments, plots, joint ventures, off-plan, land banking, and rental-ready packages — with NEBCO construction and NRN-ready paperwork behind every rupee.",
     overview:
-      "NEBCO Investment focuses on developments that shape how cities grow: roads, bridges, commercial complexes, and strategic real estate. We structure projects for long-term viability, pairing capital discipline with construction execution so investors and communities see durable outcomes.",
-    heroImage: "/images/josepmonter-cranes-7347888.jpg",
+      "Your money works harder in Nepal when rental yield, appreciation, and legal compliance sit in one structure. NEBCO Investment offers residential apartments, commercial plots, joint ventures, off-plan property, land banking, and rental-ready packages, with due diligence, construction or acquisition, and portal reporting through handover and rent.",
+    heroImage: "/images/site/hotel-buddy-thamel-5.png",
     capabilities: [
       {
-        title: "Infrastructure Development",
-        description:
-          "Planning and delivery of public and private infrastructure that supports economic growth and regional connectivity.",
+        title: "Residential apartments",
+        description: "Pre-built or off-plan units in high-demand areas — buy, rent, earn.",
       },
       {
-        title: "Road & Bridge Construction",
-        description:
-          "Civil works executed with engineering rigor, environmental awareness, and phased delivery for minimal disruption.",
+        title: "Commercial plots",
+        description: "Vetted land in Pokhara, Butwal, and Kathmandu for development.",
       },
       {
-        title: "Commercial Complexes",
-        description:
-          "Mixed-use and commercial assets designed for occupancy, leaseability, and sustained operational performance.",
+        title: "Joint ventures",
+        description: "Co-invest with NEBCO on larger projects and share returns.",
       },
       {
-        title: "Real Estate Development",
-        description:
-          "End-to-end development from land assessment and feasibility through construction and market-ready delivery.",
+        title: "Off-plan properties",
+        description: "Buy at foundation price, then sell or rent at completion.",
       },
       {
-        title: "Property Development & Sales",
-        description:
-          "Structured offerings for buyers and investors with clear documentation and NEBCO-backed build quality.",
+        title: "Land banking",
+        description: "Buy verified land now, develop or sell later as value grows.",
       },
       {
-        title: "Public-Private Partnerships",
-        description:
-          "Collaborative delivery models that align public objectives with private-sector efficiency and accountability.",
+        title: "Rental-ready packages",
+        description: "Build, furnish, and find a tenant — fully passive income.",
       },
     ],
     process: [
       {
-        title: "Feasibility & Vision",
-        description: "Market analysis, site studies, and financial modeling establish a clear development thesis.",
+        title: "Choose product",
+        description: "Apartments, plots, joint ventures, off-plan, land, or a rental-ready package.",
       },
       {
-        title: "Structure & Partnerships",
-        description: "Stakeholder alignment, financing pathways, and regulatory planning before ground breaks.",
+        title: "Legal due diligence",
+        description: "Title, encumbrances, NRN rules, and approvals before any money moves.",
       },
       {
-        title: "Execute at Scale",
-        description: "Coordinated construction and infrastructure delivery with milestone governance.",
+        title: "Sign agreement",
+        description: "Scope, price, timeline, and repatriation path in writing.",
       },
       {
-        title: "Activate & Transfer",
-        description: "Asset readiness, occupancy support, and long-term value realization for partners.",
+        title: "Construction / acquisition",
+        description: "NEBCO builds or completes the purchase with milestone reporting.",
+      },
+      {
+        title: "Rental management",
+        description: "If you want income, we furnish, let, and report through the portal.",
+      },
+      {
+        title: "Returns",
+        description: "Rent, appreciation, or exit — documented, not promised in a slide.",
       },
     ],
     commitments: [
-      "Development decisions grounded in feasibility and risk management",
-      "Scale delivery without compromising structural integrity",
-      "Partnership transparency from proposal through completion",
-      "Community-conscious planning on infrastructure corridors",
-      "Integration with NEBCO Construction for unified execution",
+      "NRN Investment Act and NRB process mapped before funds move",
+      "Repatriation planned into the structure, not added later",
+      "Power of Attorney support if you cannot be in Nepal to sign",
+      "Title and tax obligations explained in writing",
+      "Client portal for status, financials, and documents",
     ],
   },
   consulting: {
     ...consulting,
     highlight:
-      "Architectural, structural, and project advisory services that reduce risk and strengthen decisions before and during construction.",
+      "The right advice before the first brick: feasibility, design, permits, project management, and investment advisory, including video calls for NRNs.",
     overview:
-      "NEBCO Consulting gives clients clarity before capital is committed. Our design, engineering, and advisory teams support owners, developers, and institutions with documentation, coordination, and project management that keeps builds efficient, compliant, and aligned with intent.",
+      "NEBCO Consulting is for people who need a clear next step before they pour, buy, or fire a contractor. We run site feasibility, drawings, municipality permits, third-party supervision, and investment due diligence, with a path into NEBCO Construction when you are ready to build.",
     heroImage: "/images/pexels-mike-van-schoonderwalt-1884800-5505119.jpg",
     capabilities: [
       {
-        title: "Architectural Design",
+        title: "Planning & Feasibility",
         description:
-          "Concept through detailed design that balances aesthetics, function, and constructability for Nepal's context.",
+          "Site feasibility study: is the land buildable?\nSoil testing coordination\nBOQ (Bill of Quantities) preparation\nConstruction cost estimation\nProject timeline planning",
       },
       {
-        title: "Structural Engineering",
+        title: "Architectural & Design",
         description:
-          "Safe, code-compliant structural systems optimized for seismic resilience and material efficiency.",
+          "Architectural drawings and floor plans\n3D rendering and visualization\nInterior design consultation\nStructural design review",
       },
       {
-        title: "MEP & Interior Design",
+        title: "Legal & Permits",
         description:
-          "Coordinated mechanical, electrical, plumbing, and interior planning for cohesive built environments.",
+          "Municipality building permit guidance\nLand registration support\nNRN legal advisory (Investment Act, PoA)\nIRD and tax consultation referral",
       },
       {
-        title: "Urban Planning & Design",
+        title: "Project Management Consulting",
         description:
-          "Master planning and spatial design for developments that serve users and comply with local frameworks.",
+          "Third-party site supervision\nContractor vetting and shortlisting\nQuality audit of ongoing builds\nDispute resolution with contractors",
       },
       {
-        title: "Feasibility & FDI Advisory",
+        title: "Investment Advisory",
         description:
-          "Studies and investment planning that help stakeholders evaluate viability before major commitments.",
-      },
-      {
-        title: "Construction Project Management",
-        description:
-          "Owner's representation, scheduling, cost control, and site coordination through project closeout.",
+          "Portfolio strategy for Nepal real estate\nMarket research reports\nDue diligence on land and property purchase\nRental yield analysis",
       },
     ],
     process: [
       {
-        title: "Discover Requirements",
-        description: "Stakeholder workshops and site context reviews define scope, constraints, and success metrics.",
+        title: "Initial call (free)",
+        description: "A 30-minute conversation to hear the site, the problem, and whether we can help.",
       },
       {
-        title: "Design & Document",
-        description: "Drawings, specifications, and coordination packages prepared for confident tendering.",
+        title: "Scope definition",
+        description: "We write what is in, what is out, and what you will hold in your hand at the end.",
       },
       {
-        title: "Review & Optimize",
-        description: "Value engineering, compliance checks, and constructability feedback before execution.",
+        title: "Consulting engagement",
+        description: "Site work, drawings, permits, or contractor review, as scoped.",
       },
       {
-        title: "Manage Delivery",
-        description: "On-site oversight, reporting, and decision support through construction and handover.",
+        title: "Report / deliverable",
+        description: "A feasibility pack, drawings, audit, or written advice.",
+      },
+      {
+        title: "Follow-up support",
+        description: "Questions after the report, and a handoff to construction if you proceed.",
       },
     ],
     commitments: [
-      "Independent, client-focused advisory at every stage",
-      "Design documentation aligned with Nepali codes and best practice",
-      "Cross-discipline coordination to reduce rework on site",
-      "Clear communication for owners, contractors, and authorities",
-      "Seamless handoff to NEBCO Construction when builds begin",
+      "In-house engineers with real construction experience",
+      "Municipality process known from actual files, not theory",
+      "Consulting that can continue into NEBCO Construction",
+      "NRN-friendly remote consulting by video call",
     ],
   },
 };

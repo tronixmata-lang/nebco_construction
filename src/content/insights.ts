@@ -117,6 +117,24 @@ export const nrnServiceInsights: NrnServiceInsight[] = [
 
 export const insights: InsightArticle[] = [
   {
+    id: "11",
+    slug: "top-5-mistakes-first-time-builders-nepal",
+    title: "Top 5 Mistakes First-Time Builders Make in Nepal",
+    excerpt:
+      "The first house in Nepal is often delayed by land that cannot take the drawing, a contractor with no paper trail, and a permit file that starts too late.",
+    body: [
+      "The first mistake is buying or committing to land before anyone asks whether it is buildable. Access, setbacks, soil, flood, and what the municipality will actually stamp matter more than a cheap kitta. A half-day feasibility costs less than a drawing for a plot that cannot carry the house you imagined.",
+      "The second is hiring a contractor on a relative's word and a WhatsApp quote. No BOQ, no milestone schedule, no retention. When the team disappears, you have a hole in the ground and no file. Vetting, a written scope, and third-party checks exist so you are not the only person on site who can read a drawing.",
+      "The third is treating the building permit as paperwork for later. Drawings that ignore setbacks, coverage, or seismic notes come back. Months pass. Start the permit path when the sketch is still cheap to change, not after you have poured a footing in the wrong place.",
+      "The fourth is skipping a real cost estimate. A verbal 'it will be about this' is not a budget. A BOQ and a timeline, even a first pass, tell you if the house fits the money. First-time builders who skip this usually stop at the frame or borrow in a panic.",
+      "The fifth is going abroad, or staying abroad, without a named person who reports. Photos from a cousin are not a quality audit. If you cannot walk the site, you need supervision, a portal, or a consultant who will tell you when the steel is wrong — before the slab is cast.",
+    ],
+    category: "Consulting",
+    date: "2026-09-09",
+    readTime: "6 min read",
+    image: "/images/pexels-mike-van-schoonderwalt-1884800-5505119.jpg",
+  },
+  {
     id: "1",
     slug: "why-choose-nebco-construction-nepal",
     title: "Why Choose NEBCO as Your Construction Company in Nepal?",

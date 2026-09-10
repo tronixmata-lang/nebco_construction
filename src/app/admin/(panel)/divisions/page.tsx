@@ -16,7 +16,7 @@ export default function AdminDivisionsPage() {
   return (
     <ResourceList<Row>
       title="Our Verticals"
-      description="Manage NEBCO Construction, Investment, and Consulting verticals"
+      description="Edit cards, capabilities, and process. Construction, Investment, and Consulting public pages read those fields from the CMS after you save."
       apiPath="/api/admin/divisions"
       createHref="/admin/divisions/new"
       editHref={(id) => `/admin/divisions/${id}`}

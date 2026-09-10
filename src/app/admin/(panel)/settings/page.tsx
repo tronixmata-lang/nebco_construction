@@ -54,6 +54,7 @@ type SiteContentForm = {
     email: string;
     phone: string;
     address: string;
+    googleMapsEmbedUrl: string;
     businessHours: string;
     tagline: string;
     description: string;
@@ -111,6 +112,7 @@ const emptyForm: SiteContentForm = {
     email: "",
     phone: "",
     address: "",
+    googleMapsEmbedUrl: "",
     businessHours: "",
     tagline: "",
     description: "",
@@ -799,7 +801,8 @@ export default function AdminSettingsPage() {
         <section className="admin-card space-y-4 p-6">
           <h2 className="admin-section-title">Contact & Site Info</h2>
           <p className="text-sm text-[var(--admin-muted)]">
-            Shown in the footer, contact page, and phone button on the homepage hero.
+            Office, email, phone, and hours appear as text-only cards on /contact and in the footer. There are no
+            contact icons.
           </p>
           <div className="grid gap-6 lg:grid-cols-2">
             <ImageUpload
@@ -878,7 +881,7 @@ export default function AdminSettingsPage() {
             </AdminField>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <AdminField label="Email">
+            <AdminField label="Email" hint="Contact card and footer">
               <input
                 className="admin-input"
                 value={form.siteConfig.email}
@@ -887,7 +890,7 @@ export default function AdminSettingsPage() {
                 }
               />
             </AdminField>
-            <AdminField label="Phone">
+            <AdminField label="Phone" hint="Contact card, footer, and homepage call button">
               <input
                 className="admin-input"
                 value={form.siteConfig.phone}
@@ -897,7 +900,7 @@ export default function AdminSettingsPage() {
               />
             </AdminField>
           </div>
-          <AdminField label="Address">
+          <AdminField label="Office" hint="Address shown as text on /contact and in the footer">
             <input
               className="admin-input"
               value={form.siteConfig.address}
@@ -906,7 +909,22 @@ export default function AdminSettingsPage() {
               }
             />
           </AdminField>
-          <AdminField label="Business Hours">
+          <AdminField
+            label="Google Maps embed URL"
+            hint="iframe src for the Visit Us map on /contact. Paste the embed URL from Google Maps."
+          >
+            <textarea
+              className="admin-input min-h-24 font-mono text-xs"
+              value={form.siteConfig.googleMapsEmbedUrl}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  siteConfig: { ...form.siteConfig, googleMapsEmbedUrl: e.target.value },
+                })
+              }
+            />
+          </AdminField>
+          <AdminField label="Business Hours" hint="Contact page hours card">
             <input
               className="admin-input"
               value={form.siteConfig.businessHours}

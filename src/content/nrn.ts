@@ -258,10 +258,10 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
   },
   {
     id: "services",
-    eyebrow: "Investment & Post-Build",
-    title: "Beyond Handover",
+    eyebrow: "Knowledge & Expertise",
+    title: "Latest Articles",
     description:
-      "Six field notes on what comes after the keys, furnishing, rent, land, coming home, apartments, and upkeep from abroad.",
+      "Expert guidance from NEBCO's decades of experience in construction and development.",
     features: [
       {
         tag: "Service",

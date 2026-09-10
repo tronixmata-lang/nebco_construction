@@ -41,28 +41,28 @@ export function DivisionProcessFlow({ steps }: DivisionProcessFlowProps) {
     <ol
       ref={listRef}
       className={cn(
-        "division-process relative grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-6",
+        "division-process grid auto-rows-fr items-stretch gap-3 sm:grid-cols-2",
+        steps.length >= 6 ? "lg:grid-cols-3" : steps.length >= 5 ? "lg:grid-cols-5" : "lg:grid-cols-4",
         visible && "division-process--visible",
       )}
     >
       {steps.map((step, index) => (
         <li
           key={step.title}
-          className="division-process__step relative"
+          className="division-process__step h-full min-w-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           style={{ "--step-index": index } as CSSProperties}
         >
-          <div className="division-process__card h-full rounded-sm border border-neutral-border/90 bg-neutral p-6 shadow-[0_8px_30px_-18px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-lg">
-            <span className="division-process__node font-mono text-xs font-bold text-accent">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <BrandIcon title={step.title} fallbackIndex={index} className="mt-4 h-[170px] w-[170px]" alt="" />
-            <h3 className="mt-4 font-display text-lg text-secondary">{step.title}</h3>
-            <span className="mt-3 block h-0.5 w-10 rounded-full bg-primary/80" aria-hidden="true" />
-            <p className="mt-4 text-sm leading-relaxed text-text-muted">{step.description}</p>
-          </div>
-          {index < steps.length - 1 && (
-            <span className="division-process__connector hidden lg:block" aria-hidden="true" />
-          )}
+          <article className="division-process__card group relative flex h-full flex-col overflow-hidden border border-neutral-border bg-neutral p-4 transition-shadow duration-500 hover:border-accent/50 hover:shadow-lg">
+            <span className="division-process__bar absolute inset-x-0 top-0 h-0.5 origin-left bg-accent" aria-hidden="true" />
+            <div className="flex items-start justify-between gap-2">
+              <span className="font-label text-[10px] text-accent">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <BrandIcon title={step.title} fallbackIndex={index} className="division-mark" alt="" />
+            </div>
+            <h3 className="mt-3 font-display text-lg leading-snug text-secondary">{step.title}</h3>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{step.description}</p>
+          </article>
         </li>
       ))}
     </ol>

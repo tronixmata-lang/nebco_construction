@@ -38,14 +38,11 @@ export function NrnFeatureShowcase({ categories }: NrnFeatureShowcaseProps) {
           >
             <div className="mx-auto max-w-3xl px-6 sm:px-10 lg:px-16">
               <SectionHeader
-                eyebrow={`${String(categoryIndex + 1).padStart(2, "0")} / ${category.eyebrow}`}
+                eyebrow={category.eyebrow}
                 title={category.title}
                 description={category.description}
                 align="center"
-                className={cn(
-                  "nrn-section-header mx-auto",
-                  isLegal ? "mb-3 md:mb-4" : "mb-6 md:mb-7",
-                )}
+                className={cn("mx-auto", isLegal ? "mb-3 md:mb-4" : "mb-8 md:mb-10")}
               />
             </div>
 

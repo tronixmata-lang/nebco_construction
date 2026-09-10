@@ -10,6 +10,7 @@ type PageIntroProps = {
   showStats?: boolean;
   backgroundImage?: string;
   backgroundAlt?: string;
+  children?: React.ReactNode;
 };
 
 export async function PageIntro({
@@ -20,6 +21,7 @@ export async function PageIntro({
   showStats = true,
   backgroundImage,
   backgroundAlt,
+  children,
 }: PageIntroProps) {
   return (
     <>
@@ -30,7 +32,9 @@ export async function PageIntro({
         eyebrow={eyebrow}
         backgroundImage={backgroundImage}
         backgroundAlt={backgroundAlt}
-      />
+      >
+        {children}
+      </PageHeader>
       <PageBodyLead showStats={showStats} />
     </>
   );

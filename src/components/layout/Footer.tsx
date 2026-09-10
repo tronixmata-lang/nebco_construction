@@ -4,7 +4,6 @@ import { footerNavigation } from "@/config/navigation";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { Container } from "@/components/ui/Container";
 import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
-import { BrandIcon } from "@/components/ui/BrandIcon";
 
 export type FooterSiteConfig = {
   name: string;
@@ -29,16 +28,16 @@ type FooterProps = {
 };
 
 function ContactItem({
-  icon,
+  label,
   children,
 }: {
-  icon: React.ReactNode;
+  label: string;
   children: React.ReactNode;
 }) {
   return (
-    <li className="flex items-start gap-3 text-sm text-neutral/70">
-      <span className="mt-0.5 shrink-0 text-accent">{icon}</span>
-      <span>{children}</span>
+    <li className="text-sm text-neutral/70">
+      <p className="font-label text-[10px] text-accent">{label}</p>
+      <p className="mt-1">{children}</p>
     </li>
   );
 }
@@ -111,16 +110,14 @@ export function Footer({ siteConfig }: FooterProps) {
               ))}
             </div>
 
-            <ul className="footer-contact mx-auto mt-8 max-w-sm space-y-3 text-left lg:mx-0 lg:max-w-none">
-              <ContactItem icon={<BrandIcon title="Office" className="h-8 w-8" surface="dark" alt="" />}>
-                {siteConfig.address}
-              </ContactItem>
-              <ContactItem icon={<BrandIcon title="Phone" className="h-8 w-8" surface="dark" alt="" />}>
+            <ul className="footer-contact mx-auto mt-8 max-w-sm space-y-4 text-left lg:mx-0 lg:max-w-none">
+              <ContactItem label="Office">{siteConfig.address}</ContactItem>
+              <ContactItem label="Phone">
                 <a href={`tel:${siteConfig.phone}`} className="transition-colors hover:text-neutral">
                   {siteConfig.phone}
                 </a>
               </ContactItem>
-              <ContactItem icon={<BrandIcon title="Email" className="h-8 w-8" surface="dark" alt="" />}>
+              <ContactItem label="Email">
                 <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-neutral">
                   {siteConfig.email}
                 </a>

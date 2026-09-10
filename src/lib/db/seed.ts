@@ -47,11 +47,15 @@ export async function seedDatabase() {
     console.log(`Created admin user: ${adminEmail}`);
   }
 
-  await SiteContent.findOneAndUpdate(
-    { key: "global" },
-    getDefaultSiteContent(),
-    { upsert: true, new: true },
-  );
+  const existingSite = await SiteContent.findOne({ key: "global" }).lean();
+  if (!existingSite) {
+    await SiteContent.create(getDefaultSiteContent());
+  } else if (!existingSite.siteConfig?.googleMapsEmbedUrl) {
+    await SiteContent.updateOne(
+      { key: "global" },
+      { $set: { "siteConfig.googleMapsEmbedUrl": siteConfig.googleMapsEmbedUrl } },
+    );
+  }
 
   await SeoSettings.findOneAndUpdate(
     { key: "global" },

@@ -2044,31 +2044,110 @@ section.contact-page-section--default {
 
 .division-process__step .division-process__card {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(28px) scale(0.98);
 }
 
 .division-process--visible .division-process__step .division-process__card {
-  animation: division-step-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: calc(var(--step-index, 0) * 110ms);
+  animation: division-step-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--step-index, 0) * 140ms);
 }
 
-.division-process__connector {
+.division-process__bar {
+  transform: scaleX(0);
+}
+
+.division-process--visible .division-process__bar {
+  animation: division-bar-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--step-index, 0) * 140ms + 180ms);
+}
+
+.construction-compare-range {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.construction-standards-spotlight__tab {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.construction-standards-spotlight__panel {
+  animation: construction-standards-panel 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.construction-standards-spotlight__bar {
+  width: 0;
+  animation: construction-standards-progress 5.2s linear forwards;
+}
+
+@keyframes construction-standards-panel {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes construction-standards-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construction-standards-spotlight__panel,
+  .construction-standards-spotlight__bar,
+  .construction-standards-spotlight__tab {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .construction-standards-spotlight__bar {
+    width: 100%;
+  }
+}
+
+.division-frame__corner {
   position: absolute;
-  top: 2.75rem;
-  right: -0.75rem;
   width: 1.5rem;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-accent) 70%, transparent),
-    color-mix(in srgb, var(--color-primary) 40%, transparent)
-  );
-  opacity: 0;
+  height: 1.5rem;
+  border-color: color-mix(in srgb, var(--color-accent) 88%, transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 
-.division-process--visible .division-process__connector {
-  animation: division-connector-in 0.5s ease forwards;
-  animation-delay: calc(var(--step-index, 0) * 110ms + 200ms);
+.division-frame__corner--tl {
+  top: 0.85rem;
+  left: 0.85rem;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.division-frame__corner--tr {
+  top: 0.85rem;
+  right: 0.85rem;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.division-frame__corner--bl {
+  bottom: 0.85rem;
+  left: 0.85rem;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.division-frame__corner--br {
+  bottom: 0.85rem;
+  right: 0.85rem;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
 }
 
 @keyframes division-reveal-in {
@@ -2081,13 +2160,30 @@ section.contact-page-section--default {
 @keyframes division-step-in {
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes division-connector-in {
+@keyframes division-bar-in {
   to {
-    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 1024px) {
+  .division-overview__copy {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .division-overview__copy::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: var(--color-accent);
   }
 }
 
@@ -2095,11 +2191,34 @@ section.contact-page-section--default {
   .division-overview__media,
   .division-overview__copy,
   .division-process__step .division-process__card,
-  .division-process__connector {
+  .division-process__bar {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
   }
+}
+
+/* Compact line-art marks on division cards (no 170px padded square). */
+.division-mark.brand-icon {
+  position: relative;
+  overflow: hidden;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.division-mark .brand-icon__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210% !important;
+  height: 210% !important;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  transform: translate(-50%, -50%);
 }
 
 /* NRN Portal — split list + dashboard mock */

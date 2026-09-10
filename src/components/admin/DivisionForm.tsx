@@ -230,7 +230,7 @@ export function DivisionForm({ params }: DivisionFormProps) {
     <>
       <AdminHeader
         title={isNew ? "New Vertical" : "Edit Vertical"}
-        description="Manage vertical cards, detail page content, and capabilities"
+        description="Cards, overview, capabilities, process, and commitments. Construction, Investment, and Consulting dedicated layouts read these fields from the CMS after you save."
       />
 
       <form onSubmit={handleSubmit} className="admin-card max-w-4xl space-y-8 p-6">
@@ -326,7 +326,7 @@ export function DivisionForm({ params }: DivisionFormProps) {
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--admin-muted)]">
             Detail Page
           </h2>
-          <AdminField label="Highlight" hint="Featured callout on the vertical detail page">
+          <AdminField label="Highlight" hint="Used on generic vertical pages. Dedicated Construction / Investment / Consulting layouts use their own hero titles.">
             <input
               className="admin-input"
               value={form.highlight}
@@ -334,7 +334,7 @@ export function DivisionForm({ params }: DivisionFormProps) {
               placeholder={form.tagline || "Defaults to tagline if empty"}
             />
           </AdminField>
-          <AdminField label="Overview" hint="Long-form intro on the detail page">
+          <AdminField label="Overview" hint="SEO description and fallback intro. Dedicated pages keep their hero subheads in code.">
             <textarea
               className="admin-input min-h-40"
               value={form.overview}
@@ -357,7 +357,8 @@ export function DivisionForm({ params }: DivisionFormProps) {
                 Capabilities
               </h2>
               <p className="mt-1 text-sm text-[var(--admin-muted)]">
-                Shown on the vertical detail page. Leave empty to derive from services.
+                Construction services, Investment products, or Consulting groups. For Consulting, put each
+                bullet on its own line in the description.
               </p>
             </div>
             <button
@@ -399,7 +400,10 @@ export function DivisionForm({ params }: DivisionFormProps) {
                   onChange={(e) => updateCapability(index, "title", e.target.value)}
                 />
               </AdminField>
-              <AdminField label="Description">
+              <AdminField
+                label="Description"
+                hint="Consulting: one bullet per line. Construction and Investment: a short paragraph."
+              >
                 <textarea
                   className="admin-input min-h-20"
                   value={capability.description}
@@ -417,7 +421,7 @@ export function DivisionForm({ params }: DivisionFormProps) {
                 Process Steps
               </h2>
               <p className="mt-1 text-sm text-[var(--admin-muted)]">
-                How we deliver, shown as a timeline on the detail page.
+                How It Works on Construction, Investment, and Consulting pages.
               </p>
             </div>
             <button

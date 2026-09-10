@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactMapEmbed } from "@/components/contact/ContactMapEmbed";
-import { NEBCO_FACEBOOK_URL, siteConfig } from "@/config/site";
-import { BrandIcon } from "@/components/ui/BrandIcon";
+import { NEBCO_FACEBOOK_URL, siteConfig as fallbackSite } from "@/config/site";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ContentCard } from "@/components/ui/ContentCard";
@@ -29,36 +28,32 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const contactItems = [
-  {
-    title: "Office",
-    value: siteConfig.address,
-    icon: <BrandIcon title="Office" className="h-[170px] w-[170px]" alt="" />,
-  },
-  {
-    title: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
-    icon: <BrandIcon title="Email" className="h-[170px] w-[170px]" alt="" />,
-  },
-  {
-    title: "Phone",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone}`,
-    icon: <BrandIcon title="Phone" className="h-[170px] w-[170px]" alt="" />,
-  },
-  {
-    title: "Business Hours",
-    value: siteConfig.businessHours,
-    icon: <BrandIcon title="Business Hours" className="h-[170px] w-[170px]" alt="" />,
-  },
-];
-
 export default async function ContactPage() {
-  const [{ pageHeroImages }, divisions] = await Promise.all([
+  const [{ pageHeroImages, siteConfig }, divisions] = await Promise.all([
     getSiteContent(),
     getDivisions(),
   ]);
+
+  const contactItems = [
+    {
+      title: "Office",
+      value: siteConfig.address,
+    },
+    {
+      title: "Email",
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
+    },
+    {
+      title: "Phone",
+      value: siteConfig.phone,
+      href: `tel:${siteConfig.phone}`,
+    },
+    {
+      title: "Business Hours",
+      value: siteConfig.businessHours,
+    },
+  ];
 
   return (
     <div className="font-medium">
@@ -114,21 +109,14 @@ export default async function ContactPage() {
             <StaggerReveal className="space-y-4" staggerMs={80}>
               {contactItems.map((item) => (
                 <ContentCard key={item.title} className="p-6">
-                  <div className="flex items-start gap-4">
-                    <span className="flex shrink-0 items-center justify-center text-primary">
-                      {item.icon}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-lg text-secondary">{item.title}</h3>
-                      {item.href ? (
-                        <a href={item.href} className="mt-2 block text-sm text-text-muted transition-colors hover:text-primary">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="mt-2 text-sm leading-relaxed text-text-muted">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
+                  <h3 className="font-display text-lg text-secondary">{item.title}</h3>
+                  {item.href ? (
+                    <a href={item.href} className="mt-2 block text-sm text-text-muted transition-colors hover:text-primary">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="mt-2 text-sm leading-relaxed text-text-muted">{item.value}</p>
+                  )}
                 </ContentCard>
               ))}
 
@@ -168,7 +156,7 @@ export default async function ContactPage() {
             </div>
           </ScrollReveal>
           <ContactMapEmbed
-            src={siteConfig.googleMapsEmbedUrl}
+            src={siteConfig.googleMapsEmbedUrl || fallbackSite.googleMapsEmbedUrl}
             title="NEBCO office location in Kuleshwor, Kathmandu"
           />
         </div>

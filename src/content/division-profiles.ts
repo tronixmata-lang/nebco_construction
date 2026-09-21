@@ -11,7 +11,7 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
     highlight:
       "A-Class licensed construction for homes, commercial buildings, apartments, renovations, industrial structures, and civil works, with engineers on every site.",
     overview:
-      "Nepal's most trusted construction partner, built on decades of delivery. From 1–5 storey private homes to commercial buildings, apartment complexes, renovations, industrial structures, and civil works, NEBCO manages design, BOQ, construction, and handover with licensed supervision and a structural warranty.",
+      "Nepal's most trusted construction partner, built on decades of delivery. From 1–5 storey private homes to commercial buildings, apartment complexes, renovations, industrial structures, and civil works, Your Company manages design, BOQ, construction, and handover with licensed supervision and a structural warranty.",
     heroImage: "/images/site/1-7_11zon-scaled.jpg",
     capabilities: [
       {
@@ -77,9 +77,9 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
   investment: {
     ...investment,
     highlight:
-      "Apartments, plots, joint ventures, off-plan, land banking, and rental-ready packages — with NEBCO construction and NRN-ready paperwork behind every rupee.",
+      "Apartments, plots, joint ventures, off-plan, land banking, and rental-ready packages — with Your Company construction and NRN-ready paperwork behind every rupee.",
     overview:
-      "Your money works harder in Nepal when rental yield, appreciation, and legal compliance sit in one structure. NEBCO Investment offers residential apartments, commercial plots, joint ventures, off-plan property, land banking, and rental-ready packages, with due diligence, construction or acquisition, and portal reporting through handover and rent.",
+      "Your money works harder in Nepal when rental yield, appreciation, and legal compliance sit in one structure. Your Company Investment offers residential apartments, commercial plots, joint ventures, off-plan property, land banking, and rental-ready packages, with due diligence, construction or acquisition, and portal reporting through handover and rent.",
     heroImage: "/images/site/hotel-buddy-thamel-5.png",
     capabilities: [
       {
@@ -92,7 +92,7 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
       },
       {
         title: "Joint ventures",
-        description: "Co-invest with NEBCO on larger projects and share returns.",
+        description: "Co-invest with Your Company on larger projects and share returns.",
       },
       {
         title: "Off-plan properties",
@@ -122,7 +122,7 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
       },
       {
         title: "Construction / acquisition",
-        description: "NEBCO builds or completes the purchase with milestone reporting.",
+        description: "Your Company builds or completes the purchase with milestone reporting.",
       },
       {
         title: "Rental management",
@@ -146,7 +146,7 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
     highlight:
       "The right advice before the first brick: feasibility, design, permits, project management, and investment advisory, including video calls for NRNs.",
     overview:
-      "NEBCO Consulting is for people who need a clear next step before they pour, buy, or fire a contractor. We run site feasibility, drawings, municipality permits, third-party supervision, and investment due diligence, with a path into NEBCO Construction when you are ready to build.",
+      "Your Company Consulting is for people who need a clear next step before they pour, buy, or fire a contractor. We run site feasibility, drawings, municipality permits, third-party supervision, and investment due diligence, with a path into Your Construction Company when you are ready to build.",
     heroImage: "/images/pexels-mike-van-schoonderwalt-1884800-5505119.jpg",
     capabilities: [
       {
@@ -200,7 +200,7 @@ export const divisionProfiles: Record<string, DivisionProfile> = {
     commitments: [
       "In-house engineers with real construction experience",
       "Municipality process known from actual files, not theory",
-      "Consulting that can continue into NEBCO Construction",
+      "Consulting that can continue into Your Construction Company",
       "NRN-friendly remote consulting by video call",
     ],
   },

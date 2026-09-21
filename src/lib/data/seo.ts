@@ -9,12 +9,12 @@ import { siteConfig } from "@/config/site";
 import type { SeoFields } from "@/types";
 
 const defaultSeoSettings = {
-  titleTemplate: "%s | NEBCO",
+  titleTemplate: "%s | Your Company",
   defaultDescription: siteConfig.description,
   defaultOgImage: siteConfig.ogImage,
   keywords: [
-    "NEBCO",
-    "NEBCO Construction",
+    "Your Company",
+    "Your Construction Company",
     "construction company Nepal",
     "A-Class construction Nepal",
     "Kathmandu construction",

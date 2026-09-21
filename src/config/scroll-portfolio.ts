@@ -5,5 +5,5 @@ export type ScrollPortfolioImage = {
 
 export const scrollPortfolioCenter: ScrollPortfolioImage = {
   src: "/images/home.jpg",
-  alt: "NEBCO construction site with scaffolding and building development",
+  alt: "Your Company construction site with scaffolding and building development",
 };

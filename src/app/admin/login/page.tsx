@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import "../admin.css";
 
 export default function AdminLoginPage() {
@@ -45,11 +45,13 @@ export default function AdminLoginPage() {
       <div className="admin-login-brand">
         <div className="admin-login-brand-inner">
           <div className="admin-login-brand-logo">
-            <Image
+            <BrandLogo
               src={siteConfig.logo}
-              alt="NEBCO"
+              alt={siteConfig.shortName}
               fill
-              className="object-contain p-2"
+              className="absolute inset-0"
+              imageClassName="object-contain p-2"
+              placeholderClassName="absolute inset-0 text-white"
               sizes="88px"
               priority
             />
@@ -90,7 +92,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="admin-input"
-                placeholder="admin@nebco.com.np"
+                placeholder="admin@yourcompany.com"
               />
             </div>
             <div>
@@ -135,7 +137,7 @@ export default function AdminLoginPage() {
           </form>
 
           <p className="mt-10 text-center text-[10px] tracking-[0.15em] text-[var(--brand-text-muted)] uppercase">
-            Shah Group · Kathmandu, Nepal
+            Your Group · Kathmandu, Nepal
           </p>
         </div>
       </div>

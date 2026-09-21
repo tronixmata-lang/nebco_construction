@@ -33,7 +33,7 @@ export function ConsultingDivisionPage({ division }: ConsultingDivisionPageProps
         description={hero.description}
         breadcrumbLabel={division.name}
         backgroundImage={heroImage}
-        backgroundAlt="Architectural drawings and consulting at NEBCO"
+        backgroundAlt="Architectural drawings and consulting at Your Company"
       >
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href={hero.primaryCta.href} size="lg">

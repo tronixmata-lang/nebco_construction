@@ -6,14 +6,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/nrn-building-guide", {
     title: "NRN Guide to Building in Nepal",
     description:
-      "NEBCO's NRN guide to land, permits, Power of Attorney, and briefing a builder in Nepal from abroad.",
+      "Your Company's NRN guide to land, permits, Power of Attorney, and briefing a builder in Nepal from abroad.",
   });
 }
 
 export default function NrnBuildingGuidePage() {
   return (
     <PrintGuide
-      eyebrow="NEBCO Consulting"
+      eyebrow="Your Company Consulting"
       title="NRN Guide to Building in Nepal"
       intro="Land, permits, Power of Attorney, and how to brief a builder when you cannot walk the site every week."
       bookHref="/divisions/consulting#book-consultation"
@@ -35,12 +35,12 @@ export default function NrnBuildingGuidePage() {
           ],
         },
         {
-          title: "How NEBCO consulting helps",
+          title: "How Your Company consulting helps",
           items: [
             "Feasibility: is the land buildable, and at what cost band.",
             "Drawings, BOQ, and a timeline you can hold.",
             "Video-call consulting if you cannot fly in for the first session.",
-            "A clean handoff to NEBCO Construction if you then build.",
+            "A clean handoff to Your Construction Company if you then build.",
           ],
         },
       ]}

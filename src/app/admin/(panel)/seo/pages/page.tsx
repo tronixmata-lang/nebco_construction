@@ -112,7 +112,7 @@ export default function AdminPageSeoPage() {
             seo={form}
             onChange={(seo) => setForm({ ...form, ...seo })}
             defaultTitle={form.label}
-            previewUrl={`https://nebco.com.np${form.path === "/" ? "" : form.path}`}
+            previewUrl={`https://yourcompany.com${form.path === "/" ? "" : form.path}`}
           />
 
           {message && (

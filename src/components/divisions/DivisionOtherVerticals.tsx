@@ -18,7 +18,7 @@ export function DivisionOtherVerticals({ divisions }: DivisionOtherVerticalsProp
         <SectionHeader
           eyebrow="Integrated Group"
           title="Explore Other Verticals"
-          description="NEBCO's verticals work together so clients can move from advisory and investment through construction with one trusted partner."
+          description="Your Company's verticals work together so clients can move from advisory and investment through construction with one trusted partner."
           align="center"
           className="mx-auto mb-8 md:mb-10"
         />

@@ -43,7 +43,7 @@ export function AboutStoryReveal() {
       <div className="about-story-reveal__main relative aspect-[4/5] overflow-hidden rounded-sm border border-accent/30 bg-neutral-muted shadow-[0_24px_60px_-24px_rgba(0,0,0,0.28)]">
         <Image
           src="/images/site/1-7_11zon-scaled.jpg"
-          alt="A NEBCO construction project in progress"
+          alt="A Your Company construction project in progress"
           fill
           sizes="(min-width: 1024px) 42vw, 100vw"
           className="about-story-reveal__image object-cover"
@@ -60,7 +60,7 @@ export function AboutStoryReveal() {
         <div className="relative aspect-[4/3]">
           <Image
             src="/images/josepmonter-cranes-7347888.jpg"
-            alt="NEBCO construction site with crane"
+            alt="Your Company construction site with crane"
             fill
             sizes="200px"
             className="object-cover"

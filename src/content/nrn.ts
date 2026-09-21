@@ -15,44 +15,44 @@ export type NrnFeatureCategory = {
 
 export const nrnExperts = [
   {
-    name: "Prabhu Rana",
-    experience: "18 years · NRN ownership & land",
-    image: "/images/site/Mr.-Prabhu-Rana-1.png",
+    name: "Sample Advisor A",
+    experience: "18 years · Diaspora ownership & land",
+    image: "",
     description:
-      "Guides NRNs through what they can legally own in Nepal, the papers required from abroad, and when a plot is safe to sign.",
+      "Guides clients abroad through what they can legally own, the papers required from overseas, and when a plot is safe to sign.",
   },
   {
-    name: "Binod Ojha",
+    name: "Sample Advisor B",
     experience: "16 years · PoA & documentation",
-    image: "/images/site/binod-ojha-1.jpg",
+    image: "",
     description:
-      "Prepares power of attorney from your country of residence and sees municipality and registration through in Nepal.",
+      "Prepares power of attorney from your country of residence and sees municipality and registration through at home.",
   },
   {
-    name: "B. K. Mandal",
+    name: "Sample Advisor C",
     experience: "15 years · repatriation of funds",
-    image: "/images/site/B.K.Mandal-min-scaled.jpg",
+    image: "",
     description:
-      "Maps the legal path from tenant rent to a Nepal bank to your foreign account, without grey language.",
+      "Maps the legal path from rental income to a local bank to your foreign account, without grey language.",
   },
   {
-    name: "Ghuran Mandal",
+    name: "Sample Advisor D",
     experience: "14 years · tax & treaty",
-    image: "/images/site/Ghuran-mandal-min-scaled.jpg",
+    image: "",
     description:
-      "Walks through rental tax, capital gains, and treaty notes for the USA, Australia, and the UAE before you commit.",
+      "Walks through rental tax, capital gains, and treaty notes for common destination countries before you commit.",
   },
   {
-    name: "Site finance desk",
+    name: "Sample Finance Desk",
     experience: "12 years · bank & remittance",
-    image: "/images/site/Jhilkey-dai-min-scaled.jpg",
+    image: "",
     description:
-      "Matches how you send money, Nabil, NMB, eSewa Global, Khalti, Wise, or Western Union, to the project draw schedule.",
+      "Matches how you send money to the project draw schedule. Replace with your remittance specialist.",
   },
   {
-    name: "Title verification desk",
+    name: "Sample Title Desk",
     experience: "20 years · land & encumbrances",
-    image: "/images/site/IMG_6211.jpg",
+    image: "",
     description:
       "Checks ownership history, encumbrances, and road access so nothing is signed on a guess.",
   },
@@ -63,7 +63,7 @@ export const nrnPageIntro = {
   title: "Build in Nepal with Confidence",
   description:
     "Transparent construction, verified credentials, and a client portal designed for NRNs managing projects from anywhere in the world.",
-  backgroundAlt: "NEBCO construction project for NRN clients in Nepal",
+  backgroundAlt: "Your Company construction project for NRN clients in Nepal",
 };
 
 export const nrnFeatureCategories: NrnFeatureCategory[] = [
@@ -78,7 +78,7 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
         tag: "Trust",
         title: "Live registration verifier",
         description:
-          "Show NEBCO's DoR reg. number, PAN/VAT, and a \"Verify on govt portal\" link anyone can click to confirm.",
+          "Show Your Company's DoR reg. number, PAN/VAT, and a \"Verify on govt portal\" link anyone can click to confirm.",
       },
       {
         tag: "Trust",
@@ -240,7 +240,7 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
         tag: "Tool",
         title: "Land plot finder map",
         description:
-          "Interactive map of verified plots NEBCO has scouted in Kathmandu, Pokhara, Butwal, and other cities.",
+          "Interactive map of verified plots Your Company has scouted in Kathmandu, Pokhara, Butwal, and other cities.",
       },
       {
         tag: "Tool",
@@ -261,7 +261,7 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
     eyebrow: "Knowledge & Expertise",
     title: "Latest Articles",
     description:
-      "Expert guidance from NEBCO's decades of experience in construction and development.",
+      "Expert guidance from Your Company's decades of experience in construction and development.",
     features: [
       {
         tag: "Service",
@@ -273,7 +273,7 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
         tag: "Service",
         title: "Rental management service",
         description:
-          "NEBCO finds tenant, collects rent, handles maintenance. Monthly income deposited to NRN's bank. Fully passive.",
+          "Your Company finds tenant, collects rent, handles maintenance. Monthly income deposited to NRN's bank. Fully passive.",
       },
       {
         tag: "Service",
@@ -342,7 +342,7 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
         tag: "Comm",
         title: "NRN chatbot / FAQ bot",
         description:
-          "AI chatbot trained on Nepal property law, NEBCO services, and NRN Investment Act. Answers at 2 AM in Qatar.",
+          "AI chatbot trained on Nepal property law, Your Company services, and NRN Investment Act. Answers at 2 AM in Qatar.",
       },
     ],
   },
@@ -397,14 +397,14 @@ export const nrnFeatureCategories: NrnFeatureCategory[] = [
         tag: "Content",
         title: "NRN community forum",
         description:
-          "Private forum where NEBCO NRN clients share experiences, ask questions, and refer each other. Trust network.",
+          "Private forum where Your Company NRN clients share experiences, ask questions, and refer each other. Trust network.",
         image: "/images/site/IMG_7544_11zon.jpg",
       },
       {
         tag: "Content",
         title: "NRN newsletter",
         description:
-          "Monthly email: Nepal property market update, completed projects, legal changes, new NEBCO services. Stay top of mind.",
+          "Monthly email: Nepal property market update, completed projects, legal changes, new Your Company services. Stay top of mind.",
         image: "/images/dokyung-kim-bLx7ypUxxIc-unsplash.jpg",
       },
       {

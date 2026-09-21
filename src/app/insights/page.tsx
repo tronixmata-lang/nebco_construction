@@ -34,14 +34,14 @@ export default async function InsightsPage() {
         title="Industry Perspectives"
         description="Thought leadership on construction trends, infrastructure development, and trusted project delivery in Nepal."
         backgroundImage={pageHeroImages.insights}
-        backgroundAlt="NEBCO construction insights and industry news"
+        backgroundAlt="Your Company construction insights and industry news"
       />
       <Section className="pt-10 md:pt-14" glow="primary">
         <ScrollReveal>
           <SectionHeader
             eyebrow="Knowledge & Expertise"
             title="Latest Articles"
-            description="Expert guidance from NEBCO's decades of experience in construction and development."
+            description="Expert guidance from Your Company's decades of experience in construction and development."
             align="center"
             className="mx-auto"
           />

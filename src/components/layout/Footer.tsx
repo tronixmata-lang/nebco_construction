@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { footerNavigation } from "@/config/navigation";
-import { CmsImage } from "@/components/ui/CmsImage";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Container } from "@/components/ui/Container";
 import { SiteSocialLinks } from "@/components/ui/SiteSocialLinks";
 
@@ -15,6 +14,7 @@ export type FooterSiteConfig = {
   phone: string;
   address: string;
   parentOrganization: string;
+  foundingDate?: string;
   siteLogo?: string;
   social: {
     website: string;
@@ -54,23 +54,15 @@ export function Footer({ siteConfig }: FooterProps) {
           <div className="text-center lg:col-span-5 lg:text-left">
             <Link href="/" className="inline-block">
               <div className="inline-flex items-center gap-4 rounded-sm border border-neutral/10 bg-neutral/5 px-5 py-4">
-                {siteConfig.siteLogo ? (
-                  <CmsImage
-                    src={siteConfig.siteLogo}
-                    alt={`${siteConfig.name} logo`}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 object-contain"
-                  />
-                ) : (
-                  <Image
-                    src="/images/site/NEBCO-Logo.png"
-                    alt={`${siteConfig.name} logo`}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 object-contain"
-                  />
-                )}
+                <BrandLogo
+                  src={siteConfig.siteLogo}
+                  alt={`${siteConfig.name} logo`}
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 shrink-0"
+                  imageClassName="h-14 w-14 object-contain"
+                  placeholderClassName="h-14 w-14 text-neutral"
+                />
                 <div>
                   <p className="text-xl tracking-tight text-neutral">
                     {siteConfig.shortName}
@@ -88,10 +80,10 @@ export function Footer({ siteConfig }: FooterProps) {
 
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               <span className="font-label rounded-full bg-primary px-3 py-1 text-xs text-neutral">
-                Since 1995
+                Since {siteConfig.foundingDate || "1995"}
               </span>
               <span className="font-label rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
-                A-Class Certified
+                Licensed Builder
               </span>
               <span className="font-label rounded-full border border-neutral/20 bg-neutral/5 px-3 py-1 text-xs text-neutral/80">
                 {siteConfig.parentOrganization}

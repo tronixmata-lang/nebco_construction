@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { siteConfig, NEBCO_FACEBOOK_URL } from "@/config/site";
+import { siteConfig, COMPANY_FACEBOOK_URL } from "@/config/site";
 import { getLeaders, getSiteContent } from "@/lib/data/content";
 import { getLeaderProfileById } from "@/lib/data/leaders";
 import { createStaticPageMetadata } from "@/lib/seo-metadata";
@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/leadership", {
     title: "Leadership",
     description:
-      "Meet the leadership team behind NEBCO's vision for integrated construction, investment, and consulting across Nepal.",
+      "Meet the leadership team behind Your Company's vision for integrated construction, investment, and consulting across Nepal.",
   });
 }
 
@@ -43,9 +43,9 @@ export default async function LeadershipPage() {
       <PageIntro
         eyebrow="Leadership"
         title="Guiding Vision, Driving Excellence"
-        description="Decades of experience in construction, investment, and consulting, led with integrity under the Shah Group."
+        description="Decades of experience in construction, investment, and consulting, led with integrity under the Your Group."
         backgroundImage={pageHeroImages.leadership}
-        backgroundAlt="NEBCO leadership and construction team"
+        backgroundAlt="Your Company leadership and construction team"
       />
       <Section className="pt-6 pb-4 md:pt-8 md:pb-4" glow="none">
         <ScrollReveal>
@@ -62,7 +62,7 @@ export default async function LeadershipPage() {
           <SectionHeader
             eyebrow="Our Team"
             title="Leadership Team"
-            description="The people who lead NEBCO's strategic direction and operational excellence."
+            description="The people who lead Your Company's strategic direction and operational excellence."
             align="center"
             className="mx-auto mb-4 md:mb-6"
           />
@@ -71,7 +71,7 @@ export default async function LeadershipPage() {
           <LeadershipTeam
             leaders={leaders}
             socialFallback={{
-              facebook: siteConfig.social.facebook || NEBCO_FACEBOOK_URL,
+              facebook: siteConfig.social.facebook || COMPANY_FACEBOOK_URL,
               linkedin: siteConfig.social.linkedin || undefined,
             }}
           />

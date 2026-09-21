@@ -212,7 +212,7 @@ export function articleSchema(article: InsightArticle) {
 }
 
 export function projectImageAlt(project: Project): string {
-  return `${project.title}, NEBCO ${project.category} construction project in ${project.location}, Nepal`;
+  return `${project.title}, Your Company ${project.category} construction project in ${project.location}, Nepal`;
 }
 
 export function serviceSchema(division: Division) {
@@ -273,22 +273,22 @@ export function faqSchema(
 
 export const contactFaq = [
   {
-    question: "What services does NEBCO provide in Nepal?",
+    question: "What services does Your Company provide in Nepal?",
     answer:
-      "NEBCO provides A-Class construction, infrastructure and real estate investment, and professional consulting including architectural design, structural engineering, and project management across Kathmandu and Nepal.",
+      "Your Company provides A-Class construction, infrastructure and real estate investment, and professional consulting including architectural design, structural engineering, and project management across Kathmandu and Nepal.",
   },
   {
-    question: "Is NEBCO an A-Class construction company?",
+    question: "Is Your Company an A-Class construction company?",
     answer:
-      "Yes. NEBCO (National Estate Builders Co. Pvt. Ltd.) holds an A-Class construction license and has operated since 1995 under the Shah Group.",
+      "Yes. Your Company (Your Company Pvt. Ltd.) holds an A-Class construction license and has operated since 1995 under the Your Group.",
   },
   {
-    question: "Does NEBCO work with NRN clients outside Nepal?",
+    question: "Does Your Company work with NRN clients outside Nepal?",
     answer:
-      "Yes. NEBCO supports Non-Resident Nepalis and international clients with residential, commercial, and investment projects in Nepal through transparent communication and professional project management.",
+      "Yes. Your Company supports Non-Resident Nepalis and international clients with residential, commercial, and investment projects in Nepal through transparent communication and professional project management.",
   },
   {
-    question: "How can I contact NEBCO?",
-    answer: `You can reach NEBCO at ${siteConfig.phone}, ${siteConfig.email}, or visit the office at ${siteConfig.address}. Business hours are ${siteConfig.businessHours}.`,
+    question: "How can I contact Your Company?",
+    answer: `You can reach Your Company at ${siteConfig.phone}, ${siteConfig.email}, or visit the office at ${siteConfig.address}. Business hours are ${siteConfig.businessHours}.`,
   },
 ] as const;

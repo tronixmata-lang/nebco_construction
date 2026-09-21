@@ -16,7 +16,7 @@ export function NrnServiceBlogs() {
             >
               <CmsImage
                 src={article.image ?? "/images/home.jpg"}
-                alt={`${article.title}, NEBCO Construction`}
+                alt={`${article.title}, Your Construction Company`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

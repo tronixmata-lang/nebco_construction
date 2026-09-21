@@ -19,7 +19,7 @@ const iconSizes = {
   lg: "h-7 w-7",
 };
 
-/** NEBCO assistant avatar: hard-hat guide with brand colors */
+/** site assistant avatar: hard-hat guide with brand colors */
 export function AssistantAvatar({ size = "md", className }: AssistantAvatarProps) {
   return (
     <span

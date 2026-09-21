@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { PortfolioImageCarousel } from "@/components/sections/PortfolioImageCarousel";
 
 export async function CompanyOverview() {
-  const [{ companyOverview }, companyStats, projects] = await Promise.all([
+  const [{ companyOverview, siteConfig }, companyStats, projects] = await Promise.all([
     getSiteContent(),
     getStats(),
     getProjects(),
@@ -19,9 +19,7 @@ export async function CompanyOverview() {
     <Section id="about" className="pt-8 pb-6 md:pt-10 md:pb-8">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="text-center md:text-left">
-          <p className="font-label mb-3 text-sm text-accent">
-            About NEBCO
-          </p>
+          <p className="font-label mb-3 text-sm text-accent">About {siteConfig.shortName}</p>
           <h2 className="font-display text-2xl font-bold tracking-tight text-secondary sm:text-3xl md:text-4xl">
             {companyOverview.title}
           </h2>
@@ -36,7 +34,15 @@ export async function CompanyOverview() {
                   className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"
                   aria-hidden="true"
                 >
-                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </span>
@@ -47,12 +53,18 @@ export async function CompanyOverview() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start">
             <Button href="/about">Learn More About Us</Button>
-            <Button href="/contact" variant="outline">Contact Us</Button>
+            <Button href="/contact" variant="outline">
+              Contact Us
+            </Button>
           </div>
         </div>
 
         <div className="relative">
-          <PortfolioImageCarousel projects={projects} />
+          <PortfolioImageCarousel
+            projects={projects}
+            foundingYear={siteConfig.foundingDate}
+            badgeLabel="Licensed Builder"
+          />
           <div className="absolute -top-5 -right-5 -z-10 hidden h-28 w-28 border-r-4 border-t-4 border-accent lg:block" />
           <div className="absolute -bottom-5 -left-5 -z-10 hidden h-28 w-28 border-b-4 border-l-4 border-primary lg:block" />
           <div className="mt-6 grid grid-cols-3 divide-x divide-neutral-border rounded-sm border border-neutral-border bg-neutral-muted">

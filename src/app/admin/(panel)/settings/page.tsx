@@ -5,7 +5,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { AdminField, AdminFormActions } from "@/components/admin/ResourceList";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { ImageUpload } from "@/components/admin/ImageUpload";
-import { NEBCO_FACEBOOK_URL } from "@/config/site";
+import { COMPANY_FACEBOOK_URL } from "@/config/site";
 import {
   defaultPageHeroImages,
   PAGE_HERO_IMAGE_KEYS,
@@ -118,7 +118,7 @@ const emptyForm: SiteContentForm = {
     description: "",
     logo: "",
     siteLogo: "",
-    social: { facebook: NEBCO_FACEBOOK_URL, linkedin: "", website: "https://nebco.com.np" },
+    social: { facebook: COMPANY_FACEBOOK_URL, linkedin: "", website: "https://yourcompany.com" },
   },
 };
 
@@ -302,7 +302,7 @@ export default function AdminSettingsPage() {
             Headline, subheadline, and full-screen background on the homepage.
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <AdminField label="Parent Organization" hint="Small text above the headline, e.g. Shah Group">
+            <AdminField label="Parent Organization" hint="Small text above the headline, e.g. Your Group">
               <input
                 className="admin-input"
                 value={form.siteConfig.parentOrganization}
@@ -801,13 +801,14 @@ export default function AdminSettingsPage() {
         <section className="admin-card space-y-4 p-6">
           <h2 className="admin-section-title">Contact & Site Info</h2>
           <p className="text-sm text-[var(--admin-muted)]">
-            Office, email, phone, and hours appear as text-only cards on /contact and in the footer. There are no
-            contact icons.
+            Leave logos empty to show a &quot;Your logo&quot; placeholder on the public site. Upload each client&apos;s
+            logo when branding this template. Office, email, phone, and hours appear as text on /contact and in the
+            footer.
           </p>
           <div className="grid gap-6 lg:grid-cols-2">
             <ImageUpload
               label="Header Logo"
-              hint="Large logo in the site header"
+              hint="Shown in the site header. Empty = Your logo placeholder"
               value={form.siteConfig.logo}
               onChange={(url) =>
                 setForm({ ...form, siteConfig: { ...form.siteConfig, logo: url } })
@@ -815,7 +816,7 @@ export default function AdminSettingsPage() {
             />
             <ImageUpload
               label="Footer Logo"
-              hint="Square logo shown in the footer"
+              hint="Shown in the footer. Empty = Your logo placeholder"
               value={form.siteConfig.siteLogo}
               onChange={(url) =>
                 setForm({ ...form, siteConfig: { ...form.siteConfig, siteLogo: url } })
@@ -870,7 +871,7 @@ export default function AdminSettingsPage() {
                 }
               />
             </AdminField>
-            <AdminField label="Site URL" hint="Canonical site URL, e.g. https://nebco.com.np">
+            <AdminField label="Site URL" hint="Canonical site URL, e.g. https://yourcompany.com">
               <input
                 className="admin-input"
                 value={form.siteConfig.url}

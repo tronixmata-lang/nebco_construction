@@ -314,7 +314,7 @@ export function ProjectForm({ params }: ProjectFormProps) {
             onChange={(seo) => updateField("seo", seo)}
             defaultTitle={form.title}
             defaultDescription={form.description}
-            previewUrl={form.slug ? `https://nebco.com.np/portfolio/${form.slug}` : undefined}
+            previewUrl={form.slug ? `https://yourcompany.com/portfolio/${form.slug}` : undefined}
           />
         </section>
 

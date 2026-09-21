@@ -43,7 +43,7 @@ export async function sendInquiryNotification(inquiry: InquiryPayload): Promise<
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #a51e22;">New Contact Inquiry, NEBCO</h2>
+      <h2 style="color: #a51e22;">New Contact Inquiry, Your Company</h2>
       <table style="width: 100%; border-collapse: collapse;">
         <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;"><strong>${escapeHtml(inquiry.name)}</strong></td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(inquiry.email)}">${escapeHtml(inquiry.email)}</a></td></tr>
@@ -63,10 +63,10 @@ export async function sendInquiryNotification(inquiry: InquiryPayload): Promise<
 
   try {
     await createTransporter().sendMail({
-      from: `"NEBCO Website" <${from}>`,
+      from: `"Your Company Website" <${from}>`,
       to,
       replyTo: inquiry.email,
-      subject: `[NEBCO Inquiry] ${inquiry.subject} - ${inquiry.name}`,
+      subject: `[Your Company Inquiry] ${inquiry.subject} - ${inquiry.name}`,
       html,
       text: [
         `New inquiry from ${inquiry.name}`,

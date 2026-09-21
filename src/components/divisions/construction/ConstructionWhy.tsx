@@ -10,7 +10,7 @@ export function ConstructionWhy() {
     <div>
       <ScrollReveal>
         <SectionHeader
-          eyebrow="Why NEBCO Construction"
+          eyebrow="Why Your Construction Company"
           title="What you can hold us to"
           description="These are site practices, not marketing lines. Ask for the engineer, the certificate, and the portal access."
           align="center"

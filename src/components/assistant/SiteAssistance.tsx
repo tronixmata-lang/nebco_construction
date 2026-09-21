@@ -43,9 +43,12 @@ import {
   type ChatMessage,
   type KnowledgeLink,
 } from "@/lib/assistant/types";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-const ASSISTANT_NAME = "NEBCO Assistance";
+const ASSISTANT_NAME = "Site Assistant";
+const SUPPORT_PHONE = siteConfig.phone;
+const SUPPORT_EMAIL = siteConfig.email;
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
 const TYPING_DELAY_MS = 450;
 
@@ -109,7 +112,7 @@ function isExternalActionLink(href: string): boolean {
   return href.startsWith("tel:") || href.startsWith("mailto:");
 }
 
-export function NebcoAssistance() {
+export function SiteAssistance() {
   const panelId = useId();
   const inputId = useId();
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -185,7 +188,7 @@ export function NebcoAssistance() {
       return data;
     } catch {
       await reply({
-        text: "I couldn't refresh our latest info right now, but you can still reach us at +977-9803850955 or nebconepal@gmail.com.",
+        text: `I couldn't refresh our latest info right now, but you can still reach us at ${SUPPORT_PHONE} or ${SUPPORT_EMAIL}.`,
         links: [{ label: "Contact page", href: "/contact" }],
       });
       return null;
@@ -439,7 +442,7 @@ export function NebcoAssistance() {
 
       if (!response.ok) {
         await reply({
-          text: "That booking didn't go through. Please double-check your details or call us at +977-9803850955.",
+          text: `That booking didn't go through. Please double-check your details or call us at ${SUPPORT_PHONE}.`,
         });
         return;
       }
@@ -451,7 +454,7 @@ export function NebcoAssistance() {
       await reply(formatBookingSuccess(successDraft));
     } catch {
       await reply({
-        text: "Something went wrong on our end. Please try again or call +977-9803850955.",
+        text: `Something went wrong on our end. Please try again or call ${SUPPORT_PHONE}.`,
       });
     } finally {
       setSubmitting(false);
@@ -491,7 +494,7 @@ export function NebcoAssistance() {
               <p className="truncate font-display text-sm text-neutral">{ASSISTANT_NAME}</p>
               <p className="flex items-center gap-1.5 truncate text-xs text-neutral/70">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Online · answers from nebco.com.np
+                Online · answers from yourcompany.com
               </p>
             </div>
             <button
@@ -849,7 +852,7 @@ export function NebcoAssistance() {
                 id={inputId}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder={bookingActive ? "Type a division, or cancel..." : "Ask me anything about NEBCO..."}
+                placeholder={bookingActive ? "Type a division, or cancel..." : "Ask me anything about Your Company..."}
                 disabled={!knowledge || loadingKnowledge || typing}
                 className="min-w-0 flex-1 rounded-full border border-neutral-border bg-neutral px-4 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none disabled:opacity-60"
               />

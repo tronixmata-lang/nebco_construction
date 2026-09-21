@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/portfolio", {
     title: "Project Portfolio",
     description:
-      "Explore NEBCO's portfolio of commercial, residential, infrastructure, and industrial construction projects across Kathmandu and Nepal.",
+      "Explore Your Company's portfolio of commercial, residential, infrastructure, and industrial construction projects.",
   });
 }
 
@@ -31,9 +31,9 @@ export default async function PortfolioPage() {
       <PageIntro
         eyebrow="Our Work"
         title="Project Portfolio"
-        description="A visual showcase of trusted delivery across residential, commercial, and infrastructure projects in Nepal and beyond."
+        description="A visual showcase of trusted delivery across residential, commercial, and infrastructure projects. Replace sample entries with your completed work."
         backgroundImage={pageHeroImages.portfolio}
-        backgroundAlt="NEBCO construction cranes at a project site"
+        backgroundAlt="Your Company construction project site"
       />
 
       <Section className="pt-6 pb-6 md:pt-8 md:pb-8" glow="primary">
@@ -41,7 +41,7 @@ export default async function PortfolioPage() {
           <SectionHeader
             eyebrow="Proven Results"
             title="Esteemed Projects"
-            description="Explore our work through an architectural mosaic: featured builds, sector diversity, and the craftsmanship behind every NEBCO delivery."
+            description="Explore our work through an architectural mosaic: featured builds, sector diversity, and the craftsmanship behind every Your Company delivery."
             align="center"
             className="mx-auto mb-6 md:mb-8"
           />

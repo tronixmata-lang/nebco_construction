@@ -22,7 +22,7 @@ type SeoSettingsForm = {
 };
 
 const emptyForm: SeoSettingsForm = {
-  titleTemplate: "%s | NEBCO",
+  titleTemplate: "%s | Your Company",
   defaultDescription: "",
   defaultOgImage: "",
   keywords: "",

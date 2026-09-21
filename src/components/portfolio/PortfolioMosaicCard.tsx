@@ -28,19 +28,32 @@ export function PortfolioMosaicCard({ project, index, layout }: PortfolioMosaicC
         layout === "wide" && "min-h-[240px]",
       )}
     >
-      <CmsImage
-        src={project.image}
-        alt={projectImageAlt(project)}
-        fill
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-        sizes={
-          layout === "hero"
-            ? "(max-width: 1024px) 100vw, 50vw"
-            : layout === "wide"
-              ? "(max-width: 1024px) 100vw, 66vw"
-              : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-        }
-      />
+      {project.image?.trim() ? (
+        <CmsImage
+          src={project.image}
+          alt={projectImageAlt(project)}
+          fill
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+          sizes={
+            layout === "hero"
+              ? "(max-width: 1024px) 100vw, 50vw"
+              : layout === "wide"
+                ? "(max-width: 1024px) 100vw, 66vw"
+                : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          }
+        />
+      ) : (
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-neutral-muted text-center"
+          role="img"
+          aria-label="Your project photo"
+        >
+          <span className="font-label text-[10px] tracking-[0.14em] text-secondary/60 uppercase">
+            Your logo
+          </span>
+          <span className="font-display text-base text-secondary/75">Your project photo</span>
+        </div>
+      )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/35 to-secondary/10 transition-opacity duration-500 group-hover:from-secondary group-hover:via-secondary/55" />
 

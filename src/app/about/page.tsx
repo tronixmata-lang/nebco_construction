@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/about", {
     title: "About Us",
     description:
-      "Learn about NEBCO's history, mission, vision, and values as Nepal's trusted A-Class construction company, established in 1995 under the Shah Group.",
+      "Learn about Your Company's history, mission, vision, and values as Nepal's trusted A-Class construction company, established in 1995 under the Your Group.",
   });
 }
 
@@ -54,10 +54,10 @@ export default async function AboutPage() {
       <AboutCoreValuesSection values={aboutContent.values} />
 
       <ValuePillars
-        id="why-nebco"
+        id="why-us"
         variant="muted"
-        eyebrow="The NEBCO Difference"
-        title="Why Clients Choose NEBCO"
+        eyebrow="The Your Company Difference"
+        title="Why Clients Choose Your Company"
         description="A reputation built on quality craftsmanship, transparency, and results clients can rely on."
         columns="three"
         revealOnScroll

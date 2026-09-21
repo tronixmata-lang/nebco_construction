@@ -28,7 +28,7 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
   const entries: KnowledgeEntry[] = [
     {
       id: "about",
-      title: "About NEBCO",
+      title: "About Your Company",
       content: [
         `${siteConfig.legalName} (${siteConfig.shortName}) was established in ${siteConfig.foundingDate} under ${siteConfig.parentOrganization}.`,
         siteConfig.description,
@@ -43,7 +43,7 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
     },
     {
       id: "contact",
-      title: "Contact NEBCO",
+      title: "Contact Your Company",
       content: [
         `Phone: ${siteConfig.phone}`,
         `Email: ${siteConfig.email}`,
@@ -84,7 +84,7 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
       content:
         leaders.length > 0
           ? leaders.map((leader) => `${leader.name}, ${leader.role}: ${leader.bio}`).join("\n\n")
-          : "Meet the leadership team guiding NEBCO's construction, investment, and consulting work.",
+          : "Meet the leadership team guiding Your Company's construction, investment, and consulting work.",
       keywords: ["leadership", "team", "chairman", "director", "management"],
       link: { label: "Meet our leaders", href: "/leadership" },
     },
@@ -104,7 +104,7 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
       content:
         stats.length > 0
           ? stats.map((stat) => `${stat.value} ${stat.label}`).join("\n")
-          : "NEBCO brings decades of construction experience across Nepal.",
+          : "Your Company brings decades of construction experience across Nepal.",
       keywords: ["stats", "years", "experience", "projects", "highlights"],
     },
     {
@@ -123,14 +123,14 @@ export async function buildAssistantKnowledge(): Promise<AssistantKnowledge> {
               .slice(0, 4)
               .map((item) => `"${item.quote}" — ${item.author}, ${item.role}, ${item.organization}`)
               .join("\n\n")
-          : "NEBCO is trusted by homeowners, commercial clients, and hospitality partners across Nepal.",
+          : "Your Company is trusted by homeowners, commercial clients, and hospitality partners across Nepal.",
       keywords: ["testimonials", "clients", "reviews", "feedback"],
     },
     {
       id: "booking",
       title: "Book a Consultation",
       content:
-        "You can schedule a consultation with NEBCO Construction, Investment, or Consulting. Choose your preferred date (Sunday unavailable), time slot, and purpose. Our team confirms within 1-2 business days.",
+        "You can schedule a consultation with Your Construction Company, Investment, or Consulting. Choose your preferred date (Sunday unavailable), time slot, and purpose. Our team confirms within 1-2 business days.",
       keywords: ["book", "booking", "schedule", "meeting", "consultation", "appointment"],
     },
     ...contactFaq.map((item, index) => ({

@@ -92,13 +92,26 @@ export function ConstructionPortfolio({ projects }: ConstructionPortfolioProps) 
               className="group overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-lg"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-neutral-muted">
-                <CmsImage
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {project.image?.trim() ? (
+                  <CmsImage
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center"
+                    role="img"
+                    aria-label="Your project photo"
+                  >
+                    <span className="font-label text-[10px] tracking-[0.14em] text-secondary/60 uppercase">
+                      Your logo
+                    </span>
+                    <span className="font-display text-sm text-secondary/75">Your project photo</span>
+                  </div>
+                )}
               </div>
               <div className="p-4">
                 <p className="font-label text-[10px] text-accent">

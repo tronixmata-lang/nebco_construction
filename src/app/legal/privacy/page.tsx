@@ -11,7 +11,7 @@ import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
-    "Read how NEBCO Construction collects, uses, and protects your personal information.",
+    "Read how Your Construction Company collects, uses, and protects your personal information.",
   path: "/legal/privacy",
 });
 
@@ -24,10 +24,10 @@ export default async function PrivacyPage() {
       <PageIntro
         eyebrow="Legal"
         title="Privacy Policy"
-        description="How NEBCO collects, uses, and protects your personal information."
+        description="How Your Company collects, uses, and protects your personal information."
         showStats={false}
         backgroundImage={pageHeroImages.legal}
-        backgroundAlt="NEBCO legal and privacy"
+        backgroundAlt="Your Company legal and privacy"
       />
       <Section className="pt-10 md:pt-14" glow="primary">
         <ScrollReveal>
@@ -36,7 +36,7 @@ export default async function PrivacyPage() {
               <p>Last updated: June 2025</p>
               <h2>Information We Collect</h2>
               <p>
-                NEBCO Construction collects information you provide through our
+                Your Construction Company collects information you provide through our
                 contact forms, including your name, email address, phone number,
                 organization, and message content.
               </p>

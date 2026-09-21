@@ -16,7 +16,7 @@ export function PageHeader({
   description,
   eyebrow,
   backgroundImage,
-  backgroundAlt = "NEBCO construction",
+  backgroundAlt = "Your Company construction",
   children,
 }: PageHeaderProps) {
   const hasImage = Boolean(backgroundImage);
@@ -45,7 +45,7 @@ export function PageHeader({
       )}
 
       <div className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 select-none font-display text-[10rem] leading-none text-neutral/[0.03] md:text-[14rem] lg:text-[18rem]">
-        NEBCO
+        Your Company
       </div>
 
       <Container className="relative flex flex-1 flex-col items-center justify-center px-4 pt-28 pb-12 text-center sm:pt-32 sm:pb-16 md:pb-20">

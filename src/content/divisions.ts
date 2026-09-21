@@ -4,7 +4,7 @@ export const divisions: Division[] = [
   {
     id: "construction",
     slug: "construction",
-    name: "NEBCO Construction",
+    name: "Your Construction Company",
     shortName: "Construction",
     tagline: "Nepal's most trusted construction partner — built on a decade of delivery.",
     description:
@@ -22,9 +22,9 @@ export const divisions: Division[] = [
   {
     id: "investment",
     slug: "investment",
-    name: "NEBCO Investment",
+    name: "Your Company Investment",
     shortName: "Investment",
-    tagline: "Your money works harder in Nepal — with NEBCO backing every rupee.",
+    tagline: "Your money works harder in Nepal — with Your Company backing every rupee.",
     description:
       "Residential apartments, commercial plots, joint ventures, off-plan property, land banking, and rental-ready packages — structured for yield, appreciation, and legal compliance.",
     services: [
@@ -40,7 +40,7 @@ export const divisions: Division[] = [
   {
     id: "consulting",
     slug: "consulting",
-    name: "NEBCO Consulting",
+    name: "Your Company Consulting",
     shortName: "Consulting",
     tagline: "The right advice before the first brick — save time, money, and stress.",
     description:

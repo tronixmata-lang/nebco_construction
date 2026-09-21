@@ -75,7 +75,7 @@ export default function AdminAssistantChatDetailPage({
             }`}
           >
             <p className="mb-1 text-[10px] font-semibold tracking-wide uppercase text-[var(--admin-muted)]">
-              {message.role === "user" ? "Visitor" : "NEBCO Assistance"} ·{" "}
+              {message.role === "user" ? "Visitor" : "Site Assistant"} ·{" "}
               {new Date(message.createdAt).toLocaleString()}
             </p>
             {message.text}

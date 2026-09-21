@@ -72,7 +72,7 @@ export function SeoFieldsForm({
           className="admin-input"
           value={seo.canonical ?? ""}
           onChange={(e) => update("canonical", e.target.value)}
-          placeholder="https://nebco.com.np/page"
+          placeholder="https://yourcompany.com/page"
         />
       </AdminField>
 

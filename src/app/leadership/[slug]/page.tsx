@@ -59,7 +59,7 @@ export default async function LeaderProfilePage({ params }: LeaderPageProps) {
         breadcrumbLabel={leader.name}
         showStats={false}
         backgroundImage={heroImage}
-        backgroundAlt={`${leader.name}, NEBCO Leadership`}
+        backgroundAlt={`${leader.name}, Your Company Leadership`}
       />
 
       <Section className="pt-10 md:pt-14" glow="none">
@@ -90,7 +90,7 @@ export default async function LeaderProfilePage({ params }: LeaderPageProps) {
           <SectionHeader
             eyebrow="Publications"
             title="Leadership Perspectives"
-            description={`Written by ${leader.name}: industry insight, organizational philosophy, and professional guidance from the front line of NEBCO's work.`}
+            description={`Written by ${leader.name}: industry insight, organizational philosophy, and professional guidance from the front line of Your Company's work.`}
             className="mb-10"
           />
         </ScrollReveal>

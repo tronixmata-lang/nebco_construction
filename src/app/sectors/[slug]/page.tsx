@@ -57,7 +57,7 @@ export default async function SectorDetailPage({ params }: SectorPageProps) {
         breadcrumbLabel={sector.title}
         showStats={false}
         backgroundImage={heroImage}
-        backgroundAlt={`${sector.title}, NEBCO Construction`}
+        backgroundAlt={`${sector.title}, Your Construction Company`}
       />
 
       <Section className="pt-10 md:pt-14" glow="none">
@@ -81,7 +81,7 @@ export default async function SectorDetailPage({ params }: SectorPageProps) {
             message={{
               quote: sector.message.quote,
               author: sector.title,
-              role: "NEBCO Industry Expertise",
+              role: "Your Company Industry Expertise",
               image: sector.image,
             }}
             variant="light"

@@ -1,4 +1,4 @@
-# Deploy NEBCO to a Linux VPS
+# Deploy this construction site template to a Linux VPS
 
 This guide deploys the Next.js app with **Node.js**, **PM2**, **MongoDB**, and optional **Nginx** on Ubuntu/Debian.
 

@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/nrn", {
     title: "NRN Services",
     description:
-      "Build in Nepal from abroad with NEBCO, verified credentials, milestone payments, GPS-tagged progress, and a dedicated NRN client portal.",
+      "Build in Nepal from abroad with Your Company, verified credentials, milestone payments, GPS-tagged progress, and a dedicated NRN client portal.",
   });
 }
 

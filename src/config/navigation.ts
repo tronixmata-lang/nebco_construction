@@ -11,9 +11,9 @@ export const breadcrumbLabels: Record<string, string> = {
   nrn: "NRN Services",
   book: "Book Appointment",
   leadership: "Leadership",
-  construction: "NEBCO Construction",
-  investment: "NEBCO Investment",
-  consulting: "NEBCO Consulting",
+  construction: "Your Construction Company",
+  investment: "Your Company Investment",
+  consulting: "Your Company Consulting",
   privacy: "Privacy Policy",
   terms: "Terms of Use",
   legal: "Legal",
@@ -24,9 +24,9 @@ export const sitePageIndex = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Our Verticals", href: "/divisions" },
-  { label: "NEBCO Construction", href: "/divisions/construction" },
-  { label: "NEBCO Investment", href: "/divisions/investment" },
-  { label: "NEBCO Consulting", href: "/divisions/consulting" },
+  { label: "Your Construction Company", href: "/divisions/construction" },
+  { label: "Your Company Investment", href: "/divisions/investment" },
+  { label: "Your Company Consulting", href: "/divisions/consulting" },
   { label: "Project Portfolio", href: "/portfolio" },
   { label: "Industry Sectors", href: "/sectors" },
   { label: "Leadership", href: "/leadership" },
@@ -40,9 +40,9 @@ export const sitePageIndex = [
 
 /** Compact links shown in the red ribbon above the main navbar. */
 export const topRibbonLinks = [
-  { label: "NEBCO Construction", href: "/divisions/construction" },
-  { label: "NEBCO Investment", href: "/divisions/investment" },
-  { label: "NEBCO Consulting", href: "/divisions/consulting" },
+  { label: "Your Construction Company", href: "/divisions/construction" },
+  { label: "Your Company Investment", href: "/divisions/investment" },
+  { label: "Your Company Consulting", href: "/divisions/consulting" },
 ] as const;
 
 export const mainNavigation: NavItem[] = [
@@ -52,9 +52,9 @@ export const mainNavigation: NavItem[] = [
     label: "Our Verticals",
     href: "/divisions",
     children: [
-      { label: "NEBCO Construction", href: "/divisions/construction" },
-      { label: "NEBCO Investment", href: "/divisions/investment" },
-      { label: "NEBCO Consulting", href: "/divisions/consulting" },
+      { label: "Your Construction Company", href: "/divisions/construction" },
+      { label: "Your Company Investment", href: "/divisions/investment" },
+      { label: "Your Company Consulting", href: "/divisions/consulting" },
     ],
   },
   { label: "Portfolio", href: "/portfolio" },
@@ -74,9 +74,9 @@ export const footerNavigation = {
     { label: "Contact Us", href: "/contact" },
   ],
   divisions: [
-    { label: "NEBCO Construction", href: "/divisions/construction" },
-    { label: "NEBCO Investment", href: "/divisions/investment" },
-    { label: "NEBCO Consulting", href: "/divisions/consulting" },
+    { label: "Your Construction Company", href: "/divisions/construction" },
+    { label: "Your Company Investment", href: "/divisions/investment" },
+    { label: "Your Company Consulting", href: "/divisions/consulting" },
   ],
   resources: [
     { label: "Project Portfolio", href: "/portfolio" },

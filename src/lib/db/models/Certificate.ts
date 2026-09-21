@@ -18,7 +18,7 @@ const CertificateSchema = new Schema<CertificateDocument>(
     legacyId: { type: String, required: true },
     title: { type: String, required: true, trim: true },
     subtitle: { type: String, required: true, trim: true },
-    image: { type: String, required: true },
+    image: { type: String, default: "", trim: true },
     alt: { type: String, required: true },
     sortOrder: { type: Number, default: 0 },
     published: { type: Boolean, default: true },

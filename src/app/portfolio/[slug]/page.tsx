@@ -127,7 +127,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <SectionHeader
                 eyebrow="Project Overview"
                 title="Built with Precision"
-                description="Every NEBCO project is delivered with transparent communication, rigorous quality control, and craftsmanship that stands the test of time."
+                description="Every Your Company project is delivered with transparent communication, rigorous quality control, and craftsmanship that stands the test of time."
               />
               <div className="prose prose-lg max-w-none text-text-muted">
                 <p className="font-display text-xl leading-relaxed text-secondary md:text-2xl">

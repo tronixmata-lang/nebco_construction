@@ -18,7 +18,7 @@ export function InvestmentProducts({ products }: InvestmentProductsProps) {
         <SectionHeader
           eyebrow="Investment Products"
           title="Six ways to put capital to work"
-          description="From apartments you can rent this year to land you hold for later — each product is titled, built or acquired, and reported through NEBCO."
+          description="From apartments you can rent this year to land you hold for later — each product is titled, built or acquired, and reported through Your Company."
           align="center"
           compact
           className="mx-auto"

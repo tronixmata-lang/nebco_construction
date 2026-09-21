@@ -11,7 +11,7 @@ type InsightCardProps = {
 };
 
 function insightImageAlt(article: InsightArticle) {
-  return `${article.title}, NEBCO Construction`;
+  return `${article.title}, Your Construction Company`;
 }
 
 export function InsightCard({ article, titleTag: TitleTag = "h2" }: InsightCardProps) {

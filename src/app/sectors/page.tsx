@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/sectors", {
     title: "Industry Sectors",
     description:
-      "NEBCO serves residential, commercial, infrastructure, real estate, industrial, and consulting sectors across Kathmandu and Nepal.",
+      "Your Company serves residential, commercial, infrastructure, real estate, industrial, and consulting sectors across Kathmandu and Nepal.",
   });
 }
 
@@ -29,7 +29,7 @@ export default async function SectorsPage() {
         title="Sectors We Serve"
         description="Our expertise spans six key sectors, backed by A-Class credentials and a proven track record across Nepal."
         backgroundImage={pageHeroImages.sectors}
-        backgroundAlt="NEBCO infrastructure and construction sectors"
+        backgroundAlt="Your Company infrastructure and construction sectors"
       />
 
       <Section className="pt-10 md:pt-14" glow="none">
@@ -37,7 +37,7 @@ export default async function SectorsPage() {
           <SectionHeader
             eyebrow="Sector Atlas"
             title="Explore Our Industry Expertise"
-            description="Select a sector to view capabilities, perspective, and how NEBCO delivers value in each field."
+            description="Select a sector to view capabilities, perspective, and how Your Company delivers value in each field."
             align="center"
             className="mx-auto mb-12"
           />

@@ -7,24 +7,24 @@ export const heroTrustStats = [
 
 export const heroFeatureCards = [
   {
-    title: "NEBCO Construction",
+    title: "Your Construction Company",
     cta: "Explore",
     href: "/divisions/construction",
     image: "/images/site/1-81_11zon.jpg",
-    imageAlt: "NEBCO construction project",
+    imageAlt: "Your Company construction project",
   },
   {
-    title: "NEBCO Investment",
+    title: "Your Company Investment",
     cta: "Explore",
     href: "/divisions/investment",
     image: "/images/site/1-3-scaled.jpg",
-    imageAlt: "NEBCO investment and infrastructure development",
+    imageAlt: "Your Company investment and infrastructure development",
   },
   {
-    title: "NEBCO Consulting",
+    title: "Your Company Consulting",
     cta: "Explore",
     href: "/divisions/consulting",
     image: "/images/site/1-4-1-scaled.jpg",
-    imageAlt: "NEBCO consulting and design services",
+    imageAlt: "Your Company consulting and design services",
   },
 ] as const;

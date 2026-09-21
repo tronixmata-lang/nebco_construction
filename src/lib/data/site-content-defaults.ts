@@ -19,24 +19,24 @@ import type {
 export type SiteContentData = Omit<SiteContentDocument, "_id" | "updatedAt">;
 
 export const defaultTrustPoints = [
-  "A-Class construction license recognized across Nepal",
-  "Part of the esteemed Shah Group",
-  "Trusted by 500+ clients and NRNs worldwide",
-  "On-time, on-budget delivery, every project",
+  "Licensed construction credentials you can verify",
+  "Part of Your Group — replace with your parent brand",
+  "Trusted delivery with clear milestones and reporting",
+  "On-time, on-budget execution on every project",
 ] as const;
 
 export const defaultAboutPageIntro: AboutPageIntro = {
-  eyebrow: "About NEBCO",
+  eyebrow: "About Your Company",
   title: "Building Confidence. Creating Value.",
   description:
-    "For over three decades, NEBCO has been a trusted partner in construction, investment, and consulting across Nepal and beyond.",
-  backgroundAlt: "NEBCO construction project in progress",
+    "Your Company is a trusted partner in construction, investment, and consulting. Replace this intro with your company story in Admin → Settings.",
+  backgroundAlt: "Your Company construction project in progress",
 };
 
 export const defaultCtaBanner: CtaBannerContent = {
   title: "Ready to Build Something Great?",
   description:
-    "Partner with NEBCO for integrated construction, investment, and consulting solutions.",
+    "Partner with Your Company for integrated construction, investment, and consulting solutions.",
   primaryCta: { label: "Get in Touch", href: "/contact" },
   secondaryCta: { label: "View Our Work", href: "/portfolio" },
 };
@@ -55,10 +55,10 @@ export const defaultHomepageSections: HomepageSections = {
     eyebrow: "Our Verticals",
     title: "Integrated Solutions Across Three Core Businesses",
     description:
-      "NEBCO operates through three strategically connected verticals, each delivering specialized expertise while working together to create comprehensive development solutions.",
+      "Your Company operates through three strategically connected verticals, each delivering specialized expertise while working together to create comprehensive development solutions.",
   },
   valuePillars: {
-    eyebrow: "Why NEBCO",
+    eyebrow: "Why Your Company",
     title: "Our Core Values",
     description:
       "Five pillars that define how we work, how we partner, and how we deliver lasting results.",
@@ -67,19 +67,19 @@ export const defaultHomepageSections: HomepageSections = {
     eyebrow: "Our Work",
     title: "Esteemed Projects",
     description:
-      "A showcase of NEBCO's residential, commercial, and infrastructure projects across Nepal and beyond.",
+      "A showcase of Your Company's residential, commercial, and infrastructure projects. Replace these samples with your completed work in Admin → Projects.",
   },
   sectors: {
     eyebrow: "Industries We Serve",
     title: "Sector Expertise",
     description:
-      "NEBCO serves a broad range of sectors with A-Class credentials, decades of experience, and a track record clients can verify.",
+      "Your Company serves a broad range of sectors with A-Class credentials, decades of experience, and a track record clients can verify.",
   },
   testimonials: {
     eyebrow: "Trusted Partners",
     title: "What Our Clients Say",
     description:
-      "Real feedback from homeowners, commercial clients, and hospitality partners who chose NEBCO for quality, transparency, and on-time delivery.",
+      "Real feedback from homeowners, commercial clients, and hospitality partners who chose Your Company for quality, transparency, and on-time delivery.",
   },
   insights: {
     eyebrow: "Insights & News",

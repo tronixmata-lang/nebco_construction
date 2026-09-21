@@ -36,7 +36,7 @@ const ProjectSchema = new Schema<ProjectDocument>(
     location: { type: String, required: true, trim: true },
     year: { type: String, required: true, trim: true },
     description: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: String, default: "", trim: true },
     images: [{ type: String }],
     featured: { type: Boolean, default: false },
     showcaseLayout: {

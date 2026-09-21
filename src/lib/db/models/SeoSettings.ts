@@ -20,7 +20,7 @@ export type SeoSettingsDocument = {
 const SeoSettingsSchema = new Schema<SeoSettingsDocument>(
   {
     key: { type: String, required: true, unique: true, default: "global" },
-    titleTemplate: { type: String, default: "%s | NEBCO" },
+    titleTemplate: { type: String, default: "%s | Your Company" },
     defaultDescription: { type: String, default: "" },
     defaultOgImage: { type: String, default: "/opengraph-image" },
     keywords: [{ type: String }],

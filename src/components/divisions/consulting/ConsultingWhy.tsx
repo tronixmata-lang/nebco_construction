@@ -8,7 +8,7 @@ export function ConsultingWhy() {
     <div>
       <ScrollReveal>
         <SectionHeader
-          eyebrow="Why NEBCO Consulting"
+          eyebrow="Why Your Company Consulting"
           title="Not a generic architect with a visiting card"
           description="Construction experience, municipality literacy, a path into build, and video calls for NRNs."
           align="center"

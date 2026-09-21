@@ -9,6 +9,48 @@ type CertificateGalleryProps = {
   certificates: Certificate[];
 };
 
+function CertificatePlaceholder({ className }: { className?: string }) {
+  return (
+    <div
+      className={`flex h-full w-full flex-col items-center justify-center gap-2 border border-dashed border-secondary/25 bg-neutral-muted/80 px-4 text-center text-secondary/70 ${className ?? ""}`}
+      role="img"
+      aria-label="Your certificate"
+    >
+      <span className="font-label text-[10px] tracking-[0.16em] uppercase">Your logo</span>
+      <span className="font-display text-lg text-secondary/80">Your certificate</span>
+      <span className="max-w-[12rem] text-[11px] leading-snug text-text-muted">
+        Upload this client&apos;s certificate in Admin
+      </span>
+    </div>
+  );
+}
+
+function CertificateMedia({
+  certificate,
+  fill,
+  className,
+  sizes,
+}: {
+  certificate: Certificate;
+  fill?: boolean;
+  className?: string;
+  sizes?: string;
+}) {
+  if (!certificate.image?.trim()) {
+    return <CertificatePlaceholder className={fill ? "absolute inset-0" : className} />;
+  }
+
+  return (
+    <CmsImage
+      src={certificate.image}
+      alt={certificate.alt || certificate.title}
+      fill={fill}
+      className={className}
+      sizes={sizes}
+    />
+  );
+}
+
 function CertificateLightbox({
   certificates,
   activeIndex,
@@ -98,17 +140,21 @@ function CertificateLightbox({
           className="certificate-lightbox__stage relative flex h-full w-full max-w-5xl items-center justify-center"
           onClick={(event) => event.stopPropagation()}
         >
-          <div className="certificate-lightbox__frame relative flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[min(100%,52rem)] items-center justify-center rounded-sm border border-accent/25 bg-neutral p-3 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] sm:p-5">
-            <CmsImage
-              key={certificate.id}
-              src={certificate.image}
-              alt={certificate.alt}
-              width={900}
-              height={1275}
-              className="certificate-lightbox__image h-auto max-h-[calc(100dvh-10rem)] w-auto max-w-full object-contain"
-              sizes="(max-width: 768px) 100vw, 832px"
-              priority
-            />
+          <div className="certificate-lightbox__frame relative flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[min(100%,52rem)] items-center justify-center overflow-hidden rounded-sm border border-accent/25 bg-neutral p-3 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] sm:p-5">
+            {certificate.image?.trim() ? (
+              <CmsImage
+                key={certificate.id}
+                src={certificate.image}
+                alt={certificate.alt}
+                width={900}
+                height={1275}
+                className="certificate-lightbox__image h-auto max-h-[calc(100dvh-10rem)] w-auto max-w-full object-contain"
+                sizes="(max-width: 768px) 100vw, 832px"
+                priority
+              />
+            ) : (
+              <CertificatePlaceholder className="min-h-[min(70dvh,36rem)] w-full max-w-md" />
+            )}
           </div>
           <figcaption className="sr-only">
             {certificate.title}. {certificate.subtitle}
@@ -180,9 +226,8 @@ export function CertificateGallery({ certificates }: CertificateGalleryProps) {
           >
             <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-border bg-neutral shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/40 group-hover:shadow-xl">
               <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden bg-neutral-muted">
-                <CmsImage
-                  src={certificate.image}
-                  alt={certificate.alt}
+                <CertificateMedia
+                  certificate={certificate}
                   fill
                   className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
                   sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 25vw"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactMapEmbed } from "@/components/contact/ContactMapEmbed";
-import { NEBCO_FACEBOOK_URL, siteConfig as fallbackSite } from "@/config/site";
+import { COMPANY_FACEBOOK_URL, siteConfig as fallbackSite } from "@/config/site";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ContentCard } from "@/components/ui/ContentCard";
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/contact", {
     title: "Contact Us",
     description:
-      "Contact NEBCO for construction, investment, and consulting inquiries in Kathmandu, Nepal. Call +977-9803850955 or email nebconepal@gmail.com.",
+      "Contact Your Company for construction, investment, and consulting inquiries. Call +000-0000000 or email hello@yourcompany.com.",
   });
 }
 
@@ -69,7 +69,7 @@ export default async function ContactPage() {
         description="Whether you have a project in mind or want to explore a partnership, our trusted team is ready to help."
         showStats={false}
         backgroundImage={pageHeroImages.contact}
-        backgroundAlt="Contact NEBCO construction team"
+        backgroundAlt="Contact Your Company construction team"
       />
 
       <Section variant="muted" className="pt-6 pb-6 md:pt-8 md:pb-8" glow="primary">
@@ -122,14 +122,16 @@ export default async function ContactPage() {
 
               <ContentCard hover={false} className="p-6">
                 <SiteSocialLinks variant="light" label="Follow Us" />
-                <a
-                  href={NEBCO_FACEBOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm text-text-muted transition-colors hover:text-primary"
-                >
-                  National Estate Builders on Facebook
-                </a>
+                {COMPANY_FACEBOOK_URL ? (
+                  <a
+                    href={COMPANY_FACEBOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block text-sm text-text-muted transition-colors hover:text-primary"
+                  >
+                    Follow us on Facebook
+                  </a>
+                ) : null}
               </ContentCard>
             </StaggerReveal>
           </div>
@@ -142,8 +144,8 @@ export default async function ContactPage() {
             <div>
               <SectionHeader
                 eyebrow="Visit Us"
-                title="Our Kathmandu Office"
-                description="Located in Kuleshwor, our office is open Sunday through Friday. Walk-ins are welcome. We recommend scheduling a visit for project consultations."
+                title="Our Office"
+                description="Walk-ins are welcome during business hours. We recommend scheduling a visit for project consultations."
                 className="mb-6 md:mb-8"
               />
               <p className="font-medium text-secondary">{siteConfig.address}</p>
@@ -157,7 +159,7 @@ export default async function ContactPage() {
           </ScrollReveal>
           <ContactMapEmbed
             src={siteConfig.googleMapsEmbedUrl || fallbackSite.googleMapsEmbedUrl}
-            title="NEBCO office location in Kuleshwor, Kathmandu"
+            title={`${siteConfig.name} office location`}
           />
         </div>
       </Section>

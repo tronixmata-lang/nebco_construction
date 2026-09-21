@@ -28,7 +28,7 @@ const badges = [
     icon: true,
   },
   {
-    label: "Shah Group",
+    label: "Your Group",
     className: "border border-neutral-border bg-neutral-muted text-secondary",
     icon: false,
   },

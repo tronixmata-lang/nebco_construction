@@ -1,6 +1,6 @@
 export const consultingPage = {
   hero: {
-    eyebrow: "NEBCO Consulting",
+    eyebrow: "Your Company Consulting",
     title: "The right advice before the first brick. Save time, money, and stress.",
     description: "Expert guidance on construction, land, permits, and investment planning.",
     primaryCta: { label: "Book a consultation", href: "#book-consultation" },
@@ -96,7 +96,7 @@ export const consultingPage = {
     },
     {
       title: "Follow-up support",
-      description: "Questions after you read the report. If you then build with NEBCO, the file does not start from zero.",
+      description: "Questions after you read the report. If you then build with Your Company, the file does not start from zero.",
     },
   ],
   packages: [
@@ -133,7 +133,7 @@ export const consultingPage = {
     },
     {
       title: "Continuity into construction",
-      description: "Consulting can lead directly to NEBCO Construction. The same facts, not a new team who has never seen the land.",
+      description: "Consulting can lead directly to Your Construction Company. The same facts, not a new team who has never seen the land.",
     },
     {
       title: "NRN-friendly, including video",

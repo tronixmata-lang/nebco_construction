@@ -11,6 +11,33 @@ type NrnExpertConsultProps = {
   category: NrnFeatureCategory;
 };
 
+function ExpertPhoto({ src, name }: { src: string; name: string }) {
+  if (!src.trim()) {
+    return (
+      <div
+        className="nrn-net-card__photo nrn-net-card__photo--placeholder flex flex-col items-center justify-center gap-1 border border-dashed border-secondary/25 bg-neutral-muted px-3 text-center"
+        role="img"
+        aria-label={`${name} photo placeholder`}
+      >
+        <span className="font-label text-[10px] tracking-[0.14em] text-secondary/60 uppercase">
+          Your logo
+        </span>
+        <span className="font-display text-sm text-secondary/75">Your photo</span>
+      </div>
+    );
+  }
+
+  return (
+    <CmsImage
+      src={src}
+      alt=""
+      width={480}
+      height={360}
+      className="nrn-net-card__photo"
+    />
+  );
+}
+
 export function NrnExpertConsult({ category }: NrnExpertConsultProps) {
   const [active, setActive] = useState(0);
   const feature = category.features[active] ?? category.features[0];
@@ -38,13 +65,7 @@ export function NrnExpertConsult({ category }: NrnExpertConsultProps) {
           const bookHref = `/nrn/book?expert=${encodeURIComponent(expert.name)}&topic=${encodeURIComponent(feature.title)}`;
           return (
             <li key={expert.name} className="nrn-net-card nrn-net-card--expert">
-              <CmsImage
-                src={expert.image}
-                alt=""
-                width={480}
-                height={360}
-                className="nrn-net-card__photo"
-              />
+              <ExpertPhoto src={expert.image} name={expert.name} />
               <h3 className="nrn-net-card__title">{expert.name}</h3>
               <p className="nrn-net-card__kicker">{expert.experience}</p>
               <p className="nrn-net-card__remarks">{expert.description}</p>

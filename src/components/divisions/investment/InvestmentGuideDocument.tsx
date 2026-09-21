@@ -11,7 +11,7 @@ export function InvestmentGuideDocument() {
   return (
     <div className="bg-neutral py-16 md:py-20 print:py-8">
       <Container className="max-w-3xl">
-        <p className="font-label text-xs text-accent">NEBCO Investment</p>
+        <p className="font-label text-xs text-accent">Your Company Investment</p>
         <h1 className="mt-3 font-display text-4xl text-secondary">{hero.title}</h1>
         <p className="mt-3 text-text-muted">{hero.description}</p>
         <div className="mt-6 flex flex-wrap gap-3 print:hidden">

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { mainNavigation } from "@/config/navigation";
 import type { NavItem } from "@/types";
 import { siteConfig as staticSiteConfig } from "@/config/site";
-import { CmsImage } from "@/components/ui/CmsImage";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -70,12 +70,18 @@ export function Header({
             href="/"
             className="relative z-20 flex shrink-0 self-start items-start pt-2 sm:pt-2.5"
           >
-            <CmsImage
+            <BrandLogo
               src={branding.logo}
               alt={`${branding.name} logo`}
               width={320}
               height={96}
-              className="h-[5.5rem] w-auto max-w-[min(72vw,17.5rem)] object-contain object-left sm:h-24 sm:max-w-[19rem]"
+              className="h-[5.5rem] min-w-[8rem] max-w-[min(72vw,17.5rem)] sm:h-24 sm:max-w-[19rem]"
+              imageClassName="h-[5.5rem] w-auto max-w-[min(72vw,17.5rem)] object-contain object-left sm:h-24 sm:max-w-[19rem]"
+              placeholderClassName={
+                isHero
+                  ? "h-[5.5rem] border-neutral/40 text-neutral sm:h-24"
+                  : "h-[5.5rem] border-secondary/25 text-secondary sm:h-24"
+              }
               priority
             />
           </Link>

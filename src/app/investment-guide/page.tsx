@@ -4,9 +4,9 @@ import { createStaticPageMetadata } from "@/lib/seo-metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/investment-guide", {
-    title: "NEBCO Investment Guide",
+    title: "Your Company Investment Guide",
     description:
-      "NEBCO investment products, process, and legal notes for apartments, plots, joint ventures, off-plan, land banking, and rental-ready packages in Nepal.",
+      "Your Company investment products, process, and legal notes for apartments, plots, joint ventures, off-plan, land banking, and rental-ready packages in Nepal.",
   });
 }
 

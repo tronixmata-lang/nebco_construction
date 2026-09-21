@@ -14,7 +14,7 @@ export async function GET() {
     if (!doc) {
       doc = await SeoSettings.create({
         key: "global",
-        titleTemplate: "%s | NEBCO",
+        titleTemplate: "%s | Your Company",
         defaultDescription: siteConfig.description,
         defaultOgImage: siteConfig.ogImage,
         keywords: [],

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./admin.css";
 
 export const metadata: Metadata = {
-  title: "Admin | NEBCO",
+  title: "Admin | Your Company",
   robots: { index: false, follow: false },
 };
 

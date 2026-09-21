@@ -1,7 +1,7 @@
 export const investmentPage = {
   hero: {
-    eyebrow: "NEBCO Investment",
-    title: "Your money works harder in Nepal — with NEBCO backing every rupee.",
+    eyebrow: "Your Company Investment",
+    title: "Your money works harder in Nepal — with Your Company backing every rupee.",
     description: "Rental yields, appreciation rates, legal compliance",
     primaryCta: { label: "Explore investment options", href: "#products" },
     secondaryCta: { label: "Talk to an advisor", href: "#book-consultation" },
@@ -18,7 +18,7 @@ export const investmentPage = {
     },
     {
       title: "Joint ventures",
-      description: "Co-invest with NEBCO on larger projects and share returns.",
+      description: "Co-invest with Your Company on larger projects and share returns.",
     },
     {
       title: "Off-plan properties",
@@ -37,7 +37,7 @@ export const investmentPage = {
     {
       title: "GDP growth still has room to run",
       description:
-        "Nepal's economy has been expanding in the mid-single digits. That growth shows up in housing demand, commercial space, and infrastructure corridors NEBCO already builds.",
+        "Nepal's economy has been expanding in the mid-single digits. That growth shows up in housing demand, commercial space, and infrastructure corridors Your Company already builds.",
       stat: "~4%",
       statLabel: "recent GDP growth range",
     },
@@ -51,7 +51,7 @@ export const investmentPage = {
     {
       title: "Turn remittance into titled assets",
       description:
-        "Remittances are one of Nepal's largest capital inflows. Converting a portion into titled property, with NEBCO execution, keeps value in an asset you can visit, rent, or sell.",
+        "Remittances are one of Nepal's largest capital inflows. Converting a portion into titled property, with Your Company execution, keeps value in an asset you can visit, rent, or sell.",
       stat: "NRN",
       statLabel: "built for money sent from abroad",
     },
@@ -72,7 +72,7 @@ export const investmentPage = {
     {
       title: "The builder sits in the same group",
       description:
-        "You are not buying a brochure from a broker and a separate contractor. NEBCO Investment is backed by A-Class construction, so the yield model and the site are one organisation.",
+        "You are not buying a brochure from a broker and a separate contractor. Your Company Investment is backed by A-Class construction, so the yield model and the site are one organisation.",
       stat: "A-Class",
       statLabel: "licensed delivery behind the rupee",
     },
@@ -92,7 +92,7 @@ export const investmentPage = {
     },
     {
       title: "Construction / acquisition",
-      description: "NEBCO builds or completes the purchase with milestone reporting.",
+      description: "Your Company builds or completes the purchase with milestone reporting.",
     },
     {
       title: "Rental management",
@@ -160,7 +160,7 @@ export const investmentPage = {
   bottomCta: {
     title: "Book a free investment call",
     description:
-      "Bring a budget, a city, and the product you are considering. We will talk yield, paperwork, and what NEBCO can actually deliver.",
+      "Bring a budget, a city, and the product you are considering. We will talk yield, paperwork, and what Your Company can actually deliver.",
     primaryLabel: "Book a free investment call",
     secondaryLabel: "Download our investment guide PDF",
     guideHref: "/investment-guide",

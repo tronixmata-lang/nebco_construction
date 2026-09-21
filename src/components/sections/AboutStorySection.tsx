@@ -5,7 +5,7 @@ import { AboutStoryReveal } from "@/components/sections/about/AboutStoryReveal";
 import { AboutTimelineScroll } from "@/components/sections/about/AboutTimelineScroll";
 
 const milestones = [
-  { year: "1995", title: "Founded", detail: "Established under the Shah Group vision" },
+  { year: "1995", title: "Founded", detail: "Established under the Your Group vision" },
   { year: "2001", title: "Registered", detail: "Formal incorporation in Nepal" },
   { year: "A-Class", title: "Licensed", detail: "Highest-tier construction credentials" },
   { year: "Today", title: "Trusted", detail: "Projects across Nepal and beyond" },

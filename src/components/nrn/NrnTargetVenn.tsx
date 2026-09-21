@@ -1,6 +1,6 @@
 import type { NrnFeatureCategory } from "@/content/nrn";
 import { siteConfig } from "@/config/site";
-import { CmsImage } from "@/components/ui/CmsImage";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 type NrnTargetVennProps = {
   features: NrnFeatureCategory["features"];
@@ -34,12 +34,14 @@ export function NrnTargetVenn({ features }: NrnTargetVennProps) {
         ))}
 
         <div className="nrn-union__hub">
-          <CmsImage
+          <BrandLogo
             src={siteConfig.logo}
             alt={`${siteConfig.shortName} logo`}
             width={320}
             height={96}
             className="nrn-union__logo"
+            imageClassName="nrn-union__logo"
+            placeholderClassName="min-h-[3rem] min-w-[6rem] text-secondary"
           />
         </div>
       </div>

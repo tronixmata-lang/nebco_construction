@@ -43,7 +43,7 @@ export function ContactHero({
   eyebrow,
   breadcrumbLabel,
   backgroundImage,
-  backgroundAlt = "Contact NEBCO construction team",
+  backgroundAlt = "Contact Your Company construction team",
 }: ContactHeroProps) {
   const hasImage = Boolean(backgroundImage);
 
@@ -72,7 +72,7 @@ export function ContactHero({
         )}
 
         <div className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 select-none font-display text-[10rem] leading-none text-white/[0.03] md:text-[14rem] lg:text-[18rem]">
-          NEBCO
+          Your Company
         </div>
 
         <Container className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-28 pb-12 text-center sm:pt-32 sm:pb-16 md:pb-20">

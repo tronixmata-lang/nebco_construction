@@ -53,7 +53,7 @@ export function HeroScrollStaticView({
   headline,
   subheadline,
   backgroundImage,
-  backgroundAlt = "NEBCO construction site with scaffolding and building development",
+  backgroundAlt = "Your Company construction site with scaffolding and building development",
   primaryCta,
   secondaryCta,
   phoneHref,

@@ -44,7 +44,7 @@ export function HeroFeatureCards({ cards }: HeroFeatureCardsProps) {
     >
       <div
         className="relative h-[17.5rem] w-60 lg:h-[18rem] lg:w-64 xl:w-72"
-        aria-label="NEBCO business verticals"
+        aria-label="Your Company business verticals"
       >
         {visibleCards.map((card, index) => {
           const isActive = index === activeIndex;

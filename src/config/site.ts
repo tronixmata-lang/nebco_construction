@@ -1,29 +1,29 @@
 export const siteConfig = {
-  name: "NEBCO Construction",
-  legalName: "National Estate Builders Co. Pvt. Ltd.",
-  shortName: "NEBCO",
+  name: "Your Construction Company",
+  legalName: "Your Company Pvt. Ltd.",
+  shortName: "Your Company",
   tagline: "Quality. Integrity. Timely.",
-  seoTitle: "NEBCO | Best and No 1 Construction Company in Nepal",
+  seoTitle: "Your Company | Construction Company",
   description:
-    "Established in 1995, NEBCO is an A-Class construction company in Nepal specializing in residential, commercial, and infrastructure projects across Kathmandu and beyond.",
-  url: "https://nebco.com.np",
+    "A trusted construction company specializing in residential, commercial, and infrastructure projects. Replace this text with your company story in Admin → Settings.",
+  url: "https://yourcompany.com",
   locale: "en_US",
   foundingDate: "1995",
-  parentOrganization: "Shah Group",
-  email: "nebconepal@gmail.com",
-  phone: "+977-9803850955",
-  address: "Kuleshwor, Kathmandu, Nepal",
-  businessHours: "Sunday to Friday: 9:00 AM to 7:00 PM / Saturday: Closed",
-  logo: "/images/nebco_logo.png",
-  siteLogo: "/images/site/NEBCO-Logo.png",
+  parentOrganization: "Your Group",
+  email: "hello@yourcompany.com",
+  phone: "+000-0000000",
+  address: "Your City, Your Country",
+  businessHours: "Sunday to Friday: 9:00 AM to 5:00 PM / Saturday: Closed",
+  /** Leave empty to show a "Your logo" placeholder until the client uploads one. */
+  logo: "",
+  siteLogo: "",
   ogImage: "/opengraph-image",
   geo: {
-    latitude: 27.686732,
-    longitude: 85.299335,
+    latitude: 0,
+    longitude: 0,
   },
-  googleMapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2091.6367497500523!2d85.29933496371326!3d27.686732295252533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1996b5fc27a7%3A0xf16f8d7e7c578dab!2sNEBCO-%20Best%20Construction%20Company%20In%20Nepal!5e0!3m2!1sen!2snp!4v1783666307998!5m2!1sen!2snp",
-  areaServed: ["Kathmandu", "Nepal", "South Asia"],
+  googleMapsEmbedUrl: "",
+  areaServed: ["Your City", "Your Country"],
   knowsAbout: [
     "Construction",
     "Residential Construction",
@@ -35,16 +35,17 @@ export const siteConfig = {
     "Earthquake-Resistant Building",
   ],
   social: {
-    website: "https://nebco.com.np",
-    facebook: "https://www.facebook.com/p/National-Estate-Builders-Company-Pvt-Ltd-100064839677112/",
+    website: "https://yourcompany.com",
+    facebook: "",
     linkedin: "",
   },
 } as const;
 
-export const NEBCO_FACEBOOK_URL = siteConfig.social.facebook;
+/** Optional Facebook page URL used when CMS social.facebook is empty. */
+export const COMPANY_FACEBOOK_URL = siteConfig.social.facebook;
 
 export function getSocialLinks(): string[] {
-  const facebook = siteConfig.social.facebook || NEBCO_FACEBOOK_URL;
+  const facebook = siteConfig.social.facebook || COMPANY_FACEBOOK_URL;
   const candidates: string[] = [
     siteConfig.url,
     siteConfig.social.website,

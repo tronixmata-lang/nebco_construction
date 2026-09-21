@@ -10,9 +10,9 @@ import { ContactInquiry } from "@/lib/db/models";
 import { mapDbError } from "@/lib/db/api-errors";
 
 const divisionLabels: Record<VerticalBookingSlug, string> = {
-  construction: "NEBCO Construction",
-  investment: "NEBCO Investment",
-  consulting: "NEBCO Consulting",
+  construction: "Your Construction Company",
+  investment: "Your Company Investment",
+  consulting: "Your Company Consulting",
 };
 
 const bookingSchema = z
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
     const { name, email, phone, division, date, time, purpose, notes } = parsed.data;
     const divisionLabel =
-      divisionLabels[division as VerticalBookingSlug] ?? `NEBCO ${division}`;
+      divisionLabels[division as VerticalBookingSlug] ?? `Your Company ${division}`;
     const formattedDate = formatBookingDate(date);
     const message = [
       `${divisionLabel} consultation booking request`,

@@ -35,7 +35,7 @@ export function InvestmentDivisionPage({ division }: InvestmentDivisionPageProps
         description={hero.description}
         breadcrumbLabel={division.name}
         backgroundImage={heroImage}
-        backgroundAlt="Modern NEBCO-backed building in Nepal"
+        backgroundAlt="Modern Your Company-backed building in Nepal"
       >
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href={hero.primaryCta.href} size="lg">

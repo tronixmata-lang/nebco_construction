@@ -10,7 +10,7 @@ export function InvestmentWhy() {
         <SectionHeader
           eyebrow="Why Invest in Nepal Now"
           title="The macro case, then the asset"
-          description="Growth, remittances, reconstruction, and tourism are the backdrop. Every NEBCO deal still starts with title, rent, and who builds it."
+          description="Growth, remittances, reconstruction, and tourism are the backdrop. Every Your Company deal still starts with title, rent, and who builds it."
           align="center"
           dark
           compact

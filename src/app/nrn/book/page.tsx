@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/nrn/book", {
     title: "Book an NRN Appointment",
     description:
-      "Book a 30-minute NRN consultation with a NEBCO specialist. Choose a time that works from the Gulf, Europe, Australia, or the US.",
+      "Book a 30-minute NRN consultation with a Your Company specialist. Choose a time that works from the Gulf, Europe, Australia, or the US.",
   });
 }
 
@@ -61,7 +61,7 @@ export default async function NrnBookPage({ searchParams }: NrnBookPageProps) {
         breadcrumbLabel="Book Appointment"
         showStats={false}
         backgroundImage={pageHeroImages.nrn}
-        backgroundAlt="NEBCO specialist consultation for NRN clients"
+        backgroundAlt="Your Company specialist consultation for NRN clients"
       />
 
       <Section variant="muted" className="pt-8 pb-8 md:pt-10 md:pb-10" glow="primary">

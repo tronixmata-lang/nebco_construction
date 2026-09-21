@@ -1,6 +1,6 @@
 import { CmsImage } from "@/components/ui/CmsImage";
 import Link from "next/link";
-import { NEBCO_FACEBOOK_URL } from "@/config/site";
+import { COMPANY_FACEBOOK_URL } from "@/config/site";
 import { BrandIcon } from "@/components/ui/BrandIcon";
 import { FacebookIcon, LinkedInIcon, MailIcon } from "@/components/ui/SocialIcons";
 import { cn } from "@/lib/utils";
@@ -57,7 +57,7 @@ function LeaderCard({
   leader: Leader;
   socialFallback?: SocialFallback;
 }) {
-  const facebook = leader.facebook || socialFallback?.facebook || NEBCO_FACEBOOK_URL;
+  const facebook = leader.facebook || socialFallback?.facebook || COMPANY_FACEBOOK_URL;
   const linkedin = leader.linkedin || socialFallback?.linkedin;
   const email = leader.email;
   const hasSocial = Boolean(facebook || linkedin || email);

@@ -32,41 +32,38 @@ import { STATIC_PAGES } from "@/lib/data/seo";
 export async function seedDatabase() {
   await connectDB();
 
-  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@nebco.com.np";
-  const adminPassword = process.env.ADMIN_PASSWORD ?? "Admin@Nebco2024";
+  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@yourcompany.com";
+  const adminPassword = process.env.ADMIN_PASSWORD ?? "Admin@Your Company2024";
 
   const existingAdmin = await User.findOne({ email: adminEmail });
   if (!existingAdmin) {
     await User.create({
       email: adminEmail,
       passwordHash: await hashPassword(adminPassword),
-      name: "NEBCO Admin",
+      name: "Your Company Admin",
       role: "superadmin",
       isActive: true,
     });
     console.log(`Created admin user: ${adminEmail}`);
   }
 
-  const existingSite = await SiteContent.findOne({ key: "global" }).lean();
-  if (!existingSite) {
-    await SiteContent.create(getDefaultSiteContent());
-  } else if (!existingSite.siteConfig?.googleMapsEmbedUrl) {
-    await SiteContent.updateOne(
-      { key: "global" },
-      { $set: { "siteConfig.googleMapsEmbedUrl": siteConfig.googleMapsEmbedUrl } },
-    );
-  }
+  // White-label defaults: company name, empty logos ("Your logo"), contact placeholders
+  await SiteContent.findOneAndUpdate(
+    { key: "global" },
+    getDefaultSiteContent(),
+    { upsert: true, new: true },
+  );
 
   await SeoSettings.findOneAndUpdate(
     { key: "global" },
     {
       key: "global",
-      titleTemplate: "%s | NEBCO",
+      titleTemplate: "%s | Your Company",
       defaultDescription: siteConfig.description,
       defaultOgImage: siteConfig.ogImage,
       keywords: [
-        "NEBCO",
-        "NEBCO Construction",
+        "Your Company",
+        "Your Construction Company",
         "construction company Nepal",
         "A-Class construction Nepal",
         "Kathmandu construction",
@@ -111,6 +108,12 @@ export async function seedDatabase() {
       { upsert: true, new: true },
     );
   }
+
+  const templateProjectSlugs = projects.map((project) => project.slug);
+  await Project.updateMany(
+    { slug: { $nin: templateProjectSlugs } },
+    { $set: { published: false, featured: false } },
+  );
 
   for (const [index, article] of insights.entries()) {
     await Insight.findOneAndUpdate(
@@ -262,6 +265,13 @@ export async function seedDatabase() {
       { upsert: true, new: true },
     );
   }
+
+  // Hide old branded certificates that are no longer in the template seed list
+  const templateCertIds = certificateSection.certificates.map((cert) => cert.id);
+  await Certificate.updateMany(
+    { legacyId: { $nin: templateCertIds } },
+    { $set: { published: false } },
+  );
 
   const counts = {
     projects: await Project.countDocuments(),

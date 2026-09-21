@@ -114,7 +114,7 @@ export default function AdminDashboardPage() {
     <>
       <AdminHeader
         title="Dashboard"
-        description="Overview of your NEBCO website content and activity"
+        description="Overview of your Your Company website content and activity"
       />
 
       <div className="mb-6 flex flex-wrap gap-3">

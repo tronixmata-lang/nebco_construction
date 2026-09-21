@@ -21,7 +21,7 @@ function testMergePreservesNestedFields() {
       primaryCta: { label: "Contact Us" },
     },
     siteConfig: {
-      email: "updated@nebco.com.np",
+      email: "updated@yourcompany.com",
       social: { facebook: "https://facebook.com/test" },
     },
   });
@@ -36,7 +36,7 @@ function testMergePreservesNestedFields() {
     merged.siteConfig.legalName === defaults.siteConfig.legalName,
     "legal name should be preserved on partial siteConfig save",
   );
-  assert(merged.siteConfig.email === "updated@nebco.com.np", "email should update");
+  assert(merged.siteConfig.email === "updated@yourcompany.com", "email should update");
   assert(
     merged.siteConfig.social.facebook === "https://facebook.com/test",
     "facebook URL should update",

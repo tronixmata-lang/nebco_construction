@@ -1,5 +1,5 @@
-const SESSION_STORAGE_KEY = "nebco-assistant-session";
-const GREETING_SENT_KEY = "nebco-assistant-greeting-sent";
+const SESSION_STORAGE_KEY = "yourcompany-assistant-session";
+const GREETING_SENT_KEY = "yourcompany-assistant-greeting-sent";
 
 export function getAssistantSessionId(): string {
   if (typeof window === "undefined") {

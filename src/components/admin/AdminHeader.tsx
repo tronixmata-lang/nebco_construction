@@ -21,7 +21,7 @@ export function AdminHeader({ title, description }: { title: string; description
   return (
     <header className="admin-page-header flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
       <div className="pl-12 lg:pl-0">
-        <p className="admin-page-eyebrow">NEBCO · Content Management</p>
+        <p className="admin-page-eyebrow">Your Company · Content Management</p>
         <h1 className="admin-page-title">{title}</h1>
         {description && <p className="admin-page-subtitle">{description}</p>}
       </div>

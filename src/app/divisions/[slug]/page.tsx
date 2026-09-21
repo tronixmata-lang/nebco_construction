@@ -38,7 +38,7 @@ const DIVISION_OVERVIEW_STATS: Record<string, Array<{ value: string; label: stri
   investment: [
     { value: "35+", label: "Years of Trust" },
     { value: "Scale", label: "Infrastructure" },
-    { value: "Shah Group", label: "Backed" },
+    { value: "Your Group", label: "Backed" },
   ],
   consulting: [
     { value: "Design", label: "To Delivery" },
@@ -134,7 +134,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
         description={division.tagline}
         breadcrumbLabel={division.name}
         backgroundImage={heroImage}
-        backgroundAlt={`${division.name}, NEBCO`}
+        backgroundAlt={`${division.name}, Your Company`}
       />
 
       <Section className="pt-10 pb-10 md:pt-14 md:pb-14" glow="primary">

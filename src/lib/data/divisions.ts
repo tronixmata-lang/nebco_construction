@@ -35,7 +35,7 @@ const defaultCommitments = [
 function capabilitiesFromServices(services: string[]) {
   return services.map((service) => ({
     title: service,
-    description: `Professional ${service.toLowerCase()} delivered with NEBCO quality standards and accountable project leadership.`,
+    description: `Professional ${service.toLowerCase()} delivered with Your Company quality standards and accountable project leadership.`,
   }));
 }
 

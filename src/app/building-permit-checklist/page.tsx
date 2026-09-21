@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function BuildingPermitChecklistPage() {
   return (
     <PrintGuide
-      eyebrow="NEBCO Consulting"
+      eyebrow="Your Company Consulting"
       title="Nepal Building Permit Checklist"
       intro="Municipalities differ, but these are the files that usually have to exist before a drawing is stamped. Confirm the current list with the ward and municipality that will actually approve your site."
       bookHref="/divisions/consulting#book-consultation"

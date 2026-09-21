@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -29,6 +28,7 @@ import {
 import { useEffect, useState } from "react";
 import { adminNav } from "@/config/admin-nav";
 import { siteConfig } from "@/config/site";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { cn } from "@/lib/utils";
 
 const iconMap = {
@@ -85,16 +85,18 @@ export function AdminSidebar() {
         <Link href="/admin" className="block">
           <div className="flex items-center gap-3.5">
             <div className="admin-sidebar-logo shrink-0">
-              <Image
+              <BrandLogo
                 src={siteConfig.logo}
-                alt="NEBCO"
+                alt={siteConfig.shortName}
                 fill
-                className="object-contain p-1.5"
+                className="absolute inset-0"
+                imageClassName="object-contain p-1.5"
+                placeholderClassName="absolute inset-0 text-white"
                 sizes="56px"
               />
             </div>
             <div>
-              <p className="admin-sidebar-title">NEBCO</p>
+              <p className="admin-sidebar-title">{siteConfig.shortName}</p>
               <p className="admin-sidebar-tagline mt-0.5">Admin Console</p>
             </div>
           </div>

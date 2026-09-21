@@ -359,7 +359,7 @@ export function LeaderForm({ params }: LeaderFormProps) {
                     className="admin-input"
                     value={article.slug}
                     onChange={(e) => updateArticle(index, "slug", e.target.value)}
-                    placeholder="operational-excellence-at-nebco"
+                    placeholder="operational-excellence-at-your-company"
                   />
                 </AdminField>
               </div>

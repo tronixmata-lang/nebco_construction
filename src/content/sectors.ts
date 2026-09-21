@@ -5,7 +5,7 @@ export const industrySectors: IndustrySector[] = [
     id: "residential",
     title: "Residential Construction",
     description:
-      "Custom homes, apartments, and housing infrastructure built with earthquake-resistant design and modern architectural standards. From private residences in Kathmandu to projects beyond the valley, NEBCO delivers homes clients trust for generations.",
+      "Custom homes, apartments, and housing infrastructure built with earthquake-resistant design and modern architectural standards. From private residences in Kathmandu to projects beyond the valley, Your Company delivers homes clients trust for generations.",
     highlight: "100+ residential projects delivered",
     image: "/images/home.jpg",
   },
@@ -21,7 +21,7 @@ export const industrySectors: IndustrySector[] = [
     id: "infrastructure",
     title: "Infrastructure Development",
     description:
-      "Roads, bridges, tunnels, hospitals, and large-scale public works including international projects. NEBCO's hospital construction team in Bhutan demonstrates our capability to deliver critical infrastructure beyond borders.",
+      "Roads, bridges, tunnels, hospitals, and large-scale public works including international projects. Your Company's hospital construction team in Bhutan demonstrates our capability to deliver critical infrastructure beyond borders.",
     highlight: "International infrastructure experience",
     image: "/images/pexels-enrique-11376668.jpg",
   },
@@ -37,15 +37,15 @@ export const industrySectors: IndustrySector[] = [
     id: "real-estate",
     title: "Real Estate Development",
     description:
-      "Property development, sales, and investment solutions for residential and commercial assets in Nepal. Backed by the Shah Group's decades of real estate expertise, NEBCO creates lasting value for investors and homeowners alike.",
-    highlight: "Backed by Shah Group expertise",
+      "Property development, sales, and investment solutions for residential and commercial assets in Nepal. Backed by the Your Group's decades of real estate expertise, Your Company creates lasting value for investors and homeowners alike.",
+    highlight: "Backed by Your Group expertise",
     image: "/images/site/1-3-scaled.jpg",
   },
   {
     id: "consulting",
     title: "Project Consulting and Management",
     description:
-      "FDI planning, feasibility studies, cost estimation, business consultation, and end-to-end project supervision. Clients rely on NEBCO for transparent guidance from concept through completion.",
+      "FDI planning, feasibility studies, cost estimation, business consultation, and end-to-end project supervision. Clients rely on Your Company for transparent guidance from concept through completion.",
     highlight: "Transparent, on-budget delivery",
     image: "/images/site/binod-ojha-1.jpg",
   },
@@ -57,7 +57,7 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
       quote:
         "A home is where families build their future. We treat every residential project with the structural discipline, transparent communication, and finish quality that families deserve.",
       body: [
-        "NEBCO's residential portfolio spans custom private homes, multi-unit housing, and bespoke residences across Kathmandu and beyond. Every build is engineered for Nepal's seismic environment and finished to standards clients can verify at handover.",
+        "Your Company's residential portfolio spans custom private homes, multi-unit housing, and bespoke residences across Kathmandu and beyond. Every build is engineered for Nepal's seismic environment and finished to standards clients can verify at handover.",
         "From foundation to final inspection, our teams coordinate design, materials, and site execution under one accountable builder. Clients receive milestone updates, clear budgets, and a finished home worthy of generational trust.",
       ],
     },
@@ -85,7 +85,7 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
       quote:
         "Commercial buildings must perform for businesses every day. We deliver hotels, offices, and retail spaces that combine architectural presence with operational reliability.",
       body: [
-        "NEBCO has delivered commercial landmarks including Hotel Yatri, Hotel Buddy Thamel, and Khanal Complex. Our commercial teams understand that schedule certainty, MEP coordination, and brand-ready finishes directly affect our clients' revenue.",
+        "Your Company has delivered commercial landmarks including Hotel Yatri, Hotel Buddy Thamel, and Khanal Complex. Our commercial teams understand that schedule certainty, MEP coordination, and brand-ready finishes directly affect our clients' revenue.",
         "Whether the scope is hospitality, retail, or corporate office space, we manage complex trades under unified leadership so businesses can open on time and operate with confidence.",
       ],
     },
@@ -111,10 +111,10 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
   infrastructure: {
     message: {
       quote:
-        "Infrastructure shapes communities for decades. NEBCO brings the engineering rigor and project scale experience required for public works that must not fail.",
+        "Infrastructure shapes communities for decades. Your Company brings the engineering rigor and project scale experience required for public works that must not fail.",
       body: [
         "Our infrastructure experience includes roads, bridges, tunnels, hospitals, and specialized facilities, including international delivery in Bhutan. These projects demand disciplined planning, regulatory compliance, and safety leadership at every stage.",
-        "NEBCO's A-Class credentials and Shah Group backing provide the institutional stability that public and institutional clients require when stakes are high and timelines are fixed.",
+        "Your Company's A-Class credentials and Your Group backing provide the institutional stability that public and institutional clients require when stakes are high and timelines are fixed.",
       ],
     },
     capabilities: [
@@ -141,7 +141,7 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
       quote:
         "Design and construction should speak the same language. Our in-house architects and engineers collaborate from day one so what is drawn can be built beautifully and safely.",
       body: [
-        "NEBCO provides architectural, structural, interior, HVAC, and electrical design as an integrated service. That eliminates the handoff friction that causes delays, change orders, and compromised outcomes on conventional projects.",
+        "Your Company provides architectural, structural, interior, HVAC, and electrical design as an integrated service. That eliminates the handoff friction that causes delays, change orders, and compromised outcomes on conventional projects.",
         "Clients benefit from a single team accountable for both design intent and site execution, with constructability reviewed before documents reach the field.",
       ],
     },
@@ -160,14 +160,14 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
       },
       {
         title: "Design-Build Integration",
-        description: "Unified workflow from concept through construction under NEBCO leadership.",
+        description: "Unified workflow from concept through construction under Your Company leadership.",
       },
     ],
   },
   "real-estate": {
     message: {
       quote:
-        "Real estate is a long-term investment. Under the Shah Group, NEBCO develops and advises on assets designed to hold value and serve communities responsibly.",
+        "Real estate is a long-term investment. Under the Your Group, Your Company develops and advises on assets designed to hold value and serve communities responsibly.",
       body: [
         "Our real estate services span development, sales support, and investment guidance for residential and commercial assets across Nepal. We combine construction capability with market knowledge earned over decades.",
         "Investors and homeowners work with a partner that understands both the development lifecycle and the construction discipline required to protect capital.",
@@ -187,7 +187,7 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
         description: "Construction quality and documentation that supports confident sales processes.",
       },
       {
-        title: "Shah Group Network",
+        title: "Your Group Network",
         description: "Institutional backing and real estate expertise across the group's portfolio.",
       },
     ],
@@ -197,7 +197,7 @@ export const sectorProfiles: Record<string, Omit<SectorProfile, keyof IndustrySe
       quote:
         "The right guidance early prevents expensive corrections later. Our consulting team helps clients plan, budget, and supervise projects with clarity from the start.",
       body: [
-        "NEBCO Consulting supports FDI planning, feasibility studies, cost estimation, business consultation, and end-to-end project supervision. Clients engage us when they need independent expertise backed by active construction experience.",
+        "Your Company Consulting supports FDI planning, feasibility studies, cost estimation, business consultation, and end-to-end project supervision. Clients engage us when they need independent expertise backed by active construction experience.",
         "We deliver transparent recommendations, documented milestones, and accountable oversight so projects stay aligned with budget, schedule, and quality objectives.",
       ],
     },

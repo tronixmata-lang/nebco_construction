@@ -3069,6 +3069,10 @@ section.contact-page-section--default {
   object-position: center top;
 }
 
+.nrn-net-card__photo--placeholder {
+  object-fit: unset;
+}
+
 .nrn-net-card--expert .nrn-net-card__title,
 .nrn-net-card--expert .nrn-net-card__kicker,
 .nrn-net-card--expert .nrn-net-card__remarks {

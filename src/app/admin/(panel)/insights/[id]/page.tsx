@@ -160,7 +160,7 @@ export default function InsightFormPage({ params }: { params: Promise<{ id: stri
           onChange={(seo) => updateField("seo", seo)}
           defaultTitle={form.title}
           defaultDescription={form.excerpt}
-          previewUrl={form.slug ? `https://nebco.com.np/insights/${form.slug}` : undefined}
+          previewUrl={form.slug ? `https://yourcompany.com/insights/${form.slug}` : undefined}
         />
         {error && <p className="text-sm text-red-400">{error}</p>}
         <AdminFormActions saving={saving} onCancel={() => router.push("/admin/insights")} />

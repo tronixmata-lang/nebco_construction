@@ -1,6 +1,6 @@
 import { jwtVerify, SignJWT } from "jose";
 
-const COOKIE_NAME = "nebco_admin_session";
+const COOKIE_NAME = "company_admin_session";
 
 export type SessionPayload = {
   userId: string;

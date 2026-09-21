@@ -21,7 +21,7 @@ export function AboutLeadershipSection({ message }: AboutLeadershipSectionProps)
         <SectionHeader
           eyebrow="Leadership"
           title="Words From Our Leadership"
-          description="Three decades of building with integrity — guided by the standards and vision of the Shah Group."
+          description="Three decades of building with integrity — guided by the standards and vision of the Your Group."
           align="center"
           className="mx-auto mb-8 md:mb-10"
         />

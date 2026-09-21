@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createStaticPageMetadata("/divisions", {
     title: "Our Verticals",
     description:
-      "Explore NEBCO's three integrated verticals: NEBCO Construction, NEBCO Investment, and NEBCO Consulting in Nepal.",
+      "Explore Your Company's three integrated verticals: Your Construction Company, Your Company Investment, and Your Company Consulting in Nepal.",
   });
 }
 
@@ -30,11 +30,11 @@ export default async function DivisionsPage() {
     <>
       <JsonLd data={breadcrumbSchema("/divisions")} />
       <PageIntro
-        eyebrow="NEBCO"
+        eyebrow="Your Company"
         title="Our Verticals"
         description="Three strategically connected verticals delivering comprehensive, trusted development solutions across Nepal."
         backgroundImage={pageHeroImages.divisions}
-        backgroundAlt="NEBCO integrated construction and development"
+        backgroundAlt="Your Company integrated construction and development"
       />
       <Section className="pt-10 md:pt-14" glow="accent">
         <ScrollReveal>
@@ -59,7 +59,7 @@ export default async function DivisionsPage() {
       <Section variant="muted" glow="primary">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="font-display text-2xl text-secondary">Need a solution that spans multiple verticals?</p>
-          <p className="mt-3 text-text-muted">NEBCO&apos;s integrated structure means one trusted partner for construction, investment, and consulting, from concept to completion.</p>
+          <p className="mt-3 text-text-muted">Your Company&apos;s integrated structure means one trusted partner for construction, investment, and consulting, from concept to completion.</p>
           <div className="mt-8"><Button href="/contact">Contact Our Team</Button></div>
         </ScrollReveal>
       </Section>

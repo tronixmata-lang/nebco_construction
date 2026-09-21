@@ -10,7 +10,7 @@ const DEFAULT_CHAIRMAN_IMAGE = "/images/site/Mr.-Prabhu-Rana-1.png";
 const HERITAGE_STATS = [
   { value: "30+", label: "Years" },
   { value: "A-Class", label: "Builder" },
-  { value: "Shah Group", label: "Legacy" },
+  { value: "Your Group", label: "Legacy" },
 ] as const;
 
 const TRUST_PILLARS = ["Integrity", "Discipline", "Trust"] as const;
@@ -101,7 +101,7 @@ export function AboutChairmanReveal({
                   <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
                     <CmsImage
                       src={imageSrc}
-                      alt={`${message.author}, NEBCO Chairman`}
+                      alt={`${message.author}, Your Company Chairman`}
                       fill
                       sizes="(max-width: 1024px) 280px, 360px"
                       className="about-chairman-showcase__image object-cover object-top"

@@ -25,19 +25,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const homeFaq = [
   {
-    question: "Who is NEBCO Construction?",
+    question: "Who is Your Construction Company?",
     answer:
-      "NEBCO (National Estate Builders Co. Pvt. Ltd.) is an A-Class construction company in Kathmandu, Nepal, established in 1995 and operating under the Shah Group.",
+      "Your Company (Your Company Pvt. Ltd.) is an A-Class construction company in Kathmandu, Nepal, established in 1995 and operating under the Your Group.",
   },
   {
-    question: "What types of projects does NEBCO build?",
+    question: "What types of projects does Your Company build?",
     answer:
-      "NEBCO delivers residential homes, commercial buildings, infrastructure projects, and real estate investment developments across Nepal.",
+      "Your Company delivers residential homes, commercial buildings, infrastructure projects, and real estate investment developments across Nepal.",
   },
   {
-    question: "Why choose NEBCO for construction in Nepal?",
+    question: "Why choose Your Company for construction in Nepal?",
     answer:
-      "NEBCO combines 30+ years of experience, A-Class licensing, transparent project management, and integrated construction, investment, and consulting services.",
+      "Your Company combines 30+ years of experience, A-Class licensing, transparent project management, and integrated construction, investment, and consulting services.",
   },
 ] as const;
 

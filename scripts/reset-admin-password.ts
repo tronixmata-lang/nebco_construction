@@ -6,8 +6,8 @@ import { hashPassword } from "../src/lib/auth/password";
 config({ path: ".env.local" });
 
 async function main() {
-  const email = (process.env.ADMIN_EMAIL ?? "admin@nebco.com.np").toLowerCase();
-  const password = process.env.ADMIN_PASSWORD ?? "Admin@Nebco2024";
+  const email = (process.env.ADMIN_EMAIL ?? "admin@yourcompany.com").toLowerCase();
+  const password = process.env.ADMIN_PASSWORD ?? "ChangeMe@2024";
 
   if (!process.env.MONGODB_URI) {
     throw new Error("MONGODB_URI is not set in .env.local");
@@ -28,7 +28,7 @@ async function main() {
   await User.create({
     email,
     passwordHash: await hashPassword(password),
-    name: "NEBCO Admin",
+    name: "Site Admin",
     role: "superadmin",
     isActive: true,
   });

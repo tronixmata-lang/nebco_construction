@@ -64,16 +64,16 @@ export function getSuggestionsForTopic(topicId: string): string[] {
   const map: Record<string, string[]> = {
     about: ["What services do you offer?", "Are you A-Class licensed?", "Book a consultation"],
     divisions: ["Tell me about Construction", "Book Construction meeting", "View portfolio"],
-    contact: ["Book a consultation", "Office location", "Call NEBCO"],
-    projects: ["Book a consultation", "Our divisions", "Contact NEBCO"],
-    leadership: ["About NEBCO", "Book a consultation", "Contact us"],
-    certificates: ["About NEBCO", "Our services", "Get a quote"],
-    stats: ["Our projects", "About NEBCO", "Book a meeting"],
+    contact: ["Book a consultation", "Office location", "Call Your Company"],
+    projects: ["Book a consultation", "Our divisions", "Contact Your Company"],
+    leadership: ["About Your Company", "Book a consultation", "Contact us"],
+    certificates: ["About Your Company", "Our services", "Get a quote"],
+    stats: ["Our projects", "About Your Company", "Book a meeting"],
     testimonials: ["Book a consultation", "Our services", "Contact us"],
     booking: ["Construction consultation", "Investment inquiry", "Consulting session"],
     sectors: ["Our divisions", "View projects", "Book a meeting"],
-    quote: ["Book a consultation", "Construction estimate", "Contact NEBCO"],
-    nrn: ["Book a consultation", "Our services", "Contact NEBCO"],
+    quote: ["Book a consultation", "Construction estimate", "Contact Your Company"],
+    nrn: ["Book a consultation", "Our services", "Contact Your Company"],
   };
 
   return map[topicId] ?? ["Our services", "Contact info", "Book a meeting"];
@@ -83,12 +83,12 @@ export function formatGreeting(knowledge: AssistantKnowledge): AssistantReply {
   const { site } = knowledge;
   return {
     text: pick([
-      `Hello! I'm NEBCO Assistance. I can help with company info, services, contact details, and booking a consultation with our team.`,
+      `Hello! I'm Site Assistant. I can help with company info, services, contact details, and booking a consultation with our team.`,
       `Hi there! Welcome to ${site.name}. Ask me anything, or I can help you schedule a meeting in just a few steps.`,
       `Hey! Good to hear from you. I'm here to answer questions about our construction, investment, and consulting work.`,
     ]),
     suggestions: [
-      "What does NEBCO do?",
+      "What does Your Company do?",
       "Book construction meeting",
       "Contact details",
       "Our services",
@@ -99,7 +99,7 @@ export function formatGreeting(knowledge: AssistantKnowledge): AssistantReply {
 export function formatWellbeing(): AssistantReply {
   return {
     text: pick([
-      "I'm doing well, thank you for asking! I'm here and ready to help with anything about NEBCO.",
+      "I'm doing well, thank you for asking! I'm here and ready to help with anything about Your Company.",
       "I'm good, thanks! How can I assist you with our construction, investment, or consulting services today?",
       "All good here, thank you! Tell me what you're looking for and I'll guide you.",
     ]),
@@ -107,7 +107,7 @@ export function formatWellbeing(): AssistantReply {
       "Our services",
       "Book construction meeting",
       "Contact details",
-      "About NEBCO",
+      "About Your Company",
     ],
   };
 }
@@ -116,7 +116,7 @@ export function formatShortGreeting(): AssistantReply {
   return {
     text: pick([
       "Hey! How can I help you today?",
-      "Hi again! What would you like to know about NEBCO?",
+      "Hi again! What would you like to know about Your Company?",
     ]),
     suggestions: ["Our services", "Book construction meeting", "Contact details"],
   };
@@ -127,7 +127,7 @@ export function formatThanks(): AssistantReply {
     text: pick([
       "You're welcome! Let me know if you'd like help with anything else.",
       "Happy to help. Feel free to ask another question or book a consultation anytime.",
-      "Glad I could help. Is there anything else you'd like to know about NEBCO?",
+      "Glad I could help. Is there anything else you'd like to know about Your Company?",
     ]),
     suggestions: ["Book a consultation", "Our services", "Contact info"],
   };
@@ -154,7 +154,7 @@ export function formatTopicReply(
     case "about":
       return {
         text: `${site.legalName} has operated since ${site.foundingDate} under ${site.parentOrganization}. ${truncate(site.description, 220)} Our tagline is "${site.tagline}". Would you like to explore our divisions or schedule a consultation?`,
-        links: entry.link ? [entry.link] : [{ label: "About NEBCO", href: "/about" }],
+        links: entry.link ? [entry.link] : [{ label: "About Your Company", href: "/about" }],
         suggestions: getSuggestionsForTopic("about"),
       };
 
@@ -174,7 +174,7 @@ export function formatTopicReply(
         .map((d) => `• ${d.name}: ${d.tagline}`)
         .join("\n");
       return {
-        text: `NEBCO works across three main verticals:\n\n${summary}\n\nTell me which area you're interested in, or I can help you book a consultation.`,
+        text: `Your Company works across three main verticals:\n\n${summary}\n\nTell me which area you're interested in, or I can help you book a consultation.`,
         links: [{ label: "Explore divisions", href: "/divisions" }],
         suggestions: knowledge.divisions.map((d) => d.name).concat(["Book a consultation"]),
       };
@@ -191,14 +191,14 @@ export function formatTopicReply(
 
     case "leadership":
       return {
-        text: `Our leadership team guides NEBCO across construction, investment, and consulting.\n\n${truncate(entry.content, 320)}`,
+        text: `Our leadership team guides Your Company across construction, investment, and consulting.\n\n${truncate(entry.content, 320)}`,
         links: entry.link ? [entry.link] : [{ label: "Meet the team", href: "/leadership" }],
         suggestions: getSuggestionsForTopic("leadership"),
       };
 
     case "certificates":
       return {
-        text: `Yes, NEBCO is a licensed A-Class construction company in Nepal. ${truncate(entry.content, 240)}`,
+        text: `Yes, Your Company is a licensed A-Class construction company in Nepal. ${truncate(entry.content, 240)}`,
         links: entry.link ? [entry.link] : undefined,
         suggestions: getSuggestionsForTopic("certificates"),
       };
@@ -211,7 +211,7 @@ export function formatTopicReply(
 
     case "testimonials":
       return {
-        text: `Clients across residential, commercial, and hospitality trust NEBCO for quality and on-time delivery.\n\n${truncate(entry.content, 300)}`,
+        text: `Clients across residential, commercial, and hospitality trust Your Company for quality and on-time delivery.\n\n${truncate(entry.content, 300)}`,
         suggestions: getSuggestionsForTopic("testimonials"),
       };
 
@@ -227,13 +227,13 @@ export function formatTopicReply(
         text: `For project estimates and timelines, the best next step is a short consultation with our team. You can book one here, or call us directly at ${site.phone}.`,
         startBooking: true,
         links: [{ label: "Contact us", href: "/contact" }],
-        suggestions: ["Book a consultation", "Construction estimate", "Contact NEBCO"],
+        suggestions: ["Book a consultation", "Construction estimate", "Contact Your Company"],
       };
 
     case "nrn":
       return {
         text: "Yes, we regularly work with NRN and international clients on residential, commercial, and investment projects in Nepal. We focus on clear communication and professional project management throughout.",
-        links: [{ label: "Contact NEBCO", href: "/contact" }],
+        links: [{ label: "Contact Your Company", href: "/contact" }],
         suggestions: getSuggestionsForTopic("nrn"),
       };
 

@@ -15,7 +15,7 @@ export function SectorCapabilityGrid({ capabilities, sectorTitle }: SectorCapabi
         Core Capabilities
       </p>
       <h2 className="font-display text-2xl text-secondary sm:text-3xl">
-        What NEBCO Delivers in {sectorTitle}
+        What Your Company Delivers in {sectorTitle}
       </h2>
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         {capabilities.map((capability, index) => (

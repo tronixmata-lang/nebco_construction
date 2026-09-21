@@ -11,7 +11,7 @@ import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Terms of Use",
   description:
-    "Terms and conditions governing your use of the NEBCO Construction website and services.",
+    "Terms and conditions governing your use of the Your Construction Company website and services.",
   path: "/legal/terms",
 });
 
@@ -24,10 +24,10 @@ export default async function TermsPage() {
       <PageIntro
         eyebrow="Legal"
         title="Terms of Use"
-        description="The terms and conditions governing your use of the NEBCO website and services."
+        description="The terms and conditions governing your use of the Your Company website and services."
         showStats={false}
         backgroundImage={pageHeroImages.legal}
-        backgroundAlt="NEBCO terms of use"
+        backgroundAlt="Your Company terms of use"
       />
       <Section className="pt-10 md:pt-14" glow="primary">
         <ScrollReveal>
@@ -36,20 +36,20 @@ export default async function TermsPage() {
               <p>Last updated: June 2025</p>
               <h2>Acceptance of Terms</h2>
               <p>
-                By accessing and using the NEBCO Construction website, you accept and
+                By accessing and using the Your Construction Company website, you accept and
                 agree to be bound by these Terms of Use. If you do not agree, please
                 do not use this website.
               </p>
               <h2>Use of Website</h2>
               <p>
-                This website is provided for informational purposes about NEBCO&apos;s
+                This website is provided for informational purposes about Your Company&apos;s
                 construction, investment, and consulting services. Content may not be
                 reproduced without prior written consent.
               </p>
               <h2>Limitation of Liability</h2>
               <p>
-                NEBCO Construction makes reasonable efforts to ensure accuracy but does
-                not warrant that all information is complete or current. NEBCO shall not
+                Your Construction Company makes reasonable efforts to ensure accuracy but does
+                not warrant that all information is complete or current. Your Company shall not
                 be liable for damages arising from use of this website.
               </p>
               <h2>Contact</h2>

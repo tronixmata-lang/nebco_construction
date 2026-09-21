@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { NrnFeatureCategory } from "@/content/nrn";
 import { BrandIcon } from "@/components/ui/BrandIcon";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -83,12 +84,14 @@ export function NrnPortalShowcase({ category }: NrnPortalShowcaseProps) {
 
       <div className="nrn-portal__frame">
         <div className="nrn-portal__topbar">
-          <CmsImage
+          <BrandLogo
             src={siteConfig.logo}
             alt=""
             width={160}
             height={48}
-            className="h-8 w-auto object-contain"
+            className="h-8 min-w-[5rem]"
+            imageClassName="h-8 w-auto object-contain"
+            placeholderClassName="h-8 text-secondary"
           />
           <p className="nrn-portal__login">You · NRN owner · Dubai</p>
         </div>
@@ -168,7 +171,7 @@ function PortalScreen({
             </figure>
           ))}
         </div>
-        <p className="nrn-portal__caption">Uploaded by site engineer B. K. Mandal, not a gallery photo.</p>
+        <p className="nrn-portal__caption">Uploaded by the site engineer, not a gallery photo.</p>
       </>
     );
   }

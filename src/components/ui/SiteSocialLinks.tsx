@@ -1,4 +1,4 @@
-import { NEBCO_FACEBOOK_URL, siteConfig } from "@/config/site";
+import { COMPANY_FACEBOOK_URL, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import {
   FacebookIcon,
@@ -49,19 +49,19 @@ function SocialIconButton({
 }
 
 export function getSiteSocialEntries(social?: SiteSocialLinksProps["social"]): SocialEntry[] {
-  const facebook = social?.facebook || siteConfig.social.facebook || NEBCO_FACEBOOK_URL;
+  const facebook = social?.facebook || siteConfig.social.facebook || COMPANY_FACEBOOK_URL;
   const linkedin = social?.linkedin ?? siteConfig.social.linkedin;
   const website = social?.website ?? siteConfig.social.website;
   const entries: SocialEntry[] = [];
 
   if (facebook) {
-    entries.push({ href: facebook, label: "NEBCO on Facebook", icon: FacebookIcon });
+    entries.push({ href: facebook, label: "Your Company on Facebook", icon: FacebookIcon });
   }
   if (linkedin) {
-    entries.push({ href: linkedin, label: "NEBCO on LinkedIn", icon: LinkedInIcon });
+    entries.push({ href: linkedin, label: "Your Company on LinkedIn", icon: LinkedInIcon });
   }
   if (website) {
-    entries.push({ href: website, label: "NEBCO website", icon: GlobeIcon });
+    entries.push({ href: website, label: "Your Company website", icon: GlobeIcon });
   }
 
   return entries;

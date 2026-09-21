@@ -38,7 +38,7 @@ export function ConstructionDivisionPage({
         description={hero.description}
         breadcrumbLabel={division.name}
         backgroundImage={heroImage}
-        backgroundAlt="NEBCO flagship construction in Nepal"
+        backgroundAlt="Your Company flagship construction in Nepal"
       >
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href={hero.primaryCta.href} size="lg">

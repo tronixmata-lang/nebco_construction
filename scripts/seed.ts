@@ -2,7 +2,7 @@ import "dotenv/config";
 import { seedDatabase } from "../src/lib/db/seed";
 
 async function main() {
-  console.log("Seeding NEBCO database...");
+  console.log("Seeding construction template database...");
   try {
     const counts = await seedDatabase();
     console.log("Seed complete:", counts);

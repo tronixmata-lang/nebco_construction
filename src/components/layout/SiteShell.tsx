@@ -7,7 +7,7 @@ import { SiteBreadcrumbBar } from "@/components/layout/SiteBreadcrumbBar";
 import { Footer, type FooterSiteConfig } from "@/components/layout/Footer";
 import { Header, type HeaderBranding } from "@/components/layout/Header";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { NebcoAssistance } from "@/components/assistant/NebcoAssistance";
+import { SiteAssistance } from "@/components/assistant/SiteAssistance";
 
 type SiteShellProps = {
   children: React.ReactNode;
@@ -32,7 +32,7 @@ export function SiteShell({ children, footerSiteConfig, headerBranding }: SiteSh
           <main className="flex-1">{children}</main>
           <Footer siteConfig={footerSiteConfig} />
           <ScrollToTop />
-          <NebcoAssistance />
+          <SiteAssistance />
         </div>
       </BreadcrumbProvider>
     </SmoothScroll>

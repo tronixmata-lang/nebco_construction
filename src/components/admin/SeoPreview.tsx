@@ -6,7 +6,7 @@ type SeoPreviewProps = {
   url?: string;
 };
 
-export function SeoPreview({ title, description, url = "https://nebco.com.np" }: SeoPreviewProps) {
+export function SeoPreview({ title, description, url = "https://yourcompany.com" }: SeoPreviewProps) {
   const displayTitle = title || "Page Title";
   const displayDesc =
     description ||

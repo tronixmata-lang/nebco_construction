@@ -8,7 +8,7 @@ export function ConsultingClients() {
     <div>
       <ScrollReveal>
         <SectionHeader
-          eyebrow="Who Comes to NEBCO Consulting"
+          eyebrow="Who Comes to Your Company Consulting"
           title="The problem they walk in with"
           description="NRNs, first-time builders, stalled sites, developers, and investors. The brief is usually a question, not a drawing set."
           align="center"

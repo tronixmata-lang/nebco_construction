@@ -18,7 +18,7 @@ export function NrnCommunityCards({ features }: NrnCommunityCardsProps) {
               <div className="nrn-blog-card__media">
                 <CmsImage
                   src={feature.image ?? "/images/home.jpg"}
-                  alt={`${feature.title}, NEBCO Construction`}
+                  alt={`${feature.title}, Your Construction Company`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

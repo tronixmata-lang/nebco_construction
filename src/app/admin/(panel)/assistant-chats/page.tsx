@@ -33,7 +33,7 @@ export default function AdminAssistantChatsPage() {
     <>
       <AdminHeader
         title="Assistant Chats"
-        description="Visitor conversations with NEBCO Assistance"
+        description="Visitor conversations with Site Assistant"
       />
 
       <div className="admin-card overflow-x-auto">

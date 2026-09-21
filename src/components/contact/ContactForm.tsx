@@ -101,9 +101,9 @@ export function ContactForm() {
           className="w-full rounded-sm border border-neutral-border bg-neutral px-4 py-3 text-sm text-secondary transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         >
           <option value="">Select a division</option>
-          <option value="construction">NEBCO Construction / Homes</option>
-          <option value="investment">NEBCO Investment</option>
-          <option value="consulting">NEBCO Consulting & Design</option>
+          <option value="construction">Your Construction Company / Homes</option>
+          <option value="investment">Your Company Investment</option>
+          <option value="consulting">Your Company Consulting & Design</option>
           <option value="general">General Inquiry</option>
         </select>
       </div>

@@ -1,6 +1,6 @@
 export const constructionPage = {
   hero: {
-    eyebrow: "NEBCO Construction",
+    eyebrow: "Your Construction Company",
     title: "Nepal's most trusted construction partner — built on a decade of delivery.",
     description:
       "200+ projects · 35+ years · Kathmandu, Pokhara, Nepalgunj & beyond",
@@ -16,7 +16,7 @@ export const constructionPage = {
     eyebrow: "Flagship Build",
     title: "From foundation to finished home",
     description:
-      "A private residence in Kathmandu, shown from site works through handover. This is the standard we hold on every NEBCO site: visible progress, licensed supervision, and a home the client can occupy with confidence.",
+      "A private residence in Kathmandu, shown from site works through handover. This is the standard we hold on every Your Company site: visible progress, licensed supervision, and a home the client can occupy with confidence.",
     beforeImage: "/images/site/1-81_11zon.jpg",
     afterImage: "/images/site/DSC01007-scaled.jpg",
     beforeLabel: "During construction",
@@ -86,7 +86,7 @@ export const constructionPage = {
     },
     {
       title: "Structural warranty included",
-      description: "Handover includes structural warranty coverage as part of the NEBCO delivery standard.",
+      description: "Handover includes structural warranty coverage as part of the Your Company delivery standard.",
     },
     {
       title: "Client portal for tracking",
@@ -114,7 +114,7 @@ export const constructionPage = {
     },
   ],
   bottomCta: {
-    title: "Ready to build with NEBCO?",
+    title: "Ready to build with Your Company?",
     description: "Speak with an engineer about scope, drawings, and a site visit.",
     primaryLabel: "Start your project",
     engineerLabel: "Talk to an engineer",
